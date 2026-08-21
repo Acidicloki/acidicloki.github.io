@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torn City & Discord Suite - Bingo & Race Hub</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            torn: {
+              red: '#e53e3e',
+              dark: '#12141a',
+              card: '#1a1d26',
+              border: '#2a2f3d',
+              accent: '#3b82f6',
+              gold: '#f59e0b'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0f1117;
+      color: #e2e8f0;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #12141a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2a2f3d;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3b82f6;
+    }
+    .bingo-cell {
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.5rem;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Top Navigation Bar -->
+  <header class="bg-torn-card border-b border-torn-border sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Brand -->
+        <div class="flex items-center space-x-3">
+          <div class="bg-gradient-to-tr from-torn-red to-torn-gold p-2 rounded-lg text-white shadow-lg">
+            <i data-lucide="gamepad-2" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <div class="font-bold text-lg text-white flex items-center gap-2">
+              Torn & Discord Suite
+              <span class="text-xs bg-blue-500/20 text-blue-400 border border-blue-500/30 px-2 py-0.5 rounded-full">v2.0 Web GUI</span>
+            </div>
+            <div class="text-xs text-slate-400">Bingo Generator • Caller • Race Reminders • Webhooks</div>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="flex space-x-1 sm:space-x-2 bg-torn-dark p-1.5 rounded-xl border border-torn-border text-sm font-medium">
+          <button onclick="switchTab('tab-settings')" id="btn-tab-settings" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition">
+            <i data-lucide="settings" class="w-4 h-4"></i>
+            <span class="hidden md:inline">Settings & Keys</span>
+          </button>
+          <button onclick="switchTab('tab-bingo')" id="btn-tab-bingo" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-600 text-white transition shadow-sm">
+            <i data-lucide="grid" class="w-4 h-4"></i>
+            <span class="hidden md:inline">Bingo Studio</span>
+          </button>
+          <button onclick="switchTab('tab-caller')" id="btn-tab-caller" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition">
+            <i data-lucide="megaphone" class="w-4 h-4"></i>
+            <span class="hidden md:inline">Word Announcer</span>
+          </button>
+          <button onclick="switchTab('tab-races')" id="btn-tab-races" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition">
+            <i data-lucide="flag" class="w-4 h-4"></i>
+            <span class="hidden md:inline">Torn Races</span>
+          </button>
+          <button onclick="switchTab('tab-bot')" id="btn-tab-bot" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition">
+            <i data-lucide="bot" class="w-4 h-4"></i>
+            <span class="hidden md:inline">Bot Backend</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Global Status Toast Bar -->
+  <div id="toast-bar" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+    <div id="toast-content" class="p-3 rounded-lg flex items-center justify-between text-sm shadow-md">
+      <div class="flex items-center gap-2">
+        <i id="toast-icon" data-lucide="info" class="w-5 h-5"></i>
+        <span id="toast-message">Message text</span>
+      </div>
+      <button onclick="hideToast()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- ================= TAB 1: SETTINGS ================= -->
+    <section id="tab-settings" class="tab-content hidden space-y-6">
+      <div class="border-b border-torn-border pb-4 flex justify-between items-center flex-wrap gap-4">
+        <div>
+          <h1 class="text-2xl font-bold text-white flex items-center gap-2">
+            <i data-lucide="sliders" class="w-6 h-6 text-blue-400"></i>
+            Integration Settings & API Keys
+          </h1>
+          <p class="text-sm text-slate-400 mt-1">All credentials are stored securely in your browser's <code class="text-blue-300 font-mono">localStorage</code>. They never touch third-party servers.</p>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="exportConfig()" class="bg-torn-dark hover:bg-slate-800 border border-torn-border text-slate-300 px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-1.5">
+            <i data-lucide="download" class="w-4 h-4"></i> Export JSON
+          </button>
+          <label class="bg-torn-dark hover:bg-slate-800 border border-torn-border text-slate-300 px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-1.5 cursor-pointer">
+            <i data-lucide="upload" class="w-4 h-4"></i> Import JSON
+            <input type="file" id="import-file" class="hidden" accept=".json" onchange="importConfig(event)">
+          </label>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Discord Webhook Card -->
+        <div class="bg-torn-card p-6 rounded-xl border border-torn-border shadow-sm flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="bg-indigo-600/20 text-indigo-400 p-2.5 rounded-lg border border-indigo-500/30">
+                <i data-lucide="webhook" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-white">Discord Webhook Configuration</h3>
+                <p class="text-xs text-slate-400">Used for instantaneous Bingo calls and Race reminder broadcasts.</p>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1.5">Discord Webhook URL</label>
+              <input type="url" id="setting-webhook-url" placeholder="https://discord.com/api/webhooks/..." class="w-full bg-torn-dark border border-torn-border rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 font-mono">
+              <span class="text-[11px] text-slate-500 mt-1 block">Server Settings → Integrations → Webhooks → New Webhook → Copy URL</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1.5">Bot Username Override</label>
+                <input type="text" id="setting-bot-name" placeholder="Torn Bingo & Race Bot" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1.5">Bot Avatar URL (optional)</label>
+                <input type="url" id="setting-bot-avatar" placeholder="https://..." class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1.5">Ping Role / User ID (optional, e.g. &lt;@&amp;123456789&gt;)</label>
+              <input type="text" id="setting-ping-role" placeholder="<@&ROLE_ID> or @here" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500 font-mono">
+            </div>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-torn-border flex gap-3">
+            <button onclick="testWebhook()" class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 rounded-lg text-sm flex items-center justify-center gap-2 transition">
+              <i data-lucide="send" class="w-4 h-4"></i> Test Webhook
+            </button>
+            <button onclick="saveSettings()" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-lg text-sm transition">
+              Save
+            </button>
+          </div>
+        </div>
+
+        <!-- Torn City API Key Card -->
+        <div class="bg-torn-card p-6 rounded-xl border border-torn-border shadow-sm flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="bg-torn-red/20 text-torn-red p-2.5 rounded-lg border border-torn-red/30">
+                <i data-lucide="key" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-white">Torn City API Access</h3>
+                <p class="text-xs text-slate-400">Used to pull Torn items, racing schedules, and faction data.</p>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1.5">Torn API Key (Public / Minimal or Custom Access)</label>
+              <div class="relative">
+                <input type="password" id="setting-torn-key" placeholder="Enter your 16-character Torn API Key..." class="w-full bg-torn-dark border border-torn-border rounded-lg pl-3.5 pr-10 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 font-mono">
+                <button type="button" onclick="togglePasswordVisibility('setting-torn-key', this)" class="absolute right-3 top-2.5 text-slate-400 hover:text-white">
+                  <i data-lucide="eye" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <span class="text-[11px] text-slate-500 mt-1 block">Generate in Torn: Preferences → API Keys. Public or Minimal access is sufficient for items and official races.</span>
+            </div>
+
+            <!-- API Status / User Info Box -->
+            <div id="torn-status-card" class="bg-torn-dark p-3.5 rounded-lg border border-torn-border text-xs space-y-2">
+              <div class="flex justify-between items-center text-slate-400">
+                <span>API Status:</span>
+                <span id="torn-status-badge" class="px-2 py-0.5 rounded text-[11px] bg-slate-800 text-slate-400">Not Verified</span>
+              </div>
+              <div id="torn-user-details" class="hidden space-y-1 pt-2 border-t border-slate-800 text-slate-300">
+                <div class="flex justify-between"><span>Player:</span><span id="torn-player-name" class="font-bold text-white">-</span></div>
+                <div class="flex justify-between"><span>Faction:</span><span id="torn-player-faction" class="text-blue-400">-</span></div>
+                <div class="flex justify-between"><span>Status:</span><span id="torn-player-status">-</span></div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <input type="checkbox" id="setting-auto-fetch-items" class="rounded bg-torn-dark border-torn-border text-blue-600 focus:ring-0">
+              <label for="setting-auto-fetch-items" class="text-xs text-slate-300">Auto-populate Bingo words with popular Torn items</label>
+            </div>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-torn-border flex gap-3">
+            <button onclick="testTornAPI()" class="flex-1 bg-torn-red hover:bg-red-600 text-white font-medium py-2 rounded-lg text-sm flex items-center justify-center gap-2 transition">
+              <i data-lucide="refresh-cw" class="w-4 h-4"></i> Verify & Pull Info
+            </button>
+            <button onclick="saveSettings()" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-lg text-sm transition">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 2: BINGO CARD GENERATOR & STUDIO ================= -->
+    <section id="tab-bingo" class="tab-content space-y-6">
+      <div class="border-b border-torn-border pb-4 flex justify-between items-center flex-wrap gap-4">
+        <div>
+          <h1 class="text-2xl font-bold text-white flex items-center gap-2">
+            <i data-lucide="grid" class="w-6 h-6 text-blue-400"></i>
+            Interactive Bingo Card Studio & Generator
+          </h1>
+          <p class="text-sm text-slate-400 mt-1">Generate unique 5x5 randomized cards, retrieve player cards by Seed/ID, and export high-res PNG cards.</p>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="downloadCardPNG()" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-1.5 shadow-sm">
+            <i data-lucide="image" class="w-4 h-4"></i> Download Card Image
+          </button>
+          <button onclick="sendCardToDiscord()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-1.5 shadow-sm">
+            <i data-lucide="share-2" class="w-4 h-4"></i> Post Card to Discord
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Controls Column (Left) -->
+        <div class="lg:col-span-5 space-y-5">
+          <!-- Card Configuration Form -->
+          <div class="bg-torn-card p-5 rounded-xl border border-torn-border shadow-sm space-y-4">
+            <h3 class="font-semibold text-white text-sm flex items-center gap-2">
+              <i data-lucide="palette" class="w-4 h-4 text-blue-400"></i>
+              Card Settings & Identification
+            </h3>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">Card Title / Header</label>
+                <input type="text" id="bingo-card-title" value="TORN FACTION BINGO" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500 font-semibold">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">Free Space Label</label>
+                <input type="text" id="bingo-free-space" value="FREE SPACE (TORN)" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">Player Name / ID (Seed)</label>
+                <input type="text" id="bingo-player-seed" placeholder="e.g. Loki [2356475] or 4821" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500 font-mono">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">Card Theme Accent</label>
+                <select id="bingo-theme" onchange="renderBingoCard()" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500">
+                  <option value="blue">Cyber Blue</option>
+                  <option value="red">Torn Crimson</option>
+                  <option value="emerald">Faction Emerald</option>
+                  <option value="purple">Syndicate Purple</option>
+                  <option value="gold">Golden Nugget</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="flex gap-2 pt-2">
+              <button onclick="generateRandomSeedAndCard()" class="flex-1 bg-torn-dark hover:bg-slate-800 border border-torn-border text-slate-200 font-medium py-2 rounded-lg text-xs flex items-center justify-center gap-1.5">
+                <i data-lucide="dice-5" class="w-4 h-4 text-blue-400"></i> Randomize Seed
+              </button>
+              <button onclick="renderBingoCard()" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-lg text-xs flex items-center justify-center gap-1.5">
+                <i data-lucide="refresh-cw" class="w-4 h-4"></i> Render Card
+              </button>
+            </div>
+          </div>
+
+          <!-- Word / Item Pool Manager -->
+          <div class="bg-torn-card p-5 rounded-xl border border-torn-border shadow-sm space-y-3">
+            <div class="flex justify-between items-center">
+              <h3 class="font-semibold text-white text-sm flex items-center gap-2">
+                <i data-lucide="list" class="w-4 h-4 text-torn-gold"></i>
+                Word / Item Pool (<span id="pool-count">0</span> items)
+              </h3>
+              <div class="flex gap-1.5">
+                <button onclick="loadDefaultTornPool()" class="text-[11px] bg-slate-800 hover:bg-slate-700 text-blue-400 px-2 py-1 rounded border border-slate-700">Defaults</button>
+                <button onclick="fetchTornItemsToPool()" class="text-[11px] bg-torn-red/20 hover:bg-torn-red/30 text-red-400 px-2 py-1 rounded border border-red-900/50">Pull API Items</button>
+              </div>
+            </div>
+            <p class="text-[11px] text-slate-400">Enter at least 24 unique items/words (one per line). The generator will pick 24 items to populate the 5x5 grid around the center Free Space.</p>
+            <textarea id="bingo-word-pool" rows="8" oninput="updatePoolCount()" class="w-full bg-torn-dark border border-torn-border rounded-lg p-3 text-xs text-white focus:outline-none focus:border-blue-500 font-mono leading-relaxed"></textarea>
+          </div>
+        </div>
+
+        <!-- Interactive Preview Column (Right) -->
+        <div class="lg:col-span-7 space-y-4">
+          <div class="bg-torn-card p-5 rounded-xl border border-torn-border shadow-sm">
+            <div class="flex justify-between items-center mb-4">
+              <div>
+                <h3 class="font-semibold text-white text-sm">Live Card Canvas & Interactive Check</h3>
+                <span class="text-xs text-slate-400" id="card-metadata-tag">Seed: Default • 5x5 Grid</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span id="win-status-badge" class="hidden px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
+                  <i data-lucide="trophy" class="w-3.5 h-3.5"></i> BINGO!
+                </span>
+                <button onclick="clearCardMarks()" class="text-xs bg-torn-dark hover:bg-slate-800 text-slate-400 hover:text-white px-2.5 py-1 rounded border border-torn-border">Clear Marks</button>
+              </div>
+            </div>
+
+            <!-- Visual 5x5 HTML Grid -->
+            <div class="bg-torn-dark p-3.5 rounded-xl border border-torn-border">
+              <!-- B-I-N-G-O Header -->
+              <div class="grid grid-cols-5 gap-2 mb-2 text-center font-extrabold text-lg sm:text-xl text-blue-400 tracking-wider">
+                <div class="bg-torn-card py-1.5 rounded-lg border border-torn-border shadow-inner">B</div>
+                <div class="bg-torn-card py-1.5 rounded-lg border border-torn-border shadow-inner">I</div>
+                <div class="bg-torn-card py-1.5 rounded-lg border border-torn-border shadow-inner">N</div>
+                <div class="bg-torn-card py-1.5 rounded-lg border border-torn-border shadow-inner">G</div>
+                <div class="bg-torn-card py-1.5 rounded-lg border border-torn-border shadow-inner">O</div>
+              </div>
+
+              <!-- 25 Cells Grid -->
+              <div id="interactive-grid" class="grid grid-cols-5 gap-2">
+                <!-- Dynamically populated via JS -->
+              </div>
+            </div>
+
+            <!-- Hidden Canvas for PNG Rendering & Export -->
+            <canvas id="export-canvas" width="800" height="900" class="hidden"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 3: BINGO WORD ANNOUNCER ================= -->
+    <section id="tab-caller" class="tab-content hidden space-y-6">
+      <div class="border-b border-torn-border pb-4 flex justify-between items-center flex-wrap gap-4">
+        <div>
+          <h1 class="text-2xl font-bold text-white flex items-center gap-2">
+            <i data-lucide="megaphone" class="w-6 h-6 text-torn-gold"></i>
+            Live Bingo Caller & Discord Announcer
+          </h1>
+          <p class="text-sm text-slate-400 mt-1">Draw words live or on automated intervals, broadcast rich embeds to your Discord channel via Webhook.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <button onclick="resetBingoGame()" class="bg-torn-dark hover:bg-slate-800 text-red-400 border border-red-900/40 px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-1.5">
+            <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset Game
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Caller Controls (Left) -->
+        <div class="lg:col-span-5 space-y-5">
+          <!-- Main Call Action Card -->
+          <div class="bg-torn-card p-6 rounded-xl border border-torn-border shadow-sm text-center space-y-5">
+            <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Latest Drawn Word / Item</span>
+            <div id="caller-current-word" class="py-8 px-4 bg-torn-dark rounded-xl border border-torn-border text-2xl sm:text-3xl font-extrabold text-torn-gold min-h-[120px] flex items-center justify-center shadow-inner">
+              Ready to Draw
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <button onclick="drawNextWord(true)" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-3.5 rounded-xl text-sm flex items-center justify-center gap-2 shadow-lg transition">
+                <i data-lucide="volume-2" class="w-5 h-5"></i> Draw & Announce
+              </button>
+              <button onclick="drawNextWord(false)" class="bg-torn-dark hover:bg-slate-800 border border-torn-border text-slate-200 font-semibold py-3.5 rounded-xl text-sm flex items-center justify-center gap-2 transition">
+                <i data-lucide="eye" class="w-5 h-5"></i> Draw Silently
+              </button>
+            </div>
+
+            <!-- Automated Timer Controls -->
+            <div class="bg-torn-dark p-4 rounded-xl border border-torn-border text-left space-y-3">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-semibold text-white flex items-center gap-1.5">
+                  <i data-lucide="timer" class="w-4 h-4 text-blue-400"></i> Auto-Caller Timer
+                </span>
+                <span id="auto-timer-display" class="text-xs font-mono text-slate-400">Off</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <select id="auto-timer-interval" class="bg-torn-card border border-torn-border rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none flex-1">
+                  <option value="30">Every 30 seconds</option>
+                  <option value="60" selected>Every 1 minute</option>
+                  <option value="120">Every 2 minutes</option>
+                  <option value="300">Every 5 minutes</option>
+                  <option value="600">Every 10 minutes</option>
+                </select>
+                <button id="btn-toggle-timer" onclick="toggleAutoTimer()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-4 py-1.5 rounded-lg transition">
+                  Start Auto
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Stats -->
+          <div class="bg-torn-card p-5 rounded-xl border border-torn-border shadow-sm">
+            <h4 class="text-xs font-semibold text-slate-300 uppercase tracking-wider mb-3">Game Progress</h4>
+            <div class="grid grid-cols-3 gap-3 text-center">
+              <div class="bg-torn-dark p-3 rounded-lg border border-torn-border">
+                <div id="stat-called-count" class="text-xl font-bold text-blue-400">0</div>
+                <div class="text-[11px] text-slate-400">Called</div>
+              </div>
+              <div class="bg-torn-dark p-3 rounded-lg border border-torn-border">
+                <div id="stat-remaining-count" class="text-xl font-bold text-slate-200">0</div>
+                <div class="text-[11px] text-slate-400">Remaining</div>
+              </div>
+              <div class="bg-torn-dark p-3 rounded-lg border border-torn-border">
+                <div id="stat-total-count" class="text-xl font-bold text-torn-gold">0</div>
+                <div class="text-[11px] text-slate-400">Pool Size</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Call Board / History (Right) -->
+        <div class="lg:col-span-7 space-y-4">
+          <div class="bg-torn-card p-5 rounded-xl border border-torn-border shadow-sm flex flex-col h-[520px]">
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="font-semibold text-white text-sm flex items-center gap-2">
+                <i data-lucide="history" class="w-4 h-4 text-blue-400"></i>
+                Drawn Words Board
+              </h3>
+              <button onclick="reannounceLastCall()" class="text-xs bg-torn-dark hover:bg-slate-800 text-slate-300 px-2.5 py-1 rounded border border-torn-border flex items-center gap-1">
+                <i data-lucide="send" class="w-3.5 h-3.5"></i> Re-post Last Call
+              </button>
+            </div>
+
+            <!-- Words List Flow -->
+            <div id="caller-history-list" class="flex-1 overflow-y-auto bg-torn-dark p-3.5 rounded-xl border border-torn-border space-y-2">
+              <p class="text-xs text-slate-500 text-center py-12">No words drawn yet. Click "Draw & Announce" to start the game!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 4: TORN RACES & REMINDERS ================= -->
+    <section id="tab-races" class="tab-content hidden space-y-6">
+      <div class="border-b border-torn-border pb-4 flex justify-between items-center flex-wrap gap-4">
+        <div>
+          <h1 class="text-2xl font-bold text-white flex items-center gap-2">
+            <i data-lucide="flag" class="w-6 h-6 text-torn-red"></i>
+            Torn City Race Hub & Reminders
+          </h1>
+          <p class="text-sm text-slate-400 mt-1">Live tracking of official and custom races with instant Discord countdown alerts.</p>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="fetchTornRaces()" class="bg-torn-red hover:bg-red-600 text-white px-3.5 py-2 rounded-lg text-xs font-medium flex items-center gap-1.5 shadow-sm transition">
+            <i data-lucide="refresh-cw" class="w-4 h-4"></i> Refresh Races
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Live Races List (Left 7 Cols) -->
+        <div class="lg:col-span-7 space-y-4">
+          <div class="bg-torn-card p-5 rounded-xl border border-torn-border shadow-sm">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="font-semibold text-white text-sm flex items-center gap-2">
+                <i data-lucide="gauge" class="w-4 h-4 text-torn-gold"></i>
+                Active & Upcoming Races
+              </h3>
+              <span id="race-count-badge" class="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">0 races</span>
+            </div>
+
+            <!-- Races Container -->
+            <div id="races-list-container" class="space-y-3 min-h-[300px]">
+              <div class="bg-torn-dark p-8 rounded-xl border border-torn-border text-center space-y-3">
+                <i data-lucide="car" class="w-10 h-10 text-slate-600 mx-auto"></i>
+                <p class="text-xs text-slate-400">Click "Refresh Races" above to query the Torn City Racing API.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Race Reminder Builder (Right 5 Cols) -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="bg-torn-card p-5 rounded-xl border border-torn-border shadow-sm space-y-4">
+            <h3 class="font-semibold text-white text-sm flex items-center gap-2">
+              <i data-lucide="send" class="w-4 h-4 text-blue-400"></i>
+              Manual / Custom Race Alert
+            </h3>
+            <p class="text-xs text-slate-400">Dispatch an immediate high-priority race announcement embed to Discord.</p>
+
+            <div class="space-y-3">
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">Race Title</label>
+                <input type="text" id="custom-race-title" value="Weekly Faction Championship — Mudpit" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500 font-semibold">
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-medium text-slate-300 mb-1">Track Name</label>
+                  <input type="text" id="custom-race-track" value="Mudpit (100 Laps)" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500">
+                </div>
+                <div>
+                  <label class="block text-xs font-medium text-slate-300 mb-1">Car Class Allowed</label>
+                  <input type="text" id="custom-race-class" value="Class A & B Only" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-medium text-slate-300 mb-1">Start Time / Countdown</label>
+                  <input type="text" id="custom-race-time" value="In 15 Minutes (18:00 TCT)" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500 font-mono">
+                </div>
+                <div>
+                  <label class="block text-xs font-medium text-slate-300 mb-1">Entry Fee / Prize</label>
+                  <input type="text" id="custom-race-prize" value="Free Entry • $10M + Xanax Prize" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">Custom Notes / Password</label>
+                <input type="text" id="custom-race-notes" value="Password: cyclone • Join via custom race tab!" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500">
+              </div>
+            </div>
+
+            <button onclick="sendCustomRaceAlert()" class="w-full bg-torn-red hover:bg-red-600 text-white font-bold py-2.5 rounded-lg text-xs flex items-center justify-center gap-2 shadow-lg transition">
+              <i data-lucide="bell-ring" class="w-4 h-4"></i> Dispatch Race Reminder
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 5: BOT BACKEND & DEPLOYMENT ================= -->
+    <section id="tab-bot" class="tab-content hidden space-y-6">
+      <div class="border-b border-torn-border pb-4">
+        <h1 class="text-2xl font-bold text-white flex items-center gap-2">
+          <i data-lucide="bot" class="w-6 h-6 text-blue-400"></i>
+          Discord Bot Backend & Slash Commands Guide
+        </h1>
+        <p class="text-sm text-slate-400 mt-1">If you want 24/7 background automation, use our companion Python bot with slash commands.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Slash Commands Reference -->
+        <div class="bg-torn-card p-6 rounded-xl border border-torn-border space-y-4">
+          <h3 class="font-semibold text-white text-base flex items-center gap-2">
+            <i data-lucide="terminal" class="w-5 h-5 text-emerald-400"></i>
+            Bot Slash Commands
+          </h3>
+          <div class="space-y-3 text-xs">
+            <div class="bg-torn-dark p-3 rounded-lg border border-torn-border">
+              <div class="font-mono font-bold text-blue-400">/bingo card [player_name] [theme]</div>
+              <div class="text-slate-400 mt-1">Generates and renders a custom 5x5 Torn Bingo Card image directly in Discord for the user.</div>
+            </div>
+            <div class="bg-torn-dark p-3 rounded-lg border border-torn-border">
+              <div class="font-mono font-bold text-blue-400">/bingo call [announce: True/False]</div>
+              <div class="text-slate-400 mt-1">Draws the next word from the active pool and broadcasts an embed. (Admin only)</div>
+            </div>
+            <div class="bg-torn-dark p-3 rounded-lg border border-torn-border">
+              <div class="font-mono font-bold text-blue-400">/bingo check [seed] [drawn_words]</div>
+              <div class="text-slate-400 mt-1">Verifies if a specific player's card seed has achieved a winning line or blackout.</div>
+            </div>
+            <div class="bg-torn-dark p-3 rounded-lg border border-torn-border">
+              <div class="font-mono font-bold text-torn-red">/race schedule</div>
+              <div class="text-slate-400 mt-1">Fetches live races from the Torn API and shows countdowns, tracks, and car classes.</div>
+            </div>
+            <div class="bg-torn-dark p-3 rounded-lg border border-torn-border">
+              <div class="font-mono font-bold text-torn-red">/race remind [race_id] [minutes_before]</div>
+              <div class="text-slate-400 mt-1">Schedules an automatic countdown alert before the race starts.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deployment Quickstart -->
+        <div class="bg-torn-card p-6 rounded-xl border border-torn-border space-y-4">
+          <h3 class="font-semibold text-white text-base flex items-center gap-2">
+            <i data-lucide="cloud" class="w-5 h-5 text-blue-400"></i>
+            Running the 24/7 Python Bot
+          </h3>
+          <div class="bg-torn-dark p-4 rounded-lg border border-torn-border font-mono text-xs text-slate-300 space-y-2 overflow-x-auto">
+            <div class="text-slate-500"># 1. Clone repository & enter folder</div>
+            <div>git clone &lt;your-repo-url&gt;</div>
+            <div>cd torn_discord_bingo_suite</div>
+            <div class="text-slate-500 pt-2"># 2. Install dependencies</div>
+            <div>pip install -r requirements.txt</div>
+            <div class="text-slate-500 pt-2"># 3. Set environment variables in .env</div>
+            <div>DISCORD_TOKEN=your_bot_token_here</div>
+            <div>DISCORD_WEBHOOK_URL=your_webhook_url</div>
+            <div>TORN_API_KEY=your_torn_api_key</div>
+            <div class="text-slate-500 pt-2"># 4. Start the bot</div>
+            <div class="text-emerald-400 font-bold">python bot.py</div>
+          </div>
+          <p class="text-xs text-slate-400">Can be hosted free on Render, Railway, Fly.io, or on a home Raspberry Pi/server.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-torn-card border-t border-torn-border py-4 mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500 flex justify-between items-center flex-wrap gap-2">
+      <div>Designed for Torn City Factions & Discord Communities • GitHub Pages Ready</div>
+      <div class="text-slate-400">Powered by Torn API v2 & Discord Webhooks</div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script>
+    // --- State & Storage Keys ---
+    const STORAGE_KEY = 'torn_suite_settings_v2';
+    const GAME_STORAGE_KEY = 'torn_bingo_game_state_v2';
+
+    const defaultTornItems = [
+      "Xanax", "Vicodin", "Ecstasy", "Speed", "Opium",
+      "Blood Bag : A+", "Blood Bag : O-", "Blood Bag : AB+", "Empty Blood Bag",
+      "Armored Vest", "Liquid Body Armor", "Combat Helmet",
+      "Diamond Bladed Knife", "Dual Bushmasters", "Armalite M-15A4", "RPG Launcher",
+      "Box of Medical Supplies", "First Aid Kit", "Morphine",
+      "Can of Red Cow", "Can of Rockstar", "Can of Munster",
+      "Donator Pack", "Point", "Lottery Voucher", "Lawyer Business Card",
+      "Feathery Hotel Coupon", "Six-Pack of Alcohol", "Bottle of Beer", "Box of Grenades"
+    ];
+
+    let currentSettings = {
+      webhookUrl: '',
+      botName: 'Torn Bingo & Race Hub',
+      botAvatar: '',
+      pingRole: '',
+      tornApiKey: '',
+      autoFetchItems: true
+    };
+
+    let activeBingoCard = [];
+    let markedCells = new Set();
+    let drawnWords = [];
+    let autoTimerIntervalId = null;
+
+    // --- Lifecycle Initialization ---
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      loadSettings();
+      initBingoPool();
+      loadBingoGameState();
+      generateRandomSeedAndCard();
+    });
+
+    // --- Tab Switching ---
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.getElementById(tabId).classList.remove('hidden');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('bg-blue-600', 'text-white');
+        btn.classList.add('text-slate-400');
+      });
+
+      const activeBtnId = 'btn-' + tabId;
+      const activeBtn = document.getElementById(activeBtnId);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-slate-400');
+        activeBtn.classList.add('bg-blue-600', 'text-white');
+      }
+      lucide.createIcons();
+    }
+
+    // --- Toast Notifications ---
+    function showToast(message, type = 'info') {
+      const bar = document.getElementById('toast-bar');
+      const content = document.getElementById('toast-content');
+      const msg = document.getElementById('toast-message');
+      const icon = document.getElementById('toast-icon');
+
+      msg.innerText = message;
+      content.className = 'p-3 rounded-lg flex items-center justify-between text-sm shadow-md ';
+
+      if (type === 'success') {
+        content.classList.add('bg-emerald-950/80', 'border', 'border-emerald-700', 'text-emerald-300');
+      } else if (type === 'error') {
+        content.classList.add('bg-red-950/80', 'border', 'border-red-700', 'text-red-300');
+      } else {
+        content.classList.add('bg-blue-950/80', 'border', 'border-blue-700', 'text-blue-300');
+      }
+
+      bar.classList.remove('hidden');
+      lucide.createIcons();
+
+      setTimeout(() => {
+        hideToast();
+      }, 5000);
+    }
+
+    function hideToast() {
+      document.getElementById('toast-bar').classList.add('hidden');
+    }
+
+    // --- Settings Storage ---
+    function loadSettings() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          currentSettings = JSON.parse(saved);
+        } catch (e) {
+          console.error("Failed to parse settings", e);
+        }
+      }
+      document.getElementById('setting-webhook-url').value = currentSettings.webhookUrl || '';
+      document.getElementById('setting-bot-name').value = currentSettings.botName || 'Torn Bingo & Race Hub';
+      document.getElementById('setting-bot-avatar').value = currentSettings.botAvatar || '';
+      document.getElementById('setting-ping-role').value = currentSettings.pingRole || '';
+      document.getElementById('setting-torn-key').value = currentSettings.tornApiKey || '';
+      document.getElementById('setting-auto-fetch-items').checked = currentSettings.autoFetchItems !== false;
+    }
+
+    function saveSettings(silent = false) {
+      currentSettings.webhookUrl = document.getElementById('setting-webhook-url').value.trim();
+      currentSettings.botName = document.getElementById('setting-bot-name').value.trim();
+      currentSettings.botAvatar = document.getElementById('setting-bot-avatar').value.trim();
+      currentSettings.pingRole = document.getElementById('setting-ping-role').value.trim();
+      currentSettings.tornApiKey = document.getElementById('setting-torn-key').value.trim();
+      currentSettings.autoFetchItems = document.getElementById('setting-auto-fetch-items').checked;
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(currentSettings));
+      if (!silent) {
+        showToast('Settings saved successfully in browser localStorage!', 'success');
+      }
+    }
+
+    function exportConfig() {
+      saveSettings(true);
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentSettings, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "torn_discord_config.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast('Config exported as torn_discord_config.json', 'success');
+    }
+
+    function importConfig(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          currentSettings = Object.assign(currentSettings, imported);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(currentSettings));
+          loadSettings();
+          showToast('Config imported successfully!', 'success');
+        } catch (err) {
+          showToast('Invalid JSON config file', 'error');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function togglePasswordVisibility(id, btn) {
+      const input = document.getElementById(id);
+      if (input.type === 'password') {
+        input.type = 'text';
+      } else {
+        input.type = 'password';
+      }
+    }
+
+    // --- Torn API Client ---
+    async function testTornAPI() {
+      saveSettings(true);
+      const key = currentSettings.tornApiKey;
+      if (!key) {
+        showToast('Please enter a Torn API Key first.', 'error');
+        return;
+      }
+
+      const badge = document.getElementById('torn-status-badge');
+      badge.innerText = 'Connecting...';
+      badge.className = 'px-2 py-0.5 rounded text-[11px] bg-yellow-500/20 text-yellow-400';
+
+      try {
+        const resp = await fetch(`https://api.torn.com/user/?selections=basic,profile&key=${encodeURIComponent(key)}`);
+        const data = await resp.json();
+
+        if (data.error) {
+          badge.innerText = `Error: ${data.error.error || 'Invalid Key'}`;
+          badge.className = 'px-2 py-0.5 rounded text-[11px] bg-red-500/20 text-red-400';
+          showToast(`Torn API Error code ${data.error.code}: ${data.error.error}`, 'error');
+          return;
+        }
+
+        badge.innerText = 'Connected (Valid)';
+        badge.className = 'px-2 py-0.5 rounded text-[11px] bg-emerald-500/20 text-emerald-400';
+
+        document.getElementById('torn-user-details').classList.remove('hidden');
+        document.getElementById('torn-player-name').innerText = `${data.name} [${data.player_id}]`;
+        document.getElementById('torn-player-faction').innerText = data.faction ? `${data.faction.faction_name} (${data.faction.position || 'Member'})` : 'No Faction';
+        document.getElementById('torn-player-status').innerText = `${data.status?.state || 'Okay'} (${data.gender}, Lvl ${data.level})`;
+
+        showToast(`Connected to Torn API! Welcome, ${data.name}.`, 'success');
+
+        if (currentSettings.autoFetchItems) {
+          fetchTornItemsToPool(false);
+        }
+      } catch (err) {
+        badge.innerText = 'Network / CORS Error';
+        badge.className = 'px-2 py-0.5 rounded text-[11px] bg-red-500/20 text-red-400';
+        showToast('Network error querying Torn API. Verify network or browser CORS permissions.', 'error');
+      }
+    }
+
+    async function fetchTornItemsToPool(notify = true) {
+      const key = currentSettings.tornApiKey;
+      if (!key) {
+        if (notify) showToast('Enter your Torn API key in Settings to fetch live items.', 'error');
+        return;
+      }
+
+      try {
+        const resp = await fetch(`https://api.torn.com/torn/?selections=items&key=${encodeURIComponent(key)}`);
+        const data = await resp.json();
+
+        if (data.error || !data.items) {
+          if (notify) showToast(`Torn Items fetch failed: ${data.error?.error || 'Unknown error'}`, 'error');
+          return;
+        }
+
+        const itemsList = Object.values(data.items)
+          .filter(it => it.name && it.type !== 'Unused')
+          .slice(0, 80)
+          .map(it => it.name);
+
+        if (itemsList.length >= 24) {
+          document.getElementById('bingo-word-pool').value = itemsList.join('\n');
+          updatePoolCount();
+          renderBingoCard();
+          if (notify) showToast(`Loaded ${itemsList.length} live items from Torn API!`, 'success');
+        }
+      } catch (e) {
+        if (notify) showToast('Failed to load Torn items due to network error.', 'error');
+      }
+    }
+
+    // --- Discord Webhook Dispatcher ---
+    async function postDiscordWebhook(payload) {
+      saveSettings(true);
+      const url = currentSettings.webhookUrl;
+      if (!url || !url.startsWith('https://discord.com/api/webhooks/')) {
+        showToast('Please set a valid Discord Webhook URL in Settings first.', 'error');
+        return false;
+      }
+
+      const bodyData = {
+        username: currentSettings.botName || 'Torn Bingo & Race Hub',
+        avatar_url: currentSettings.botAvatar || undefined,
+        ...payload
+      };
+
+      try {
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(bodyData)
+        });
+
+        if (res.ok || res.status === 204) {
+          return true;
+        } else {
+          const errText = await res.text();
+          console.error("Discord error:", errText);
+          showToast(`Discord webhook returned status ${res.status}`, 'error');
+          return false;
+        }
+      } catch (err) {
+        console.error(err);
+        showToast('Failed to reach Discord Webhook. Check URL or internet connection.', 'error');
+        return false;
+      }
+    }
+
+    async function testWebhook() {
+      const ok = await postDiscordWebhook({
+        content: currentSettings.pingRole ? `${currentSettings.pingRole} 🔔 **Test Announcement**` : undefined,
+        embeds: [{
+          title: "🎯 Torn & Discord Suite Connected!",
+          description: "This is a test broadcast from your GitHub Pages Web GUI. Bingo word announcements and Race reminders will appear formatted like this.",
+          color: 0x3b82f6,
+          fields: [
+            { name: "⚡ Status", value: "Active & Ready", inline: true },
+            { name: "🎲 Bingo Engine", value: "Loaded", inline: true },
+            { name: "🏎️ Race Alerts", value: "Armed", inline: true }
+          ],
+          footer: { text: "Torn City Discord Suite • Webhook Verified" },
+          timestamp: new Date().toISOString()
+        }]
+      });
+
+      if (ok) {
+        showToast('Test announcement dispatched to Discord!', 'success');
+      }
+    }
+
+    // --- Bingo Pool & Card Generator ---
+    function initBingoPool() {
+      const poolEl = document.getElementById('bingo-word-pool');
+      if (!poolEl.value.trim()) {
+        poolEl.value = defaultTornItems.join('\n');
+      }
+      updatePoolCount();
+    }
+
+    function loadDefaultTornPool() {
+      document.getElementById('bingo-word-pool').value = defaultTornItems.join('\n');
+      updatePoolCount();
+      renderBingoCard();
+      showToast('Loaded standard Torn City Bingo word list.', 'info');
+    }
+
+    function updatePoolCount() {
+      const items = getWordPool();
+      document.getElementById('pool-count').innerText = items.length;
+      document.getElementById('stat-total-count').innerText = items.length;
+      updateCallerStats();
+    }
+
+    function getWordPool() {
+      const text = document.getElementById('bingo-word-pool').value;
+      return text.split('\n')
+        .map(s => s.trim())
+        .filter(s => s.length > 0);
+    }
+
+    // Deterministic pseudo-random number generator from string seed
+    function cyrb53(str, seed = 0) {
+      let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+      for (let i = 0, ch; i < str.length; i++) {
+        ch = str.charCodeAt(i);
+        h1 = Math.imul(h1 ^ ch, 2654435761);
+        h2 = Math.imul(h2 ^ ch, 1597334677);
+      }
+      h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+      h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+      return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+    }
+
+    function seededShuffle(array, seedStr) {
+      const arr = [...array];
+      let seed = cyrb53(seedStr);
+      for (let i = arr.length - 1; i > 0; i--) {
+        seed = (seed * 9301 + 49297) % 233280;
+        const rnd = seed / 233280;
+        const j = Math.floor(rnd * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function generateRandomSeedAndCard() {
+      const randomSeed = "TORN-" + Math.floor(100000 + Math.random() * 900000);
+      document.getElementById('bingo-player-seed').value = randomSeed;
+      renderBingoCard();
+    }
+
+    function renderBingoCard() {
+      const pool = getWordPool();
+      if (pool.length < 24) {
+        showToast(`You need at least 24 words in the pool to generate a 5x5 card (currently ${pool.length}).`, 'error');
+        return;
+      }
+
+      const seed = document.getElementById('bingo-player-seed').value.trim() || 'DEFAULT-SEED';
+      const freeSpace = document.getElementById('bingo-free-space').value.trim() || 'FREE';
+      const theme = document.getElementById('bingo-theme').value;
+
+      const shuffled = seededShuffle(pool, seed);
+      const selected = shuffled.slice(0, 24);
+
+      // Construct 25-cell grid with center (index 12) as free space
+      activeBingoCard = [];
+      let itemIdx = 0;
+      for (let i = 0; i < 25; i++) {
+        if (i === 12) {
+          activeBingoCard.push({ text: freeSpace, isFree: true, index: i });
+        } else {
+          activeBingoCard.push({ text: selected[itemIdx], isFree: false, index: i });
+          itemIdx++;
+        }
+      }
+
+      markedCells.clear();
+      markedCells.add(12); // Free space marked by default
+
+      document.getElementById('card-metadata-tag').innerText = `Seed: ${seed} • Theme: ${theme.toUpperCase()}`;
+
+      // Render interactive HTML grid
+      const gridEl = document.getElementById('interactive-grid');
+      gridEl.innerHTML = '';
+
+      activeBingoCard.forEach((cell, idx) => {
+        const div = document.createElement('div');
+        div.id = `cell-${idx}`;
+        div.className = `bingo-cell rounded-lg text-xs font-semibold cursor-pointer border select-none transition ${
+          cell.isFree 
+            ? 'bg-torn-gold/20 text-torn-gold border-torn-gold/40' 
+            : 'bg-torn-card hover:bg-slate-800 text-slate-200 border-torn-border'
+        }`;
+        div.innerText = cell.text;
+        div.onclick = () => toggleCellMark(idx);
+        gridEl.appendChild(div);
+      });
+
+      checkBingoWin();
+      drawToCanvas();
+    }
+
+    function toggleCellMark(index) {
+      if (index === 12) return; // free space always marked
+      const el = document.getElementById(`cell-${index}`);
+      if (markedCells.has(index)) {
+        markedCells.delete(index);
+        el.classList.remove('bg-blue-600', 'text-white', 'border-blue-400', 'shadow-md');
+        el.classList.add('bg-torn-card', 'text-slate-200', 'border-torn-border');
+      } else {
+        markedCells.add(index);
+        el.classList.remove('bg-torn-card', 'text-slate-200', 'border-torn-border');
+        el.classList.add('bg-blue-600', 'text-white', 'border-blue-400', 'shadow-md');
+      }
+      checkBingoWin();
+    }
+
+    function clearCardMarks() {
+      markedCells.clear();
+      markedCells.add(12);
+      for (let i = 0; i < 25; i++) {
+        if (i === 12) continue;
+        const el = document.getElementById(`cell-${i}`);
+        if (el) {
+          el.classList.remove('bg-blue-600', 'text-white', 'border-blue-400', 'shadow-md');
+          el.classList.add('bg-torn-card', 'text-slate-200', 'border-torn-border');
+        }
+      }
+      checkBingoWin();
+    }
+
+    function checkBingoWin() {
+      const winningLines = [
+        // Rows
+        [0,1,2,3,4], [5,6,7,8,9], [10,11,12,13,14], [15,16,17,18,19], [20,21,22,23,24],
+        // Columns
+        [0,5,10,15,20], [1,6,11,16,21], [2,7,12,17,22], [3,8,13,18,23], [4,9,14,19,24],
+        // Diagonals
+        [0,6,12,18,24], [4,8,12,16,20]
+      ];
+
+      let hasWin = false;
+      for (const line of winningLines) {
+        if (line.every(pos => markedCells.has(pos))) {
+          hasWin = true;
+          break;
+        }
+      }
+
+      const badge = document.getElementById('win-status-badge');
+      if (hasWin) {
+        badge.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+      }
+    }
+
+    // --- HTML5 Canvas PNG Generator ---
+    function drawToCanvas() {
+      const canvas = document.getElementById('export-canvas');
+      const ctx = canvas.getContext('2d');
+      const title = document.getElementById('bingo-card-title').value.trim() || 'TORN FACTION BINGO';
+      const seed = document.getElementById('bingo-player-seed').value.trim() || 'DEFAULT';
+      const theme = document.getElementById('bingo-theme').value;
+
+      // Theme Colors
+      let primaryColor = '#3b82f6';
+      if (theme === 'red') primaryColor = '#e53e3e';
+      if (theme === 'emerald') primaryColor = '#10b981';
+      if (theme === 'purple') primaryColor = '#8b5cf6';
+      if (theme === 'gold') primaryColor = '#f59e0b';
+
+      // Background
+      ctx.fillStyle = '#12141a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Card Header Panel
+      ctx.fillStyle = '#1a1d26';
+      ctx.fillRect(40, 40, 720, 100);
+      ctx.strokeStyle = '#2a2f3d';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(40, 40, 720, 100);
+
+      // Title Text
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 32px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(title, 400, 90);
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '14px "JetBrains Mono", monospace';
+      ctx.fillText(`Player / Seed: ${seed}`, 400, 122);
+
+      // B-I-N-G-O Columns Banner
+      const letters = ['B', 'I', 'N', 'G', 'O'];
+      const cellWidth = 140;
+      const cellHeight = 130;
+      const startX = 50;
+      const startY = 160;
+
+      for (let col = 0; col < 5; col++) {
+        const x = startX + col * cellWidth;
+        ctx.fillStyle = primaryColor;
+        ctx.fillRect(x, startY, cellWidth - 8, 45);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 24px Inter, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(letters[col], x + (cellWidth - 8) / 2, startY + 32);
+      }
+
+      // 5x5 Grid Cells
+      const gridStartY = startY + 55;
+      activeBingoCard.forEach((cell, idx) => {
+        const row = Math.floor(idx / 5);
+        const col = idx % 5;
+        const x = startX + col * cellWidth;
+        const y = gridStartY + row * cellHeight;
+        const w = cellWidth - 8;
+        const h = cellHeight - 8;
+
+        // Cell background
+        ctx.fillStyle = cell.isFree ? '#2d2416' : '#1e222d';
+        ctx.fillRect(x, y, w, h);
+
+        ctx.strokeStyle = cell.isFree ? '#f59e0b' : '#2a2f3d';
+        ctx.lineWidth = cell.isFree ? 2 : 1;
+        ctx.strokeRect(x, y, w, h);
+
+        // Text wrapping
+        ctx.fillStyle = cell.isFree ? '#f59e0b' : '#e2e8f0';
+        ctx.font = cell.isFree ? 'bold 14px Inter' : '13px Inter';
+        ctx.textAlign = 'center';
+        wrapText(ctx, cell.text, x + w / 2, y + h / 2 - 10, w - 16, 18);
+      });
+    }
+
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+      const words = text.split(' ');
+      let line = '';
+      const lines = [];
+
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && n > 0) {
+          lines.push(line);
+          line = words[n] + ' ';
+        } else {
+          line = testLine;
+        }
+      }
+      lines.push(line);
+
+      const totalH = lines.length * lineHeight;
+      let startY = y - (totalH / 2) + 12;
+
+      for (let k = 0; k < lines.length; k++) {
+        ctx.fillText(lines[k].trim(), x, startY + (k * lineHeight));
+      }
+    }
+
+    function downloadCardPNG() {
+      drawToCanvas();
+      const canvas = document.getElementById('export-canvas');
+      const seed = document.getElementById('bingo-player-seed').value.trim() || 'card';
+      const link = document.createElement('a');
+      link.download = `Torn_Bingo_${seed}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      showToast(`Downloaded Torn_Bingo_${seed}.png`, 'success');
+    }
+
+    async function sendCardToDiscord() {
+      const title = document.getElementById('bingo-card-title').value.trim() || 'TORN FACTION BINGO';
+      const seed = document.getElementById('bingo-player-seed').value.trim() || 'DEFAULT';
+
+      // Create a clean textual 5x5 representation for Discord Embed
+      const letters = ['B', 'I', 'N', 'G', 'O'];
+      let cardText = '';
+      for (let r = 0; r < 5; r++) {
+        const rowItems = activeBingoCard.slice(r * 5, r * 5 + 5).map(c => `[${c.text}]`).join(' • ');
+        cardText += `**Row ${r+1}:** ${rowItems}\n`;
+      }
+
+      const ok = await postDiscordWebhook({
+        embeds: [{
+          title: `🎯 ${title} — Player Card`,
+          description: `**Card Seed / ID:** \`${seed}\`\nUse this seed in the Web GUI to retrieve this exact 5x5 card layout!`,
+          color: 0x3b82f6,
+          fields: [
+            { name: "📋 Card Layout", value: cardText.slice(0, 1024) }
+          ],
+          footer: { text: "Generated via Torn & Discord Suite" },
+          timestamp: new Date().toISOString()
+        }]
+      });
+
+      if (ok) {
+        showToast(`Card for ${seed} posted to Discord!`, 'success');
+      }
+    }
+
+    // --- Bingo Word Announcer & Caller Engine ---
+    function loadBingoGameState() {
+      const saved = localStorage.getItem(GAME_STORAGE_KEY);
+      if (saved) {
+        try {
+          drawnWords = JSON.parse(saved);
+        } catch (e) {
+          drawnWords = [];
+        }
+      }
+      renderCallerHistory();
+      updateCallerStats();
+    }
+
+    function saveBingoGameState() {
+      localStorage.setItem(GAME_STORAGE_KEY, JSON.stringify(drawnWords));
+      updateCallerStats();
+    }
+
+    function resetBingoGame() {
+      if (confirm('Are you sure you want to reset the Bingo Game and clear all drawn words?')) {
+        drawnWords = [];
+        saveBingoGameState();
+        renderCallerHistory();
+        document.getElementById('caller-current-word').innerText = 'Ready to Draw';
+        if (autoTimerIntervalId) toggleAutoTimer();
+        showToast('Bingo game reset. Word history cleared.', 'info');
+      }
+    }
+
+    function updateCallerStats() {
+      const pool = getWordPool();
+      const called = drawnWords.length;
+      const remaining = Math.max(0, pool.length - called);
+
+      document.getElementById('stat-called-count').innerText = called;
+      document.getElementById('stat-remaining-count').innerText = remaining;
+      document.getElementById('stat-total-count').innerText = pool.length;
+    }
+
+    function drawNextWord(announceToDiscord = true) {
+      const pool = getWordPool();
+      const remaining = pool.filter(w => !drawnWords.includes(w));
+
+      if (remaining.length === 0) {
+        showToast('All words in the pool have been drawn!', 'error');
+        if (autoTimerIntervalId) toggleAutoTimer();
+        return;
+      }
+
+      const randomIndex = Math.floor(Math.random() * remaining.length);
+      const newWord = remaining[randomIndex];
+
+      drawnWords.push(newWord);
+      saveBingoGameState();
+
+      document.getElementById('caller-current-word').innerText = newWord;
+      renderCallerHistory();
+
+      if (announceToDiscord) {
+        announceWordToDiscord(newWord, drawnWords.length, pool.length);
+      } else {
+        showToast(`Drawn silently: ${newWord}`, 'info');
+      }
+    }
+
+    async function announceWordToDiscord(word, callNum, totalCount) {
+      const rolePing = currentSettings.pingRole ? `${currentSettings.pingRole} ` : '';
+      const recentCalls = drawnWords.slice(-5).reverse().join(' • ');
+
+      const ok = await postDiscordWebhook({
+        content: `${rolePing}📢 **BINGO CALL #${callNum}!**`,
+        embeds: [{
+          title: `🎯 Drawn: **${word}**`,
+          description: `Check your cards for **${word}**!`,
+          color: 0xf59e0b,
+          fields: [
+            { name: "📊 Call Number", value: `#${callNum} of ${totalCount}`, inline: true },
+            { name: "🕒 Remaining", value: `${totalCount - callNum} items`, inline: true },
+            { name: "📜 Recent 5 Calls", value: recentCalls || word, inline: false }
+          ],
+          footer: { text: "Torn Bingo Live Announcer" },
+          timestamp: new Date().toISOString()
+        }]
+      });
+
+      if (ok) {
+        showToast(`Announced "${word}" to Discord!`, 'success');
+      }
+    }
+
+    function reannounceLastCall() {
+      if (drawnWords.length === 0) {
+        showToast('No words drawn yet to re-announce.', 'error');
+        return;
+      }
+      const lastWord = drawnWords[drawnWords.length - 1];
+      const pool = getWordPool();
+      announceWordToDiscord(lastWord, drawnWords.length, pool.length);
+    }
+
+    function renderCallerHistory() {
+      const listEl = document.getElementById('caller-history-list');
+      listEl.innerHTML = '';
+
+      if (drawnWords.length === 0) {
+        listEl.innerHTML = '<p class="text-xs text-slate-500 text-center py-12">No words drawn yet. Click "Draw & Announce" to start the game!</p>';
+        return;
+      }
+
+      [...drawnWords].reverse().forEach((word, idx) => {
+        const callNumber = drawnWords.length - idx;
+        const div = document.createElement('div');
+        div.className = `flex justify-between items-center p-2.5 rounded-lg border text-xs ${
+          idx === 0 
+            ? 'bg-torn-gold/10 border-torn-gold/40 text-torn-gold font-bold' 
+            : 'bg-torn-card border-torn-border text-slate-300'
+        }`;
+        div.innerHTML = `
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-slate-500">#${callNumber}</span>
+            <span>${word}</span>
+          </div>
+          ${idx === 0 ? '<span class="text-[10px] bg-torn-gold/20 px-1.5 py-0.5 rounded">Latest</span>' : ''}
+        `;
+        listEl.appendChild(div);
+      });
+    }
+
+    function toggleAutoTimer() {
+      const btn = document.getElementById('btn-toggle-timer');
+      const display = document.getElementById('auto-timer-display');
+      const intervalSec = parseInt(document.getElementById('auto-timer-interval').value, 10);
+
+      if (autoTimerIntervalId) {
+        clearInterval(autoTimerIntervalId);
+        autoTimerIntervalId = null;
+        btn.innerText = 'Start Auto';
+        btn.className = 'bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-4 py-1.5 rounded-lg transition';
+        display.innerText = 'Off';
+        showToast('Auto-caller timer stopped.', 'info');
+      } else {
+        drawNextWord(true); // Immediate first draw
+        autoTimerIntervalId = setInterval(() => {
+          drawNextWord(true);
+        }, intervalSec * 1000);
+
+        btn.innerText = 'Stop Auto';
+        btn.className = 'bg-red-600 hover:bg-red-500 text-white text-xs font-semibold px-4 py-1.5 rounded-lg transition';
+        display.innerText = `Running (${intervalSec}s)`;
+        showToast(`Auto-caller active: drawing every ${intervalSec} seconds.`, 'success');
+      }
+    }
+
+    // --- Torn Races Hub & Alerts ---
+    async function fetchTornRaces() {
+      saveSettings(true);
+      const key = currentSettings.tornApiKey;
+      if (!key) {
+        showToast('Torn API Key is required to fetch races. Add it in Settings.', 'error');
+        return;
+      }
+
+      const container = document.getElementById('races-list-container');
+      container.innerHTML = `
+        <div class="text-center py-8 text-slate-400 text-xs flex flex-col items-center gap-2">
+          <i data-lucide="refresh-cw" class="w-6 h-6 animate-spin text-torn-red"></i>
+          Loading races from Torn City API...
+        </div>
+      `;
+      lucide.createIcons();
+
+      try {
+        const resp = await fetch(`https://api.torn.com/torn/?selections=races&key=${encodeURIComponent(key)}`);
+        const data = await resp.json();
+
+        if (data.error) {
+          container.innerHTML = `
+            <div class="bg-red-950/40 p-4 rounded-xl border border-red-800 text-xs text-red-300">
+              API Error (${data.error.code}): ${data.error.error}
+            </div>
+          `;
+          return;
+        }
+
+        const races = data.races ? Object.values(data.races) : [];
+        document.getElementById('race-count-badge').innerText = `${races.length} races`;
+
+        if (races.length === 0) {
+          container.innerHTML = `
+            <div class="bg-torn-dark p-6 rounded-xl border border-torn-border text-center text-xs text-slate-400">
+              No active public races found on Torn City right now.
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = '';
+        races.slice(0, 10).forEach(race => {
+          const startTime = new Date(race.time_start * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          const card = document.createElement('div');
+          card.className = 'bg-torn-dark p-4 rounded-xl border border-torn-border space-y-3';
+          card.innerHTML = `
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-bold text-white text-sm">${race.title || 'Official Torn Race'}</h4>
+                <div class="text-xs text-slate-400">Track: <span class="text-slate-200">${race.track_name || 'Standard'}</span> • Laps: ${race.laps || 100} • Class: <span class="text-torn-red font-semibold">${race.car_class || 'Open'}</span></div>
+              </div>
+              <span class="text-xs bg-slate-800 text-slate-300 font-mono px-2 py-1 rounded border border-slate-700">Starts: ${startTime}</span>
+            </div>
+            <div class="flex justify-between items-center pt-2 border-t border-slate-800">
+              <span class="text-[11px] text-slate-400">Enrolled: <b class="text-white">${race.enrolled || 0}</b> / ${race.max_drivers || 100}</span>
+              <button onclick="dispatchRaceAlert('${encodeURIComponent(JSON.stringify(race))}')" class="bg-torn-red/20 hover:bg-torn-red/30 text-red-400 border border-red-900/50 px-3 py-1 rounded text-xs font-medium flex items-center gap-1">
+                <i data-lucide="send" class="w-3 h-3"></i> Post Reminder
+              </button>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+        lucide.createIcons();
+        showToast(`Fetched ${races.length} Torn City races!`, 'success');
+      } catch (err) {
+        container.innerHTML = `
+          <div class="bg-red-950/40 p-4 rounded-xl border border-red-800 text-xs text-red-300">
+            Network error fetching races from Torn API.
+          </div>
+        `;
+      }
+    }
+
+    async function dispatchRaceAlert(encodedRace) {
+      const race = JSON.parse(decodeURIComponent(encodedRace));
+      const rolePing = currentSettings.pingRole ? `${currentSettings.pingRole} ` : '';
+      const startTime = new Date(race.time_start * 1000).toUTCString();
+
+      const ok = await postDiscordWebhook({
+        content: `${rolePing}🏎️ **TORN CITY RACE REMINDER!**`,
+        embeds: [{
+          title: `🏁 ${race.title || 'Upcoming Torn Race'}`,
+          description: `Get your cars fueled and customized! The race starts soon.`,
+          color: 0xe53e3e,
+          fields: [
+            { name: "🛣️ Track", value: race.track_name || 'Standard Track', inline: true },
+            { name: "🏎️ Car Class", value: race.car_class || 'All Classes', inline: true },
+            { name: "🔄 Laps", value: `${race.laps || 100} Laps`, inline: true },
+            { name: "🕒 Start Time", value: `${startTime}`, inline: false }
+          ],
+          footer: { text: "Torn Racing Hub" },
+          timestamp: new Date().toISOString()
+        }]
+      });
+
+      if (ok) {
+        showToast('Race alert posted to Discord!', 'success');
+      }
+    }
+
+    async function sendCustomRaceAlert() {
+      const title = document.getElementById('custom-race-title').value.trim();
+      const track = document.getElementById('custom-race-track').value.trim();
+      const carClass = document.getElementById('custom-race-class').value.trim();
+      const timeStr = document.getElementById('custom-race-time').value.trim();
+      const prize = document.getElementById('custom-race-prize').value.trim();
+      const notes = document.getElementById('custom-race-notes').value.trim();
+
+      const rolePing = currentSettings.pingRole ? `${currentSettings.pingRole} ` : '';
+
+      const ok = await postDiscordWebhook({
+        content: `${rolePing}🏎️ **CUSTOM FACTION RACE ALERT!**`,
+        embeds: [{
+          title: `🏁 ${title}`,
+          description: `Prepare for the green light! Check details below and join now.`,
+          color: 0xe53e3e,
+          fields: [
+            { name: "🛣️ Track", value: track, inline: true },
+            { name: "🏎️ Car Class", value: carClass, inline: true },
+            { name: "⏰ Schedule / Start", value: timeStr, inline: true },
+            { name: "🏆 Entry & Prizes", value: prize, inline: false },
+            { name: "📝 Instructions", value: notes, inline: false }
+          ],
+          footer: { text: "Faction Racing Championship" },
+          timestamp: new Date().toISOString()
+        }]
+      });
+
+      if (ok) {
+        showToast('Custom race reminder dispatched to Discord!', 'success');
+      }
+    }
+  </script>
+</body>
+</html>
