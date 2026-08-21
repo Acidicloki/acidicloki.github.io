@@ -1,60 +1,40 @@
-# 🎯 Torn City & Discord Suite — Multi-Channel & Word Drops Edition
+# 🎯 Torn City & Discord Suite — v5.0 Mobile & 3-Day Racing Edition
 
-A comprehensive suite designed for Torn City factions and Discord communities featuring:
-- 🌐 **GitHub Pages Web Dashboard**: Zero-build static web interface with instant `localStorage` saving.
-- 💥 **Bingo 5-Word Drops**: Draw and broadcast 5 words simultaneously with custom batch Discord embeds.
-- 📡 **3-Channel Webhook Routing**: Dedicated endpoints for **#bingo**, **#racing**, and **#raffles**.
-- 🎲 **5x5 Seeded Bingo Studio**: Instant card generator with high-resolution PNG exports.
-- 🏎️ **Torn Race Radar**: Automated background race countdown alerts pulled from Torn API.
-- 🎟️ **Faction Raffles & Giveaways**: Provably fair random winner selection and announcements.
-- 🤖 **24/7 Companion Discord Bot**: Python slash commands (`/bingo drop`, `/bingo card`, `/race schedule`, `/raffle roll`).
-
----
-
-## 🚀 Quickstart: Deploying to GitHub Pages (2 Minutes)
-
-1. Create a GitHub repository (e.g. `torn-community-hub`).
-2. Upload `index.html` into the root directory.
-3. In GitHub: **Settings** → **Pages** → Source: **Deploy from a branch** (`main` / `/ root`) → **Save**.
-4. Access your live GUI at `https://<your-username>.github.io/<repo-name>/`.
+An all-in-one suite designed for Torn City factions featuring:
+- 📱 **Mobile-Optimized Torn.com Charcoal Theme**: High-contrast grey/dark palette with **Impact** header typography.
+- 📢 **#announcements Webhook & 🎉 Reaction Roster**: Date & time setter, event builder, and automatic player registration from Discord emoji reactions.
+- 🔒 **1-Card-Per-Player Session Enforcement**: Anti-cheat card locker preventing duplicate card creation per session.
+- 🏎️ **3-Day Race Scheduler**: 25 Laps, Stock Class E cars, randomized tracks, and instant Discord push.
+- 💥 **5-Word Drops & Standalone Jumbles**: Releases 5 words with an embedded anagram challenge or standalone puzzle.
+- 🏆 **Winner & Payout Hub**: Categorized prize selector (Boosters, Supply Packs, Xanax, Cash) with quantities and payment transfer links.
+- 💾 **Full JSON Settings Sync**: Exports and imports all 4 Webhook URLs, keys, word banks, and registered session rosters.
 
 ---
 
-## ⚙️ 3-Channel Webhook Setup
+## 🚀 Quickstart
 
-In Discord, create three webhooks for your desired channels (**Server Settings** → **Integrations** → **Webhooks**):
-1. **Bingo Webhook**: Target `#bingo` (receives single calls, **5-Word Drops**, and player cards).
-2. **Racing Webhook**: Target `#racing` (receives Torn official races, faction tournaments, and countdowns).
-3. **Raffles Webhook**: Target `#raffles` (receives ticket pool openings and winner announcements).
-
-Paste each URL into the **3-Channel Settings** tab in the Web GUI and click **Save All Settings**.
-
----
-
-## 📦 Bingo "Word Drops" Feature
-
-- Click **💥 DROP 5 BINGO WORDS AT ONCE** in the GUI (or use `/bingo drop 5` in Discord) to release 5 items simultaneously.
-- Formats a multi-item batch embed to `#bingo` showing all 5 drawn words, updated call count, and remaining pool size.
+1. Upload `index.html` into your GitHub repository root.
+2. Enable GitHub Pages (**Settings** → **Pages** → **Deploy from branch** `main`).
+3. Set your 4 Webhooks in the **Settings** tab:
+   - `#announcements` Webhook (for event notices & 🎉 reactions)
+   - `#bingo` Webhook (for single calls, 5-Word Drops, and Jumbles)
+   - `#racing` Webhook (for 3-Day tournaments and live race radar)
+   - `#raffles` Webhook (for giveaways and ticket rolls)
 
 ---
 
-## 🤖 Running the 24/7 Python Bot
+## 🤖 Discord Bot Commands
 
 ```bash
-# 1. Install dependencies
 pip install -r requirements.txt
-
-# 2. Configure .env with your 3 webhooks and tokens
-cp .env.example .env
-# Edit .env
-
-# 3. Start the bot
 python bot.py
 ```
 
 ### Slash Commands:
-- `/bingo-drop [count: 5]` — Drops 5 words at once with a formatted embed.
-- `/bingo-call` — Draws a single item.
-- `/bingo-card [player_name] [seed]` — Generates a high-res 5x5 card PNG.
-- `/race-schedule` — Displays upcoming Torn races.
-- `/raffle-roll [prize] [entrants]` — Randomly picks winner(s) and posts to `#raffles`.
+- `/announce [title] [date_time] [prize] [details]` — Posts an event announcement with a 🎉 reaction prompt.
+- `/bingo-card` — Generates (or retrieves) the user's locked session Bingo Card.
+- `/race-schedule-3day [start_date]` — Generates a 3-Day Stock Class E, 25-Lap tournament schedule with random tracks.
+- `/bingo-drop [count: 5]` — Drops 5 words with an anagram challenge.
+- `/bingo-jumble` — Standalone mystery word jumble challenge.
+- `/race-winner [event] [winner] [prize]` — Logs and broadcasts event victory.
+- `/payout [winner] [prize] [event]` — Posts payment confirmation.

@@ -2,8 +2,8 @@
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Torn City & Discord Suite - Bingo, Racing & Winner Logs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Torn City Suite - Bingo, Racing & Event Hub</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -13,15 +13,24 @@
         extend: {
           colors: {
             torn: {
-              red: '#e53e3e',
-              dark: '#12141a',
-              card: '#1a1d26',
-              border: '#2a2f3d',
-              accent: '#3b82f6',
-              gold: '#f59e0b',
+              bg: '#141414',
+              panel: '#202020',
+              card: '#262626',
+              well: '#1a1a1a',
+              border: '#383838',
+              borderLight: '#4a4a4a',
+              red: '#d32f2f',
+              redDark: '#991b1b',
+              gold: '#eab308',
+              blue: '#3b82f6',
+              emerald: '#22c55e',
               purple: '#a855f7',
-              emerald: '#10b981'
+              steel: '#94a3b8'
             }
+          },
+          fontFamily: {
+            impact: ['Impact', '"Arial Black"', '"Franklin Gothic Bold"', 'Charcoal', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'Courier', 'monospace']
           }
         }
       }
@@ -31,89 +40,94 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+    
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0f1117;
-      color: #e2e8f0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #141414;
+      color: #e5e5e5;
+      -webkit-tap-highlight-color: transparent;
     }
-    .font-mono {
-      font-family: 'JetBrains Mono', monospace;
+
+    .font-impact {
+      font-family: Impact, "Arial Black", "Franklin Gothic Bold", Charcoal, sans-serif;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
+
+    /* Custom Torn Scrollbars */
     ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #12141a;
+      background: #141414;
     }
     ::-webkit-scrollbar-thumb {
-      background: #2a2f3d;
-      border-radius: 4px;
+      background: #383838;
+      border-radius: 3px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #3b82f6;
+      background: #d32f2f;
     }
-    .bingo-cell {
+
+    .bingo-grid-cell {
       aspect-ratio: 1 / 1;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 0.5rem;
+      padding: 0.25rem;
       user-select: none;
-      transition: all 0.2s ease;
+      word-break: break-word;
+      transition: all 0.15s ease;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col bg-torn-bg text-slate-200 antialiased selection:bg-red-900 selection:text-white">
 
-  <!-- Top Navigation Bar -->
-  <header class="bg-torn-card border-b border-torn-border sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <!-- Brand -->
-        <div class="flex items-center space-x-3">
-          <div class="bg-gradient-to-tr from-torn-red via-torn-gold to-torn-emerald p-2 rounded-lg text-white shadow-lg">
-            <i data-lucide="trophy" class="w-6 h-6"></i>
+  <!-- Mobile & Desktop Sticky Header -->
+  <header class="bg-torn-panel border-b border-torn-border sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6">
+      <div class="flex items-center justify-between h-14 sm:h-16">
+        <!-- Brand / Logo -->
+        <div class="flex items-center space-x-2.5 sm:space-x-3">
+          <div class="bg-gradient-to-b from-torn-red to-torn-redDark p-1.5 sm:p-2 rounded-lg text-white shadow">
+            <i data-lucide="shield-alert" class="w-5 h-5 sm:w-6 sm:h-6"></i>
           </div>
           <div>
-            <div class="font-bold text-lg text-white flex items-center gap-2">
-              Torn & Discord Suite
-              <span class="text-xs bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full">v3.0 Logs & Payouts</span>
+            <div class="font-impact text-base sm:text-xl text-white tracking-wide flex items-center gap-1.5">
+              TORN CITY SUITE
+              <span class="text-[10px] bg-torn-red/30 text-red-300 border border-torn-red/50 px-1.5 py-0.2 rounded font-mono font-normal">v5.0</span>
             </div>
-            <div class="text-xs text-slate-400">Bingo Drops • Race Radar • Winner Logs • Payout Hub</div>
+            <div class="text-[10px] sm:text-xs text-torn-steel hidden xs:block">Bingo • 3-Day Races • Announcements • Payouts</div>
           </div>
         </div>
 
-        <!-- Navigation Tabs -->
-        <nav class="flex space-x-1 bg-torn-dark p-1.5 rounded-xl border border-torn-border text-xs sm:text-sm font-medium overflow-x-auto">
-          <button onclick="switchTab('tab-settings')" id="btn-tab-settings" class="nav-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
-            <i data-lucide="sliders" class="w-4 h-4 text-blue-400"></i>
-            <span>Settings</span>
+        <!-- Desktop Navigation Tabs -->
+        <nav class="flex space-x-1 bg-torn-well p-1 rounded-xl border border-torn-border text-xs font-semibold overflow-x-auto max-w-full">
+          <button onclick="switchTab('tab-announcements')" id="btn-tab-announcements" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+            <i data-lucide="megaphone" class="w-3.5 h-3.5 text-torn-red"></i>
+            <span>Announcements</span>
           </button>
-          <button onclick="switchTab('tab-bingo')" id="btn-tab-bingo" class="nav-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
-            <i data-lucide="grid" class="w-4 h-4 text-blue-400"></i>
+          <button onclick="switchTab('tab-bingo')" id="btn-tab-bingo" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+            <i data-lucide="grid" class="w-3.5 h-3.5 text-blue-400"></i>
             <span>Bingo Studio</span>
           </button>
-          <button onclick="switchTab('tab-caller')" id="btn-tab-caller" class="nav-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
-            <i data-lucide="sparkles" class="w-4 h-4 text-torn-gold"></i>
+          <button onclick="switchTab('tab-caller')" id="btn-tab-caller" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-torn-gold"></i>
             <span>Word Drops</span>
           </button>
-          <button onclick="switchTab('tab-races')" id="btn-tab-races" class="nav-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
-            <i data-lucide="flag" class="w-4 h-4 text-torn-red"></i>
-            <span>Racing Hub</span>
+          <button onclick="switchTab('tab-races-3day')" id="btn-tab-races-3day" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+            <i data-lucide="calendar" class="w-3.5 h-3.5 text-emerald-400"></i>
+            <span>3-Day Race Scheduler</span>
           </button>
-          <button onclick="switchTab('tab-winners')" id="btn-tab-winners" class="nav-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 text-white transition shadow-sm whitespace-nowrap font-bold">
-            <i data-lucide="award" class="w-4 h-4 text-emerald-200"></i>
-            <span>Winner Logs & Payouts</span>
+          <button onclick="switchTab('tab-winners')" id="btn-tab-winners" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+            <i data-lucide="award" class="w-3.5 h-3.5 text-amber-400"></i>
+            <span>Winners & Payouts</span>
           </button>
-          <button onclick="switchTab('tab-raffles')" id="btn-tab-raffles" class="nav-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
-            <i data-lucide="ticket" class="w-4 h-4 text-purple-400"></i>
-            <span>Raffles</span>
-          </button>
-          <button onclick="switchTab('tab-bot')" id="btn-tab-bot" class="nav-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
-            <i data-lucide="bot" class="w-4 h-4"></i>
-            <span>Bot</span>
+          <button onclick="switchTab('tab-settings')" id="btn-tab-settings" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+            <i data-lucide="sliders" class="w-3.5 h-3.5 text-slate-300"></i>
+            <span>Settings & Sync</span>
           </button>
         </nav>
       </div>
@@ -121,371 +135,496 @@
   </header>
 
   <!-- Global Status Toast Bar -->
-  <div id="toast-bar" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-    <div id="toast-content" class="p-3 rounded-lg flex items-center justify-between text-sm shadow-md">
+  <div id="toast-bar" class="hidden max-w-7xl mx-auto px-3 sm:px-6 mt-3">
+    <div id="toast-content" class="p-3 rounded-lg flex items-center justify-between text-xs sm:text-sm shadow-lg border border-torn-border bg-torn-panel">
       <div class="flex items-center gap-2">
-        <i id="toast-icon" data-lucide="info" class="w-5 h-5"></i>
-        <span id="toast-message">Message text</span>
+        <i id="toast-icon" data-lucide="info" class="w-4 h-4"></i>
+        <span id="toast-message" class="font-medium">Notification</span>
       </div>
       <button onclick="hideToast()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
     </div>
   </div>
 
   <!-- Main Container -->
-  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-6 space-y-6">
 
-    <!-- ================= TAB: WINNER LOGS & PAYOUTS ================= -->
-    <section id="tab-winners" class="tab-content space-y-6">
-      <div class="border-b border-torn-border pb-4 flex justify-between items-center flex-wrap gap-4">
+    <!-- ================= TAB 1: EVENT ANNOUNCEMENTS & RSVP ================= -->
+    <section id="tab-announcements" class="tab-content space-y-5">
+      <div class="border-b border-torn-border pb-3 flex justify-between items-center flex-wrap gap-2">
         <div>
-          <h1 class="text-2xl font-bold text-white flex items-center gap-2">
-            <i data-lucide="award" class="w-6 h-6 text-emerald-400"></i>
-            Race & Bingo Winner Logs & Payout Manager
+          <h1 class="font-impact text-xl sm:text-2xl text-white flex items-center gap-2">
+            <i data-lucide="megaphone" class="w-5 h-5 text-torn-red"></i>
+            Event Announcements & RSVP Callout (#announcements)
           </h1>
-          <p class="text-sm text-slate-400 mt-1">Record race results, track payout statuses, and push live winner announcements or payment confirmations to Discord.</p>
-        </div>
-        <div class="flex gap-2">
-          <button onclick="exportWinnersCSV()" class="bg-torn-dark hover:bg-slate-800 border border-torn-border text-slate-300 px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-1.5">
-            <i data-lucide="file-spreadsheet" class="w-4 h-4 text-emerald-400"></i> Export CSV
-          </button>
-          <button onclick="exportWinnersJSON()" class="bg-torn-dark hover:bg-slate-800 border border-torn-border text-slate-300 px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-1.5">
-            <i data-lucide="download" class="w-4 h-4 text-blue-400"></i> Export JSON
-          </button>
+          <p class="text-xs text-torn-steel mt-0.5">Post scheduled events to Discord prompting members to react with <strong class="text-torn-gold">🎉</strong> to join the Bingo roster.</p>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <!-- Log Winner Form (Left 4 cols) -->
-        <div class="lg:col-span-4 bg-torn-card p-5 rounded-xl border border-torn-border space-y-4 shadow-sm">
-          <h3 class="font-semibold text-white text-sm flex items-center gap-2">
-            <i data-lucide="plus-circle" class="w-4 h-4 text-emerald-400"></i>
-            Log New Race / Event Winner
-          </h3>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <!-- Announcement Builder (Left 6 cols) -->
+        <div class="lg:col-span-6 bg-torn-panel p-4 sm:p-5 rounded-xl border border-torn-border space-y-4 shadow-sm">
+          <div class="flex items-center justify-between border-b border-torn-border pb-2.5">
+            <span class="font-impact text-sm text-white tracking-wide flex items-center gap-1.5">
+              <i data-lucide="calendar-plus" class="w-4 h-4 text-torn-red"></i> Event Builder & Date Setter
+            </span>
+            <span class="text-[11px] text-torn-steel font-mono">Target: #announcements</span>
+          </div>
 
           <div class="space-y-3">
             <div>
-              <label class="block text-xs font-medium text-slate-300 mb-1">Event / Race Name</label>
-              <input type="text" id="log-event-name" placeholder="e.g. Mudpit 100 Laps or Bingo Game #4" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500 font-semibold">
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Event Title</label>
+              <input type="text" id="announce-event-title" value="🎉 Faction Bingo Championship & 3-Day Class E Race Series" class="w-full bg-torn-well border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-torn-red font-semibold">
             </div>
 
-            <div>
-              <label class="block text-xs font-medium text-slate-300 mb-1">Category</label>
-              <select id="log-event-category" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none">
-                <option value="racing">Racing 🏎️</option>
-                <option value="bingo">Bingo 🎯</option>
-                <option value="raffle">Raffle 🎟️</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-xs font-medium text-slate-300 mb-1">Winner Name & Torn ID</label>
-              <input type="text" id="log-winner-name" placeholder="e.g. Loki [2356475]" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500 font-mono">
-            </div>
-
-            <div class="grid grid-cols-2 gap-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label class="block text-xs font-medium text-slate-300 mb-1">Placement / Rank</label>
-                <select id="log-winner-rank" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none">
-                  <option value="1st Place (Winner)">🥇 1st Place</option>
-                  <option value="2nd Place">🥈 2nd Place</option>
-                  <option value="3rd Place">🥉 3rd Place</option>
-                  <option value="Grand Prize">🏆 Grand Prize</option>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Event Type / Mode</label>
+                <select id="announce-event-type" class="w-full bg-torn-well border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none">
+                  <option value="Faction Bingo Night">🎯 Faction Bingo Night</option>
+                  <option value="3-Day Class E Racing Tournament">🏎️ 3-Day Class E Racing Series</option>
+                  <option value="Mega Faction Giveaway">🎁 Mega Giveaway & Raffle</option>
+                  <option value="Faction War Briefing">⚔️ Faction War Briefing</option>
                 </select>
               </div>
               <div>
-                <label class="block text-xs font-medium text-slate-300 mb-1">Prize / Reward</label>
-                <input type="text" id="log-winner-prize" placeholder="e.g. $10M + 5x Xanax" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none">
+                <!-- Native Date & Time Picker -->
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Scheduled Date & Time (Local / TCT)</label>
+                <input type="datetime-local" id="announce-event-datetime" class="w-full bg-torn-well border border-torn-border rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none font-mono">
               </div>
             </div>
 
             <div>
-              <label class="block text-xs font-medium text-slate-300 mb-1">Notes / Winning Detail</label>
-              <input type="text" id="log-winner-notes" placeholder="e.g. Best lap 1:12.4 or Blackout win" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none">
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Prize Pool / Rewards</label>
+              <input type="text" id="announce-event-prize" value="50x Xanax + $50,000,000 Faction Vault Cash + 10x Supply Packs" class="w-full bg-torn-well border border-torn-border rounded-lg px-3 py-2 text-xs text-torn-gold font-mono font-bold focus:outline-none">
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Event Details & Reaction Instructions</label>
+              <textarea id="announce-event-details" rows="4" class="w-full bg-torn-well border border-torn-border rounded-lg p-2.5 text-xs text-slate-200 focus:outline-none leading-relaxed font-mono">Get ready for our official community event!
+- Strictly 1 Bingo Card per member for this session.
+- React with 🎉 to this announcement on Discord to automatically claim your spot and register your name to the Bingo player roster!
+- Drivers: Tune your Stock Class E cars for the 25-Lap tournament.</textarea>
             </div>
           </div>
 
-          <button onclick="addWinnerRecord()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-lg text-xs flex items-center justify-center gap-2 shadow-lg transition">
-            <i data-lucide="check" class="w-4 h-4"></i> Save Winner to Log
+          <button onclick="dispatchAnnouncementToDiscord()" class="w-full bg-gradient-to-r from-torn-red to-torn-redDark hover:from-red-600 hover:to-red-800 text-white font-impact tracking-wider py-3 rounded-lg text-sm flex items-center justify-center gap-2 shadow-lg transition transform hover:-translate-y-0.5">
+            <i data-lucide="send" class="w-4 h-4"></i> POST ANNOUNCEMENT & CALL FOR 🎉 REACTIONS
           </button>
         </div>
 
-        <!-- Winner Log Table & Action Buttons (Right 8 cols) -->
-        <div class="lg:col-span-8 bg-torn-card p-5 rounded-xl border border-torn-border space-y-4 shadow-sm flex flex-col justify-between">
-          <div>
-            <div class="flex justify-between items-center mb-3">
-              <h3 class="font-semibold text-white text-sm flex items-center gap-2">
-                <i data-lucide="list-checks" class="w-4 h-4 text-emerald-400"></i>
-                Logged Winners (<span id="winner-count-badge">0</span> Entries)
-              </h3>
-              <button onclick="clearWinnerLogs()" class="text-[11px] text-red-400 hover:underline">Clear All Logs</button>
+        <!-- Reaction Sync & Registered Roster (Right 6 cols) -->
+        <div class="lg:col-span-6 bg-torn-panel p-4 sm:p-5 rounded-xl border border-torn-border space-y-4 shadow-sm flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between border-b border-torn-border pb-2.5">
+              <span class="font-impact text-sm text-white tracking-wide flex items-center gap-1.5">
+                <i data-lucide="users" class="w-4 h-4 text-torn-gold"></i>
+                Reacted Members Roster (<span id="roster-count-badge">0</span> Players)
+              </span>
+              <button onclick="clearReactionRoster()" class="text-[11px] text-red-400 hover:underline">Clear Roster</button>
+            </div>
+            <p class="text-xs text-torn-steel">Add players who reacted with 🎉 to this session's official Bingo & Race roster:</p>
+
+            <div class="space-y-2">
+              <label class="block text-[11px] font-semibold text-slate-300">Quick-Add Reacted Player Names / Torn IDs (One per line)</label>
+              <textarea id="roster-manual-input" rows="7" placeholder="Loki [2356475]&#10;MemberTwo [194821]&#10;SpeedDemon [88412]" class="w-full bg-torn-well border border-torn-border rounded-lg p-2.5 text-xs text-white font-mono leading-relaxed focus:outline-none focus:border-torn-gold"></textarea>
             </div>
 
-            <!-- Table Container -->
-            <div class="overflow-x-auto max-h-[480px] overflow-y-auto bg-torn-dark rounded-xl border border-torn-border">
-              <table class="w-full text-left text-xs">
-                <thead class="bg-slate-900/80 text-slate-400 border-b border-torn-border sticky top-0 uppercase tracking-wider text-[10px]">
-                  <tr>
-                    <th class="p-3">Event & Date</th>
-                    <th class="p-3">Winner & Rank</th>
-                    <th class="p-3">Prize</th>
-                    <th class="p-3">Status</th>
-                    <th class="p-3 text-right">Discord & Payout Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="winner-table-body" class="divide-y divide-torn-border">
-                  <!-- Dynamically rendered -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= TAB: WORD DROPS & DRAW LOGS ================= -->
-    <section id="tab-caller" class="tab-content hidden space-y-6">
-      <div class="border-b border-torn-border pb-4 flex justify-between items-center flex-wrap gap-4">
-        <div>
-          <h1 class="text-2xl font-bold text-white flex items-center gap-2">
-            <i data-lucide="sparkles" class="w-6 h-6 text-torn-gold"></i>
-            Bingo Caller, Word Drops & Draw Logs
-          </h1>
-          <p class="text-sm text-slate-400 mt-1">Execute <strong>5-Word Drops</strong>, view timestamped draw logs, and push calls to <strong>#bingo</strong>.</p>
-        </div>
-        <div class="flex gap-2">
-          <button onclick="exportWordLogsCSV()" class="bg-torn-dark hover:bg-slate-800 border border-torn-border text-slate-300 px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-1.5">
-            <i data-lucide="file-spreadsheet" class="w-4 h-4 text-torn-gold"></i> Export Draw Log CSV
-          </button>
-          <button onclick="resetBingoGame()" class="bg-torn-dark hover:bg-slate-800 text-red-400 border border-red-900/40 px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-1.5">
-            <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset Game
-          </button>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <!-- Caller Controls (Left) -->
-        <div class="lg:col-span-5 space-y-5">
-          <div class="bg-torn-card p-6 rounded-xl border border-torn-border shadow-sm text-center space-y-5">
-            <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Latest Announcement</span>
-            <div id="caller-current-word" class="py-6 px-4 bg-torn-dark rounded-xl border border-torn-border text-2xl sm:text-3xl font-extrabold text-torn-gold min-h-[110px] flex items-center justify-center shadow-inner">
-              Ready to Draw
-            </div>
-
-            <!-- PRIMARY 5-WORD DROP BUTTON -->
-            <button onclick="executeWordDrop(5)" class="w-full bg-gradient-to-r from-amber-500 via-orange-600 to-torn-red hover:from-amber-400 hover:to-red-500 text-white font-extrabold py-4 rounded-xl text-base flex items-center justify-center gap-3 shadow-xl transition transform hover:-translate-y-0.5">
-              <i data-lucide="sparkles" class="w-6 h-6 animate-pulse"></i>
-              <span>💥 DROP 5 BINGO WORDS AT ONCE</span>
+            <button onclick="syncReactionRoster()" class="w-full bg-torn-card hover:bg-neutral-800 border border-torn-border text-torn-gold font-semibold py-2 rounded-lg text-xs flex items-center justify-center gap-1.5 transition">
+              <i data-lucide="user-plus" class="w-3.5 h-3.5"></i> Register Reacted Members to Session Roster
             </button>
+          </div>
 
-            <!-- Single Draw Buttons -->
-            <div class="grid grid-cols-2 gap-3 pt-1">
-              <button onclick="drawSingleWord(true)" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
-                <i data-lucide="volume-2" class="w-4 h-4"></i> Single Call
-              </button>
-              <button onclick="drawSingleWord(false)" class="bg-torn-dark hover:bg-slate-800 border border-torn-border text-slate-300 font-medium py-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
-                <i data-lucide="eye" class="w-4 h-4"></i> Silent Draw
-              </button>
+          <div class="bg-torn-well p-3 rounded-lg border border-torn-border text-[11px] text-slate-400 space-y-1">
+            <div class="font-bold text-white flex items-center gap-1">
+              <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-400"></i> Anti-Cheat & 1-Card Enforcement:
             </div>
-          </div>
-
-          <!-- Word Draw Stats -->
-          <div class="bg-torn-card p-5 rounded-xl border border-torn-border shadow-sm">
-            <h4 class="text-xs font-semibold text-slate-300 uppercase tracking-wider mb-3">Draw Stats</h4>
-            <div class="grid grid-cols-3 gap-3 text-center">
-              <div class="bg-torn-dark p-3 rounded-lg border border-torn-border">
-                <div id="stat-called-count" class="text-xl font-bold text-blue-400">0</div>
-                <div class="text-[11px] text-slate-400">Called</div>
-              </div>
-              <div class="bg-torn-dark p-3 rounded-lg border border-torn-border">
-                <div id="stat-remaining-count" class="text-xl font-bold text-slate-200">0</div>
-                <div class="text-[11px] text-slate-400">Remaining</div>
-              </div>
-              <div class="bg-torn-dark p-3 rounded-lg border border-torn-border">
-                <div id="stat-total-count" class="text-xl font-bold text-torn-gold">0</div>
-                <div class="text-[11px] text-slate-400">Total Pool</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Word Draws Log Stream (Right) -->
-        <div class="lg:col-span-7 bg-torn-card p-5 rounded-xl border border-torn-border shadow-sm flex flex-col h-[520px]">
-          <div class="flex justify-between items-center mb-3">
-            <h3 class="font-semibold text-white text-sm flex items-center gap-2">
-              <i data-lucide="history" class="w-4 h-4 text-torn-gold"></i>
-              Timestamped Word Draws Log
-            </h3>
-            <span class="text-xs text-slate-400">Live Session Log</span>
-          </div>
-
-          <div id="caller-history-list" class="flex-1 overflow-y-auto bg-torn-dark p-3.5 rounded-xl border border-torn-border space-y-2 font-mono text-xs">
-            <p class="text-xs text-slate-500 text-center py-12">No words drawn yet. Click "DROP 5 BINGO WORDS" or "Single Call" to begin!</p>
+            <div>All synced players are locked to exactly <strong>1 deterministic Bingo card</strong> for this session. Duplicate card re-rolls are blocked.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= TAB: SETTINGS ================= -->
-    <section id="tab-settings" class="tab-content hidden space-y-6">
-      <div class="border-b border-torn-border pb-4 flex justify-between items-center flex-wrap gap-4">
+    <!-- ================= TAB 2: 3-DAY RACE SCHEDULER (25 LAPS • CLASS E) ================= -->
+    <section id="tab-races-3day" class="tab-content hidden space-y-5">
+      <div class="border-b border-torn-border pb-3 flex justify-between items-center flex-wrap gap-2">
         <div>
-          <h1 class="text-2xl font-bold text-white flex items-center gap-2">
-            <i data-lucide="sliders" class="w-6 h-6 text-blue-400"></i>
-            3-Channel Webhooks & Torn API Settings
+          <h1 class="font-impact text-xl sm:text-2xl text-white flex items-center gap-2">
+            <i data-lucide="calendar" class="w-5 h-5 text-torn-red"></i>
+            3-Day Race Scheduler (25 Laps • Stock Class E)
           </h1>
-          <p class="text-sm text-slate-400 mt-1">Configure individual Discord webhooks for <strong>#bingo</strong>, <strong>#racing</strong>, and <strong>#raffles</strong> channels.</p>
+          <p class="text-xs text-torn-steel mt-0.5">3-Day Tournament with randomized Torn tracks, strictly 25 laps and Stock Class E vehicles.</p>
         </div>
-        <button onclick="saveSettings()" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-lg text-xs transition">Save Settings</button>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Bingo Webhook -->
-        <div class="bg-torn-card p-5 rounded-xl border border-blue-500/30 space-y-3">
-          <div class="text-blue-400 font-bold text-sm flex items-center gap-2"><i data-lucide="grid" class="w-4 h-4"></i> Bingo Webhook</div>
-          <input type="url" id="setting-webhook-bingo" placeholder="https://discord.com/api/webhooks/..." class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white font-mono">
-          <input type="text" id="setting-ping-bingo" placeholder="Ping: <@&ROLE_ID>" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-1.5 text-xs text-white font-mono">
-          <button onclick="testSpecificWebhook('bingo')" class="w-full bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 py-1.5 rounded text-xs">Test Bingo</button>
-        </div>
-
-        <!-- Racing Webhook -->
-        <div class="bg-torn-card p-5 rounded-xl border border-torn-red/30 space-y-3">
-          <div class="text-torn-red font-bold text-sm flex items-center gap-2"><i data-lucide="flag" class="w-4 h-4"></i> Racing Webhook</div>
-          <input type="url" id="setting-webhook-racing" placeholder="https://discord.com/api/webhooks/..." class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white font-mono">
-          <input type="text" id="setting-ping-racing" placeholder="Ping: <@&ROLE_ID>" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-1.5 text-xs text-white font-mono">
-          <button onclick="testSpecificWebhook('racing')" class="w-full bg-torn-red/20 hover:bg-torn-red/30 text-red-300 py-1.5 rounded text-xs">Test Racing</button>
-        </div>
-
-        <!-- Raffles Webhook -->
-        <div class="bg-torn-card p-5 rounded-xl border border-purple-500/30 space-y-3">
-          <div class="text-purple-400 font-bold text-sm flex items-center gap-2"><i data-lucide="ticket" class="w-4 h-4"></i> Raffles Webhook</div>
-          <input type="url" id="setting-webhook-raffles" placeholder="https://discord.com/api/webhooks/..." class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white font-mono">
-          <input type="text" id="setting-ping-raffles" placeholder="Ping: <@&ROLE_ID>" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-1.5 text-xs text-white font-mono">
-          <button onclick="testSpecificWebhook('raffles')" class="w-full bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 py-1.5 rounded text-xs">Test Raffles</button>
+        <div class="flex gap-2">
+          <button onclick="generateRandom3DaySchedule()" class="bg-torn-panel hover:bg-neutral-800 border border-torn-border text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5">
+            <i data-lucide="shuffle" class="w-3.5 h-3.5 text-torn-gold"></i> Re-Roll Random Tracks
+          </button>
+          <button onclick="push3DayRaceScheduleToDiscord()" class="bg-torn-red hover:bg-red-700 text-white px-3.5 py-1.5 rounded-lg text-xs font-impact tracking-wider flex items-center gap-1.5 shadow">
+            <i data-lucide="send" class="w-3.5 h-3.5"></i> PUSH 3-DAY SCHEDULE TO DISCORD
+          </button>
         </div>
       </div>
 
-      <div class="bg-torn-card p-5 rounded-xl border border-torn-border space-y-3">
-        <h3 class="font-semibold text-white text-sm">Torn City API Key</h3>
-        <div class="flex gap-3">
-          <input type="password" id="setting-torn-key" placeholder="Enter Torn API Key..." class="flex-1 bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white font-mono">
-          <button onclick="testTornAPI()" class="bg-torn-red hover:bg-red-600 text-white px-4 py-2 rounded-lg text-xs font-medium">Verify Key</button>
+      <!-- 3-Day Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <!-- DAY 1 -->
+        <div class="bg-torn-panel p-4 sm:p-5 rounded-xl border border-torn-border space-y-3.5 shadow-sm">
+          <div class="flex justify-between items-center border-b border-torn-border pb-2">
+            <span class="font-impact text-sm text-torn-red tracking-wide">STAGE 1: DAY 1</span>
+            <span class="text-[10px] bg-torn-well px-2 py-0.5 rounded font-mono text-slate-300 border border-torn-border">25 Laps • Class E</span>
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-400 mb-1">Track Name (Randomized)</label>
+            <input type="text" id="race-day1-track" value="Mudpit" class="w-full bg-torn-well border border-torn-border rounded-lg px-3 py-2 text-xs text-white font-bold font-mono">
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-400 mb-1">Start Date & Time</label>
+            <input type="datetime-local" id="race-day1-time" class="w-full bg-torn-well border border-torn-border rounded-lg px-2.5 py-1.5 text-xs text-white font-mono">
+          </div>
+
+          <div class="bg-torn-well p-2.5 rounded-lg border border-torn-border text-[11px] space-y-1 text-slate-400">
+            <div>🚗 <strong>Allowed:</strong> Stock Class E Only (Mini, Civic, Fiesta, Punto)</div>
+            <div>🔄 <strong>Length:</strong> 25 Laps Endurance</div>
+          </div>
         </div>
-        <span id="torn-player-name" class="text-xs text-slate-400 block">Not Verified</span>
+
+        <!-- DAY 2 -->
+        <div class="bg-torn-panel p-4 sm:p-5 rounded-xl border border-torn-border space-y-3.5 shadow-sm">
+          <div class="flex justify-between items-center border-b border-torn-border pb-2">
+            <span class="font-impact text-sm text-torn-gold tracking-wide">STAGE 2: DAY 2</span>
+            <span class="text-[10px] bg-torn-well px-2 py-0.5 rounded font-mono text-slate-300 border border-torn-border">25 Laps • Class E</span>
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-400 mb-1">Track Name (Randomized)</label>
+            <input type="text" id="race-day2-track" value="Hammerhead" class="w-full bg-torn-well border border-torn-border rounded-lg px-3 py-2 text-xs text-white font-bold font-mono">
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-400 mb-1">Start Date & Time</label>
+            <input type="datetime-local" id="race-day2-time" class="w-full bg-torn-well border border-torn-border rounded-lg px-2.5 py-1.5 text-xs text-white font-mono">
+          </div>
+
+          <div class="bg-torn-well p-2.5 rounded-lg border border-torn-border text-[11px] space-y-1 text-slate-400">
+            <div>🚗 <strong>Allowed:</strong> Stock Class E Only (Mini, Civic, Fiesta, Punto)</div>
+            <div>🔄 <strong>Length:</strong> 25 Laps Endurance</div>
+          </div>
+        </div>
+
+        <!-- DAY 3 -->
+        <div class="bg-torn-panel p-4 sm:p-5 rounded-xl border border-torn-border space-y-3.5 shadow-sm">
+          <div class="flex justify-between items-center border-b border-torn-border pb-2">
+            <span class="font-impact text-sm text-emerald-400 tracking-wide">STAGE 3: DAY 3 (FINALS)</span>
+            <span class="text-[10px] bg-torn-well px-2 py-0.5 rounded font-mono text-slate-300 border border-torn-border">25 Laps • Class E</span>
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-400 mb-1">Track Name (Randomized)</label>
+            <input type="text" id="race-day3-track" value="Two Islands" class="w-full bg-torn-well border border-torn-border rounded-lg px-3 py-2 text-xs text-white font-bold font-mono">
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-400 mb-1">Start Date & Time</label>
+            <input type="datetime-local" id="race-day3-time" class="w-full bg-torn-well border border-torn-border rounded-lg px-2.5 py-1.5 text-xs text-white font-mono">
+          </div>
+
+          <div class="bg-torn-well p-2.5 rounded-lg border border-torn-border text-[11px] space-y-1 text-slate-400">
+            <div>🚗 <strong>Allowed:</strong> Stock Class E Only (Mini, Civic, Fiesta, Punto)</div>
+            <div>🔄 <strong>Length:</strong> 25 Laps Endurance</div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ================= TAB: BINGO STUDIO ================= -->
-    <section id="tab-bingo" class="tab-content hidden space-y-6">
-      <div class="border-b border-torn-border pb-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-white">5x5 Bingo Card Studio</h1>
+    <!-- ================= TAB 3: BINGO STUDIO (1-CARD PER SESSION LOCK) ================= -->
+    <section id="tab-bingo" class="tab-content hidden space-y-5">
+      <div class="border-b border-torn-border pb-3 flex justify-between items-center flex-wrap gap-2">
+        <div>
+          <h1 class="font-impact text-xl sm:text-2xl text-white flex items-center gap-2">
+            <i data-lucide="grid" class="w-5 h-5 text-blue-400"></i>
+            5x5 Bingo Card Studio & 1-Card Enforcement
+          </h1>
+          <p class="text-xs text-torn-steel mt-0.5">Strictly 1 unique card per player per session. Re-entering a name loads their original locked card.</p>
+        </div>
         <div class="flex gap-2">
-          <button onclick="downloadCardPNG()" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-2 rounded-lg text-xs font-medium">Download PNG</button>
-          <button onclick="sendCardToDiscord()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-2 rounded-lg text-xs font-medium">Post to #bingo</button>
+          <button onclick="downloadCardPNG()" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold">Download PNG</button>
+          <button onclick="sendCardToDiscord()" class="bg-torn-card hover:bg-neutral-800 border border-torn-border text-white px-3 py-1.5 rounded-lg text-xs font-semibold">Post to #bingo</button>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
         <div class="lg:col-span-5 space-y-4">
-          <div class="bg-torn-card p-5 rounded-xl border border-torn-border space-y-3">
-            <label class="block text-xs text-slate-300 font-medium">Player Seed / ID</label>
-            <input type="text" id="bingo-player-seed" value="TORN-1001" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white font-mono">
-            <button onclick="renderBingoCard()" class="w-full bg-blue-600 hover:bg-blue-500 text-white py-2 rounded-lg text-xs font-medium">Render Card</button>
-          </div>
-          <div class="bg-torn-card p-5 rounded-xl border border-torn-border space-y-2">
-            <div class="flex justify-between items-center text-xs">
-              <span class="font-semibold text-white">Word Pool (<span id="pool-count">0</span>)</span>
-              <button onclick="fetchTornItemsToPool()" class="text-blue-400 hover:underline">Pull Torn Items</button>
+          <div class="bg-torn-panel p-4 rounded-xl border border-torn-border space-y-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Player Name / Torn ID (Session Locked)</label>
+              <input type="text" id="bingo-player-seed" value="Loki [2356475]" class="w-full bg-torn-well border border-torn-border rounded-lg px-3 py-2 text-xs text-white font-mono focus:outline-none focus:border-blue-500">
             </div>
-            <textarea id="bingo-word-pool" rows="6" oninput="updatePoolCount()" class="w-full bg-torn-dark border border-torn-border rounded-lg p-2.5 text-xs text-white font-mono"></textarea>
+
+            <!-- Lock Status Alert -->
+            <div id="card-lock-banner" class="hidden p-2 rounded-lg bg-emerald-950/70 border border-emerald-700 text-emerald-300 text-[11px] flex items-center gap-1.5">
+              <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+              <span>Card Locked for Session. Re-rolls disabled.</span>
+            </div>
+
+            <button onclick="generateOrRetrieveCard()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-impact tracking-wider py-2.5 rounded-lg text-xs flex items-center justify-center gap-1.5 shadow transition">
+              <i data-lucide="user-check" class="w-4 h-4"></i> GET / LOCK SESSION CARD
+            </button>
+          </div>
+
+          <div class="bg-torn-panel p-4 rounded-xl border border-torn-border space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <span class="font-impact text-slate-300">Word Bank (<span id="pool-count">0</span> items)</span>
+              <button onclick="fetchTornItemsToPool()" class="text-[11px] text-torn-red hover:underline">Sync Torn API</button>
+            </div>
+            <textarea id="bingo-word-pool" rows="6" oninput="updatePoolCount()" class="w-full bg-torn-well border border-torn-border rounded-lg p-2.5 text-xs text-white font-mono"></textarea>
           </div>
         </div>
 
-        <div class="lg:col-span-7 bg-torn-card p-5 rounded-xl border border-torn-border">
-          <div id="interactive-grid" class="grid grid-cols-5 gap-2 bg-torn-dark p-3 rounded-xl border border-torn-border"></div>
+        <div class="lg:col-span-7 bg-torn-panel p-4 rounded-xl border border-torn-border">
+          <div class="grid grid-cols-5 gap-1.5 mb-1.5 text-center font-impact text-base text-torn-red">
+            <div>B</div><div>I</div><div>N</div><div>G</div><div>O</div>
+          </div>
+          <div id="interactive-grid" class="grid grid-cols-5 gap-1.5 bg-torn-well p-2.5 rounded-xl border border-torn-border"></div>
           <canvas id="export-canvas" width="800" height="900" class="hidden"></canvas>
         </div>
       </div>
     </section>
 
-    <!-- ================= TAB: TORN RACES ================= -->
-    <section id="tab-races" class="tab-content hidden space-y-6">
-      <div class="border-b border-torn-border pb-4 flex justify-between items-center">
+    <!-- ================= TAB 4: WORD DROPS & JUMBLES ================= -->
+    <section id="tab-caller" class="tab-content hidden space-y-5">
+      <div class="border-b border-torn-border pb-3 flex justify-between items-center flex-wrap gap-2">
         <div>
-          <h1 class="text-2xl font-bold text-white">Torn Race Radar</h1>
-          <p class="text-sm text-slate-400">Live official race tracking & custom faction announcements.</p>
+          <h1 class="font-impact text-xl sm:text-2xl text-white flex items-center gap-2">
+            <i data-lucide="sparkles" class="w-5 h-5 text-torn-gold"></i>
+            5-Word Drops & Standalone Jumbles
+          </h1>
+          <p class="text-xs text-torn-steel mt-0.5">Drop 5 words simultaneously with embedded anagram challenges or push standalone word jumbles.</p>
         </div>
-        <button onclick="fetchTornRaces()" class="bg-torn-red hover:bg-red-600 text-white px-3 py-2 rounded-lg text-xs font-medium">Refresh Races</button>
+        <div class="flex gap-2">
+          <button onclick="exportWordLogsCSV()" class="bg-torn-panel hover:bg-neutral-800 border border-torn-border text-slate-300 px-3 py-1.5 rounded-lg text-xs font-semibold">Export CSV</button>
+          <button onclick="resetBingoGame()" class="bg-torn-well hover:bg-neutral-900 border border-red-900/60 text-red-400 px-3 py-1.5 rounded-lg text-xs font-semibold">Reset Game</button>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div id="races-list-container" class="lg:col-span-7 space-y-3"></div>
-        <div class="lg:col-span-5 bg-torn-card p-5 rounded-xl border border-torn-border space-y-3">
-          <h3 class="font-semibold text-white text-sm">Custom Race Announcement</h3>
-          <input type="text" id="custom-race-title" value="Weekly Championship" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white">
-          <input type="text" id="custom-race-track" value="Mudpit (100 Laps)" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white">
-          <input type="text" id="custom-race-prize" value="$10M + Xanax" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white">
-          <button onclick="sendCustomRaceAlert()" class="w-full bg-torn-red hover:bg-red-600 text-white font-bold py-2.5 rounded-lg text-xs">Dispatch to #racing</button>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <div class="lg:col-span-5 space-y-4">
+          <div class="bg-torn-panel p-5 rounded-xl border border-torn-border text-center space-y-4 shadow-sm">
+            <span class="text-[11px] uppercase tracking-wider text-torn-steel font-bold">Latest Drawn Item</span>
+            <div id="caller-current-word" class="py-4 px-3 bg-torn-well rounded-xl border border-torn-border text-lg sm:text-xl font-impact text-torn-gold min-h-[80px] flex items-center justify-center">
+              READY TO DRAW
+            </div>
+
+            <!-- 5-WORD DROP BUTTON -->
+            <button onclick="executeWordDrop(5, true)" class="w-full bg-gradient-to-r from-amber-600 via-orange-600 to-torn-red hover:from-amber-500 hover:to-red-500 text-white font-impact tracking-wider py-3.5 rounded-xl text-sm flex items-center justify-center gap-2 shadow-lg transition">
+              <i data-lucide="sparkles" class="w-4 h-4"></i> 💥 DROP 5 BINGO WORDS (WITH JUMBLE)
+            </button>
+
+            <!-- STANDALONE JUMBLE PUSH BUTTON -->
+            <button onclick="executeStandaloneJumble()" class="w-full bg-gradient-to-r from-purple-700 to-indigo-700 hover:from-purple-600 hover:to-indigo-600 text-white font-impact tracking-wider py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow transition">
+              <i data-lucide="shuffle" class="w-4 h-4"></i> 🔀 STANDALONE WORD JUMBLE PUSH
+            </button>
+
+            <!-- Single Call -->
+            <button onclick="drawSingleWord(true)" class="w-full bg-torn-card hover:bg-neutral-800 border border-torn-border text-slate-200 font-semibold py-2 rounded-lg text-xs">
+              Draw Single Word & Announce
+            </button>
+          </div>
+
+          <div class="bg-torn-panel p-3 rounded-xl border border-torn-border grid grid-cols-3 gap-2 text-center text-xs">
+            <div><span id="stat-called-count" class="text-base font-bold text-blue-400">0</span><div class="text-[10px] text-slate-400">Called</div></div>
+            <div><span id="stat-remaining-count" class="text-base font-bold text-slate-200">0</span><div class="text-[10px] text-slate-400">Remaining</div></div>
+            <div><span id="stat-total-count" class="text-base font-bold text-torn-gold">0</span><div class="text-[10px] text-slate-400">Pool</div></div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 bg-torn-panel p-4 rounded-xl border border-torn-border flex flex-col h-[460px]">
+          <span class="font-impact text-xs text-white tracking-wide mb-2">Timestamped Draws Stream</span>
+          <div id="caller-history-list" class="flex-1 overflow-y-auto bg-torn-well p-3 rounded-xl border border-torn-border space-y-1.5 font-mono text-xs"></div>
         </div>
       </div>
     </section>
 
-    <!-- ================= TAB: RAFFLES ================= -->
-    <section id="tab-raffles" class="tab-content hidden space-y-6">
-      <div class="border-b border-torn-border pb-4">
-        <h1 class="text-2xl font-bold text-white">Faction Raffles</h1>
-        <p class="text-sm text-slate-400">Roll winners and dispatch directly to <strong>#raffles</strong>.</p>
+    <!-- ================= TAB 5: WINNER LOGS & PAYOUTS ================= -->
+    <section id="tab-winners" class="tab-content hidden space-y-5">
+      <div class="border-b border-torn-border pb-3 flex justify-between items-center flex-wrap gap-2">
+        <div>
+          <h1 class="font-impact text-xl sm:text-2xl text-white flex items-center gap-2">
+            <i data-lucide="award" class="w-5 h-5 text-amber-400"></i>
+            Winner Logs & Payouts Hub
+          </h1>
+          <p class="text-xs text-torn-steel mt-0.5">Select members from registered cards, choose prizes (Xanax, Boosters, Supply Packs) & push to Discord.</p>
+        </div>
+        <button onclick="exportWinnersCSV()" class="bg-torn-panel hover:bg-neutral-800 border border-torn-border text-slate-300 px-3 py-1.5 rounded-lg text-xs font-semibold">Export CSV</button>
       </div>
-      <div class="bg-torn-card p-6 rounded-xl border border-torn-border space-y-4 max-w-xl">
-        <input type="text" id="raffle-title" value="Weekly Mega Giveaway" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white font-semibold">
-        <input type="text" id="raffle-prize" value="50x Xanax" class="w-full bg-torn-dark border border-torn-border rounded-lg px-3 py-2 text-xs text-white">
-        <textarea id="raffle-entrants" rows="5" placeholder="Entrant names (one per line)..." class="w-full bg-torn-dark border border-torn-border rounded-lg p-3 text-xs text-white font-mono"></textarea>
-        <button onclick="rollRaffleWinner()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-2.5 rounded-lg text-xs">Roll Winner & Post to #raffles</button>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <div class="lg:col-span-5 bg-torn-panel p-4 rounded-xl border border-torn-border space-y-3">
+          <span class="font-impact text-xs text-white tracking-wide">Record Winner & Payout</span>
+
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-300 mb-1">Event Name</label>
+            <input type="text" id="log-event-name" value="Stage 1: Mudpit Class E" class="w-full bg-torn-well border border-torn-border rounded-lg px-3 py-1.5 text-xs text-white font-bold">
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-300 mb-1">Select Winner (From Registered Card Members)</label>
+            <select id="log-winner-member-dropdown" onchange="handleMemberDropdownChange(this)" class="w-full bg-torn-well border border-torn-border rounded-lg px-3 py-1.5 text-xs text-white font-mono"></select>
+            <input type="text" id="log-winner-custom" placeholder="Or type Player [ID]..." class="w-full mt-1 bg-torn-well border border-torn-border rounded-lg px-3 py-1 text-xs text-white font-mono">
+          </div>
+
+          <!-- PRIZE DROPDOWN & QUANTITY SELECTOR -->
+          <div class="bg-torn-well p-3 rounded-lg border border-torn-border space-y-2">
+            <div class="grid grid-cols-3 gap-2">
+              <div class="col-span-2">
+                <label class="block text-[10px] text-slate-400 mb-0.5">Prize Item</label>
+                <select id="log-prize-item-select" onchange="updateFormattedPrize()" class="w-full bg-torn-card border border-torn-border rounded-lg px-2 py-1 text-xs text-white">
+                  <optgroup label="💊 Drugs & Energy">
+                    <option value="Xanax" selected>Xanax</option>
+                    <option value="Vicodin">Vicodin</option>
+                    <option value="Ecstasy">Ecstasy</option>
+                  </optgroup>
+                  <optgroup label="📦 Supply Packs">
+                    <option value="Box of Medical Supplies">Box of Medical Supplies</option>
+                    <option value="Pack of Drug Packs">Pack of Drug Packs</option>
+                    <option value="Drug Pack">Drug Pack</option>
+                    <option value="Box of Grenades">Box of Grenades</option>
+                    <option value="Donator Pack">Donator Pack</option>
+                  </optgroup>
+                  <optgroup label="⚡ Boosters & Cans">
+                    <option value="Can of Red Cow">Can of Red Cow (+10 E)</option>
+                    <option value="Can of Munster">Can of Munster (+15 E)</option>
+                    <option value="Can of Rockstar">Can of Rockstar (+20 E)</option>
+                    <option value="Erotic DVD">Erotic DVD</option>
+                    <option value="Bottle of Beer">Bottle of Beer</option>
+                    <option value="Six-Pack of Alcohol">Six-Pack of Alcohol</option>
+                  </optgroup>
+                  <optgroup label="💰 Cash">
+                    <option value="$10,000,000 Cash">$10,000,000 Cash</option>
+                    <option value="$25,000,000 Cash">$25,000,000 Cash</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[10px] text-slate-400 mb-0.5">Quantity</label>
+                <input type="number" id="log-prize-qty" value="10" min="1" oninput="updateFormattedPrize()" class="w-full bg-torn-card border border-torn-border rounded-lg px-2 py-1 text-xs text-white font-mono">
+              </div>
+            </div>
+            <input type="text" id="log-winner-prize-formatted" value="10x Xanax" class="w-full bg-torn-card border border-torn-gold/50 rounded px-2.5 py-1 text-xs text-torn-gold font-bold font-mono">
+          </div>
+
+          <button onclick="addWinnerRecord()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-impact tracking-wider py-2 rounded-lg text-xs">
+            SAVE WINNER TO LEDGER
+          </button>
+        </div>
+
+        <div class="lg:col-span-7 bg-torn-panel p-4 rounded-xl border border-torn-border">
+          <div class="overflow-x-auto max-h-[420px] overflow-y-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-torn-well text-torn-steel border-b border-torn-border text-[10px] uppercase">
+                <tr><th class="p-2.5">Event & Winner</th><th class="p-2.5">Prize</th><th class="p-2.5">Status</th><th class="p-2.5 text-right">Actions</th></tr>
+              </thead>
+              <tbody id="winner-table-body" class="divide-y divide-torn-border"></tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ================= TAB: BOT BACKEND ================= -->
-    <section id="tab-bot" class="tab-content hidden space-y-4">
-      <h1 class="text-2xl font-bold text-white">Bot Backend Guide</h1>
-      <div class="bg-torn-card p-5 rounded-xl border border-torn-border font-mono text-xs text-slate-300 space-y-2">
-        <div class="text-emerald-400 font-bold"># Winner & Payout Commands:</div>
-        <div>/race-winner [event] [winner] [rank] [prize]</div>
-        <div>/payout [winner] [prize] [event]</div>
-        <div class="text-amber-400 font-bold pt-2"># Bingo Commands:</div>
-        <div>/bingo-drop [count: 5]</div>
-        <div>/bingo-card [player_name] [seed]</div>
+    <!-- ================= TAB 6: SETTINGS & 4-CHANNEL JSON SYNC ================= -->
+    <section id="tab-settings" class="tab-content hidden space-y-5">
+      <div class="border-b border-torn-border pb-3 flex justify-between items-center flex-wrap gap-2">
+        <h1 class="font-impact text-xl sm:text-2xl text-white flex items-center gap-2">
+          <i data-lucide="sliders" class="w-5 h-5 text-blue-400"></i>
+          4-Channel Webhook Routing & JSON Sync
+        </h1>
+        <div class="flex gap-2">
+          <button onclick="exportFullJSONSync()" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold">Export JSON</button>
+          <label class="bg-torn-panel hover:bg-neutral-800 border border-torn-border text-slate-200 px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer">
+            Load JSON <input type="file" id="import-json-file" class="hidden" accept=".json" onchange="importFullJSONSync(event)">
+          </label>
+        </div>
+      </div>
+
+      <!-- 4 Webhooks Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- #announcements -->
+        <div class="bg-torn-panel p-3.5 rounded-xl border border-torn-red/50 space-y-2">
+          <div class="font-impact text-xs text-torn-red">#announcements Webhook</div>
+          <input type="url" id="setting-webhook-announcements" placeholder="https://discord.com/api/webhooks/..." class="w-full bg-torn-well border border-torn-border rounded px-2.5 py-1.5 text-xs text-white font-mono">
+          <button onclick="testSpecificWebhook('announcements')" class="w-full bg-torn-red/20 text-red-300 py-1 rounded text-[11px]">Test Hook</button>
+        </div>
+        <!-- #bingo -->
+        <div class="bg-torn-panel p-3.5 rounded-xl border border-blue-500/50 space-y-2">
+          <div class="font-impact text-xs text-blue-400">#bingo Webhook</div>
+          <input type="url" id="setting-webhook-bingo" placeholder="https://discord.com/api/webhooks/..." class="w-full bg-torn-well border border-torn-border rounded px-2.5 py-1.5 text-xs text-white font-mono">
+          <button onclick="testSpecificWebhook('bingo')" class="w-full bg-blue-600/20 text-blue-300 py-1 rounded text-[11px]">Test Hook</button>
+        </div>
+        <!-- #racing -->
+        <div class="bg-torn-panel p-3.5 rounded-xl border border-torn-border space-y-2">
+          <div class="font-impact text-xs text-emerald-400">#racing Webhook</div>
+          <input type="url" id="setting-webhook-racing" placeholder="https://discord.com/api/webhooks/..." class="w-full bg-torn-well border border-torn-border rounded px-2.5 py-1.5 text-xs text-white font-mono">
+          <button onclick="testSpecificWebhook('racing')" class="w-full bg-emerald-600/20 text-emerald-300 py-1 rounded text-[11px]">Test Hook</button>
+        </div>
+        <!-- #raffles -->
+        <div class="bg-torn-panel p-3.5 rounded-xl border border-purple-500/50 space-y-2">
+          <div class="font-impact text-xs text-purple-400">#raffles Webhook</div>
+          <input type="url" id="setting-webhook-raffles" placeholder="https://discord.com/api/webhooks/..." class="w-full bg-torn-well border border-torn-border rounded px-2.5 py-1.5 text-xs text-white font-mono">
+          <button onclick="testSpecificWebhook('raffles')" class="w-full bg-purple-600/20 text-purple-300 py-1 rounded text-[11px]">Test Hook</button>
+        </div>
+      </div>
+
+      <div class="bg-torn-panel p-4 rounded-xl border border-torn-border flex justify-between items-center flex-wrap gap-3">
+        <div class="flex-1 min-w-[240px]">
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Torn City API Key</label>
+          <input type="password" id="setting-torn-key" placeholder="Enter Torn API Key..." class="w-full bg-torn-well border border-torn-border rounded px-3 py-1.5 text-xs text-white font-mono">
+        </div>
+        <div class="pt-5 flex gap-2">
+          <button onclick="testTornAPI()" class="bg-torn-red text-white px-3.5 py-1.5 rounded text-xs font-semibold">Verify Key</button>
+          <button onclick="saveSettings()" class="bg-emerald-600 text-white px-4 py-1.5 rounded text-xs font-semibold">Save All</button>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <!-- Application Logic -->
   <script>
-    const STORAGE_KEY = 'torn_suite_settings_v3';
-    const GAME_STORAGE_KEY = 'torn_bingo_game_state_v3';
-    const WINNERS_STORAGE_KEY = 'torn_winners_log_v3';
-    const WORD_LOG_KEY = 'torn_word_draws_log_v3';
+    const STORAGE_KEY = 'torn_suite_settings_v5';
+    const GAME_STORAGE_KEY = 'torn_bingo_game_state_v5';
+    const WINNERS_STORAGE_KEY = 'torn_winners_log_v5';
+    const WORD_LOG_KEY = 'torn_word_draws_log_v5';
+    const MEMBERS_STORAGE_KEY = 'torn_registered_members_v5';
+    const SESSION_CARDS_KEY = 'torn_session_cards_v5';
+
+    const tornTracks = ["Mudpit", "Hammerhead", "Two Islands", "Docks", "Industrial", "Speedway", "Stone Park", "Parkland", "Meltdown", "Underpass", "Uptown", "Vector", "Sewage"];
 
     const defaultTornItems = [
       "Xanax", "Vicodin", "Ecstasy", "Speed", "Opium", "Blood Bag : A+", "Blood Bag : O-",
       "Armored Vest", "Liquid Body Armor", "Combat Helmet", "Diamond Bladed Knife",
       "Dual Bushmasters", "Armalite M-15A4", "RPG Launcher", "Box of Medical Supplies",
-      "First Aid Kit", "Morphine", "Can of Red Cow", "Can of Rockstar", "Donator Pack",
-      "Point", "Lottery Voucher", "Lawyer Business Card", "Feathery Hotel Coupon", "Bottle of Beer"
+      "First Aid Kit", "Morphine", "Can of Red Cow", "Can of Rockstar", "Can of Munster",
+      "Donator Pack", "Point", "Lottery Voucher", "Lawyer Business Card", "Feathery Hotel Coupon", "Bottle of Beer"
     ];
 
     let currentSettings = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
     let drawnWords = JSON.parse(localStorage.getItem(GAME_STORAGE_KEY) || '[]');
     let winnersLog = JSON.parse(localStorage.getItem(WINNERS_STORAGE_KEY) || '[]');
     let wordDrawsLog = JSON.parse(localStorage.getItem(WORD_LOG_KEY) || '[]');
-    let activeBingoCard = [], markedCells = new Set([12]);
+    let registeredMembers = JSON.parse(localStorage.getItem(MEMBERS_STORAGE_KEY) || '["Loki [2356475]"]');
+    let sessionCardRegistry = JSON.parse(localStorage.getItem(SESSION_CARDS_KEY) || '{}');
+    let activeBingoCard = [];
 
     window.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
       loadSettings();
       initBingoPool();
-      renderBingoCard();
+      generateRandom3DaySchedule(false);
+      populateMemberDropdown();
       renderWinnerTable();
       renderCallerHistory();
+      updateFormattedPrize();
+      generateOrRetrieveCard(false);
+      setDefaultAnnouncementDate();
     });
 
     function switchTab(tabId) {
@@ -493,14 +632,14 @@
       document.getElementById(tabId).classList.remove('hidden');
 
       document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('bg-emerald-600', 'bg-blue-600', 'text-white', 'font-bold');
+        btn.classList.remove('bg-torn-red', 'text-white');
         btn.classList.add('text-slate-400');
       });
 
       const activeBtn = document.getElementById('btn-' + tabId);
       if (activeBtn) {
         activeBtn.classList.remove('text-slate-400');
-        activeBtn.classList.add(tabId === 'tab-winners' ? 'bg-emerald-600' : 'bg-blue-600', 'text-white', 'font-bold');
+        activeBtn.classList.add('bg-torn-red', 'text-white');
       }
       lucide.createIcons();
     }
@@ -509,43 +648,50 @@
       const bar = document.getElementById('toast-bar');
       const content = document.getElementById('toast-content');
       document.getElementById('toast-message').innerText = msg;
-      content.className = 'p-3 rounded-lg flex items-center justify-between text-sm shadow-md ' + 
-        (type === 'success' ? 'bg-emerald-950/80 border border-emerald-700 text-emerald-300' : 
-         type === 'error' ? 'bg-red-950/80 border border-red-700 text-red-300' : 'bg-blue-950/80 border border-blue-700 text-blue-300');
+      content.className = 'p-3 rounded-lg flex items-center justify-between text-xs shadow-lg border ' + 
+        (type === 'success' ? 'bg-neutral-900 border-emerald-600 text-emerald-300' : 
+         type === 'error' ? 'bg-neutral-900 border-red-600 text-red-300' : 'bg-neutral-900 border-blue-600 text-blue-300');
       bar.classList.remove('hidden');
       lucide.createIcons();
       setTimeout(() => bar.classList.add('hidden'), 4000);
     }
     function hideToast() { document.getElementById('toast-bar').classList.add('hidden'); }
 
-    // --- Settings & Webhooks ---
+    function setDefaultAnnouncementDate() {
+      const now = new Date();
+      now.setHours(now.getHours() + 2);
+      const iso = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+      document.getElementById('announce-event-datetime').value = iso;
+    }
+
+    // --- 4-CHANNEL WEBHOOKS & SETTINGS ---
     function loadSettings() {
+      document.getElementById('setting-webhook-announcements').value = currentSettings.webhookAnnouncements || '';
       document.getElementById('setting-webhook-bingo').value = currentSettings.webhookBingo || '';
       document.getElementById('setting-webhook-racing').value = currentSettings.webhookRacing || '';
       document.getElementById('setting-webhook-raffles').value = currentSettings.webhookRaffles || '';
-      document.getElementById('setting-ping-bingo').value = currentSettings.pingBingo || '';
-      document.getElementById('setting-ping-racing').value = currentSettings.pingRacing || '';
-      document.getElementById('setting-ping-raffles').value = currentSettings.pingRaffles || '';
       document.getElementById('setting-torn-key').value = currentSettings.tornApiKey || '';
     }
 
-    function saveSettings() {
+    function saveSettings(silent = false) {
+      currentSettings.webhookAnnouncements = document.getElementById('setting-webhook-announcements').value.trim();
       currentSettings.webhookBingo = document.getElementById('setting-webhook-bingo').value.trim();
       currentSettings.webhookRacing = document.getElementById('setting-webhook-racing').value.trim();
       currentSettings.webhookRaffles = document.getElementById('setting-webhook-raffles').value.trim();
-      currentSettings.pingBingo = document.getElementById('setting-ping-bingo').value.trim();
-      currentSettings.pingRacing = document.getElementById('setting-ping-racing').value.trim();
-      currentSettings.pingRaffles = document.getElementById('setting-ping-raffles').value.trim();
       currentSettings.tornApiKey = document.getElementById('setting-torn-key').value.trim();
       localStorage.setItem(STORAGE_KEY, JSON.stringify(currentSettings));
-      showToast('Settings saved to localStorage!', 'success');
+      if (!silent) showToast('Settings saved!', 'success');
     }
 
     async function postCategoryWebhook(category, payload) {
-      saveSettings();
-      let url = category === 'bingo' ? currentSettings.webhookBingo : category === 'racing' ? currentSettings.webhookRacing : currentSettings.webhookRaffles;
+      saveSettings(true);
+      let url = currentSettings.webhookBingo;
+      if (category === 'announcements') url = currentSettings.webhookAnnouncements;
+      else if (category === 'racing') url = currentSettings.webhookRacing;
+      else if (category === 'raffles') url = currentSettings.webhookRaffles;
+
       if (!url || !url.startsWith('https://discord.com/api/webhooks/')) {
-        showToast(`Please set ${category.toUpperCase()} webhook URL in Settings.`, 'error');
+        showToast(`Set #${category} Webhook in Settings first.`, 'error');
         return false;
       }
       try {
@@ -560,72 +706,391 @@
 
     async function testSpecificWebhook(cat) {
       const ok = await postCategoryWebhook(cat, {
-        embeds: [{ title: `🎯 ${cat.toUpperCase()} Channel Verified!`, color: 0x3b82f6 }]
+        embeds: [{ title: `🎯 #${cat} Webhook Verified!`, color: 0xd32f2f }]
       });
       if (ok) showToast(`Test sent to #${cat}!`, 'success');
     }
 
     async function testTornAPI() {
-      saveSettings();
+      saveSettings(true);
       if (!currentSettings.tornApiKey) return;
       try {
         const resp = await fetch(`https://api.torn.com/user/?selections=basic&key=${currentSettings.tornApiKey}`);
         const d = await resp.json();
         if (d.name) {
-          document.getElementById('torn-player-name').innerText = `Connected: ${d.name} [${d.player_id}]`;
-          showToast(`Connected as ${d.name}!`, 'success');
+          showToast(`Connected as ${d.name} [${d.player_id}]!`, 'success');
         }
       } catch { showToast('Torn API failed.', 'error'); }
     }
 
-    // --- WINNER LOGGING & PAYOUT ENGINE ---
+    // --- ANNOUNCEMENT DISPATCH & REACTION ROSTER ---
+    async function dispatchAnnouncementToDiscord() {
+      const title = document.getElementById('announce-event-title').value.trim();
+      const type = document.getElementById('announce-event-type').value;
+      const dateVal = document.getElementById('announce-event-datetime').value;
+      const prize = document.getElementById('announce-event-prize').value.trim();
+      const details = document.getElementById('announce-event-details').value.trim();
+
+      const timeFormatted = dateVal ? new Date(dateVal).toUTCString() : 'Announced Time';
+
+      const ok = await postCategoryWebhook('announcements', {
+        content: `📢 @everyone 🎉 **UPCOMING FACTION EVENT ANNOUNCEMENT!**`,
+        embeds: [{
+          title: `🏆 ${title}`,
+          description: `${details}\n\n👉 **REACT WITH 🎉 TO THIS MESSAGE TO REGISTER & CLAIM YOUR BINGO CARD!**`,
+          color: 0xd32f2f,
+          fields: [
+            { name: "📅 Scheduled Time", value: `**${timeFormatted}**`, inline: true },
+            { name: "🎮 Event Type", value: type, inline: true },
+            { name: "🎁 Prize Pool", value: `**${prize}**`, inline: false },
+            { name: "🔒 Card Rule", value: "Strictly 1 card per player per session.", inline: false }
+          ],
+          footer: { text: "Torn Faction Event Radar • React with 🎉 to join!" },
+          timestamp: new Date().toISOString()
+        }]
+      });
+
+      if (ok) showToast('Event announcement with 🎉 reaction callout posted to #announcements!', 'success');
+    }
+
+    function syncReactionRoster() {
+      const text = document.getElementById('roster-manual-input').value;
+      const lines = text.split('\n').map(s => s.trim()).filter(Boolean);
+      if (!lines.length) { showToast('No player names found to sync.', 'error'); return; }
+
+      lines.forEach(name => {
+        if (!registeredMembers.includes(name)) registeredMembers.push(name);
+      });
+      localStorage.setItem(MEMBERS_STORAGE_KEY, JSON.stringify(registeredMembers));
+      populateMemberDropdown();
+      showToast(`Registered ${lines.length} reacted members to session roster!`, 'success');
+    }
+
+    function clearReactionRoster() {
+      registeredMembers = ["Loki [2356475]"];
+      localStorage.setItem(MEMBERS_STORAGE_KEY, JSON.stringify(registeredMembers));
+      populateMemberDropdown();
+      showToast('Roster reset.', 'info');
+    }
+
+    // --- 3-DAY RACE SCHEDULER (25 LAPS • CLASS E) ---
+    function generateRandom3DaySchedule(notify = true) {
+      const shuffled = [...tornTracks].sort(() => 0.5 - Math.random());
+      document.getElementById('race-day1-track').value = shuffled[0];
+      document.getElementById('race-day2-track').value = shuffled[1];
+      document.getElementById('race-day3-track').value = shuffled[2];
+
+      const d1 = new Date(); d1.setDate(d1.getDate() + 1); d1.setHours(18, 0, 0);
+      const d2 = new Date(); d2.setDate(d2.getDate() + 2); d2.setHours(18, 0, 0);
+      const d3 = new Date(); d3.setDate(d3.getDate() + 3); d3.setHours(18, 0, 0);
+
+      document.getElementById('race-day1-time').value = new Date(d1.getTime() - d1.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+      document.getElementById('race-day2-time').value = new Date(d2.getTime() - d2.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+      document.getElementById('race-day3-time').value = new Date(d3.getTime() - d3.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+
+      if (notify) showToast('Generated random 3-Day Race Tracks!', 'success');
+    }
+
+    async function push3DayRaceScheduleToDiscord() {
+      const t1 = document.getElementById('race-day1-track').value;
+      const t2 = document.getElementById('race-day2-track').value;
+      const t3 = document.getElementById('race-day3-track').value;
+      const time1 = document.getElementById('race-day1-time').value;
+      const time2 = document.getElementById('race-day2-time').value;
+      const time3 = document.getElementById('race-day3-time').value;
+
+      const ok = await postCategoryWebhook('racing', {
+        content: `🏎️ **OFFICIAL 3-DAY RACING TOURNAMENT SCHEDULE!**`,
+        embeds: [{
+          title: `🏁 3-Day Stock Class E Endurance Series (25 Laps)`,
+          description: `All drivers must use **Stock Class E** cars (Honda Civic, Classic Mini, Ford Fiesta, Peugeot 106).`,
+          color: 0xd32f2f,
+          fields: [
+            { name: `📅 Stage 1: ${t1}`, value: `**Track:** ${t1} | **Laps:** 25\n**Class:** Stock E | **Start:** ${time1 ? new Date(time1).toUTCString() : 'TBD'}`, inline: false },
+            { name: `📅 Stage 2: ${t2}`, value: `**Track:** ${t2} | **Laps:** 25\n**Class:** Stock E | **Start:** ${time2 ? new Date(time2).toUTCString() : 'TBD'}`, inline: false },
+            { name: `📅 Stage 3: ${t3} (Finals)`, value: `**Track:** ${t3} | **Laps:** 25\n**Class:** Stock E | **Start:** ${time3 ? new Date(time3).toUTCString() : 'TBD'}`, inline: false }
+          ],
+          footer: { text: "Torn Racing Tournament • 25 Laps Stock Class E" },
+          timestamp: new Date().toISOString()
+        }]
+      });
+
+      if (ok) showToast('3-Day Race Schedule posted to #racing!', 'success');
+    }
+
+    // --- 1-CARD PER PLAYER ENFORCEMENT & GENERATION ---
+    function generateOrRetrieveCard(notify = true) {
+      const pool = getWordPool();
+      if (pool.length < 24) return;
+      const player = document.getElementById('bingo-player-seed').value.trim() || 'Loki [2356475]';
+      const banner = document.getElementById('card-lock-banner');
+
+      // Auto register to roster
+      if (!registeredMembers.includes(player)) {
+        registeredMembers.push(player);
+        localStorage.setItem(MEMBERS_STORAGE_KEY, JSON.stringify(registeredMembers));
+        populateMemberDropdown();
+      }
+
+      let selectedWords = [];
+      if (sessionCardRegistry[player]) {
+        // Retrieve existing locked card
+        selectedWords = sessionCardRegistry[player].words;
+        banner.classList.remove('hidden');
+        if (notify) showToast(`Retrieved locked card for ${player}.`, 'info');
+      } else {
+        // Generate new card & lock to player
+        let sNum = player.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+        const shuffled = [...pool].sort(() => 0.5 - Math.sin(sNum++));
+        selectedWords = shuffled.slice(0, 24);
+
+        sessionCardRegistry[player] = {
+          words: selectedWords,
+          lockedAt: new Date().toISOString()
+        };
+        localStorage.setItem(SESSION_CARDS_KEY, JSON.stringify(sessionCardRegistry));
+        banner.classList.remove('hidden');
+        if (notify) showToast(`New card generated & locked for ${player}!`, 'success');
+      }
+
+      activeBingoCard = [];
+      let wIdx = 0;
+      for (let i = 0; i < 25; i++) {
+        activeBingoCard.push(i === 12 ? { text: 'FREE SPACE', isFree: true } : { text: selectedWords[wIdx++], isFree: false });
+      }
+
+      const grid = document.getElementById('interactive-grid');
+      grid.innerHTML = '';
+      activeBingoCard.forEach((c, idx) => {
+        const d = document.createElement('div');
+        d.className = `bingo-grid-cell text-[10px] sm:text-xs font-semibold rounded border ${c.isFree ? 'bg-amber-950/40 text-torn-gold border-amber-600' : 'bg-torn-card text-slate-200 border-torn-border'}`;
+        d.innerText = c.text;
+        grid.appendChild(d);
+      });
+      drawToCanvas();
+    }
+
+    function drawToCanvas() {
+      const cvs = document.getElementById('export-canvas');
+      const ctx = cvs.getContext('2d');
+      const player = document.getElementById('bingo-player-seed').value.trim() || 'Loki [2356475]';
+
+      ctx.fillStyle = '#141414'; ctx.fillRect(0, 0, 800, 900);
+      ctx.fillStyle = '#202020'; ctx.fillRect(40, 40, 720, 90);
+      ctx.strokeStyle = '#383838'; ctx.strokeRect(40, 40, 720, 90);
+
+      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 28px Impact, sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText("TORN CITY FACTION BINGO", 400, 78);
+      ctx.fillStyle = '#94a3b8'; ctx.font = '14px "JetBrains Mono"';
+      ctx.fillText(`Player: ${player}  (Card Locked)`, 400, 110);
+
+      const letters = ['B','I','N','G','O'];
+      for (let c = 0; c < 5; c++) {
+        const x = 50 + c * 140;
+        ctx.fillStyle = '#d32f2f'; ctx.fillRect(x, 150, 132, 40);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 22px Impact, sans-serif';
+        ctx.fillText(letters[c], x + 66, 178);
+      }
+
+      activeBingoCard.forEach((cell, idx) => {
+        const x = 50 + (idx % 5) * 140;
+        const y = 200 + Math.floor(idx / 5) * 130;
+        ctx.fillStyle = cell.isFree ? '#2a1f11' : '#1e1e1e';
+        ctx.fillRect(x, y, 132, 122);
+        ctx.strokeStyle = cell.isFree ? '#eab308' : '#383838';
+        ctx.strokeRect(x, y, 132, 122);
+        ctx.fillStyle = cell.isFree ? '#eab308' : '#e5e5e5';
+        ctx.font = cell.isFree ? 'bold 13px Inter' : '11px Inter';
+        ctx.fillText(cell.text, x + 66, y + 65);
+      });
+    }
+
+    function downloadCardPNG() {
+      drawToCanvas();
+      const p = document.getElementById('bingo-player-seed').value.trim();
+      const a = document.createElement('a');
+      a.download = `Torn_Bingo_${p}.png`;
+      a.href = document.getElementById('export-canvas').toDataURL();
+      a.click();
+    }
+
+    async function sendCardToDiscord() {
+      const p = document.getElementById('bingo-player-seed').value.trim();
+      await postCategoryWebhook('bingo', {
+        embeds: [{ title: "🎯 Player Card Locked", description: `Registered card for **${p}**`, color: 0xd32f2f }]
+      });
+      showToast('Card posted to #bingo!');
+    }
+
+    // --- WORD DROPS & JUMBLES ---
+    function jumbleWord(word) {
+      return word.split(' ').map(token => {
+        if (token.length <= 2) return token;
+        let chars = token.split('');
+        for (let i = chars.length - 1; i > 0; i--) {
+          let j = Math.floor(Math.random() * (i + 1));
+          [chars[i], chars[j]] = [chars[j], chars[i]];
+        }
+        return chars.join('');
+      }).join(' ');
+    }
+
+    async function executeWordDrop(count = 5, includeJumble = true) {
+      const pool = getWordPool();
+      const remaining = pool.filter(w => !drawnWords.includes(w));
+      if (!remaining.length) { showToast('All words drawn!', 'error'); return; }
+
+      const num = Math.min(count, remaining.length);
+      const dropped = [...remaining].sort(() => 0.5 - Math.random()).slice(0, num);
+      const scrambled = jumbleWord(dropped[0]);
+
+      dropped.forEach(w => {
+        drawnWords.push(w);
+        wordDrawsLog.unshift({ word: w, type: '5-Word Drop', time: new Date().toLocaleTimeString(), number: drawnWords.length });
+      });
+
+      localStorage.setItem(GAME_STORAGE_KEY, JSON.stringify(drawnWords));
+      localStorage.setItem(WORD_LOG_KEY, JSON.stringify(wordDrawsLog));
+
+      document.getElementById('caller-current-word').innerHTML = `<span class="text-xs block text-amber-400">📦 5-Word Drop (Jumble: ${scrambled}):</span> ${dropped.join(' • ')}`;
+      updatePoolCount();
+      renderCallerHistory();
+
+      await postCategoryWebhook('bingo', {
+        content: `💥 **BINGO 5-WORD DROP & JUMBLE!**`,
+        embeds: [{
+          title: `📦 5-WORD DROP: ${dropped.length} Items Released!`,
+          color: 0xd32f2f,
+          fields: [
+            { name: "🔀 Jumble Mystery Challenge", value: `**\`${scrambled.toUpperCase()}\`**\n*(Unscramble to solve one of the 5 called words!)*`, inline: false },
+            { name: "📋 All 5 Called Words", value: dropped.map((w, i) => `**#${drawnWords.length - dropped.length + i + 1}:** ${w}`).join('\n'), inline: false }
+          ]
+        }]
+      });
+      showToast('5-Word Drop posted to #bingo!', 'success');
+    }
+
+    async function executeStandaloneJumble() {
+      const pool = getWordPool();
+      const remaining = pool.filter(w => !drawnWords.includes(w));
+      if (!remaining.length) return;
+
+      const word = remaining[Math.floor(Math.random() * remaining.length)];
+      const scrambled = jumbleWord(word);
+
+      drawnWords.push(word);
+      wordDrawsLog.unshift({ word: word, type: `Jumble (${scrambled})`, time: new Date().toLocaleTimeString(), number: drawnWords.length });
+      localStorage.setItem(GAME_STORAGE_KEY, JSON.stringify(drawnWords));
+      localStorage.setItem(WORD_LOG_KEY, JSON.stringify(wordDrawsLog));
+
+      document.getElementById('caller-current-word').innerHTML = `🔀 <b>${scrambled}</b> <span class="text-xs text-slate-400">(${word})</span>`;
+      updatePoolCount();
+      renderCallerHistory();
+
+      await postCategoryWebhook('bingo', {
+        content: `🧩 **STANDALONE WORD JUMBLE!**`,
+        embeds: [{
+          title: `🔀 Mystery Word Jumble Challenge!`,
+          description: `Unscramble to mark this item on your card (Call #${drawnWords.length}):\n\n## \`${scrambled.toUpperCase()}\`\n\n*(Click spoiler for answer: ||${word}||)*`,
+          color: 0xa855f7
+        }]
+      });
+      showToast(`Standalone Jumble ("${scrambled}") pushed to #bingo!`, 'success');
+    }
+
+    async function drawSingleWord(announce = true) {
+      const pool = getWordPool();
+      const remaining = pool.filter(w => !drawnWords.includes(w));
+      if (!remaining.length) return;
+      const word = remaining[Math.floor(Math.random() * remaining.length)];
+      drawnWords.push(word);
+      wordDrawsLog.unshift({ word: word, type: 'Single', time: new Date().toLocaleTimeString(), number: drawnWords.length });
+      localStorage.setItem(GAME_STORAGE_KEY, JSON.stringify(drawnWords));
+      localStorage.setItem(WORD_LOG_KEY, JSON.stringify(wordDrawsLog));
+
+      document.getElementById('caller-current-word').innerText = word;
+      updatePoolCount();
+      renderCallerHistory();
+
+      if (announce) {
+        await postCategoryWebhook('bingo', {
+          embeds: [{ title: `📢 BINGO CALL #${drawnWords.length}: **${word}**`, color: 0x3b82f6 }]
+        });
+      }
+    }
+
+    function renderCallerHistory() {
+      const listEl = document.getElementById('caller-history-list');
+      listEl.innerHTML = '';
+      if (!wordDrawsLog.length) { listEl.innerHTML = '<p class="text-xs text-slate-500 text-center py-10">No words drawn yet.</p>'; return; }
+      wordDrawsLog.slice(0, 40).forEach(log => {
+        const div = document.createElement('div');
+        div.className = 'flex justify-between items-center p-1.5 rounded bg-torn-panel border border-torn-border';
+        div.innerHTML = `<span><b>#${log.number}</b> ${log.word} <span class="text-[10px] text-amber-400">(${log.type})</span></span><span class="text-[10px] text-slate-500">${log.time}</span>`;
+        listEl.appendChild(div);
+      });
+    }
+
+    function resetBingoGame() {
+      if (confirm('Reset game and clear session cards?')) {
+        drawnWords = [];
+        wordDrawsLog = [];
+        sessionCardRegistry = {};
+        localStorage.setItem(GAME_STORAGE_KEY, '[]');
+        localStorage.setItem(WORD_LOG_KEY, '[]');
+        localStorage.setItem(SESSION_CARDS_KEY, '{}');
+        document.getElementById('caller-current-word').innerText = 'READY TO DRAW';
+        updatePoolCount();
+        renderCallerHistory();
+        generateOrRetrieveCard(false);
+        showToast('Session cards and game reset.', 'info');
+      }
+    }
+
+    // --- WINNERS & PRIZES ---
+    function populateMemberDropdown() {
+      const select = document.getElementById('log-winner-member-dropdown');
+      select.innerHTML = '<option value="">-- Select Member from Roster --</option>';
+      registeredMembers.forEach(m => {
+        const opt = document.createElement('option');
+        opt.value = m; opt.innerText = m;
+        select.appendChild(opt);
+      });
+      document.getElementById('roster-count-badge').innerText = registeredMembers.length;
+    }
+
+    function handleMemberDropdownChange(s) {
+      if (s.value) document.getElementById('log-winner-custom').value = s.value;
+    }
+
+    function updateFormattedPrize() {
+      const select = document.getElementById('log-prize-item-select');
+      const qty = parseInt(document.getElementById('log-prize-qty').value, 10) || 1;
+      document.getElementById('log-winner-prize-formatted').value = `${qty}x ${select.value}`;
+    }
+
     function renderWinnerTable() {
       const tbody = document.getElementById('winner-table-body');
       tbody.innerHTML = '';
-      document.getElementById('winner-count-badge').innerText = winnersLog.length;
-
-      if (winnersLog.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-slate-500">No winners logged yet. Use the form to record race or bingo winners!</td></tr>';
-        return;
-      }
+      if (!winnersLog.length) { tbody.innerHTML = '<tr><td colspan="4" class="text-center py-6 text-slate-500">No winners logged.</td></tr>'; return; }
 
       winnersLog.forEach((w, idx) => {
         const tr = document.createElement('tr');
-        tr.className = 'hover:bg-slate-800/40 transition';
-        const isPaid = w.isPaid === true;
-
-        // Parse Torn ID if format Name [12345]
         const idMatch = w.winner.match(/\[(\d+)\]/);
-        const playerId = idMatch ? idMatch[1] : '';
-        const tornPayLink = playerId ? `https://www.torn.com/sendcash.php#/XID=${playerId}` : `https://www.torn.com/sendcash.php`;
+        const payUrl = idMatch ? `https://www.torn.com/sendcash.php#/XID=${idMatch[1]}` : `https://www.torn.com/sendcash.php`;
 
         tr.innerHTML = `
-          <td class="p-3">
+          <td class="p-2.5">
             <div class="font-bold text-white">${w.eventName}</div>
-            <div class="text-[10px] text-slate-400">${w.date} (${w.category})</div>
+            <div class="text-[10px] text-slate-400 font-mono">${w.winner}</div>
           </td>
-          <td class="p-3">
-            <div class="font-semibold text-slate-200">${w.winner}</div>
-            <span class="text-[10px] text-emerald-400 font-bold">${w.rank}</span>
+          <td class="p-2.5 font-mono text-torn-gold font-bold">${w.prize}</td>
+          <td class="p-2.5">
+            <span class="px-1.5 py-0.5 rounded text-[9px] font-bold border ${w.isPaid ? 'bg-emerald-950 text-emerald-300 border-emerald-700' : 'bg-amber-950 text-amber-300 border-amber-700'}">${w.isPaid ? 'PAID' : 'UNPAID'}</span>
           </td>
-          <td class="p-3 font-mono text-torn-gold font-semibold">${w.prize}</td>
-          <td class="p-3">
-            <button onclick="togglePayoutStatus(${idx})" class="px-2 py-0.5 rounded text-[10px] font-bold border transition ${isPaid ? 'bg-emerald-950 text-emerald-300 border-emerald-700' : 'bg-amber-950 text-amber-300 border-amber-700'}">
-              ${isPaid ? '✓ PAID' : '⏳ UNPAID'}
-            </button>
-          </td>
-          <td class="p-3 text-right space-x-1.5 whitespace-nowrap">
-            <!-- PUSH WINNER BUTTON -->
-            <button onclick="pushWinnerToDiscord(${idx})" class="bg-blue-600 hover:bg-blue-500 text-white px-2.5 py-1 rounded text-[11px] font-semibold inline-flex items-center gap-1">
-              <i data-lucide="trophy" class="w-3 h-3"></i> Push Winner
-            </button>
-
-            <!-- POST & PAY WINNER BUTTON -->
-            <button onclick="postAndPayWinner(${idx}, '${tornPayLink}')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1 rounded text-[11px] font-semibold inline-flex items-center gap-1 shadow-sm">
-              <i data-lucide="dollar-sign" class="w-3 h-3"></i> Post & Pay
-            </button>
-
-            <button onclick="deleteWinnerRecord(${idx})" class="text-red-400 hover:text-red-300 p-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+          <td class="p-2.5 text-right space-x-1 whitespace-nowrap">
+            <button onclick="pushWinnerToDiscord(${idx})" class="bg-blue-600 text-white px-2 py-1 rounded text-[10px] font-bold">Push</button>
+            <button onclick="postAndPayWinner(${idx}, '${payUrl}')" class="bg-emerald-600 text-white px-2 py-1 rounded text-[10px] font-bold">Pay</button>
           </td>
         `;
         tbody.appendChild(tr);
@@ -635,130 +1100,82 @@
 
     function addWinnerRecord() {
       const eventName = document.getElementById('log-event-name').value.trim();
-      const winner = document.getElementById('log-winner-name').value.trim();
-      const rank = document.getElementById('log-winner-rank').value;
-      const prize = document.getElementById('log-winner-prize').value.trim();
-      const category = document.getElementById('log-event-category').value;
-      const notes = document.getElementById('log-winner-notes').value.trim();
+      const winner = document.getElementById('log-winner-custom').value.trim();
+      const prize = document.getElementById('log-winner-prize-formatted').value.trim();
 
-      if (!eventName || !winner || !prize) {
-        showToast('Please fill in Event, Winner, and Prize.', 'error');
-        return;
-      }
-
-      const newRecord = {
-        id: 'WIN-' + Date.now(),
-        eventName,
-        winner,
-        rank,
-        prize,
-        category,
-        notes,
-        date: new Date().toLocaleString(),
-        isPaid: false
-      };
-
-      winnersLog.unshift(newRecord);
+      if (!eventName || !winner || !prize) return;
+      winnersLog.unshift({ id: 'WIN-' + Date.now(), eventName, winner, prize, isPaid: false });
       localStorage.setItem(WINNERS_STORAGE_KEY, JSON.stringify(winnersLog));
       renderWinnerTable();
-      showToast(`Logged winner: ${winner} for ${eventName}!`, 'success');
+      showToast(`Logged winner: ${winner}!`, 'success');
     }
 
-    function togglePayoutStatus(idx) {
-      winnersLog[idx].isPaid = !winnersLog[idx].isPaid;
-      localStorage.setItem(WINNERS_STORAGE_KEY, JSON.stringify(winnersLog));
-      renderWinnerTable();
-    }
-
-    function deleteWinnerRecord(idx) {
-      winnersLog.splice(idx, 1);
-      localStorage.setItem(WINNERS_STORAGE_KEY, JSON.stringify(winnersLog));
-      renderWinnerTable();
-    }
-
-    function clearWinnerLogs() {
-      if (confirm('Clear all logged winners?')) {
-        winnersLog = [];
-        localStorage.setItem(WINNERS_STORAGE_KEY, JSON.stringify(winnersLog));
-        renderWinnerTable();
-      }
-    }
-
-    // 1. PUSH WINNER TO DISCORD
     async function pushWinnerToDiscord(idx) {
       const w = winnersLog[idx];
-      const category = w.category || 'racing';
-      const ping = currentSettings[`ping${category.charAt(0).toUpperCase() + category.slice(1)}`] || '';
-
-      const ok = await postCategoryWebhook(category, {
-        content: ping ? `${ping} 🏆 **OFFICIAL WINNER ANNOUNCEMENT!**` : `🏆 **OFFICIAL WINNER ANNOUNCEMENT!**`,
+      await postCategoryWebhook('racing', {
         embeds: [{
-          title: `🥇 ${w.eventName} — ${w.rank}`,
-          description: `Let's congratulate our champion **${w.winner}**!`,
-          color: 0x10b981,
-          fields: [
-            { name: "👑 Winner", value: `**${w.winner}**`, inline: true },
-            { name: "🏆 Placement", value: w.rank, inline: true },
-            { name: "🎁 Prize Reward", value: `**${w.prize}**`, inline: false },
-            { name: "📝 Details", value: w.notes || 'Official Victory', inline: false }
-          ],
-          footer: { text: "Torn Faction Winner Radar" },
-          timestamp: new Date().toISOString()
+          title: `🥇 ${w.eventName} — Winner!`,
+          description: `Congratulations **${w.winner}** on winning **${w.prize}**!`,
+          color: 0x22c55e
         }]
       });
-
-      if (ok) showToast(`Pushed ${w.winner}'s victory to #${category}!`, 'success');
+      showToast('Pushed winner to Discord!');
     }
 
-    // 2. POST & PAY WINNER BUTTON
     async function postAndPayWinner(idx, payUrl) {
-      const w = winnersLog[idx];
-      const category = w.category || 'racing';
-      w.isPaid = true;
+      winnersLog[idx].isPaid = true;
       localStorage.setItem(WINNERS_STORAGE_KEY, JSON.stringify(winnersLog));
       renderWinnerTable();
-
-      // Open Torn Cash Send / Trade Page in new tab for instant transfer
       window.open(payUrl, '_blank');
-
-      // Post Payout Confirmation to Discord
-      const ok = await postCategoryWebhook(category, {
-        embeds: [{
-          title: `💸 PRIZE PAYOUT CONFIRMED!`,
-          description: `Prize reward for **${w.eventName}** has been processed and sent to **${w.winner}**!`,
-          color: 0xf59e0b,
-          fields: [
-            { name: "Recipient", value: `**${w.winner}**`, inline: true },
-            { name: "Prize Amount", value: `**${w.prize}**`, inline: true },
-            { name: "Status", value: "✅ Paid & Dispatched", inline: true }
-          ],
-          footer: { text: "Torn Faction Treasury" },
-          timestamp: new Date().toISOString()
-        }]
+      const w = winnersLog[idx];
+      await postCategoryWebhook('racing', {
+        embeds: [{ title: `💸 Prize Payout Confirmed!`, description: `Sent **${w.prize}** to **${w.winner}**!`, color: 0xeab308 }]
       });
-
-      if (ok) showToast(`Marked Paid & posted payout confirmation to #${category}!`, 'success');
+      showToast('Payout confirmed & opened transfer link!');
     }
 
-    function exportWinnersCSV() {
-      let csv = "ID,Event,Category,Winner,Rank,Prize,Notes,Date,Status\n";
-      winnersLog.forEach(w => {
-        csv += `"${w.id}","${w.eventName}","${w.category}","${w.winner}","${w.rank}","${w.prize}","${w.notes || ''}","${w.date}","${w.isPaid ? 'PAID' : 'UNPAID'}"\n`;
-      });
-      downloadFile(csv, "torn_winners_log.csv", "text/csv");
+    // --- JSON SYNC ---
+    function exportFullJSONSync() {
+      saveSettings(true);
+      const syncData = {
+        meta: { app: "Torn Suite", version: "5.0", time: new Date().toISOString() },
+        settings: currentSettings,
+        wordBank: getWordPool(),
+        registeredMembers,
+        sessionCards: sessionCardRegistry,
+        winnersLog
+      };
+      const a = document.createElement('a');
+      a.href = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(syncData, null, 2));
+      a.download = `torn_suite_sync_v5_${new Date().toISOString().slice(0,10)}.json`;
+      a.click();
+      showToast('Settings JSON exported!', 'success');
     }
 
-    function exportWinnersJSON() {
-      downloadFile(JSON.stringify(winnersLog, null, 2), "torn_winners_log.json", "application/json");
+    function importFullJSONSync(e) {
+      const f = e.target.files[0];
+      if (!f) return;
+      const r = new FileReader();
+      r.onload = ev => {
+        try {
+          const imp = JSON.parse(ev.target.result);
+          if (imp.settings) { currentSettings = imp.settings; localStorage.setItem(STORAGE_KEY, JSON.stringify(currentSettings)); loadSettings(); }
+          if (imp.wordBank) { document.getElementById('bingo-word-pool').value = imp.wordBank.join('\n'); updatePoolCount(); }
+          if (imp.registeredMembers) { registeredMembers = imp.registeredMembers; localStorage.setItem(MEMBERS_STORAGE_KEY, JSON.stringify(registeredMembers)); populateMemberDropdown(); }
+          if (imp.sessionCards) { sessionCardRegistry = imp.sessionCards; localStorage.setItem(SESSION_CARDS_KEY, JSON.stringify(sessionCardRegistry)); }
+          if (imp.winnersLog) { winnersLog = imp.winnersLog; localStorage.setItem(WINNERS_STORAGE_KEY, JSON.stringify(winnersLog)); renderWinnerTable(); }
+          generateOrRetrieveCard(false);
+          showToast('JSON Sync Imported Successfully!', 'success');
+        } catch { showToast('Invalid JSON file.', 'error'); }
+      };
+      r.readAsText(f);
     }
 
-    // --- WORD DRAWS LOGGING & 5-WORD DROPS ---
     function initBingoPool() {
       const el = document.getElementById('bingo-word-pool');
       if (!el.value.trim()) el.value = defaultTornItems.join('\n');
       updatePoolCount();
     }
-
     function updatePoolCount() {
       const p = getWordPool();
       document.getElementById('pool-count').innerText = p.length;
@@ -766,194 +1183,35 @@
       document.getElementById('stat-called-count').innerText = drawnWords.length;
       document.getElementById('stat-remaining-count').innerText = Math.max(0, p.length - drawnWords.length);
     }
-
-    function getWordPool() {
-      return document.getElementById('bingo-word-pool').value.split('\n').map(s => s.trim()).filter(s => s.length > 0);
-    }
-
-    async function executeWordDrop(count = 5) {
-      const pool = getWordPool();
-      const remaining = pool.filter(w => !drawnWords.includes(w));
-      if (!remaining.length) { showToast('All words drawn!', 'error'); return; }
-
-      const num = Math.min(count, remaining.length);
-      const dropped = [...remaining].sort(() => 0.5 - Math.random()).slice(0, num);
-      const ts = new Date().toLocaleTimeString();
-
-      dropped.forEach(w => {
-        drawnWords.push(w);
-        wordDrawsLog.unshift({ word: w, type: '5-Word Drop', time: new Date().toLocaleString(), number: drawnWords.length });
-      });
-
-      localStorage.setItem(GAME_STORAGE_KEY, JSON.stringify(drawnWords));
-      localStorage.setItem(WORD_LOG_KEY, JSON.stringify(wordDrawsLog));
-
-      document.getElementById('caller-current-word').innerHTML = `<span class="text-sm block text-amber-400">📦 5-Word Drop:</span> ${dropped.join(' • ')}`;
-      updatePoolCount();
-      renderCallerHistory();
-
-      const ping = currentSettings.pingBingo ? `${currentSettings.pingBingo} ` : '';
-      const ok = await postCategoryWebhook('bingo', {
-        content: `${ping}💥 **BINGO 5-WORD DROP RELEASED!**`,
-        embeds: [{
-          title: `📦 5-WORD DROP: ${dropped.length} Items Called!`,
-          description: dropped.map((w, i) => `**#${drawnWords.length - dropped.length + i + 1}:** ${w}`).join('\n'),
-          color: 0xf59e0b,
-          footer: { text: `Total Called: ${drawnWords.length} / ${pool.length} | Word Drops Logged` },
-          timestamp: new Date().toISOString()
-        }]
-      });
-      if (ok) showToast(`5-Word Drop announced & logged!`, 'success');
-    }
-
-    async function drawSingleWord(announce = true) {
-      const pool = getWordPool();
-      const remaining = pool.filter(w => !drawnWords.includes(w));
-      if (!remaining.length) return;
-
-      const word = remaining[Math.floor(Math.random() * remaining.length)];
-      drawnWords.push(word);
-      wordDrawsLog.unshift({ word: word, type: 'Single Call', time: new Date().toLocaleString(), number: drawnWords.length });
-
-      localStorage.setItem(GAME_STORAGE_KEY, JSON.stringify(drawnWords));
-      localStorage.setItem(WORD_LOG_KEY, JSON.stringify(wordDrawsLog));
-
-      document.getElementById('caller-current-word').innerText = word;
-      updatePoolCount();
-      renderCallerHistory();
-
-      if (announce) {
-        const ping = currentSettings.pingBingo ? `${currentSettings.pingBingo} ` : '';
-        await postCategoryWebhook('bingo', {
-          content: `${ping}📢 **BINGO CALL #${drawnWords.length}!**`,
-          embeds: [{ title: `🎯 Drawn: **${word}**`, color: 0x3b82f6, timestamp: new Date().toISOString() }]
-        });
-      }
-    }
-
-    function renderCallerHistory() {
-      const listEl = document.getElementById('caller-history-list');
-      listEl.innerHTML = '';
-      if (!wordDrawsLog.length) {
-        listEl.innerHTML = '<p class="text-xs text-slate-500 text-center py-12">No words drawn yet.</p>';
-        return;
-      }
-      wordDrawsLog.slice(0, 50).forEach(log => {
-        const div = document.createElement('div');
-        div.className = 'flex justify-between items-center p-2 rounded bg-torn-card border border-torn-border';
-        div.innerHTML = `<span><b>#${log.number}</b> ${log.word} <span class="text-[10px] text-amber-400">(${log.type})</span></span><span class="text-[10px] text-slate-500">${log.time}</span>`;
-        listEl.appendChild(div);
-      });
-    }
-
-    function exportWordLogsCSV() {
-      let csv = "CallNumber,Word,Type,Timestamp\n";
-      [...wordDrawsLog].reverse().forEach(l => {
-        csv += `"${l.number}","${l.word}","${l.type}","${l.time}"\n`;
-      });
-      downloadFile(csv, "bingo_drawn_words_log.csv", "text/csv");
-    }
-
-    function resetBingoGame() {
-      if (confirm('Reset Bingo game history?')) {
-        drawnWords = [];
-        wordDrawsLog = [];
-        localStorage.setItem(GAME_STORAGE_KEY, '[]');
-        localStorage.setItem(WORD_LOG_KEY, '[]');
-        document.getElementById('caller-current-word').innerText = 'Ready to Draw';
-        updatePoolCount();
-        renderCallerHistory();
-      }
-    }
-
-    function renderBingoCard() {
-      const pool = getWordPool();
-      if (pool.length < 24) return;
-      const seed = document.getElementById('bingo-player-seed').value.trim() || '1234';
-      let sNum = seed.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-      const shuffled = [...pool].sort(() => 0.5 - Math.sin(sNum++));
-
-      activeBingoCard = [];
-      let idx = 0;
-      for (let i = 0; i < 25; i++) {
-        activeBingoCard.push(i === 12 ? { text: 'FREE SPACE', isFree: true } : { text: shuffled[idx++], isFree: false });
-      }
-
-      const grid = document.getElementById('interactive-grid');
-      grid.innerHTML = '';
-      activeBingoCard.forEach((c, i) => {
-        const d = document.createElement('div');
-        d.className = `bingo-cell text-xs font-semibold rounded-lg border ${c.isFree ? 'bg-torn-gold/20 text-torn-gold border-torn-gold/40' : 'bg-torn-card text-slate-200 border-torn-border'}`;
-        d.innerText = c.text;
-        grid.appendChild(d);
-      });
-    }
-
-    async function fetchTornRaces() {
-      if (!currentSettings.tornApiKey) { showToast('Set Torn API Key first.', 'error'); return; }
-      try {
-        const r = await fetch(`https://api.torn.com/torn/?selections=races&key=${currentSettings.tornApiKey}`);
-        const d = await r.json();
-        const c = document.getElementById('races-list-container');
-        c.innerHTML = '';
-        Object.values(d.races || {}).slice(0, 6).forEach(race => {
-          const div = document.createElement('div');
-          div.className = 'bg-torn-card p-4 rounded-xl border border-torn-border space-y-2';
-          div.innerHTML = `
-            <div class="font-bold text-white text-sm">${race.title || 'Official Race'}</div>
-            <div class="text-xs text-slate-400">Track: ${race.track_name} • Class: ${race.car_class}</div>
-            <button onclick="logRaceDirectly('${race.title}', '${race.track_name}')" class="bg-emerald-600/20 text-emerald-400 border border-emerald-800 px-2 py-1 rounded text-xs">Record Result</button>
-          `;
-          c.appendChild(div);
-        });
-      } catch { showToast('Error fetching races.'); }
-    }
-
-    function logRaceDirectly(title, track) {
-      document.getElementById('log-event-name').value = `${title} (${track})`;
-      document.getElementById('log-event-category').value = 'racing';
-      switchTab('tab-winners');
-    }
-
-    async function rollRaffleWinner() {
-      const title = document.getElementById('raffle-title').value.trim();
-      const prize = document.getElementById('raffle-prize').value.trim();
-      const entrants = document.getElementById('raffle-entrants').value.split('\n').map(s => s.trim()).filter(Boolean);
-      if (!entrants.length) return;
-      const winner = entrants[Math.floor(Math.random() * entrants.length)];
-
-      // Auto add to winner log
-      winnersLog.unshift({
-        id: 'RAF-' + Date.now(),
-        eventName: title,
-        winner: winner,
-        rank: 'Raffle Winner 🎟️',
-        prize: prize,
-        category: 'raffle',
-        date: new Date().toLocaleString(),
-        isPaid: false
-      });
-      localStorage.setItem(WINNERS_STORAGE_KEY, JSON.stringify(winnersLog));
-      renderWinnerTable();
-
-      const ok = await postCategoryWebhook('raffles', {
-        content: `🎟️ **RAFFLE WINNER DRAWN!**`,
-        embeds: [{
-          title: `🏆 ${title} — WINNER!`,
-          description: `Congratulations **${winner}**! You won **${prize}**!`,
-          color: 0xa855f7
-        }]
-      });
-      if (ok) showToast(`Raffle winner ${winner} logged & posted to #raffles!`, 'success');
-    }
-
-    function downloadFile(content, filename, type) {
+    function getWordPool() { return document.getElementById('bingo-word-pool').value.split('\n').map(s => s.trim()).filter(Boolean); }
+    function exportWinnersCSV() {
+      let csv = "Event,Winner,Prize,Paid\n";
+      winnersLog.forEach(w => csv += `"${w.eventName}","${w.winner}","${w.prize}","${w.isPaid}"\n`);
       const a = document.createElement('a');
-      a.href = "data:" + type + ";charset=utf-8," + encodeURIComponent(content);
-      a.download = filename;
-      document.body.appendChild(a);
+      a.href = "data:text/csv;charset=utf-8," + encodeURIComponent(csv);
+      a.download = "torn_winners.csv";
       a.click();
-      a.remove();
+    }
+    function exportWordLogsCSV() {
+      let csv = "Number,Word,Type,Time\n";
+      [...wordDrawsLog].reverse().forEach(l => csv += `"${l.number}","${l.word}","${l.type}","${l.time}"\n`);
+      const a = document.createElement('a');
+      a.href = "data:text/csv;charset=utf-8," + encodeURIComponent(csv);
+      a.download = "bingo_draws.csv";
+      a.click();
+    }
+    async function fetchTornItemsToPool() {
+      if (!currentSettings.tornApiKey) { showToast('Set Torn API Key.', 'error'); return; }
+      try {
+        const r = await fetch(`https://api.torn.com/torn/?selections=items&key=${currentSettings.tornApiKey}`);
+        const d = await r.json();
+        if (d.items) {
+          const list = Object.values(d.items).filter(i => i.name && i.type !== 'Unused').slice(0, 80).map(i => i.name);
+          document.getElementById('bingo-word-pool').value = list.join('\n');
+          updatePoolCount();
+          showToast(`Imported ${list.length} Torn items!`, 'success');
+        }
+      } catch { showToast('Failed to pull items.', 'error'); }
     }
   </script>
 </body>
