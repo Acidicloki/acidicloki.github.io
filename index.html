@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Weekend at Loki's - Torn City Event Hub (v5.7)</title>
+  <title>Weekend at Loki's - Torn City Event Hub (v5.8)</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -54,7 +54,6 @@
       text-transform: uppercase;
     }
 
-    /* Bubble Cards Styling */
     .bubble-card {
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -108,47 +107,55 @@
           <div>
             <div class="font-impact text-base sm:text-xl text-white tracking-wider flex items-center gap-1.5">
               WEEKEND AT LOKI'S
-              <span class="text-[10px] bg-torn-red/30 text-red-300 border border-torn-red/50 px-1.5 py-0.2 rounded font-mono font-normal">v5.7</span>
+              <span class="text-[10px] bg-torn-red/30 text-red-300 border border-torn-red/50 px-1.5 py-0.2 rounded font-mono font-normal">v5.8</span>
             </div>
             <div class="text-[10px] sm:text-xs text-torn-steel hidden xs:block">Torn City Event Hub • Hosted by Loki [2356475]</div>
           </div>
         </div>
 
-        <!-- Navigation Tabs -->
-        <nav class="flex space-x-1 bg-torn-well p-1 rounded-xl border border-torn-border text-xs font-semibold overflow-x-auto max-w-full">
-          <button onclick="switchTab('tab-home')" id="btn-tab-home" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg bg-torn-red text-white transition whitespace-nowrap font-bold shadow">
-            <i data-lucide="home" class="w-3.5 h-3.5 text-white"></i>
-            <span>Home</span>
+        <!-- Navigation Tabs + Cache Refresh Button -->
+        <div class="flex items-center gap-1.5 sm:gap-2">
+          <nav class="flex space-x-1 bg-torn-well p-1 rounded-xl border border-torn-border text-xs font-semibold overflow-x-auto max-w-full">
+            <button onclick="switchTab('tab-home')" id="btn-tab-home" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg bg-torn-red text-white transition whitespace-nowrap font-bold shadow">
+              <i data-lucide="home" class="w-3.5 h-3.5 text-white"></i>
+              <span>Home</span>
+            </button>
+            <button onclick="switchTab('tab-cards-roster')" id="btn-tab-cards-roster" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+              <i data-lucide="layers" class="w-3.5 h-3.5 text-torn-gold"></i>
+              <span>Claimed Cards (<span id="nav-cards-count">0</span>)</span>
+            </button>
+            <button onclick="switchTab('tab-bingo')" id="btn-tab-bingo" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+              <i data-lucide="grid" class="w-3.5 h-3.5 text-blue-400"></i>
+              <span>Bingo Studio</span>
+            </button>
+            <button onclick="switchTab('tab-caller')" id="btn-tab-caller" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+              <span>Word Drops</span>
+            </button>
+            <button onclick="switchTab('tab-races-3day')" id="btn-tab-races-3day" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+              <i data-lucide="flag" class="w-3.5 h-3.5 text-emerald-400"></i>
+              <span>3-Day Races</span>
+            </button>
+            <button onclick="switchTab('tab-raffles')" id="btn-tab-raffles" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+              <i data-lucide="ticket" class="w-3.5 h-3.5 text-purple-400"></i>
+              <span>Raffles</span>
+            </button>
+            <button onclick="switchTab('tab-winners')" id="btn-tab-winners" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+              <i data-lucide="award" class="w-3.5 h-3.5 text-amber-400"></i>
+              <span>Vault</span>
+            </button>
+            <button onclick="switchTab('tab-settings')" id="btn-tab-settings" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+              <i data-lucide="sliders" class="w-3.5 h-3.5 text-slate-300"></i>
+              <span>Settings</span>
+            </button>
+          </nav>
+
+          <!-- Clear Cache & Update Refresher Button -->
+          <button onclick="clearCacheAndReload()" title="Clear browser cache and reload latest version" class="bg-torn-card hover:bg-neutral-800 border border-torn-border text-torn-gold p-2 rounded-xl text-xs flex items-center gap-1 transition shadow hover:border-torn-gold">
+            <i data-lucide="rotate-cw" class="w-4 h-4 text-torn-gold"></i>
+            <span class="hidden md:inline font-semibold">Update Site</span>
           </button>
-          <button onclick="switchTab('tab-cards-roster')" id="btn-tab-cards-roster" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
-            <i data-lucide="layers" class="w-3.5 h-3.5 text-torn-gold"></i>
-            <span>Claimed Cards (<span id="nav-cards-count">0</span>)</span>
-          </button>
-          <button onclick="switchTab('tab-bingo')" id="btn-tab-bingo" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
-            <i data-lucide="grid" class="w-3.5 h-3.5 text-blue-400"></i>
-            <span>Bingo Studio</span>
-          </button>
-          <button onclick="switchTab('tab-caller')" id="btn-tab-caller" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
-            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
-            <span>Word Drops</span>
-          </button>
-          <button onclick="switchTab('tab-races-3day')" id="btn-tab-races-3day" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
-            <i data-lucide="flag" class="w-3.5 h-3.5 text-emerald-400"></i>
-            <span>3-Day Races</span>
-          </button>
-          <button onclick="switchTab('tab-raffles')" id="btn-tab-raffles" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
-            <i data-lucide="ticket" class="w-3.5 h-3.5 text-purple-400"></i>
-            <span>Raffles</span>
-          </button>
-          <button onclick="switchTab('tab-winners')" id="btn-tab-winners" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
-            <i data-lucide="award" class="w-3.5 h-3.5 text-amber-400"></i>
-            <span>Vault</span>
-          </button>
-          <button onclick="switchTab('tab-settings')" id="btn-tab-settings" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
-            <i data-lucide="sliders" class="w-3.5 h-3.5 text-slate-300"></i>
-            <span>Settings</span>
-          </button>
-        </nav>
+        </div>
       </div>
     </div>
   </header>
@@ -224,7 +231,7 @@
           </div>
           <div>
             <span class="font-impact text-sm sm:text-base text-white tracking-wide block">3-DAY RACES</span>
-            <span class="text-[11px] text-torn-steel">25 Laps • Stock Class E + Torn Creation Links</span>
+            <span class="text-[11px] text-torn-steel">25 Laps • Stock Class E + Race Schedule Logs</span>
           </div>
           <span class="text-[10px] bg-emerald-950/40 text-emerald-300 px-2.5 py-0.5 rounded-full font-mono border border-emerald-800">Torn Links</span>
         </div>
@@ -280,7 +287,7 @@
       </div>
     </section>
 
-    <!-- ================= TAB 1: ALL CLAIMED BINGO CARDS ROSTER (NEW) ================= -->
+    <!-- ================= TAB 1: ALL CLAIMED BINGO CARDS ROSTER ================= -->
     <section id="tab-cards-roster" class="tab-content hidden space-y-5">
       <div class="border-b border-torn-border pb-3 flex justify-between items-center flex-wrap gap-2">
         <div>
@@ -288,14 +295,23 @@
             <i data-lucide="layers" class="w-5 h-5 text-torn-gold"></i>
             All Claimed Bingo Cards & Raffle Tickets (<span id="cards-roster-total">0</span> Cards)
           </h1>
-          <p class="text-xs text-torn-steel mt-0.5">Players sign up when they retrieve their card. Every claimed card is logged here in order of sign-up.</p>
+          <p class="text-xs text-torn-steel mt-0.5">Players sign up when they retrieve their card. Every claimed card is logged here with sequential ticket numbers.</p>
         </div>
         <div class="flex gap-2">
-          <!-- Start New Game Reset Button -->
-          <button onclick="startNewGameSession()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg text-xs font-impact tracking-wider flex items-center gap-1.5 shadow">
-            <i data-lucide="play-circle" class="w-3.5 h-3.5"></i> START NEW GAME (RESET CARDS)
+          <!-- Direct Sync from Bot / Paste JSON -->
+          <label class="bg-purple-600 hover:bg-purple-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer flex items-center gap-1.5 shadow">
+            <i data-lucide="upload" class="w-3.5 h-3.5"></i> Load Discord `session_cards.json`
+            <input type="file" id="import-cards-json" class="hidden" accept=".json" onchange="importSessionCardsFromDiscord(event)">
+          </label>
+          <button onclick="fetchSessionCardsFromRepoManual()" class="bg-torn-card hover:bg-neutral-800 border border-torn-border text-torn-gold px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5">
+            <i data-lucide="globe" class="w-3.5 h-3.5"></i> Fetch Repo JSON
           </button>
-          <button onclick="exportFullJSONSync()" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold">Export JSON</button>
+          <button onclick="openPasteSyncModal()" class="bg-torn-card hover:bg-neutral-800 border border-torn-border text-slate-200 px-3 py-1.5 rounded-lg text-xs font-semibold">
+            Paste Sync
+          </button>
+          <button onclick="startNewGameSession()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg text-xs font-impact tracking-wider flex items-center gap-1.5 shadow">
+            <i data-lucide="play-circle" class="w-3.5 h-3.5"></i> START NEW GAME
+          </button>
         </div>
       </div>
 
@@ -317,6 +333,16 @@
             </tbody>
           </table>
         </div>
+      </div>
+
+      <!-- Quick Paste Modal (Hidden by default) -->
+      <div id="paste-sync-modal" class="hidden bg-torn-well p-4 rounded-xl border border-purple-500/50 space-y-3">
+        <div class="flex justify-between items-center">
+          <span class="font-impact text-xs text-purple-300">Paste JSON from Discord Bot (/bingo-sync-export)</span>
+          <button onclick="closePasteSyncModal()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+        </div>
+        <textarea id="paste-sync-textarea" rows="4" placeholder='{"12345678": {"userName": "Loki [2356475]", "raffleNumber": 1, "words": [...]}}' class="w-full bg-torn-panel border border-torn-border rounded p-2 text-xs font-mono text-white"></textarea>
+        <button onclick="applyPastedSessionCards()" class="bg-purple-600 text-white px-3 py-1.5 rounded text-xs font-semibold">Import Pasted Cards</button>
       </div>
     </section>
 
@@ -435,7 +461,7 @@
       </div>
     </section>
 
-    <!-- ================= TAB 4: WORD DROPS & JUMBLES ================= -->
+    <!-- ================= TAB 4: WORD DROPS & SECRET JUMBLES ================= -->
     <section id="tab-caller" class="tab-content hidden space-y-5">
       <div class="border-b border-torn-border pb-3 flex justify-between items-center flex-wrap gap-2">
         <div>
@@ -443,7 +469,7 @@
             <i data-lucide="sparkles" class="w-5 h-5 text-torn-gold"></i>
             Loki's 5-Word Drops & Jumble Challenges
           </h1>
-          <p class="text-xs text-torn-steel mt-0.5">Drop 5 words with an anagram challenge, push standalone jumbles, and log all revealed answers.</p>
+          <p class="text-xs text-torn-steel mt-0.5">Drop 5 words with an anagram challenge, push standalone jumbles. Jumble answers are kept secret from Discord!</p>
         </div>
         <div class="flex gap-2">
           <button onclick="exportWordLogsCSV()" class="bg-torn-panel hover:bg-neutral-800 border border-torn-border text-slate-300 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5">
@@ -486,36 +512,36 @@
           <div class="flex justify-between items-center mb-2">
             <span class="font-impact text-xs text-white tracking-wide flex items-center gap-1.5">
               <i data-lucide="history" class="w-4 h-4 text-torn-gold"></i>
-              Loki's Draw & Jumble Answer Stream
+              Loki's Draw Stream & Private Answer Key
             </span>
-            <span class="text-[10px] text-torn-steel font-mono">Answers Logged</span>
+            <span class="text-[10px] text-torn-steel font-mono">Hidden from Discord</span>
           </div>
           <div id="caller-history-list" class="flex-1 overflow-y-auto bg-torn-well p-3 rounded-xl border border-torn-border space-y-2 font-mono text-xs"></div>
         </div>
       </div>
     </section>
 
-    <!-- ================= TAB 5: 3-DAY RACE SERIES (WITH TORN CREATION LINKS) ================= -->
+    <!-- ================= TAB 5: 3-DAY RACE SERIES & SCHEDULE LOGS ================= -->
     <section id="tab-races-3day" class="tab-content hidden space-y-5">
       <div class="border-b border-torn-border pb-3 flex justify-between items-center flex-wrap gap-2">
         <div>
           <h1 class="font-impact text-xl sm:text-2xl text-white flex items-center gap-2">
             <i data-lucide="flag" class="w-5 h-5 text-torn-red"></i>
-            Loki's 3-Day Race Series (25 Laps • Stock Class E)
+            Loki's 3-Day Race Series & Schedule Logs
           </h1>
-          <p class="text-xs text-torn-steel mt-0.5">3-Day Tournament hosted by Loki. Includes direct creation links to pre-fill Torn custom race parameters.</p>
+          <p class="text-xs text-torn-steel mt-0.5">3-Day Tournament with randomized Torn tracks, 25 laps, Stock Class E, and persistent scheduled race logs.</p>
         </div>
         <div class="flex gap-2">
           <button onclick="generateRandom3DaySchedule()" class="bg-torn-panel hover:bg-neutral-800 border border-torn-border text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5">
             <i data-lucide="shuffle" class="w-3.5 h-3.5 text-torn-gold"></i> Re-Roll Tracks
           </button>
           <button onclick="push3DayRaceScheduleToDiscord()" class="bg-torn-red hover:bg-red-700 text-white px-3.5 py-1.5 rounded-lg text-xs font-impact tracking-wider flex items-center gap-1.5 shadow">
-            <i data-lucide="send" class="w-3.5 h-3.5"></i> PUSH 3-DAY SCHEDULE TO DISCORD
+            <i data-lucide="send" class="w-3.5 h-3.5"></i> PUSH & LOG 3-DAY SCHEDULE
           </button>
         </div>
       </div>
 
-      <!-- 3-Day Cards Grid with Direct Torn Race Creation Links -->
+      <!-- 3-Day Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
         <!-- STAGE 1 -->
         <div class="bg-torn-panel p-4 rounded-xl border border-torn-border space-y-3 flex flex-col justify-between">
@@ -528,7 +554,6 @@
             <input type="datetime-local" id="race-day1-time" class="w-full bg-torn-well border border-torn-border rounded px-2 py-1 text-xs text-white font-mono">
           </div>
           
-          <!-- Custom Race Direct Link & Copy Helper -->
           <div class="space-y-2 pt-2 border-t border-torn-border">
             <button onclick="copyRaceParams(1)" class="w-full bg-torn-card hover:bg-neutral-800 border border-torn-border text-slate-300 py-1.5 rounded text-[11px] font-semibold flex items-center justify-center gap-1">
               <i data-lucide="copy" class="w-3 h-3 text-torn-gold"></i> Copy Stage 1 Info
@@ -581,9 +606,39 @@
           </div>
         </div>
       </div>
+
+      <!-- SCHEDULED RACES LOG TABLE (v5.8) -->
+      <div class="bg-torn-panel p-4 sm:p-5 rounded-xl border border-torn-border space-y-3">
+        <div class="flex justify-between items-center border-b border-torn-border pb-2">
+          <span class="font-impact text-xs sm:text-sm text-torn-gold flex items-center gap-1.5">
+            <i data-lucide="list-ordered" class="w-4 h-4 text-emerald-400"></i>
+            Scheduled 3-Day Race Series Log (<span id="scheduled-races-count">0</span> Tournaments)
+          </span>
+          <button onclick="exportScheduledRacesCSV()" class="text-[11px] text-slate-300 hover:text-white flex items-center gap-1">
+            <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5 text-torn-gold"></i> Export CSV
+          </button>
+        </div>
+
+        <div class="overflow-x-auto max-h-[300px] overflow-y-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-torn-well text-torn-steel border-b border-torn-border text-[10px] uppercase sticky top-0">
+              <tr>
+                <th class="p-2.5">Tournament & Date</th>
+                <th class="p-2.5">Stage 1 (25 Laps)</th>
+                <th class="p-2.5">Stage 2 (25 Laps)</th>
+                <th class="p-2.5">Stage 3 (25 Laps)</th>
+                <th class="p-2.5 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="scheduled-races-table-body" class="divide-y divide-torn-border font-mono">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
 
-    <!-- ================= TAB 6: REDESIGNED RAFFLES (FROM CLAIMED CARDS ROSTER) ================= -->
+    <!-- ================= TAB 6: RAFFLES ================= -->
     <section id="tab-raffles" class="tab-content hidden space-y-5">
       <div class="border-b border-torn-border pb-3 flex justify-between items-center flex-wrap gap-2">
         <div>
@@ -723,11 +778,14 @@
         <div>
           <h1 class="font-impact text-xl sm:text-2xl text-white flex items-center gap-2">
             <i data-lucide="bot" class="w-5 h-5 text-torn-red"></i>
-            Weekend at Loki's Bot Settings & Sync (v5.7)
+            Weekend at Loki's Bot Settings & Sync (v5.8)
           </h1>
           <p class="text-xs text-torn-steel mt-0.5">Customize bot usernames, avatar profiles, webhooks, and Torn API synchronization.</p>
         </div>
         <div class="flex gap-2">
+          <button onclick="clearCacheAndReload()" class="bg-torn-well hover:bg-neutral-900 border border-torn-border text-torn-gold px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5">
+            <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i> Clear Cache & Refresh
+          </button>
           <button onclick="exportFullJSONSync()" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow">
             <i data-lucide="download" class="w-3.5 h-3.5"></i> Export JSON
           </button>
@@ -847,12 +905,13 @@
   </main>
 
   <script>
-    const STORAGE_KEY = 'torn_suite_settings_v5_7';
-    const GAME_STORAGE_KEY = 'torn_bingo_game_state_v5_7';
-    const WINNERS_STORAGE_KEY = 'torn_winners_log_v5_7';
-    const WORD_LOG_KEY = 'torn_word_draws_log_v5_7';
-    const MEMBERS_STORAGE_KEY = 'torn_registered_members_v5_7';
-    const SESSION_CARDS_KEY = 'torn_session_cards_v5_7';
+    const STORAGE_KEY = 'torn_suite_settings_v5_8';
+    const GAME_STORAGE_KEY = 'torn_bingo_game_state_v5_8';
+    const WINNERS_STORAGE_KEY = 'torn_winners_log_v5_8';
+    const WORD_LOG_KEY = 'torn_word_draws_log_v5_8';
+    const MEMBERS_STORAGE_KEY = 'torn_registered_members_v5_8';
+    const SESSION_CARDS_KEY = 'torn_session_cards_v5_8';
+    const SCHEDULED_RACES_KEY = 'torn_scheduled_races_v5_8';
 
     const tornTracks = ["Mudpit", "Hammerhead", "Two Islands", "Docks", "Industrial", "Speedway", "Stone Park", "Parkland", "Meltdown", "Underpass", "Uptown", "Vector", "Sewage"];
 
@@ -870,9 +929,10 @@
     let wordDrawsLog = JSON.parse(localStorage.getItem(WORD_LOG_KEY) || '[]');
     let registeredMembers = JSON.parse(localStorage.getItem(MEMBERS_STORAGE_KEY) || '["Loki [2356475]"]');
     let sessionCardRegistry = JSON.parse(localStorage.getItem(SESSION_CARDS_KEY) || '{}');
+    let scheduledRacesLog = JSON.parse(localStorage.getItem(SCHEDULED_RACES_KEY) || '[]');
     let activeBingoCard = [];
 
-    window.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
       loadSettings();
       initBingoPool();
@@ -881,11 +941,13 @@
       renderWinnerTable();
       renderCallerHistory();
       renderClaimedCardsTable();
+      renderScheduledRacesTable();
       updateFormattedPrize();
       generateOrRetrieveCard(false);
       setDefaultAnnouncementDate();
       updateAvatarPreviews();
       refreshClaimedRosterForRaffle();
+      fetchSessionCardsFromRepo();
     });
 
     function switchTab(tabId) {
@@ -919,7 +981,112 @@
     }
     function hideToast() { document.getElementById('toast-bar').classList.add('hidden'); }
 
-    // --- CLAIMED CARDS ROSTER LEDGER (v5.7) ---
+    // --- SITE CACHE REFRESH BUTTON (v5.8) ---
+    async function clearCacheAndReload() {
+      if ('caches' in window) {
+        try {
+          const keys = await caches.keys();
+          await Promise.all(keys.map(k => caches.delete(k)));
+        } catch (e) {}
+      }
+      if ('serviceWorker' in navigator) {
+        try {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          for (let r of registrations) { await r.unregister(); }
+        } catch (e) {}
+      }
+      const url = new URL(window.location.href);
+      url.searchParams.set('v', '5.8');
+      url.searchParams.set('_t', Date.now().toString());
+      window.location.replace(url.toString());
+    }
+
+    // --- DISCORD SESSION CARDS SYNC (v5.9) ---
+    async function fetchSessionCardsFromRepoManual() {
+      try {
+        const resp = await fetch('./session_cards.json?_t=' + Date.now());
+        if (resp.ok) {
+          const data = await resp.json();
+          applyLoadedSessionCards(data);
+          showToast('Fetched and synced latest session cards from repository!', 'success');
+        } else {
+          showToast('Could not find session_cards.json in repo root yet. Try importing or pasting.', 'error');
+        }
+      } catch (e) {
+        showToast('Repo sync failed: ' + e.message, 'error');
+      }
+    }
+
+    async function fetchSessionCardsFromRepo() {
+      try {
+        const resp = await fetch('./session_cards.json?_t=' + Date.now());
+        if (resp.ok) {
+          const data = await resp.json();
+          applyLoadedSessionCards(data);
+        }
+      } catch (e) {}
+    }
+
+    function importSessionCardsFromDiscord(e) {
+      const f = e.target.files[0];
+      if (!f) return;
+      const r = new FileReader();
+      r.onload = ev => {
+        try {
+          const data = JSON.parse(ev.target.result);
+          applyLoadedSessionCards(data);
+        } catch { showToast('Invalid JSON file format.', 'error'); }
+      };
+      r.readAsText(f);
+    }
+
+    function openPasteSyncModal() {
+      document.getElementById('paste-sync-modal').classList.remove('hidden');
+    }
+    function closePasteSyncModal() {
+      document.getElementById('paste-sync-modal').classList.add('hidden');
+    }
+    function applyPastedSessionCards() {
+      const raw = document.getElementById('paste-sync-textarea').value.trim();
+      if (!raw) return;
+      try {
+        const data = JSON.parse(raw);
+        applyLoadedSessionCards(data);
+        closePasteSyncModal();
+      } catch {
+        showToast('Invalid JSON format. Please paste valid session cards JSON.', 'error');
+      }
+    }
+
+    function applyLoadedSessionCards(data) {
+      let importedCount = 0;
+      let targetObj = data;
+      if (data.sessionCards) targetObj = data.sessionCards;
+      if (data.user_cards) targetObj = data.user_cards;
+
+      Object.keys(targetObj).forEach(key => {
+        const card = targetObj[key];
+        const player = card.userName || key;
+        if (!sessionCardRegistry[player]) {
+          sessionCardRegistry[player] = {
+            words: card.cells ? card.cells.filter(c => !c.is_free).map(c => c.text) : (card.words || []),
+            raffleNumber: card.raffleNumber || (Object.keys(sessionCardRegistry).length + 1),
+            lockedAt: card.lockedAt || new Date().toISOString()
+          };
+          if (!registeredMembers.includes(player)) registeredMembers.push(player);
+          importedCount++;
+        }
+      });
+
+      localStorage.setItem(SESSION_CARDS_KEY, JSON.stringify(sessionCardRegistry));
+      localStorage.setItem(MEMBERS_STORAGE_KEY, JSON.stringify(registeredMembers));
+      renderClaimedCardsTable();
+      refreshClaimedRosterForRaffle();
+      populateMemberDropdown();
+      showToast(`Synced ${importedCount} Discord player cards to site!`, 'success');
+    }
+
+    // --- CLAIMED CARDS ROSTER LEDGER ---
     function renderClaimedCardsTable() {
       const tbody = document.getElementById('claimed-cards-table-body');
       const countBadge = document.getElementById('cards-roster-total');
@@ -935,7 +1102,7 @@
       tbody.innerHTML = '';
 
       if (players.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-slate-500 font-sans">No Bingo cards claimed yet for this session. Players sign up by retrieving their card!</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-slate-500 font-sans">No Bingo cards claimed yet for this session. Players sign up by retrieving their card or via Discord /bingo-card!</td></tr>';
         return;
       }
 
@@ -990,7 +1157,7 @@
       downloadCardPNG();
     }
 
-    // --- REFRESH RAFFLES DIRECTLY FROM CLAIMED CARDS (v5.7) ---
+    // --- REFRESH RAFFLES DIRECTLY FROM CLAIMED CARDS ---
     function refreshClaimedRosterForRaffle() {
       const players = Object.keys(sessionCardRegistry);
       const countBadge = document.getElementById('raffle-entrants-count');
@@ -1008,7 +1175,7 @@
       }
     }
 
-    // --- START NEW GAME SESSION (v5.7) ---
+    // --- START NEW GAME SESSION ---
     function startNewGameSession() {
       const confirmed = confirm(
         "🚀 START A NEW BINGO GAME SESSION?\n\n" +
@@ -1253,7 +1420,7 @@
       showToast('Roster reset.', 'info');
     }
 
-    // --- 3-DAY RACE SCHEDULER & TORN COPY HELPER (v5.7) ---
+    // --- 3-DAY RACE SCHEDULER & LOGGING (v5.8) ---
     function generateRandom3DaySchedule(notify = true) {
       const shuffled = [...tornTracks].sort(() => 0.5 - Math.random());
       document.getElementById('race-day1-track').value = shuffled[0];
@@ -1290,11 +1457,24 @@
       const time3 = document.getElementById('race-day3-time').value;
       const ping = currentSettings.pingRacing || '';
 
+      const logRecord = {
+        id: 'RACE-' + Date.now(),
+        title: "Weekend at Loki's 3-Day Series",
+        stage1: { track: t1, laps: 25, class: 'Stock E', time: time1 ? new Date(time1).toLocaleString() : '18:00 TCT' },
+        stage2: { track: t2, laps: 25, class: 'Stock E', time: time2 ? new Date(time2).toLocaleString() : '18:00 TCT' },
+        stage3: { track: t3, laps: 25, class: 'Stock E', time: time3 ? new Date(time3).toLocaleString() : '18:00 TCT' },
+        scheduledAt: new Date().toLocaleString()
+      };
+
+      scheduledRacesLog.unshift(logRecord);
+      localStorage.setItem(SCHEDULED_RACES_KEY, JSON.stringify(scheduledRacesLog));
+      renderScheduledRacesTable();
+
       const ok = await postCategoryWebhook('racing', {
         content: ping ? `${ping} 🏎️ **LOKI'S 3-DAY RACING TOURNAMENT SCHEDULE!**` : `🏎️ **LOKI'S 3-DAY RACING TOURNAMENT SCHEDULE!**`,
         embeds: [{
           title: `🏁 Weekend at Loki's — 3-Day Stock Class E Series (25 Laps)`,
-          description: `All drivers must use **Stock Class E** cars (Honda Civic, Classic Mini, Ford Fiesta, Peugeot 106).`,
+          description: `All drivers must use **Stock Class E** cars (Honda Civic, Classic Mini, Ford Fiesta, Peugeot 106).\n[Create Custom Race in Torn](https://www.torn.com/loader.php?sid=racing#/tab=customrace)`,
           color: 0xd32f2f,
           fields: [
             { name: `📅 Stage 1: ${t1}`, value: `**Track:** ${t1} | **Laps:** 25\n**Class:** Stock E | **Start:** ${time1 ? new Date(time1).toUTCString() : 'TBD'}`, inline: false },
@@ -1306,7 +1486,75 @@
         }]
       });
 
-      if (ok) showToast('3-Day Race Schedule posted to #racing!', 'success');
+      if (ok) showToast('3-Day Race Schedule posted to #racing & logged to ledger!', 'success');
+    }
+
+    function renderScheduledRacesTable() {
+      const tbody = document.getElementById('scheduled-races-table-body');
+      const countEl = document.getElementById('scheduled-races-count');
+      if (countEl) countEl.innerText = scheduledRacesLog.length;
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      if (!scheduledRacesLog.length) {
+        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-6 text-slate-500 font-sans">No 3-Day race schedules logged yet. Click "PUSH & LOG 3-DAY SCHEDULE" to add one.</td></tr>';
+        return;
+      }
+
+      scheduledRacesLog.forEach((r, idx) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="p-2.5">
+            <div class="font-bold text-white">${r.title}</div>
+            <div class="text-[10px] text-torn-steel font-sans">Logged: ${r.scheduledAt}</div>
+          </td>
+          <td class="p-2.5 text-xs text-slate-300">
+            <b class="text-torn-red">${r.stage1.track}</b> (25 Laps)<br><span class="text-[10px] text-slate-400">${r.stage1.time}</span>
+          </td>
+          <td class="p-2.5 text-xs text-slate-300">
+            <b class="text-torn-gold">${r.stage2.track}</b> (25 Laps)<br><span class="text-[10px] text-slate-400">${r.stage2.time}</span>
+          </td>
+          <td class="p-2.5 text-xs text-slate-300">
+            <b class="text-emerald-400">${r.stage3.track}</b> (25 Laps)<br><span class="text-[10px] text-slate-400">${r.stage3.time}</span>
+          </td>
+          <td class="p-2.5 text-right font-sans space-x-1 whitespace-nowrap">
+            <a href="https://www.torn.com/loader.php?sid=racing#/tab=customrace" target="_blank" class="bg-emerald-600/20 text-emerald-300 border border-emerald-500/40 px-2 py-1 rounded text-[10px] font-semibold inline-block">
+              Torn
+            </a>
+            <button onclick="repushRaceSchedule(${idx})" class="bg-blue-600 text-white px-2 py-1 rounded text-[10px] font-bold">
+              Re-Push
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      lucide.createIcons();
+    }
+
+    async function repushRaceSchedule(idx) {
+      const r = scheduledRacesLog[idx];
+      await postCategoryWebhook('racing', {
+        content: `🏎️ **3-DAY RACING REMINDER: ${r.title.toUpperCase()}!**`,
+        embeds: [{
+          title: `🏁 ${r.title} (25 Laps • Stock Class E)`,
+          fields: [
+            { name: `📅 Stage 1: ${r.stage1.track}`, value: `**Laps:** 25 | **Class:** Stock E\n**Start:** ${r.stage1.time}`, inline: false },
+            { name: `📅 Stage 2: ${r.stage2.track}`, value: `**Laps:** 25 | **Class:** Stock E\n**Start:** ${r.stage2.time}`, inline: false },
+            { name: `📅 Stage 3: ${r.stage3.track} (Finals)`, value: `**Laps:** 25 | **Class:** Stock E\n**Start:** ${r.stage3.time}`, inline: false }
+          ],
+          footer: { text: "Weekend at Loki's Racing Series • Reminder" },
+          timestamp: new Date().toISOString()
+        }]
+      });
+      showToast('Re-pushed race schedule reminder to #racing!', 'success');
+    }
+
+    function exportScheduledRacesCSV() {
+      let csv = "Tournament,Stage1_Track,Stage1_Time,Stage2_Track,Stage2_Time,Stage3_Track,Stage3_Time,LoggedAt\n";
+      scheduledRacesLog.forEach(r => {
+        csv += `"${r.title}","${r.stage1.track}","${r.stage1.time}","${r.stage2.track}","${r.stage2.time}","${r.stage3.track}","${r.stage3.time}","${r.scheduledAt}"\n`;
+      });
+      downloadFile(csv, "weekend_at_lokis_scheduled_races.csv", "text/csv");
     }
 
     // --- 1-CARD LOCK & SEQUENTIAL RAFFLE NUMBERING ---
@@ -1474,7 +1722,7 @@
       if (ok) showToast(`Winning ticket (#${winnerTicket} - ${winnerPlayer}) announced in #raffles!`, 'success');
     }
 
-    // --- WORD DROPS & JUMBLES ---
+    // --- WORD DROPS & SECRET JUMBLES (v5.8 NO ANSWER IN DISCORD) ---
     function jumbleWord(word) {
       return word.split(' ').map(token => {
         if (token.length <= 2) return token;
@@ -1516,14 +1764,16 @@
       localStorage.setItem(GAME_STORAGE_KEY, JSON.stringify(drawnWords));
       localStorage.setItem(WORD_LOG_KEY, JSON.stringify(wordDrawsLog));
 
+      // Display in Host private caller view
       document.getElementById('caller-current-word').innerHTML = `
         <div class="text-xs text-amber-400 font-normal mb-1">📦 Loki's 5-Word Drop (Jumble: ${scrambled})</div>
         <div class="text-sm text-slate-300">${dropped.join(' • ')}</div>
-        <div class="text-[11px] text-emerald-400 font-mono mt-1">✓ Answer Logged: <b>${jumbledTarget}</b></div>
+        <div class="text-[11px] text-emerald-400 font-mono mt-1">✓ Secret Answer Logged: <b>${jumbledTarget}</b></div>
       `;
       updatePoolCount();
       renderCallerHistory();
 
+      // DISCORD PUSH: SECRET JUMBLE WITHOUT REVEALED ANSWER
       const ping = currentSettings.pingBingo || '';
       await postCategoryWebhook('bingo', {
         content: ping ? `${ping} 💥 **LOKI'S 5-WORD BINGO DROP & JUMBLE!**` : `💥 **LOKI'S 5-WORD BINGO DROP & JUMBLE!**`,
@@ -1537,7 +1787,7 @@
           footer: { text: "Weekend at Loki's • Word Drops Engine" }
         }]
       });
-      showToast(`Loki's 5-Word Drop with Jumble Answer (${jumbledTarget}) logged!`, 'success');
+      showToast(`5-Word Drop released! Jumble answer hidden from Discord.`, 'success');
     }
 
     async function executeStandaloneJumble() {
@@ -1563,22 +1813,23 @@
       document.getElementById('caller-current-word').innerHTML = `
         <div class="text-xs text-purple-400 font-normal mb-1">🔀 Loki's Standalone Jumble:</div>
         <div class="text-base text-white font-bold font-mono tracking-wider">${scrambled.toUpperCase()}</div>
-        <div class="text-[11px] text-emerald-400 font-mono mt-1">✓ Answer Logged: <b>${word}</b></div>
+        <div class="text-[11px] text-emerald-400 font-mono mt-1">✓ Secret Answer Logged: <b>${word}</b></div>
       `;
       updatePoolCount();
       renderCallerHistory();
 
+      // DISCORD PUSH: SECRET JUMBLE WITHOUT ANSWER OR SPOILER
       const ping = currentSettings.pingBingo || '';
       await postCategoryWebhook('bingo', {
         content: ping ? `${ping} 🧩 **LOKI'S MYSTERY WORD JUMBLE!**` : `🧩 **LOKI'S MYSTERY WORD JUMBLE!**`,
         embeds: [{
           title: `🔀 Weekend at Loki's — Mystery Word Jumble!`,
-          description: `Unscramble to mark this item on your card (Call #${drawnWords.length}):\n\n## \`${scrambled.toUpperCase()}\`\n\n*(Click spoiler for answer: ||${word}||)*`,
+          description: `Unscramble to mark this item on your card (Call #${drawnWords.length}):\n\n## \`${scrambled.toUpperCase()}\``,
           color: 0xa855f7,
           footer: { text: "Weekend at Loki's • Jumbles" }
         }]
       });
-      showToast(`Standalone Jumble ("${scrambled}" -> Answer: ${word}) logged & pushed!`, 'success');
+      showToast(`Standalone Jumble ("${scrambled}") pushed to Discord without answer!`, 'success');
     }
 
     async function drawSingleWord(announce = true) {
@@ -1622,7 +1873,7 @@
         div.className = 'p-2 rounded bg-torn-panel border border-torn-border space-y-1';
         let jumbleInfo = '';
         if (log.scramble && log.answer) {
-          jumbleInfo = `<div class="text-[11px] text-purple-300 font-mono">🔀 Scramble: <b class="text-torn-gold">${log.scramble.toUpperCase()}</b>  ➔ Answer: <b class="text-emerald-400">${log.answer}</b></div>`;
+          jumbleInfo = `<div class="text-[11px] text-purple-300 font-mono">🔀 Scramble: <b class="text-torn-gold">${log.scramble.toUpperCase()}</b>  ➔ Secret Answer: <b class="text-emerald-400">${log.answer}</b></div>`;
         }
         div.innerHTML = `
           <div class="flex justify-between items-center">
@@ -1743,23 +1994,24 @@
       showToast('Payout confirmed & opened transfer link!');
     }
 
-    // --- FULL JSON SYNC (v5.7) ---
+    // --- FULL JSON SYNC (v5.8) ---
     function exportFullJSONSync() {
       saveSettings(true);
       const syncData = {
-        meta: { app: "Weekend at Loki's Event Hub", version: "5.7", host: "Loki [2356475]", time: new Date().toISOString() },
+        meta: { app: "Weekend at Loki's Event Hub", version: "5.8", host: "Loki [2356475]", time: new Date().toISOString() },
         settings: currentSettings,
         wordBank: getWordPool(),
         registeredMembers,
         sessionCards: sessionCardRegistry,
+        scheduledRacesLog,
         winnersLog,
         wordDrawsLog
       };
       const a = document.createElement('a');
       a.href = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(syncData, null, 2));
-      a.download = `weekend_at_lokis_sync_v5.7_${new Date().toISOString().slice(0,10)}.json`;
+      a.download = `weekend_at_lokis_sync_v5.8_${new Date().toISOString().slice(0,10)}.json`;
       a.click();
-      showToast('Weekend at Loki\'s settings & cards exported (v5.7)!', 'success');
+      showToast('Weekend at Loki\'s settings, cards & races exported (v5.8)!', 'success');
     }
 
     function importFullJSONSync(e) {
@@ -1778,12 +2030,13 @@
           if (imp.wordBank) { document.getElementById('bingo-word-pool').value = imp.wordBank.join('\n'); updatePoolCount(); }
           if (imp.registeredMembers) { registeredMembers = imp.registeredMembers; localStorage.setItem(MEMBERS_STORAGE_KEY, JSON.stringify(registeredMembers)); populateMemberDropdown(); }
           if (imp.sessionCards) { sessionCardRegistry = imp.sessionCards; localStorage.setItem(SESSION_CARDS_KEY, JSON.stringify(sessionCardRegistry)); }
+          if (imp.scheduledRacesLog) { scheduledRacesLog = imp.scheduledRacesLog; localStorage.setItem(SCHEDULED_RACES_KEY, JSON.stringify(scheduledRacesLog)); renderScheduledRacesTable(); }
           if (imp.winnersLog) { winnersLog = imp.winnersLog; localStorage.setItem(WINNERS_STORAGE_KEY, JSON.stringify(winnersLog)); renderWinnerTable(); }
           if (imp.wordDrawsLog) { wordDrawsLog = imp.wordDrawsLog; localStorage.setItem(WORD_LOG_KEY, JSON.stringify(wordDrawsLog)); renderCallerHistory(); }
           renderClaimedCardsTable();
           refreshClaimedRosterForRaffle();
           generateOrRetrieveCard(false);
-          showToast('v5.7 JSON Sync Loaded!', 'success');
+          showToast('v5.8 JSON Sync Loaded!', 'success');
         } catch { showToast('Invalid JSON file.', 'error'); }
       };
       r.readAsText(f);
@@ -1811,9 +2064,9 @@
       a.click();
     }
     function exportWordLogsCSV() {
-      let csv = "Number,Word,Type,JumbleScramble,JumbleAnswer,Timestamp\n";
+      let csv = "Number,Word,Type,JumbleScramble,Timestamp\n";
       [...wordDrawsLog].reverse().forEach(l => {
-        csv += `"${l.number}","${l.word}","${l.type}","${l.scramble || ''}","${l.answer || l.word}","${l.time}"\n`;
+        csv += `"${l.number}","${l.word}","${l.type}","${l.scramble || ''}","${l.time}"\n`;
       });
       downloadFile(csv, "weekend_at_lokis_draws.csv", "text/csv");
     }

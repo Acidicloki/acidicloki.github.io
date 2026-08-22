@@ -1,20 +1,22 @@
-# 🔥 Weekend at Loki's — Torn City Event Hub (v5.7)
+# 🔥 Weekend at Loki's — Torn City Event Hub (v5.9)
 *Hosted by Loki [2356475] for the text-based RPG Torn City*
 
 An all-in-one companion suite custom-tailored for the **Weekend at Loki's** community and faction events:
-- 📱 **Big Bubble Icon Home Dashboard (v5.7)**: Mobile-optimized command center featuring large, touch-friendly bubble action tiles for every major tool.
-- 🗂️ **All Claimed Bingo Cards Roster (v5.7)**: Automatically logs every player who retrieves their card with their sequential Raffle Ticket number, timestamp, and quick board viewer.
-- 🎟️ **Claimed Roster Raffle Roller (v5.7)**: Automatically selects raffle entrants directly from the active roster of members who claimed cards.
-- 🏎️ **Torn Custom Race Creation Links (v5.7)**: Direct buttons to open Torn's custom race creator with one-click parameters copy for 25-lap Stock Class E stages.
-- 🚀 **Start New Game Session**: One-click session reset clearing cards and starting raffle numbers back at #1 while preserving settings, webhooks, and word banks.
-- 🔒 **1-Card-Per-Player Session Lock**: Enforces strictly 1 unique Bingo card & raffle ticket per player per session.
-- 🎯 **Loki's 5x5 Bingo Studio & Word Drops**: 5-Word Drops with mystery anagram Jumbles, and high-res PNG card generator with "LOKI'S FREE SPACE".
-- 🤖 **Custom Webhook Bots**: Individually branded bots for `#announcements`, `#bingo`, `#racing`, and `#raffles`.
+- 🤖 **Auto-Repo Sync on `/bingo-card` (v5.9)**: When players run `/bingo-card` in Discord, they immediately receive their high-res card image, their board is locked for the session, and their card data is saved and automatically committed to the repository if GitHub token is set!
+- 🗂️ **Claimed Cards Ledger & Sequential Raffle Numbers**: Automatic live ledger logging all players who claim cards with sequential Raffle Tickets (`#1`, `#2`, `#3`...).
+- 🏎️ **Scheduled 3-Day Races Log**: Persistent logging of all scheduled 3-day tournaments with direct Torn creation links and reminder re-pushes.
+- 🔀 **Secret Jumbles**: Jumble answers are strictly hidden from Discord and visible only in the host's private dashboard.
+- 🔄 **Cache Refresh & Direct Repo Fetch**: One-click header button that busts browser cache to ensure all players always load the newest version.
+- 📱 **Big Bubble Icon Command Center**: Mobile-optimized home screen featuring large touch-friendly action cards.
+- 🎟️ **Claimed-Roster Raffle Roller**: Roll raffle winners directly from active Bingo card holders.
+- 🚀 **Start New Game Session**: Fresh match reset clearing cards and starting raffle numbers back at #1 while preserving settings and word banks.
 
 ---
 
-## 🚀 Quickstart
+## 🚀 How `/bingo-card` Works
 
-1. Upload `index.html` to your GitHub repository and enable GitHub Pages (**Settings** → **Pages**).
-2. Use the **Big Bubble Icons** on the home screen to navigate between tools on your phone, tablet, or PC.
-3. Players who sign up or run `/bingo-card` receive their locked board with sequential Raffle Ticket numbers and appear immediately in the **Claimed Cards** ledger.
+1. A player in Discord runs `/bingo-card`.
+2. The bot generates their deterministic 5x5 board with center "LOKI'S FREE SPACE" and assigns them the next sequential **Raffle Ticket Number** (`#1`, `#2`, `#3`...).
+3. The bot sends the player their card image and locks the card to their Discord ID in `session_cards.json` (preventing re-rolls or duplicate cards).
+4. If `GITHUB_TOKEN` and `GITHUB_REPO` are configured in `.env`, the bot automatically commits `session_cards.json` to your GitHub Pages repository.
+5. In the web dashboard, the player automatically appears in the **Claimed Cards** tab and is entered into the **Raffles** pool!

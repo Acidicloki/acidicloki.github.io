@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """
-Weekend at Loki's - Torn City Event Discord Bot (v5.7 Edition)
+Weekend at Loki's - Torn City Event Discord Bot (v5.9 Auto-Repo Sync Edition)
 Hosted by Loki [2356475]
 Features:
+ - Automatic GitHub Repository commit/sync on /bingo-card registration
+ - Locked session cards registry (Strictly 1 card per player)
  - Sequential Raffle Ticket numbering on each Bingo card in order of sign-up
  - /raffle-roll: Draws winners directly from the roster of claimed cards
  - /bingo-new-game: Starts a fresh match, resetting cards and raffle numbers back to #1
+ - Secret Jumbles: Answers hidden from Discord
+ - Scheduled 3-Day Races logging
  - #announcements reaction RSVP listener (🎉)
- - 1-Card-Per-Player session locker
- - Loki's 3-Day Race Series (25 Laps • Stock Class E)
- - Loki's 5-Word Drops & Jumbles with answer logging
 """
 
 import os
@@ -18,6 +19,10 @@ import json
 import random
 import hashlib
 import logging
+import base64
+import urllib.request
+import urllib.error
+import asyncio
 from datetime import datetime, timezone
 
 try:
@@ -46,6 +51,11 @@ logger = logging.getLogger("WeekendAtLokis")
 TOKEN = os.getenv("DISCORD_TOKEN", "").strip()
 TORN_API_KEY = os.getenv("TORN_API_KEY", "").strip()
 
+# GitHub Repo Auto-Sync (Optional - enables automatic commit to GitHub Pages repo)
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", "").strip()
+GITHUB_REPO = os.getenv("GITHUB_REPO", "").strip() # Format: "username/repository-name"
+GITHUB_BRANCH = os.getenv("GITHUB_BRANCH", "main").strip()
+
 DISCORD_ANNOUNCEMENTS_WEBHOOK_URL = os.getenv("DISCORD_ANNOUNCEMENTS_WEBHOOK_URL", "").strip()
 DISCORD_BINGO_WEBHOOK_URL = os.getenv("DISCORD_BINGO_WEBHOOK_URL", "").strip()
 DISCORD_RACE_WEBHOOK_URL = os.getenv("DISCORD_RACE_WEBHOOK_URL", "").strip()
@@ -56,6 +66,7 @@ SESSION_CARDS_FILE = "session_cards.json"
 ROSTER_FILE = "reaction_roster.json"
 DRAWS_LOG_FILE = "draws_log.json"
 WINNERS_LOG_FILE = "winners_log.json"
+SCHEDULED_RACES_FILE = "scheduled_races_log.json"
 
 TORN_TRACKS = [
     "Mudpit", "Hammerhead", "Two Islands", "Docks", "Industrial",
@@ -92,6 +103,47 @@ def safe_save_json(file_path: str, data):
             json.dump(data, f, indent=2)
     except Exception as e:
         logger.error(f"Error saving to {file_path}: {e}")
+
+def sync_file_to_github_repo(relative_path: str, content_data: dict, commit_message: str):
+    """Commits and uploads updated JSON file directly to GitHub repo via REST API."""
+    if not GITHUB_TOKEN or not GITHUB_REPO:
+        return
+    try:
+        url = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{relative_path}"
+        headers = {
+            "Authorization": f"Bearer {GITHUB_TOKEN}",
+            "Accept": "application/vnd.github+json",
+            "User-Agent": "WeekendAtLokisBot"
+        }
+        # Check if file exists to get sha
+        sha = None
+        req = urllib.request.Request(url, headers=headers, method="GET")
+        try:
+            with urllib.request.urlopen(req) as resp:
+                if resp.status == 200:
+                    info = json.loads(resp.read().decode("utf-8"))
+                    sha = info.get("sha")
+        except urllib.error.HTTPError as e:
+            if e.code != 404:
+                logger.warning(f"GitHub SHA check error: {e}")
+
+        content_bytes = json.dumps(content_data, indent=2).encode("utf-8")
+        b64_content = base64.b64encode(content_bytes).decode("utf-8")
+        payload = {
+            "message": commit_message,
+            "content": b64_content,
+            "branch": GITHUB_BRANCH
+        }
+        if sha:
+            payload["sha"] = sha
+
+        put_data = json.dumps(payload).encode("utf-8")
+        put_req = urllib.request.Request(url, data=put_data, headers=headers, method="PUT")
+        with urllib.request.urlopen(put_req) as put_resp:
+            if put_resp.status in (200, 201):
+                logger.info(f"Successfully committed and uploaded '{relative_path}' to GitHub repo '{GITHUB_REPO}' on branch '{GITHUB_BRANCH}'.")
+    except Exception as ex:
+        logger.warning(f"GitHub Auto-Sync notice: {ex}")
 
 def scramble_word(word: str) -> str:
     tokens = word.split()
@@ -145,6 +197,23 @@ class LogManager:
         safe_save_json(WINNERS_LOG_FILE, records)
         return record
 
+    @staticmethod
+    def append_race_schedule(title: str, t1: str, time1: str, t2: str, time2: str, t3: str, time3: str):
+        records = safe_load_json(SCHEDULED_RACES_FILE, [])
+        if not isinstance(records, list):
+            records = []
+        record = {
+            "id": f"RACE-{int(datetime.now().timestamp())}",
+            "title": title,
+            "stage1": {"track": t1, "laps": 25, "class": "Stock E", "time": time1},
+            "stage2": {"track": t2, "laps": 25, "class": "Stock E", "time": time2},
+            "stage3": {"track": t3, "laps": 25, "class": "Stock E", "time": time3},
+            "scheduledAt": datetime.now(timezone.utc).isoformat()
+        }
+        records.append(record)
+        safe_save_json(SCHEDULED_RACES_FILE, records)
+        return record
+
 
 class BingoSessionManager:
     def __init__(self):
@@ -171,6 +240,14 @@ class BingoSessionManager:
 
     def save_cards(self):
         safe_save_json(SESSION_CARDS_FILE, self.user_cards)
+        # Background sync to GitHub Repo if configured
+        if GITHUB_TOKEN and GITHUB_REPO:
+            asyncio.create_task(asyncio.to_thread(
+                sync_file_to_github_repo,
+                "session_cards.json",
+                self.user_cards,
+                f"Update session_cards.json ({len(self.user_cards)} locked cards) via Bot"
+            ))
 
     def save_roster(self):
         safe_save_json(ROSTER_FILE, list(self.reacted_roster))
@@ -184,12 +261,14 @@ class BingoSessionManager:
         self.user_cards = {}
         self.save_state()
         self.save_cards()
-        logger.info("Fresh session started! Raffle tickets reset to #1.")
+        logger.info("Fresh session started! Session cards reset to #1 and synced.")
 
     def get_or_create_card(self, user_id: str, user_name: str):
+        # 1-Card-Per-Player Session Lock
         if str(user_id) in self.user_cards:
             return self.user_cards[str(user_id)], False
 
+        # Sequential Raffle Ticket assignment in order of sign-up
         raffle_num = len(self.user_cards) + 1
         seed = f"{user_name}-{str(user_id)[:6]}"
         h = int(hashlib.sha256(seed.encode("utf-8")).hexdigest(), 16)
@@ -210,12 +289,14 @@ class BingoSessionManager:
         card_data = {
             "seed": seed,
             "userName": user_name,
+            "userId": str(user_id),
             "raffleNumber": raffle_num,
             "cells": cells,
             "lockedAt": datetime.now(timezone.utc).isoformat()
         }
         self.user_cards[str(user_id)] = card_data
         self.save_cards()
+        logger.info(f"Locked Bingo Card for {user_name} [{user_id}] -> 🎟️ Raffle Ticket #{raffle_num}")
         return card_data, True
 
     def draw_words(self, count: int = 1, drop_type: str = "Call", scramble: str = None, answer: str = None):
@@ -259,7 +340,7 @@ def render_bingo_card_image(title: str, player_name: str, seed: str, raffle_numb
     cell_font_bold = get_cross_platform_font(12, is_bold=True)
 
     draw.text((400, 65), title, fill="#ffffff", font=title_font, anchor="mm")
-    draw.text((400, 105), f"Player: {player_name}  |  🎟️ Raffle Ticket #{raffle_number}", fill="#eab308", font=meta_font, anchor="mm")
+    draw.text((400, 105), f"Player: {player_name}  |  🎟️ Raffle Ticket #{raffle_number} (Card Locked)", fill="#eab308", font=meta_font, anchor="mm")
 
     letters = ["B", "I", "N", "G", "O"]
     cell_w, cell_h = 138, 132
@@ -320,7 +401,7 @@ class TornSuiteClient(commands.Bot):
     async def setup_hook(self):
         try:
             await self.tree.sync()
-            logger.info("Weekend at Loki's slash commands synced (v5.7).")
+            logger.info("Weekend at Loki's slash commands synced (v5.9 Auto-Repo Sync Active).")
         except Exception as e:
             logger.warning(f"Sync note: {e}")
 
@@ -351,7 +432,45 @@ bot = TornSuiteClient()
 
 # ================= SLASH COMMANDS =================
 
-# 1. START NEW GAME (RESET TICKETS)
+# 1. BINGO CARD GENERATOR (LOCKS 1 CARD PER PLAYER & SYNCS TO REPO)
+@bot.tree.command(name="bingo-card", description="Get your locked 5x5 Bingo Card with sequential Raffle Ticket")
+async def cmd_bingo_card(interaction: discord.Interaction):
+    await interaction.response.defer()
+    u_id = str(interaction.user.id)
+    u_name = interaction.user.display_name
+
+    card_data, is_new = bot.session.get_or_create_card(u_id, u_name)
+    raffle_num = card_data.get("raffleNumber", 1)
+    buf = render_bingo_card_image("WEEKEND AT LOKI'S BINGO", u_name, card_data["seed"], raffle_num, card_data["cells"])
+    file = discord.File(buf, filename=f"bingo_{u_id}.png")
+
+    desc = f"🎟️ **Assigned Raffle Ticket:** `#{raffle_num}` *(Sign-Up Order #{raffle_num})*\n**Card Seed:** `{card_data['seed']}`\n✅ **Card Locked for this Session & Logged to Roster.**" if is_new else f"🎟️ **Assigned Raffle Ticket:** `#{raffle_num}`\n**Card Seed:** `{card_data['seed']}`\n🔒 **You already have a card for this session! Re-sending your locked card.**"
+    embed = discord.Embed(title=f"🎯 Weekend at Loki's Card: {u_name}", description=desc, color=0xd32f2f)
+    embed.set_image(url=f"attachment://bingo_{u_id}.png")
+    embed.set_footer(text=f"Total Registered: {len(bot.session.user_cards)} Players | 1 Card Per Session")
+    await interaction.followup.send(embed=embed, file=file)
+
+
+# 2. BINGO SYNC EXPORT (Bridges Discord to Web Dashboard)
+@bot.tree.command(name="bingo-sync-export", description="Export all claimed Discord Bingo cards to JSON for 1-click site sync")
+async def cmd_bingo_sync_export(interaction: discord.Interaction):
+    cards = bot.session.user_cards
+    count = len(cards)
+    json_str = json.dumps({"sessionCards": cards}, indent=2)
+    buf = io.BytesIO(json_str.encode("utf-8"))
+    file = discord.File(buf, filename="session_cards.json")
+
+    embed = discord.Embed(
+        title="🗂️ Weekend at Loki's — Session Cards Sync Export",
+        description=f"Exported **{count} claimed Bingo cards** with sequential Raffle Tickets!\n\n**To Sync to Web Dashboard:**\n1. In the Web GUI, go to **Claimed Cards** tab.\n2. Click **Load Discord `session_cards.json`** and select this file (or click **Paste Sync**).",
+        color=0xa855f7,
+        timestamp=datetime.now(timezone.utc)
+    )
+    embed.set_footer(text="Weekend at Loki's • Sync Bridge")
+    await interaction.response.send_message(embed=embed, file=file, ephemeral=False)
+
+
+# 3. START NEW GAME (RESET TICKETS)
 @bot.tree.command(name="bingo-new-game", description="Start a fresh match (resets cards and raffle numbers back to #1)")
 async def cmd_bingo_new_game(interaction: discord.Interaction):
     bot.session.start_new_game()
@@ -366,25 +485,7 @@ async def cmd_bingo_new_game(interaction: discord.Interaction):
     await interaction.response.send_message(content="@everyone 🎉 **NEW BINGO SESSION IS LIVE!**", embed=embed)
 
 
-# 2. LOKI'S BINGO CARD GENERATOR (WITH SEQUENTIAL RAFFLE TICKET)
-@bot.tree.command(name="bingo-card", description="Get your locked 5x5 Bingo Card with sequential Raffle Ticket")
-async def cmd_bingo_card(interaction: discord.Interaction):
-    await interaction.response.defer()
-    u_id = str(interaction.user.id)
-    u_name = interaction.user.display_name
-
-    card_data, is_new = bot.session.get_or_create_card(u_id, u_name)
-    raffle_num = card_data.get("raffleNumber", 1)
-    buf = render_bingo_card_image("WEEKEND AT LOKI'S BINGO", u_name, card_data["seed"], raffle_num, card_data["cells"])
-    file = discord.File(buf, filename=f"bingo_{u_id}.png")
-
-    desc = f"🎟️ **Assigned Raffle Ticket:** `#{raffle_num}` *(Sign-Up Order #{raffle_num})*\n**Card Seed:** `{card_data['seed']}`\n✅ **Card Locked for this Session.**" if is_new else f"🎟️ **Assigned Raffle Ticket:** `#{raffle_num}`\n**Card Seed:** `{card_data['seed']}`\n🔒 **You already have a card for this session! Re-sending your locked card.**"
-    embed = discord.Embed(title=f"🎯 Weekend at Loki's Card: {u_name}", description=desc, color=0xd32f2f)
-    embed.set_image(url=f"attachment://bingo_{u_id}.png")
-    await interaction.followup.send(embed=embed, file=file)
-
-
-# 3. RAFFLE ROLLER (DRAWS FROM CLAIMED CARDS ROSTER)
+# 4. RAFFLE ROLLER (DRAWS FROM CLAIMED CARDS ROSTER)
 @bot.tree.command(name="raffle-roll", description="Draw a random winner from players who have claimed Bingo cards")
 @app_commands.describe(prize="Prize description (e.g. 50x Xanax + $25,000,000)")
 async def cmd_raffle_roll(interaction: discord.Interaction, prize: str = "50x Xanax"):
@@ -402,7 +503,7 @@ async def cmd_raffle_roll(interaction: discord.Interaction, prize: str = "50x Xa
 
     embed = discord.Embed(
         title="🎟️ WEEKEND AT LOKI'S RAFFLE WINNER DRAWN!",
-        description=f"Congratulations to our winning ticket from the claimed Bingo cards roster!\n\n👑 **Winning Ticket:** `#{ticket_num} - {winner_name}`\n🎁 **Prize:** **{prize}**",
+        description=f"Congratulations to our winning ticket from the claimed Bingo cards roster!\n\n👑 **Winning Ticket:** `#{ticket_num} - ${winner_name}`\n🎁 **Prize:** **{prize}**",
         color=0xa855f7,
         timestamp=datetime.now(timezone.utc)
     )
@@ -410,7 +511,7 @@ async def cmd_raffle_roll(interaction: discord.Interaction, prize: str = "50x Xa
     await interaction.response.send_message(content="@everyone 🏆 **RAFFLE WINNER DRAWN!**", embed=embed)
 
 
-# 4. WEEKEND AT LOKI'S ANNOUNCEMENT
+# 5. WEEKEND AT LOKI'S ANNOUNCEMENT
 @bot.tree.command(name="announce", description="Post an official Weekend at Loki's announcement")
 @app_commands.describe(
     date_time="Scheduled date & time (e.g. Saturday at 18:00 TCT)",
@@ -434,25 +535,27 @@ async def cmd_announce(interaction: discord.Interaction, date_time: str = "Satur
         pass
 
 
-# 5. 3-DAY RACE SCHEDULER
-@bot.tree.command(name="race-schedule-3day", description="Generate and post Loki's 3-Day Race Schedule (25 Laps • Stock Class E)")
+# 6. 3-DAY RACE SCHEDULER & LOGGER
+@bot.tree.command(name="race-schedule-3day", description="Generate and log Loki's 3-Day Race Schedule (25 Laps • Stock Class E)")
 @app_commands.describe(start_date="Start date (e.g. Tomorrow 18:00 TCT)")
 async def cmd_race_3day(interaction: discord.Interaction, start_date: str = "Tomorrow 18:00 TCT"):
     tracks = random.sample(TORN_TRACKS, 3)
+    LogManager.append_race_schedule("Weekend at Loki's 3-Day Series", tracks[0], start_date, tracks[1], "Day 2 18:00 TCT", tracks[2], "Day 3 18:00 TCT")
+
     embed = discord.Embed(
         title="🏁 Weekend at Loki's — 3-Day Stock Class E Series (25 Laps)",
-        description=f"**Car Requirement:** Stock Class E Only (Honda Civic, Classic Mini, Ford Fiesta, Peugeot 106, Fiat Punto)\n**Format:** 25 Laps Endurance per stage.\n[Create Race in Torn](https://www.torn.com/loader.php?sid=racing#/tab=customrace)",
+        description=f"**Car Requirement:** Stock Class E Only (Honda Civic, Classic Mini, Ford Fiesta, Peugeot 106, Fiat Punto)\n**Format:** 25 Laps Endurance per stage.\n[Create Custom Race in Torn](https://www.torn.com/loader.php?sid=racing#/tab=customrace)",
         color=0xd32f2f,
         timestamp=datetime.now(timezone.utc)
     )
     embed.add_field(name="📅 Stage 1 (Day 1)", value=f"**Track:** {tracks[0]}\n**Laps:** 25 Laps | **Class:** Stock E\n**Start:** {start_date}", inline=False)
     embed.add_field(name="📅 Stage 2 (Day 2)", value=f"**Track:** {tracks[1]}\n**Laps:** 25 Laps | **Class:** Stock E", inline=False)
     embed.add_field(name="📅 Stage 3 (Day 3 Finals)", value=f"**Track:** {tracks[2]}\n**Laps:** 25 Laps | **Class:** Stock E", inline=False)
-    embed.set_footer(text="Weekend at Loki's Racing Series • Hosted by Loki")
+    embed.set_footer(text="Weekend at Loki's Racing Series • Logged to Tournament Ledger")
     await interaction.response.send_message(content="@everyone 🏎️ **LOKI'S 3-DAY RACING SCHEDULE!**", embed=embed)
 
 
-# 6. 5-WORD DROP WITH JUMBLE
+# 7. 5-WORD DROP WITH SECRET JUMBLE
 @bot.tree.command(name="bingo-drop", description="Release Loki's 5-Word Drop with an anagram Jumble challenge")
 @app_commands.describe(count="Number of words to drop (default 5)")
 async def cmd_bingo_drop(interaction: discord.Interaction, count: int = 5):
@@ -477,8 +580,8 @@ async def cmd_bingo_drop(interaction: discord.Interaction, count: int = 5):
     await interaction.response.send_message(content="💥 **LOKI'S 5-WORD BINGO DROP & JUMBLE!**", embed=embed)
 
 
-# 7. STANDALONE JUMBLE PUSH
-@bot.tree.command(name="bingo-jumble", description="Push a standalone scrambled Word Jumble challenge")
+# 8. STANDALONE SECRET JUMBLE PUSH
+@bot.tree.command(name="bingo-jumble", description="Push a standalone scrambled Word Jumble challenge (secret answer)")
 async def cmd_bingo_jumble(interaction: discord.Interaction):
     remaining = [w for w in bot.session.word_pool if w not in bot.session.drawn_words]
     if not remaining:
@@ -492,7 +595,7 @@ async def cmd_bingo_jumble(interaction: discord.Interaction):
 
     embed = discord.Embed(
         title="🧩 WEEKEND AT LOKI'S — MYSTERY WORD JUMBLE!",
-        description=f"Unscramble to mark this item on your card (Call #{call_num}):\n\n## `{scrambled.upper()}`\n\n*(Click spoiler for answer: ||{actual_target}||)*",
+        description=f"Unscramble to mark this item on your card (Call #{call_num}):\n\n## `{scrambled.upper()}`",
         color=0xa855f7,
         timestamp=datetime.now(timezone.utc)
     )
@@ -500,7 +603,7 @@ async def cmd_bingo_jumble(interaction: discord.Interaction):
     await interaction.response.send_message(content="🔀 **LOKI'S STANDALONE JUMBLE!**", embed=embed)
 
 
-# 8. WINNERS & VAULT PAYOUTS
+# 9. WINNERS & VAULT PAYOUTS
 @bot.tree.command(name="race-winner", description="Log and announce a Weekend at Loki's winner")
 @app_commands.describe(event_name="Event name", winner="Winner name & ID", prize="Prize")
 async def cmd_winner(interaction: discord.Interaction, event_name: str, winner: str, prize: str):
