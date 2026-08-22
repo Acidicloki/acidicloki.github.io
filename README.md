@@ -1,40 +1,20 @@
-# 🎯 Torn City & Discord Suite — v5.0 Mobile & 3-Day Racing Edition
+# 🔥 Weekend at Loki's — Torn City Event Hub (v5.7)
+*Hosted by Loki [2356475] for the text-based RPG Torn City*
 
-An all-in-one suite designed for Torn City factions featuring:
-- 📱 **Mobile-Optimized Torn.com Charcoal Theme**: High-contrast grey/dark palette with **Impact** header typography.
-- 📢 **#announcements Webhook & 🎉 Reaction Roster**: Date & time setter, event builder, and automatic player registration from Discord emoji reactions.
-- 🔒 **1-Card-Per-Player Session Enforcement**: Anti-cheat card locker preventing duplicate card creation per session.
-- 🏎️ **3-Day Race Scheduler**: 25 Laps, Stock Class E cars, randomized tracks, and instant Discord push.
-- 💥 **5-Word Drops & Standalone Jumbles**: Releases 5 words with an embedded anagram challenge or standalone puzzle.
-- 🏆 **Winner & Payout Hub**: Categorized prize selector (Boosters, Supply Packs, Xanax, Cash) with quantities and payment transfer links.
-- 💾 **Full JSON Settings Sync**: Exports and imports all 4 Webhook URLs, keys, word banks, and registered session rosters.
+An all-in-one companion suite custom-tailored for the **Weekend at Loki's** community and faction events:
+- 📱 **Big Bubble Icon Home Dashboard (v5.7)**: Mobile-optimized command center featuring large, touch-friendly bubble action tiles for every major tool.
+- 🗂️ **All Claimed Bingo Cards Roster (v5.7)**: Automatically logs every player who retrieves their card with their sequential Raffle Ticket number, timestamp, and quick board viewer.
+- 🎟️ **Claimed Roster Raffle Roller (v5.7)**: Automatically selects raffle entrants directly from the active roster of members who claimed cards.
+- 🏎️ **Torn Custom Race Creation Links (v5.7)**: Direct buttons to open Torn's custom race creator with one-click parameters copy for 25-lap Stock Class E stages.
+- 🚀 **Start New Game Session**: One-click session reset clearing cards and starting raffle numbers back at #1 while preserving settings, webhooks, and word banks.
+- 🔒 **1-Card-Per-Player Session Lock**: Enforces strictly 1 unique Bingo card & raffle ticket per player per session.
+- 🎯 **Loki's 5x5 Bingo Studio & Word Drops**: 5-Word Drops with mystery anagram Jumbles, and high-res PNG card generator with "LOKI'S FREE SPACE".
+- 🤖 **Custom Webhook Bots**: Individually branded bots for `#announcements`, `#bingo`, `#racing`, and `#raffles`.
 
 ---
 
 ## 🚀 Quickstart
 
-1. Upload `index.html` into your GitHub repository root.
-2. Enable GitHub Pages (**Settings** → **Pages** → **Deploy from branch** `main`).
-3. Set your 4 Webhooks in the **Settings** tab:
-   - `#announcements` Webhook (for event notices & 🎉 reactions)
-   - `#bingo` Webhook (for single calls, 5-Word Drops, and Jumbles)
-   - `#racing` Webhook (for 3-Day tournaments and live race radar)
-   - `#raffles` Webhook (for giveaways and ticket rolls)
-
----
-
-## 🤖 Discord Bot Commands
-
-```bash
-pip install -r requirements.txt
-python bot.py
-```
-
-### Slash Commands:
-- `/announce [title] [date_time] [prize] [details]` — Posts an event announcement with a 🎉 reaction prompt.
-- `/bingo-card` — Generates (or retrieves) the user's locked session Bingo Card.
-- `/race-schedule-3day [start_date]` — Generates a 3-Day Stock Class E, 25-Lap tournament schedule with random tracks.
-- `/bingo-drop [count: 5]` — Drops 5 words with an anagram challenge.
-- `/bingo-jumble` — Standalone mystery word jumble challenge.
-- `/race-winner [event] [winner] [prize]` — Logs and broadcasts event victory.
-- `/payout [winner] [prize] [event]` — Posts payment confirmation.
+1. Upload `index.html` to your GitHub repository and enable GitHub Pages (**Settings** → **Pages**).
+2. Use the **Big Bubble Icons** on the home screen to navigate between tools on your phone, tablet, or PC.
+3. Players who sign up or run `/bingo-card` receive their locked board with sequential Raffle Ticket numbers and appear immediately in the **Claimed Cards** ledger.
