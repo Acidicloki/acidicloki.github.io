@@ -802,5 +802,139 @@
       }
     ],
     "lockedAt": "2026-08-27T05:56:47.303998+00:00"
+  },
+  "1069311948312813658": {
+    "seed": "Jigglycheeks [3810740] (OTC)-106931",
+    "userName": "Jigglycheeks [3810740] (OTC)",
+    "userId": "1069311948312813658",
+    "raffleNumber": 7,
+    "cells": [
+      {
+        "text": "Silver Necklace",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Trainers",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Magnum",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Steyr AUG",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Armored Virus",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Microwave",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Blank DVDs : 100",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Leather Vest",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Tank Top",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Pack of Cuban Cigars",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "MP5 Navy",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Box of Bon Bons",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Beretta 92FS",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Scimitar",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Christmas Cracker '04",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Television",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Plastic Watch",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Baseball Bat",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Fiveseven",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Police Vest",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Glock 17",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Personal Computer",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Dagger",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Knuckle Dusters",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-27T05:58:15.107511+00:00"
   }
 }
