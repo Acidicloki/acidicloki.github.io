@@ -5,7 +5,13 @@
     "Diamond Ring",
     "Bag of Bon Bons",
     "Bavaria M5",
-    "Blank DVDs : 100"
+    "Blank DVDs : 100",
+    "Tank Top",
+    "First Aid Kit",
+    "Armored Virus",
+    "Knuckle Dusters",
+    "Personal Computer",
+    "Hard Drive"
   ],
   "word_pool": [
     "Hammer",
@@ -89,5 +95,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-27T02:11:37.674305+00:00"
+  "updated_at": "2026-08-27T02:12:25.188983+00:00"
 }
