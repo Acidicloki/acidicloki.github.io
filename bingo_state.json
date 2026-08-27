@@ -1,27 +1,5 @@
 {
-  "drawn_words": [
-    "Edomondo NSX",
-    "P90",
-    "Hammer",
-    "M4A1 Colt Carbine",
-    "Pack of Cuban Cigars",
-    "Benelli M1 Tactical",
-    "Tunneling Virus",
-    "Snow Cannon",
-    "M16 A2 Rifle",
-    "Simple Virus",
-    "Morphine",
-    "Full Body Armor",
-    "Fiveseven",
-    "Outer Tactical Vest",
-    "Pen Knife",
-    "Sawed-Off Shotgun",
-    "Microwave",
-    "Trainers",
-    "Knuckle Dusters",
-    "M249 SAW",
-    "Box of Extra Strong Mints"
-  ],
+  "drawn_words": [],
   "word_pool": [
     "Hammer",
     "Baseball Bat",
@@ -104,5 +82,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-27T02:24:32.858517+00:00"
+  "updated_at": "2026-08-27T03:31:16.205425+00:00"
 }
