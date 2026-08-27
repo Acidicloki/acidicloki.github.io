@@ -1,5 +1,12 @@
 {
-  "drawn_words": [],
+  "drawn_words": [
+    "Plastic Watch",
+    "Stealth Virus",
+    "Edomondo NSX",
+    "CD Player",
+    "Gold Necklace",
+    "MP5 Navy"
+  ],
   "word_pool": [
     "Hammer",
     "Baseball Bat",
@@ -82,5 +89,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-27T02:19:05.733503+00:00"
+  "updated_at": "2026-08-27T02:20:32.393696+00:00"
 }
