@@ -266,5 +266,139 @@
       }
     ],
     "lockedAt": "2026-08-27T04:17:48.419752+00:00"
+  },
+  "325859901479976961": {
+    "seed": "KirbyWithAGun [3794061] (LB)-325859",
+    "userName": "KirbyWithAGun [3794061] (LB)",
+    "userId": "325859901479976961",
+    "raffleNumber": 3,
+    "cells": [
+      {
+        "text": "Raven MP25",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Jacket",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Small First Aid Kit",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "MP3 Player",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "MP5 Navy",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Stealth Virus",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Police Vest",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Box of Chocolate Bars",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Gold Necklace",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Personal Computer",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Box of Bon Bons",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "DVD Player",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Chainsaw",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Knuckle Dusters",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Armored Virus",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Tunneling Virus",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Pack of Music CDs",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Glock 17",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Bag of Bon Bons",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Hammer",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Plain Silver Ring",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Minigun",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Bulletproof Vest",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Diamond Ring",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-27T04:28:24.178089+00:00"
   }
 }
