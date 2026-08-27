@@ -132,5 +132,139 @@
       }
     ],
     "lockedAt": "2026-08-27T03:46:04.463708+00:00"
+  },
+  "918720667300540466": {
+    "seed": "Aede [2766289] (CLOT)-918720",
+    "userName": "Aede [2766289] (CLOT)",
+    "userId": "918720667300540466",
+    "raffleNumber": 2,
+    "cells": [
+      {
+        "text": "Echo Quadrato",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Hard Drive",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Magnum",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Santa Hat '04",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Pack of Music CDs",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Small First Aid Kit",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Raven MP25",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Bavaria M5",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Stealth Virus",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Desert Eagle",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Tabata RM2",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Stainless Steel Watch",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Dagger",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Dual 92G Berettas",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Tank Top",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Scimitar",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Personal Computer",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Kitchen Knife",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Tunneling Virus",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Bag of Bon Bons",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Television",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Full Body Armor",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Bulletproof Vest",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Axe",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-27T04:17:48.419752+00:00"
   }
 }
