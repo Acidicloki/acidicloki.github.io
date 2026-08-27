@@ -1,1 +1,136 @@
-{}
+{
+  "549775479721426974": {
+    "seed": "Loki The Love Walrus-549775",
+    "userName": "Loki The Love Walrus",
+    "userId": "549775479721426974",
+    "raffleNumber": 1,
+    "cells": [
+      {
+        "text": "Leather Vest",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Christmas Cracker '04",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Edomondo NSX",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "AK-47",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Small First Aid Kit",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Full Body Armor",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Hard Drive",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "DVD Player",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Chainsaw",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Tunneling Virus",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Box of Chocolate Bars",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Pen Knife",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Fiveseven",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Diamond Ring",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "M4A1 Colt Carbine",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Steyr AUG",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Plain Silver Ring",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "P90",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Police Vest",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Samurai Sword",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Hammer",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Sapphire Ring",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Beretta M9",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Gold Watch",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-27T03:46:04.463708+00:00"
+  }
+}
