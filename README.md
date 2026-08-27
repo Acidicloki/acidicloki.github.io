@@ -1,8 +1,8 @@
-# 🔥 Weekend at Loki's — Torn City Event Hub (v7.0)
+# 🔥 Weekend at Loki's — Torn City Event Hub (v7.1)
 *Hosted by Loki [2356475] for the text-based RPG Torn City*
 
 An all-in-one companion suite custom-tailored for the **Weekend at Loki's (W@L)** community and faction events:
-- 📁 **Directory-Anchored Storage (v7.0)**: Bot storage paths are explicitly anchored to the bot's root directory (`os.path.dirname(__file__)`).
+- 📁 **Directory-Anchored Storage (v7.1)**: Bot storage paths are explicitly anchored to the bot's root directory (`os.path.dirname(__file__)`).
 - 🔄 **In-Memory Cache Purge (`/bingo-reload-disk` / `/bingo-new-game`)**: Resetting a match or running `/bingo-reload-disk` wipes in-memory Python dictionaries and synchronizes with disk.
 - 🧹 **WALL-E Auto-Reset on New Session**: When "Start New Game" is clicked on the website, the webhook push alert automatically triggers WALL-E the bot to wipe `session_cards.json = {}` locally and commit the clean reset directly to your GitHub repository.
 - 🌐 **GitHub Repo Sync & Diagnostics (`/bingo-push-repo`)**: Automatic and manual commit of `session_cards.json` directly to your GitHub repository with live status and diagnostic reports in Discord.

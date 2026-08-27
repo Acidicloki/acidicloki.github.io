@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Weekend at Loki's - Torn City Event Hub (v7.0)</title>
+  <title>Weekend at Loki's - Torn City Event Hub (v7.1)</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -107,7 +107,7 @@
           <div>
             <div class="font-impact text-base sm:text-xl text-white tracking-wider flex items-center gap-1.5">
               WEEKEND AT LOKI'S
-              <span class="text-[10px] bg-torn-red/30 text-red-300 border border-torn-red/50 px-1.5 py-0.2 rounded font-mono font-normal">v7.0</span>
+              <span class="text-[10px] bg-torn-red/30 text-red-300 border border-torn-red/50 px-1.5 py-0.2 rounded font-mono font-normal">v7.1</span>
             </div>
             <div class="text-[10px] sm:text-xs text-torn-steel hidden xs:block">Torn City Event Hub • Hosted by Loki [2356475]</div>
           </div>
@@ -181,7 +181,7 @@
     <!-- ================= TAB 0: BIG BUBBLE ICONS HOME DASHBOARD ================= -->
     <section id="tab-home" class="tab-content space-y-6">
 
-      <!-- WALL-E W@L Bot Banner Card (v7.0) -->
+      <!-- WALL-E W@L Bot Banner Card (v7.1) -->
       <div class="relative rounded-2xl overflow-hidden border border-torn-border shadow-2xl group">
         <img src="assets/wall_e_banner.png" alt="Weekend at Loki's WALL-E Banner" class="w-full h-auto object-cover max-h-[260px] sm:max-h-[320px] filter brightness-95 group-hover:brightness-100 transition duration-300" onerror="this.style.display='none'">
         <div class="absolute bottom-2 right-2 bg-neutral-900/80 backdrop-blur-sm border border-torn-border px-2.5 py-1 rounded-lg text-[10px] text-torn-gold font-mono flex items-center gap-1.5 shadow">
@@ -623,7 +623,7 @@
         </div>
       </div>
 
-      <!-- SCHEDULED RACES LOG TABLE (v7.0) -->
+      <!-- SCHEDULED RACES LOG TABLE (v7.1) -->
       <div class="bg-torn-panel p-4 sm:p-5 rounded-xl border border-torn-border space-y-3">
         <div class="flex justify-between items-center border-b border-torn-border pb-2">
           <span class="font-impact text-xs sm:text-sm text-torn-gold flex items-center gap-1.5">
@@ -788,7 +788,7 @@
       </div>
     </section>
 
-    <!-- ================= TAB: BUG REPORTS HUB (v7.0) ================= -->
+    <!-- ================= TAB: BUG REPORTS HUB (v7.1) ================= -->
     <section id="tab-bugs" class="tab-content hidden space-y-6">
       <div class="border-b border-torn-border pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div>
@@ -945,7 +945,7 @@
         <div>
           <h1 class="font-impact text-xl sm:text-2xl text-white flex items-center gap-2">
             <i data-lucide="bot" class="w-5 h-5 text-torn-red"></i>
-            Weekend at Loki's Bot Settings & Sync (v7.0)
+            Weekend at Loki's Bot Settings & Sync (v7.1)
           </h1>
           <p class="text-xs text-torn-steel mt-0.5">Customize bot usernames, avatar profiles, webhooks, and Torn API synchronization.</p>
         </div>
@@ -1153,7 +1153,7 @@
     }
     function hideToast() { document.getElementById('toast-bar').classList.add('hidden'); }
 
-    // --- SITE CACHE REFRESH BUTTON (v7.0) ---
+    // --- SITE CACHE REFRESH BUTTON (v7.1) ---
     async function clearCacheAndReload() {
       if ('caches' in window) {
         try {
@@ -1592,7 +1592,7 @@
       showToast('Roster reset.', 'info');
     }
 
-    // --- 3-DAY RACE SCHEDULER & LOGGING (v7.0) ---
+    // --- 3-DAY RACE SCHEDULER & LOGGING (v7.1) ---
     function generateRandom3DaySchedule(notify = true) {
       const shuffled = [...tornTracks].sort(() => 0.5 - Math.random());
       document.getElementById('race-day1-track').value = shuffled[0];
@@ -1664,8 +1664,8 @@
       if (ok) showToast('3-Day Race Schedule posted to #racing & logged to ledger!', 'success');
     }
 
-        // ================= BUG REPORTING LOGIC (v7.0) =================
-        // ================= BINGO STATE & WORD BANK GITHUB SYNC (v7.0) =================
+        // ================= BUG REPORTING LOGIC (v7.1) =================
+        // ================= BINGO STATE & WORD BANK GITHUB SYNC (v7.1) =================
     async function fetchRepoBingoState() {
       try {
         const res = await fetch('./bingo_state.json?t=' + Date.now());
@@ -2191,7 +2191,7 @@ function renderBugReportsTable() {
       if (ok) showToast(`Winning ticket (#${winnerTicket} - ${winnerPlayer}) announced in #raffles!`, 'success');
     }
 
-    // --- WORD DROPS & SECRET JUMBLES (v7.0 NO ANSWER IN DISCORD) ---
+    // --- WORD DROPS & SECRET JUMBLES (v7.1 NO ANSWER IN DISCORD) ---
     function jumbleWord(word) {
       return word.split(' ').map(token => {
         if (token.length <= 2) return token;
@@ -2481,7 +2481,7 @@ function renderBugReportsTable() {
       showToast('Payout confirmed & opened transfer link!');
     }
 
-    // --- FULL JSON SYNC (v7.0) ---
+    // --- FULL JSON SYNC (v7.1) ---
     function exportFullJSONSync() {
       saveSettings(true);
       const syncData = {
@@ -2496,9 +2496,9 @@ function renderBugReportsTable() {
       };
       const a = document.createElement('a');
       a.href = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(syncData, null, 2));
-      a.download = `weekend_at_lokis_sync_v7.0_${new Date().toISOString().slice(0,10)}.json`;
+      a.download = `weekend_at_lokis_sync_v7.1_${new Date().toISOString().slice(0,10)}.json`;
       a.click();
-      showToast('Weekend at Loki\'s settings, cards & races exported (v7.0)!', 'success');
+      showToast('Weekend at Loki\'s settings, cards & races exported (v7.1)!', 'success');
     }
 
     function importFullJSONSync(e) {
@@ -2526,14 +2526,14 @@ function renderBugReportsTable() {
           renderClaimedCardsTable();
           refreshClaimedRosterForRaffle();
           generateOrRetrieveCard(false);
-          showToast('v7.0 JSON Sync Loaded!', 'success');
+          showToast('v7.1 JSON Sync Loaded!', 'success');
         } catch { showToast('Invalid JSON file.', 'error'); }
       };
       r.readAsText(f);
     }
 
     
-    // ================= REAL-TIME WORD BANK & CALLED WORDS BOT SYNC (v7.0) =================
+    // ================= REAL-TIME WORD BANK & CALLED WORDS BOT SYNC (v7.1) =================
     async function syncWordBankFromBot(notify = true) {
       try {
         const res = await fetch('./bingo_state.json?t=' + Date.now());

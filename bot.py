@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Weekend at Loki's - Torn City Event Discord Bot (v7.0 Directory-Anchored Storage Edition)
+Weekend at Loki's - Torn City Event Discord Bot (v7.1 Directory-Anchored Storage Edition)
 Hosted by Loki [2356475]
 Features:
  - Absolute Directory Anchoring (BASE_DIR): All JSON files are strictly stored in the same directory as bot.py
@@ -512,6 +512,42 @@ async def get_or_fetch_target_channel(channel_id: int):
             ch = None
     return ch
 
+
+async def post_to_channel(channel_id: int, content: str = None, embed: discord.Embed = None, file: discord.File = None) -> bool:
+    """Natively posts content and embeds directly to a Discord channel ID without webhooks."""
+    if not channel_id:
+        return False
+    try:
+        ch = bot.get_channel(channel_id)
+        if not ch:
+            ch = await bot.fetch_channel(channel_id)
+        if ch:
+            await ch.send(content=content, embed=embed, file=file)
+            return True
+    except Exception as e:
+        logger.error(f"[CHANNEL DISPATCH ERROR] Could not send to Channel ID {channel_id}: {e}")
+    return False
+
+
+async def dispatch_to_channel(bot_instance, channel_id: int, content: str = None, embed: discord.Embed = None, file: discord.File = None):
+    """Directly dispatches content/embeds/files to a configured Discord channel by ID."""
+    if not channel_id:
+        return False, "Channel ID not configured"
+    try:
+        channel = bot_instance.get_channel(channel_id)
+        if not channel:
+            channel = await bot_instance.fetch_channel(channel_id)
+        if channel:
+            if file:
+                await channel.send(content=content, embed=embed, file=file)
+            else:
+                await channel.send(content=content, embed=embed)
+            return True, f"Sent to #{channel.name}"
+    except Exception as e:
+        logger.error(f"Failed to dispatch to channel ID {channel_id}: {e}")
+        return False, str(e)
+    return False, "Channel not found"
+
 def get_current_race_password() -> str:
     prizes = safe_load_json(PRIZES_CONFIG_FILE, {})
     if isinstance(prizes, dict) and prizes.get("race_password"):
@@ -623,7 +659,7 @@ class TornSuiteClient(commands.Bot):
     async def setup_hook(self):
         try:
             await self.tree.sync()
-            logger.info("Weekend at Loki's slash commands synced (v7.0 Storage Anchored).")
+            logger.info("Weekend at Loki's slash commands synced (v7.1 Storage Anchored).")
         except Exception as e:
             logger.warning(f"Sync note: {e}")
 
@@ -701,7 +737,7 @@ async def cmd_bingo_card(interaction: discord.Interaction):
     await interaction.followup.send(embed=embed, file=file)
 
 
-# 2. FORCE RELOAD STATE FROM DISK (v7.0)
+# 2. FORCE RELOAD STATE FROM DISK (v7.1)
 @bot.tree.command(name="bingo-reload-disk", description="Forces bot to reload or clear in-memory state directly from disk")
 async def cmd_bingo_reload_disk(interaction: discord.Interaction):
     bot.session.load_all()
@@ -983,7 +1019,7 @@ async def cmd_bug_export(interaction: discord.Interaction):
 
 
 
-# 13. PRIZE AWARDING & EPHEMERAL QUERIES (v7.0)
+# 13. PRIZE AWARDING & EPHEMERAL QUERIES (v7.1)
 
 
 @bot.tree.command(name="prize-pool", description="View the current prize pool for Raffles, Races, Bingo & Jumbles (Visible only to you)")
@@ -1140,13 +1176,31 @@ async def cmd_race_schedule(interaction: discord.Interaction):
 
 
 if __name__ == "__main__":
-
     if not TOKEN:
-        print("\n[SETUP REQUIRED] Set DISCORD_TOKEN in .env\n")
+        print("\n" + "="*70)
+        print("  [SETUP REQUIRED] DISCORD_TOKEN is missing in .env")
+        print("  1. Open 'Launch_Configurator.bat' to enter your Bot Token.")
+        print("  2. Or open .env in notepad and paste your DISCORD_TOKEN.")
+        print("="*70 + "\n")
+        time.sleep(1)
+        input("Press Enter to close...")
     else:
         try:
             bot.run(TOKEN)
         except discord.errors.PrivilegedIntentsRequired:
-            print("\n[DISCORD INTENTS REQUIRED] Enable Message Content & Server Members Intent in Discord Developer Portal.\n")
+            print("\n" + "="*70)
+            print("  [DISCORD INTENTS REQUIRED]")
+            print("  Please go to https://discord.com/developers/applications")
+            print("  Select your Bot -> Bot tab -> Scroll to 'Privileged Gateway Intents'")
+            print("  Enable:")
+            print("   ✅ Message Content Intent")
+            print("   ✅ Server Members Intent")
+            print("="*70 + "\n")
+            input("Press Enter to close...")
         except Exception as ex:
             logger.error(f"Bot startup error: {ex}")
+            with open(os.path.join(BASE_DIR, "bot_error.log"), "w", encoding="utf-8") as f:
+                f.write(traceback.format_exc())
+            print(f"\n[CRITICAL ERROR] Bot failed to start: {ex}")
+            print(f"Detailed traceback saved to: {os.path.join(BASE_DIR, 'bot_error.log')}\n")
+            input("Press Enter to close...")
