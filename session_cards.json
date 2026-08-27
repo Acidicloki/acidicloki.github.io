@@ -400,5 +400,139 @@
       }
     ],
     "lockedAt": "2026-08-27T04:28:24.178089+00:00"
+  },
+  "1367432980485902378": {
+    "seed": "Shweet-136743",
+    "userName": "Shweet",
+    "userId": "1367432980485902378",
+    "raffleNumber": 4,
+    "cells": [
+      {
+        "text": "M4A1 Colt Carbine",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Simple Virus",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Benelli M4 Super",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Police Vest",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "First Aid Kit",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "USP",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Box of Bon Bons",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Dual 92G Berettas",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Tank Top",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Pack of Music CDs",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Kitchen Knife",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Gold Ring",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Silver Necklace",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Plastic Watch",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Dagger",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Tunneling Virus",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "DVD Player",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Samurai Sword",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Pen Knife",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Sawed-Off Shotgun",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Stealth Virus",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Morphine",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Big Box of Chocolate Bars",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "CD Player",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-27T04:50:23.051571+00:00"
   }
 }
