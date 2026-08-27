@@ -100,11 +100,6 @@ def load_env_dict():
     return env_data
 
 def save_env_dict(env_data):
-    n_announce = env_data.get('BOT_ANNOUNCE_NAME', "Weekend at Loki's")
-    n_bingo = env_data.get('BOT_BINGO_NAME', "Loki's Bingo Caller")
-    n_race = env_data.get('BOT_RACE_NAME', "Loki's Race Control")
-    n_raffle = env_data.get('BOT_RAFFLE_NAME', "Loki's Vault & Raffles")
-
     lines = [
         "# ==============================================================================",
         "# WEEKEND AT LOKI'S - ENVIRONMENT CONFIGURATION (v7.0)",
@@ -113,25 +108,6 @@ def save_env_dict(env_data):
         "",
         "# Discord Bot Token (From Discord Developer Portal)",
         f"DISCORD_TOKEN={env_data.get('DISCORD_TOKEN', '')}",
-        f"RACE_PASSWORD={env_data.get('RACE_PASSWORD', 'LOKI2026')}",
-        "",
-        "# 4 Dedicated Channel Webhook URLs",
-        f"DISCORD_ANNOUNCEMENTS_WEBHOOK_URL={env_data.get('DISCORD_ANNOUNCEMENTS_WEBHOOK_URL', '')}",
-        f"DISCORD_BINGO_WEBHOOK_URL={env_data.get('DISCORD_BINGO_WEBHOOK_URL', '')}",
-        f"DISCORD_RACE_WEBHOOK_URL={env_data.get('DISCORD_RACE_WEBHOOK_URL', '')}",
-        f"DISCORD_RAFFLE_WEBHOOK_URL={env_data.get('DISCORD_RAFFLE_WEBHOOK_URL', '')}",
-        "",
-        "# Custom Webhook Bot Display Names",
-        f"BOT_ANNOUNCE_NAME={n_announce}",
-        f"BOT_BINGO_NAME={n_bingo}",
-        f"BOT_RACE_NAME={n_race}",
-        f"BOT_RAFFLE_NAME={n_raffle}",
-        "",
-        "# Custom Webhook Profile Avatar URLs",
-        f"AVATAR_ANNOUNCE_URL={env_data.get('AVATAR_ANNOUNCE_URL', '')}",
-        f"AVATAR_BINGO_URL={env_data.get('AVATAR_BINGO_URL', '')}",
-        f"AVATAR_RACE_URL={env_data.get('AVATAR_RACE_URL', '')}",
-        f"AVATAR_RAFFLE_URL={env_data.get('AVATAR_RAFFLE_URL', '')}",
         "",
         "# Torn City API Key (Minimal / Public Access)",
         f"TORN_API_KEY={env_data.get('TORN_API_KEY', '')}",
@@ -141,11 +117,20 @@ def save_env_dict(env_data):
         f"GITHUB_REPO={env_data.get('GITHUB_REPO', '')}",
         f"GITHUB_BRANCH={env_data.get('GITHUB_BRANCH', 'main')}",
         "",
-        "# Role Pings (e.g. <@&ROLE_ID> or raw numeric ID)",
-        f"PING_ANNOUNCE_ROLE={env_data.get('PING_ANNOUNCE_ROLE', '')}",
-        f"PING_BINGO_ROLE={env_data.get('PING_BINGO_ROLE', '')}",
-        f"PING_RACE_ROLE={env_data.get('PING_RACE_ROLE', '')}",
-        f"PING_RAFFLE_ROLE={env_data.get('PING_RAFFLE_ROLE', '')}",
+        "# Official Race Password (Printed on Bingo Cards)",
+        f"RACE_PASSWORD={env_data.get('RACE_PASSWORD', 'LOKI2026')}",
+        "",
+        "# Discord Channel IDs (Direct Bot Routing & Auto Deployment)",
+        f"ANNOUNCEMENTS_CHANNEL_ID={env_data.get('ANNOUNCEMENTS_CHANNEL_ID', '')}",
+        f"BINGO_CHANNEL_ID={env_data.get('BINGO_CHANNEL_ID', '')}",
+        f"RACE_CHANNEL_ID={env_data.get('RACE_CHANNEL_ID', '')}",
+        f"RAFFLE_CHANNEL_ID={env_data.get('RAFFLE_CHANNEL_ID', '')}",
+        "",
+        "# Optional Fallback Webhook URLs",
+        f"DISCORD_ANNOUNCEMENTS_WEBHOOK_URL={env_data.get('DISCORD_ANNOUNCEMENTS_WEBHOOK_URL', '')}",
+        f"DISCORD_BINGO_WEBHOOK_URL={env_data.get('DISCORD_BINGO_WEBHOOK_URL', '')}",
+        f"DISCORD_RACE_WEBHOOK_URL={env_data.get('DISCORD_RACE_WEBHOOK_URL', '')}",
+        f"DISCORD_RAFFLE_WEBHOOK_URL={env_data.get('DISCORD_RAFFLE_WEBHOOK_URL', '')}",
         ""
     ]
     with open(ENV_FILE, "w", encoding="utf-8") as f:
@@ -314,49 +299,188 @@ class LokisCompanionApp:
     # --------------------------------------------------------------------------
     # TAB 2: DISCORD CHANNEL IDS (AUTO-DEPLOY ROUTING - NO WEBHOOKS)
     # --------------------------------------------------------------------------
-    def build_tab_webhooks(self):
-        frame = tk.Frame(self.tab_webhooks, bg=BG_DARK, padx=16, pady=16)
-        frame.pack(fill="both", expand=True)
+    def build_tab_channels(self):
+        canvas = tk.Canvas(self.tab_channels, bg=BG_DARK, highlightthickness=0)
+        scrollbar = ttk.Scrollbar(self.tab_channels, orient="vertical", command=canvas.yview)
+        scroll_frame = tk.Frame(canvas, bg=BG_DARK, padx=16, pady=12)
 
-        header_box = tk.Frame(frame, bg=PANEL_DARK, padx=14, pady=10, highlightthickness=1, highlightbackground=BORDER_DARK)
-        header_box.pack(fill="x", pady=(0, 10))
+        scroll_frame.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+        canvas.create_window((0, 0), window=scroll_frame, anchor="nw")
+        canvas.configure(yscrollcommand=scrollbar.set)
 
-        tk.Label(header_box, text="📡 DISCORD CHANNEL IDS (AUTO-DEPLOY ROUTING)", font=("Impact", 13), fg=ACCENT_GOLD, bg=PANEL_DARK).pack(anchor="w")
-        tk.Label(header_box, text="Set your Discord Channel IDs below. The bot will automatically deploy announcements, 3-day race schedules, raffles, and bingo drops directly to the right channel without needing webhooks.", font=("Segoe UI", 9), fg=TEXT_MUTED, bg=PANEL_DARK, wraplength=750, justify="left").pack(anchor="w", pady=(2, 0))
+        canvas.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
 
         self.channel_entries = {}
+
+        box_ch = tk.LabelFrame(scroll_frame, text=" 📡 DISCORD CHANNEL IDS (DIRECT AUTO DEPLOYMENT) ", font=("Impact", 11), fg=ACCENT_GOLD, bg=PANEL_DARK, padx=14, pady=12, highlightthickness=1, highlightbackground=BORDER_DARK)
+        box_ch.pack(fill="x", pady=6)
+
+        tk.Label(box_ch, text="Set your Discord Channel IDs here. The bot directly auto-deploys race schedules, raffle rolls, and bingo cards to the right place without needing webhooks.", font=("Segoe UI", 9), fg=TEXT_MUTED, bg=PANEL_DARK, wraplength=700, justify="left").pack(anchor="w", pady=(0, 8))
+
         channels = [
-            ("ANNOUNCEMENTS_CHANNEL_ID", "📣 Announcements Channel ID (#announcements)", "Where event announcements and 🎉 RSVP reaction callouts are posted.", "PING_ANNOUNCE_ROLE"),
-            ("BINGO_CHANNEL_ID", "🎯 Bingo Channel ID (#bingo)", "Where 5-word drops, standalone mystery jumbles, and bingo calls are posted.", "PING_BINGO_ROLE"),
-            ("RACE_CHANNEL_ID", "🏎️ Racing Channel ID (#racing)", "Where 3-day tournament schedules and live Torn race reminders are posted.", "PING_RACE_ROLE"),
-            ("RAFFLE_CHANNEL_ID", "🎟️ Raffles Channel ID (#raffles)", "Where faction giveaway draws and winner announcements are posted.", "PING_RAFFLE_ROLE")
+            ("ANNOUNCEMENTS_CHANNEL_ID", "📣 Announcements Channel ID:", "For event notices, date setters & 🎉 reaction roster"),
+            ("BINGO_CHANNEL_ID", "🎯 Bingo Channel ID:", "For Bingo calls, 5-Word Drops, Jumbles & Card claims"),
+            ("RACE_CHANNEL_ID", "🏎️ Racing Channel ID:", "For 3-Day Tournament schedules & live race alerts"),
+            ("RAFFLE_CHANNEL_ID", "🎟️ Raffles Channel ID:", "For giveaway ticket rolls & winner announcements")
         ]
 
-        for cid, title, desc, ping_key in channels:
-            box = tk.LabelFrame(frame, text=f" {title} ", font=("Impact", 11), fg=TEXT_WHITE, bg=PANEL_DARK, padx=12, pady=10, highlightthickness=1, highlightbackground=BORDER_DARK)
-            box.pack(fill="x", pady=5)
+        for idx, (key, label_txt, sub_txt) in enumerate(channels):
+            row_frame = tk.Frame(box_ch, bg=PANEL_DARK)
+            row_frame.pack(fill="x", pady=4)
 
-            tk.Label(box, text=desc, font=("Segoe UI", 8, "italic"), fg=TEXT_MUTED, bg=PANEL_DARK).grid(row=0, column=0, columnspan=3, sticky="w", pady=(0, 4))
+            tk.Label(row_frame, text=label_txt, font=("Segoe UI", 9, "bold"), fg=TEXT_WHITE, bg=PANEL_DARK, width=28, anchor="w").pack(side="left")
+            ent = tk.Entry(row_frame, font=("Consolas", 10, "bold"), bg=WELL_DARK, fg=ACCENT_GOLD, insertbackground="white", width=30, relief="flat", highlightthickness=1, highlightbackground=BORDER_DARK)
+            ent.pack(side="left", padx=4)
+            self.channel_entries[key] = ent
 
-            tk.Label(box, text="Channel ID (17-19 Digits):", font=("Segoe UI", 9, "bold"), fg=TEXT_WHITE, bg=PANEL_DARK).grid(row=1, column=0, sticky="w", pady=2)
-            ent_cid = tk.Entry(box, font=("Consolas", 10, "bold"), bg=WELL_DARK, fg=ACCENT_GOLD, insertbackground="white", width=35, relief="flat", highlightthickness=1, highlightbackground=BORDER_DARK)
-            ent_cid.grid(row=1, column=1, sticky="w", pady=2, padx=6)
+            tk.Label(row_frame, text=f"({sub_txt})", font=("Segoe UI", 8, "italic"), fg=TEXT_MUTED, bg=PANEL_DARK).pack(side="left", padx=6)
 
-            tk.Label(box, text="Role Ping (e.g. <@&ROLE_ID>):", font=("Segoe UI", 9), fg=TEXT_WHITE, bg=PANEL_DARK).grid(row=1, column=2, sticky="w", pady=2, padx=(16, 4))
-            ent_ping = tk.Entry(box, font=("Consolas", 9), bg=WELL_DARK, fg=TEXT_WHITE, insertbackground="white", width=25, relief="flat", highlightthickness=1, highlightbackground=BORDER_DARK)
-            ent_ping.grid(row=1, column=3, sticky="w", pady=2, padx=4)
+        # Helper info box on how to get Discord Channel IDs
+        box_help = tk.LabelFrame(scroll_frame, text=" 💡 HOW TO FIND CHANNEL IDS IN DISCORD ", font=("Impact", 10), fg=ACCENT_BLUE, bg=WELL_DARK, padx=12, pady=8, highlightthickness=1, highlightbackground=BORDER_DARK)
+        box_help.pack(fill="x", pady=8)
 
-            self.channel_entries[cid] = ent_cid
-            self.channel_entries[ping_key] = ent_ping
+        help_text = (
+            "1. In Discord, go to User Settings (⚙️) -> Advanced -> Enable 'Developer Mode'.\n"
+            "2. Right-click any channel (#announcements, #bingo, #racing, #raffles) and click 'Copy Channel ID'.\n"
+            "3. Paste the numeric ID above and click 'SAVE ALL SETTINGS'."
+        )
+        tk.Label(box_help, text=help_text, font=("Segoe UI", 9), fg=TEXT_MUTED, bg=WELL_DARK, justify="left").pack(anchor="w")
 
-        # Help Guide Box
-        guide_box = tk.LabelFrame(frame, text=" 💡 HOW TO GET DISCORD CHANNEL IDS ", font=("Impact", 10), fg=ACCENT_GOLD, bg=WELL_DARK, padx=12, pady=8, highlightthickness=1, highlightbackground=BORDER_DARK)
-        guide_box.pack(fill="x", pady=6)
-        tk.Label(guide_box, text="1. In Discord, go to User Settings ➔ Advanced ➔ Toggle ON 'Developer Mode'.\n2. Right-click any text channel in your server (e.g. #bingo or #racing).\n3. Click 'Copy Channel ID' and paste the numbers into the corresponding box above.", font=("Segoe UI", 8), fg=TEXT_MUTED, bg=WELL_DARK, justify="left").pack(anchor="w")
+    def build_tab_races_cfg(self):
+        canvas = tk.Canvas(self.tab_races_cfg, bg=BG_DARK, highlightthickness=0)
+        scrollbar = ttk.Scrollbar(self.tab_races_cfg, orient="vertical", command=canvas.yview)
+        scroll_frame = tk.Frame(canvas, bg=BG_DARK, padx=16, pady=12)
 
-    # --------------------------------------------------------------------------
-    # TAB 3: WORD BANK MANAGER (bingo_state.json)
-    # --------------------------------------------------------------------------
+        scroll_frame.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+        canvas.create_window((0, 0), window=scroll_frame, anchor="nw")
+        canvas.configure(yscrollcommand=scrollbar.set)
+
+        canvas.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
+
+        box_race_main = tk.LabelFrame(scroll_frame, text=" 🏎️ 3-DAY RACE TOURNAMENT SCHEDULE (scheduled_races_log.json) ", font=("Impact", 11), fg=ACCENT_GOLD, bg=PANEL_DARK, padx=14, pady=12, highlightthickness=1, highlightbackground=BORDER_DARK)
+        box_race_main.pack(fill="x", pady=6)
+
+        tk.Label(box_race_main, text="Configure the 3-day racing tournament schedule here. Players can view this anytime in Discord using the /race-schedule command.", font=("Segoe UI", 9), fg=TEXT_MUTED, bg=PANEL_DARK).pack(anchor="w", pady=(0, 8))
+
+        # Title
+        f_title = tk.Frame(box_race_main, bg=PANEL_DARK)
+        f_title.pack(fill="x", pady=4)
+        tk.Label(f_title, text="Tournament Title:", font=("Segoe UI", 9, "bold"), fg=TEXT_WHITE, bg=PANEL_DARK, width=20, anchor="w").pack(side="left")
+        self.ent_race_title = tk.Entry(f_title, font=("Segoe UI", 9, "bold"), bg=WELL_DARK, fg=TEXT_WHITE, insertbackground="white", width=45, relief="flat", highlightthickness=1, highlightbackground=BORDER_DARK)
+        self.ent_race_title.pack(side="left", padx=4)
+        self.ent_race_title.insert(0, "Loki's 3-Day Stock Class E Endurance Series")
+
+        btn_random_tracks = tk.Button(f_title, text="🎲 ROLL RANDOM TRACKS", font=("Segoe UI", 9, "bold"), bg="#0284c7", fg=TEXT_WHITE, relief="flat", padx=10, pady=2, cursor="hand2", command=self.roll_random_race_tracks)
+        btn_random_tracks.pack(side="left", padx=10)
+
+        # Stages 1, 2, 3
+        self.race_stage_entries = {}
+        stage_defaults = [
+            (1, "Stage 1 (Day 1)", "Mudpit", "25", "Stock Class E", "Friday 18:00 TCT"),
+            (2, "Stage 2 (Day 2)", "Hammerhead", "25", "Stock Class E", "Saturday 18:00 TCT"),
+            (3, "Stage 3 (Day 3 Finals)", "Two Islands", "25", "Stock Class E", "Sunday 18:00 TCT")
+        ]
+
+        for s_num, s_label, def_track, def_laps, def_class, def_time in stage_defaults:
+            s_box = tk.LabelFrame(box_race_main, text=f" 📅 {s_label} ", font=("Impact", 10), fg=ACCENT_RED, bg=WELL_DARK, padx=10, pady=8, highlightthickness=1, highlightbackground=BORDER_DARK)
+            s_box.pack(fill="x", pady=5)
+
+            grid_f = tk.Frame(s_box, bg=WELL_DARK)
+            grid_f.pack(fill="x")
+
+            # Track
+            tk.Label(grid_f, text="Track:", font=("Segoe UI", 8, "bold"), fg=TEXT_WHITE, bg=WELL_DARK).grid(row=0, column=0, sticky="w", padx=4, pady=2)
+            ent_track = tk.Entry(grid_f, font=("Segoe UI", 9), bg=PANEL_DARK, fg=TEXT_WHITE, insertbackground="white", width=18, relief="flat", highlightthickness=1, highlightbackground=BORDER_DARK)
+            ent_track.grid(row=0, column=1, padx=4, pady=2)
+            ent_track.insert(0, def_track)
+
+            # Laps
+            tk.Label(grid_f, text="Laps:", font=("Segoe UI", 8, "bold"), fg=TEXT_WHITE, bg=WELL_DARK).grid(row=0, column=2, sticky="w", padx=4, pady=2)
+            ent_laps = tk.Entry(grid_f, font=("Segoe UI", 9), bg=PANEL_DARK, fg=TEXT_WHITE, insertbackground="white", width=6, relief="flat", highlightthickness=1, highlightbackground=BORDER_DARK)
+            ent_laps.grid(row=0, column=3, padx=4, pady=2)
+            ent_laps.insert(0, def_laps)
+
+            # Car Class
+            tk.Label(grid_f, text="Class:", font=("Segoe UI", 8, "bold"), fg=TEXT_WHITE, bg=WELL_DARK).grid(row=0, column=4, sticky="w", padx=4, pady=2)
+            ent_class = tk.Entry(grid_f, font=("Segoe UI", 9), bg=PANEL_DARK, fg=TEXT_WHITE, insertbackground="white", width=16, relief="flat", highlightthickness=1, highlightbackground=BORDER_DARK)
+            ent_class.grid(row=0, column=5, padx=4, pady=2)
+            ent_class.insert(0, def_class)
+
+            # Start Time
+            tk.Label(grid_f, text="Start Time:", font=("Segoe UI", 8, "bold"), fg=TEXT_WHITE, bg=WELL_DARK).grid(row=0, column=6, sticky="w", padx=4, pady=2)
+            ent_time = tk.Entry(grid_f, font=("Segoe UI", 9), bg=PANEL_DARK, fg=ACCENT_GOLD, insertbackground="white", width=20, relief="flat", highlightthickness=1, highlightbackground=BORDER_DARK)
+            ent_time.grid(row=0, column=7, padx=4, pady=2)
+            ent_time.insert(0, def_time)
+
+            self.race_stage_entries[f"s{s_num}_track"] = ent_track
+            self.race_stage_entries[f"s{s_num}_laps"] = ent_laps
+            self.race_stage_entries[f"s{s_num}_class"] = ent_class
+            self.race_stage_entries[f"s{s_num}_time"] = ent_time
+
+        # Tournament Notes
+        f_notes = tk.Frame(box_race_main, bg=PANEL_DARK)
+        f_notes.pack(fill="x", pady=6)
+        tk.Label(f_notes, text="Tournament Notes:", font=("Segoe UI", 9, "bold"), fg=TEXT_WHITE, bg=PANEL_DARK, width=20, anchor="w").pack(side="left")
+        self.ent_race_notes = tk.Entry(f_notes, font=("Segoe UI", 9), bg=WELL_DARK, fg=TEXT_WHITE, insertbackground="white", width=65, relief="flat", highlightthickness=1, highlightbackground=BORDER_DARK)
+        self.ent_race_notes.pack(side="left", padx=4)
+        self.ent_race_notes.insert(0, "Password required. Stock Class E only (Honda Civic, Classic Mini, Ford Fiesta, Peugeot 106, Fiat Punto).")
+
+        btn_save_races = tk.Button(box_race_main, text="💾 SAVE 3-DAY RACE SCHEDULE TO JSON", font=("Impact", 10), bg=ACCENT_GREEN, fg=TEXT_WHITE, relief="flat", padx=14, pady=5, cursor="hand2", command=self.save_race_schedule_to_json)
+        btn_save_races.pack(anchor="w", pady=8)
+
+    def roll_random_race_tracks(self):
+        import random
+        tracks = ["Mudpit", "Hammerhead", "Two Islands", "Docks", "Industrial", "Speedway", "Stone Park", "Parkland", "Meltdown", "Underpass", "Uptown", "Vector", "Sewage"]
+        selected = random.sample(tracks, 3)
+        self.race_stage_entries["s1_track"].delete(0, "end")
+        self.race_stage_entries["s1_track"].insert(0, selected[0])
+        self.race_stage_entries["s2_track"].delete(0, "end")
+        self.race_stage_entries["s2_track"].insert(0, selected[1])
+        self.race_stage_entries["s3_track"].delete(0, "end")
+        self.race_stage_entries["s3_track"].insert(0, selected[2])
+        messagebox.showinfo("Random Tracks", f"✓ Rolled tracks:\nStage 1: {selected[0]}\nStage 2: {selected[1]}\nStage 3: {selected[2]}")
+
+    def save_race_schedule_to_json(self):
+        records = safe_load_json(SCHEDULED_RACES_FILE, [])
+        if not isinstance(records, list):
+            records = []
+
+        title = self.ent_race_title.get().strip() or "Loki's 3-Day Stock Class E Endurance Series"
+        s1 = {
+            "track": self.race_stage_entries["s1_track"].get().strip() or "Mudpit",
+            "laps": int(self.race_stage_entries["s1_laps"].get().strip() or 25),
+            "car_class": self.race_stage_entries["s1_class"].get().strip() or "Stock Class E",
+            "time": self.race_stage_entries["s1_time"].get().strip() or "Friday 18:00 TCT"
+        }
+        s2 = {
+            "track": self.race_stage_entries["s2_track"].get().strip() or "Hammerhead",
+            "laps": int(self.race_stage_entries["s2_laps"].get().strip() or 25),
+            "car_class": self.race_stage_entries["s2_class"].get().strip() or "Stock Class E",
+            "time": self.race_stage_entries["s2_time"].get().strip() or "Saturday 18:00 TCT"
+        }
+        s3 = {
+            "track": self.race_stage_entries["s3_track"].get().strip() or "Two Islands",
+            "laps": int(self.race_stage_entries["s3_laps"].get().strip() or 25),
+            "car_class": self.race_stage_entries["s3_class"].get().strip() or "Stock Class E",
+            "time": self.race_stage_entries["s3_time"].get().strip() or "Sunday 18:00 TCT"
+        }
+        notes = self.ent_race_notes.get().strip()
+
+        record = {
+            "id": f"RACE-{int(datetime.now().timestamp())}",
+            "title": title,
+            "stage1": s1,
+            "stage2": s2,
+            "stage3": s3,
+            "notes": notes,
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+        records.append(record)
+        safe_save_json(SCHEDULED_RACES_FILE, records)
+        messagebox.showinfo("Saved", "✓ 3-Day Race Schedule saved to scheduled_races_log.json! Discord users can now view it using /race-schedule.")
+
     def build_tab_wordbank(self):
         frame = tk.Frame(self.tab_wordbank, bg=BG_DARK, padx=16, pady=16)
         frame.pack(fill="both", expand=True)
@@ -365,6 +489,9 @@ class LokisCompanionApp:
         top_bar.pack(fill="x", pady=(0, 10))
 
         tk.Label(top_bar, text="🎯 ACTIVE BINGO WORD BANK (bingo_state.json)", font=("Impact", 13), fg=TEXT_WHITE, bg=BG_DARK).pack(side="left")
+
+        btn_sync_gh = tk.Button(top_bar, text="🌐 SYNC TO GITHUB REPO", font=("Segoe UI", 9, "bold"), bg="#059669", fg=TEXT_WHITE, relief="flat", padx=10, pady=3, cursor="hand2", command=self.sync_wordbank_to_github)
+        btn_sync_gh.pack(side="right", padx=4)
 
         btn_fetch_torn = tk.Button(top_bar, text="⚡ FETCH TORN ITEMS (API)", font=("Segoe UI", 9, "bold"), bg="#0284c7", fg=TEXT_WHITE, relief="flat", padx=10, pady=3, cursor="hand2", command=self.fetch_torn_items_to_pool)
         btn_fetch_torn.pack(side="right", padx=4)
@@ -531,6 +658,61 @@ class LokisCompanionApp:
     def update_wordbank_stats(self, event=None):
         items = [w.strip() for w in self.txt_wordbank.get("1.0", "end").splitlines() if w.strip()]
         self.lbl_wordbank_stats.config(text=f"Total Items: {len(items)} | Minimum Required for 5x5 Card: 24 | Status: {'✓ Valid' if len(items) >= 24 else '⚠️ Add more items'}")
+
+    def sync_wordbank_to_github(self):
+        token = self.ent_gh_token.get().strip()
+        repo = self.ent_gh_repo.get().strip().replace("https://github.com/", "").strip("/")
+        if not token or not repo:
+            messagebox.showerror("Error", "Please configure GitHub Token and Repository first in 'Bot & Tokens' tab.")
+            return
+
+        items = [w.strip() for w in self.txt_wordbank.get("1.0", "end").splitlines() if w.strip()]
+        if len(items) < 24:
+            messagebox.showerror("Error", f"Word bank only has {len(items)} items. Minimum 24 required.")
+            return
+
+        state = safe_load_json(STATE_FILE, {"drawn_words": []})
+        state["word_pool"] = items
+        state["updated_at"] = datetime.now(timezone.utc).isoformat()
+        safe_save_json(STATE_FILE, state)
+
+        try:
+            url = f"https://api.github.com/repos/{repo}/contents/bingo_state.json"
+            headers = {
+                "Authorization": f"Bearer {token}",
+                "Accept": "application/vnd.github+json",
+                "User-Agent": "WeekendAtLokisConfigurator"
+            }
+            sha = None
+            req = urllib.request.Request(url, headers=headers, method="GET")
+            try:
+                with urllib.request.urlopen(req, timeout=10) as resp:
+                    if resp.status == 200:
+                        info = json.loads(resp.read().decode("utf-8"))
+                        sha = info.get("sha")
+            except urllib.error.HTTPError as e:
+                if e.code != 404:
+                    raise e
+
+            import base64
+            content_bytes = json.dumps(state, indent=2).encode("utf-8")
+            payload = {
+                "message": f"Sync word bank ({len(items)} items) via Windows Configurator",
+                "content": base64.b64encode(content_bytes).decode("utf-8"),
+                "branch": self.ent_gh_branch.get().strip() or "main"
+            }
+            if sha:
+                payload["sha"] = sha
+
+            put_req = urllib.request.Request(url, data=json.dumps(payload).encode("utf-8"), headers=headers, method="PUT")
+            with urllib.request.urlopen(put_req, timeout=10) as resp:
+                if resp.status in (200, 201):
+                    messagebox.showinfo("GitHub Sync", f"✓ Word bank ({len(items)} items) synced directly to GitHub repository!")
+                    self.status_bar_text.config(text=f"✓ Word bank synced to GitHub ({repo}) at {time.strftime('%H:%M:%S')}")
+                else:
+                    messagebox.showerror("Sync Failed", f"HTTP Response: {resp.status}")
+        except Exception as e:
+            messagebox.showerror("Sync Error", f"Failed to sync to GitHub: {e}")
 
     def save_all_settings(self):
         # 1. Update env_data

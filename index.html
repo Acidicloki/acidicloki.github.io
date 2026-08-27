@@ -432,6 +432,7 @@
           <p class="text-xs text-torn-steel mt-0.5">Strictly 1 card per player per session. Re-entering a name loads their original locked card.</p>
         </div>
         <div class="flex gap-2">
+          <button onclick="fetchRepoBingoState()" class="bg-torn-well hover:bg-neutral-700 text-torn-gold border border-torn-border px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow"><i data-lucide="refresh-cw" class="w-4 h-4 text-torn-gold"></i><span>Sync Word Bank from Repo</span></button>
           <button onclick="downloadCardPNG()" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold">Download PNG</button>
           <button onclick="sendCardToDiscord()" class="bg-torn-card hover:bg-neutral-800 border border-torn-border text-white px-3 py-1.5 rounded-lg text-xs font-semibold">Post to #bingo</button>
         </div>
@@ -459,7 +460,8 @@
           <div class="bg-torn-panel p-4 rounded-xl border border-torn-border space-y-2">
             <div class="flex justify-between items-center text-xs">
               <span class="font-impact text-slate-300">Torn Items Bank (<span id="pool-count">0</span> items)</span>
-              <button onclick="fetchTornItemsToPool()" class="text-[11px] text-torn-red hover:underline">Sync Torn API</button>
+              <button onclick="syncWordBankFromBot(true)" class="bg-purple-950 hover:bg-purple-900 text-purple-200 px-3 py-1.5 rounded-lg text-xs font-bold border border-purple-700 flex items-center gap-1 shadow"><i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-purple-400"></i><span>Sync with Bot (bingo_state.json)</span></button>
+          <button onclick="fetchTornItemsToPool()" class="text-[11px] text-torn-red hover:underline">Sync Torn API</button>
             </div>
             <textarea id="bingo-word-pool" rows="6" oninput="updatePoolCount()" class="w-full bg-torn-well border border-torn-border rounded-lg p-2.5 text-xs text-white font-mono"></textarea>
           </div>
@@ -1102,6 +1104,7 @@
       lucide.createIcons();
       loadSettings();
       initBingoPool();
+      autoFetchRepoWordBankAndState();
       generateRandom3DaySchedule(false);
       populateMemberDropdown();
       renderWinnerTable();
@@ -1109,6 +1112,7 @@
       renderClaimedCardsTable();
       renderScheduledRacesTable();
       renderBugReportsTable();
+      syncWordBankFromBotSilent();
       fetchRepoBugReportsSilent();
       updateFormattedPrize();
       generateOrRetrieveCard(false);
@@ -1638,6 +1642,7 @@
       localStorage.setItem(SCHEDULED_RACES_KEY, JSON.stringify(scheduledRacesLog));
       renderScheduledRacesTable();
       renderBugReportsTable();
+      syncWordBankFromBotSilent();
       fetchRepoBugReportsSilent();
 
       const ok = await postCategoryWebhook('racing', {
@@ -1660,7 +1665,48 @@
     }
 
         // ================= BUG REPORTING LOGIC (v7.0) =================
-    function renderBugReportsTable() {
+        // ================= BINGO STATE & WORD BANK GITHUB SYNC (v7.0) =================
+    async function fetchRepoBingoState() {
+      try {
+        const res = await fetch('./bingo_state.json?t=' + Date.now());
+        if (!res.ok) throw new Error('File not found');
+        const data = await res.json();
+        if (data.word_pool && Array.isArray(data.word_pool) && data.word_pool.length >= 24) {
+          document.getElementById('bingo-word-pool').value = data.word_pool.join('\n');
+          updatePoolCount();
+        }
+        if (data.drawn_words && Array.isArray(data.drawn_words)) {
+          drawnWords = data.drawn_words;
+          localStorage.setItem(GAME_STORAGE_KEY, JSON.stringify(drawnWords));
+          updatePoolCount();
+          renderCallerHistory();
+        }
+        showToast('✓ Synced Word Bank & Called Words from GitHub repo!', 'success');
+      } catch (err) {
+        showToast('Could not fetch bingo_state.json from repo. Run /bingo-push-repo or commit state.', 'error');
+      }
+    }
+
+    async function fetchRepoBingoStateSilent() {
+      try {
+        const res = await fetch('./bingo_state.json?t=' + Date.now());
+        if (res.ok) {
+          const data = await res.json();
+          if (data.word_pool && Array.isArray(data.word_pool) && data.word_pool.length >= 24) {
+            document.getElementById('bingo-word-pool').value = data.word_pool.join('\n');
+            updatePoolCount();
+          }
+          if (data.drawn_words && Array.isArray(data.drawn_words) && data.drawn_words.length > 0) {
+            drawnWords = data.drawn_words;
+            localStorage.setItem(GAME_STORAGE_KEY, JSON.stringify(drawnWords));
+            updatePoolCount();
+            renderCallerHistory();
+          }
+        }
+      } catch (_) {}
+    }
+
+function renderBugReportsTable() {
       const tbody = document.getElementById('bugs-table-body');
       if (!tbody) return;
       tbody.innerHTML = '';
@@ -1752,6 +1798,7 @@
       bugReportsLog.push(record);
       localStorage.setItem(BUGS_STORAGE_KEY, JSON.stringify(bugReportsLog));
       renderBugReportsTable();
+      syncWordBankFromBotSilent();
 
       document.getElementById('bug-description-input').value = '';
       showToast(`Bug ${bugId} logged to bug_reports.json!`, 'success');
@@ -1775,6 +1822,7 @@
         b.resolvedAt = b.status === 'RESOLVED' ? new Date().toISOString() : null;
         localStorage.setItem(BUGS_STORAGE_KEY, JSON.stringify(bugReportsLog));
         renderBugReportsTable();
+      syncWordBankFromBotSilent();
         showToast(`Bug ${id} marked as ${b.status}!`, 'info');
       }
     }
@@ -1784,6 +1832,7 @@
       bugReportsLog = bugReportsLog.filter(x => x.id !== id);
       localStorage.setItem(BUGS_STORAGE_KEY, JSON.stringify(bugReportsLog));
       renderBugReportsTable();
+      syncWordBankFromBotSilent();
       showToast(`Deleted ${id}.`, 'info');
     }
 
@@ -1812,6 +1861,7 @@
           bugReportsLog = data;
           localStorage.setItem(BUGS_STORAGE_KEY, JSON.stringify(bugReportsLog));
           renderBugReportsTable();
+      syncWordBankFromBotSilent();
           showToast(`Synced ${data.length} bug reports from repo!`, 'success');
         }
       } catch (err) {
@@ -1828,6 +1878,7 @@
             bugReportsLog = data;
             localStorage.setItem(BUGS_STORAGE_KEY, JSON.stringify(bugReportsLog));
             renderBugReportsTable();
+      syncWordBankFromBotSilent();
           }
         }
       } catch (_) {}
@@ -1844,6 +1895,7 @@
             bugReportsLog = imp;
             localStorage.setItem(BUGS_STORAGE_KEY, JSON.stringify(bugReportsLog));
             renderBugReportsTable();
+      syncWordBankFromBotSilent();
             showToast(`Imported ${imp.length} bug reports!`, 'success');
           } else {
             showToast('JSON must be an array of bug reports.', 'error');
@@ -2467,6 +2519,7 @@
           if (imp.sessionCards) { sessionCardRegistry = imp.sessionCards; localStorage.setItem(SESSION_CARDS_KEY, JSON.stringify(sessionCardRegistry)); }
           if (imp.scheduledRacesLog) { scheduledRacesLog = imp.scheduledRacesLog; localStorage.setItem(SCHEDULED_RACES_KEY, JSON.stringify(scheduledRacesLog)); renderScheduledRacesTable();
       renderBugReportsTable();
+      syncWordBankFromBotSilent();
       fetchRepoBugReportsSilent(); }
           if (imp.winnersLog) { winnersLog = imp.winnersLog; localStorage.setItem(WINNERS_STORAGE_KEY, JSON.stringify(winnersLog)); renderWinnerTable(); }
           if (imp.wordDrawsLog) { wordDrawsLog = imp.wordDrawsLog; localStorage.setItem(WORD_LOG_KEY, JSON.stringify(wordDrawsLog)); renderCallerHistory(); }
@@ -2477,6 +2530,69 @@
         } catch { showToast('Invalid JSON file.', 'error'); }
       };
       r.readAsText(f);
+    }
+
+    
+    // ================= REAL-TIME WORD BANK & CALLED WORDS BOT SYNC (v7.0) =================
+    async function syncWordBankFromBot(notify = true) {
+      try {
+        const res = await fetch('./bingo_state.json?t=' + Date.now());
+        if (!res.ok) throw new Error('bingo_state.json not reachable');
+        const data = await res.json();
+        
+        if (data.word_pool && Array.isArray(data.word_pool) && data.word_pool.length >= 24) {
+          document.getElementById('bingo-word-pool').value = data.word_pool.join('\n');
+          updatePoolCount();
+        }
+        
+        if (data.drawn_words && Array.isArray(data.drawn_words)) {
+          drawnWords = data.drawn_words;
+          localStorage.setItem(GAME_STORAGE_KEY, JSON.stringify(drawnWords));
+          updatePoolCount();
+        }
+
+        if (notify) showToast(`✓ Synced word bank & ${drawnWords.length} called words with bot (bingo_state.json)!`, 'success');
+      } catch (err) {
+        if (notify) showToast('Could not fetch bingo_state.json from repo. Run bot with GITHUB_TOKEN set to auto-sync.', 'error');
+      }
+    }
+
+    async function syncWordBankFromBotSilent() {
+      try {
+        const res = await fetch('./bingo_state.json?t=' + Date.now());
+        if (res.ok) {
+          const data = await res.json();
+          if (data.word_pool && Array.isArray(data.word_pool) && data.word_pool.length >= 24) {
+            document.getElementById('bingo-word-pool').value = data.word_pool.join('\n');
+            updatePoolCount();
+          }
+          if (data.drawn_words && Array.isArray(data.drawn_words)) {
+            drawnWords = data.drawn_words;
+            localStorage.setItem(GAME_STORAGE_KEY, JSON.stringify(drawnWords));
+            updatePoolCount();
+          }
+        }
+      } catch (_) {}
+    }
+
+    
+    async function autoFetchRepoWordBankAndState() {
+      try {
+        const res = await fetch('./bingo_state.json?t=' + Date.now());
+        if (res.ok) {
+          const data = await res.json();
+          if (data && Array.isArray(data.word_pool) && data.word_pool.length >= 24) {
+            document.getElementById('bingo-word-pool').value = data.word_pool.join('\n');
+            updatePoolCount();
+          }
+          if (data && Array.isArray(data.drawn_words)) {
+            drawnWords = data.drawn_words;
+            localStorage.setItem(GAME_STORAGE_KEY, JSON.stringify(drawnWords));
+            updatePoolCount();
+            renderCallerHistory();
+          }
+        }
+      } catch (_) {}
     }
 
     function initBingoPool() {
