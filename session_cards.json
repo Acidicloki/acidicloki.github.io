@@ -1338,5 +1338,139 @@
       }
     ],
     "lockedAt": "2026-08-27T09:27:06.819498+00:00"
+  },
+  "349148437805137933": {
+    "seed": "Tora99 [4262207] (\\/)-349148",
+    "userName": "Tora99 [4262207] (\\/)",
+    "userId": "349148437805137933",
+    "raffleNumber": 11,
+    "cells": [
+      {
+        "text": "MP5 Navy",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Tabata RM2",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Polymorphic Virus",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Glock 17",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Edomondo NSX",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Tunneling Virus",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Scimitar",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Plastic Watch",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Bavaria M5",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "First Aid Kit",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Full Body Armor",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Trainers",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Blank DVDs : 100",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Knuckle Dusters",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "USP",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Armored Virus",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Stainless Steel Watch",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Sapphire Ring",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Kitchen Knife",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Sawed-Off Shotgun",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Pen Knife",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Microwave",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Personal Computer",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Benelli M4 Super",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-27T11:32:07.443031+00:00"
   }
 }
