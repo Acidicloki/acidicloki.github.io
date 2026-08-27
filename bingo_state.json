@@ -5,7 +5,13 @@
     "Hammer",
     "M4A1 Colt Carbine",
     "Pack of Cuban Cigars",
-    "Benelli M1 Tactical"
+    "Benelli M1 Tactical",
+    "Tunneling Virus",
+    "Snow Cannon",
+    "M16 A2 Rifle",
+    "Simple Virus",
+    "Morphine",
+    "Full Body Armor"
   ],
   "word_pool": [
     "Hammer",
@@ -89,5 +95,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-27T02:23:00.046717+00:00"
+  "updated_at": "2026-08-27T02:23:15.311717+00:00"
 }
