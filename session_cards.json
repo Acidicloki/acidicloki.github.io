@@ -668,5 +668,139 @@
       }
     ],
     "lockedAt": "2026-08-27T05:12:41.126773+00:00"
+  },
+  "242191849803087873": {
+    "seed": "waverr [3865008] (\\/)-242191",
+    "userName": "waverr [3865008] (\\/)",
+    "userId": "242191849803087873",
+    "raffleNumber": 6,
+    "cells": [
+      {
+        "text": "Hard Drive",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Raven MP25",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Trainers",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Benelli M1 Tactical",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Gold Ring",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Silver Necklace",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Dagger",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Ruger 57",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Armored Virus",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Blank DVDs : 100",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "M16 A2 Rifle",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Microwave",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Axe",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Stealth Virus",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "M4A1 Colt Carbine",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Personal Computer",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "AK-47",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Sawed-Off Shotgun",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Edomondo NSX",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "P90",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Gold Watch",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Fiveseven",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Beretta M9",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Echo Quadrato",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-27T05:56:47.303998+00:00"
   }
 }
