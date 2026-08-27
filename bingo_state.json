@@ -11,7 +11,23 @@
     "Armored Virus",
     "Knuckle Dusters",
     "Personal Computer",
-    "Hard Drive"
+    "Hard Drive",
+    "Television",
+    "M4A1 Colt Carbine",
+    "Pearl Necklace",
+    "MP3 Player",
+    "Tabata RM2",
+    "Box of Bon Bons",
+    "Gold Necklace",
+    "Plain Silver Ring",
+    "Chainsaw",
+    "USP",
+    "Gold Ring",
+    "Pen Knife",
+    "Big Box of Chocolate Bars",
+    "Stainless Steel Watch",
+    "Dagger",
+    "Christmas Cracker '04"
   ],
   "word_pool": [
     "Hammer",
@@ -95,5 +111,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-27T02:12:25.188983+00:00"
+  "updated_at": "2026-08-27T02:12:32.801773+00:00"
 }
