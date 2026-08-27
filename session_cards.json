@@ -132,5 +132,139 @@
       }
     ],
     "lockedAt": "2026-08-27T02:25:15.893737+00:00"
+  },
+  "242191849803087873": {
+    "seed": "waves-242191",
+    "userName": "waves",
+    "userId": "242191849803087873",
+    "raffleNumber": 2,
+    "cells": [
+      {
+        "text": "Glock 17",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "First Aid Kit",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Knuckle Dusters",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Benelli M1 Tactical",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Axe",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Gold Ring",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Armored Virus",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Gold Watch",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Personal Computer",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Simple Virus",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Beretta 92FS",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Stainless Steel Watch",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Tank Top",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Desert Eagle",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Tunneling Virus",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Pack of Music CDs",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "MP5 Navy",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Big Box of Chocolate Bars",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Santa Hat '04",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Sawed-Off Shotgun",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Hard Drive",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Bulletproof Vest",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Pearl Necklace",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Dual 92G Berettas",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-27T02:25:23.080324+00:00"
   }
 }
