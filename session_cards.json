@@ -1070,5 +1070,139 @@
       }
     ],
     "lockedAt": "2026-08-27T06:37:51.673404+00:00"
+  },
+  "777054865825857576": {
+    "seed": "Lottie89 [4265999] (CM)-777054",
+    "userName": "Lottie89 [4265999] (CM)",
+    "userId": "777054865825857576",
+    "raffleNumber": 9,
+    "cells": [
+      {
+        "text": "Leather Vest",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "AK-47",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Baseball Bat",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Gold Necklace",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Box of Chocolate Bars",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Benelli M4 Super",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Gold Ring",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Edomondo NSX",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Minigun",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Benelli M1 Tactical",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Outer Tactical Vest",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Gold Watch",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Morphine",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Police Vest",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Blank DVDs : 100",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Polymorphic Virus",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Big Box of Chocolate Bars",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "M249 SAW",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Snow Cannon",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "P90",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Bulletproof Vest",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Echo Quadrato",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Jacket",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Silver Necklace",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-27T07:38:01.999454+00:00"
   }
 }
