@@ -18,7 +18,8 @@
     "Sawed-Off Shotgun",
     "Microwave",
     "Trainers",
-    "Knuckle Dusters"
+    "Knuckle Dusters",
+    "M249 SAW"
   ],
   "word_pool": [
     "Hammer",
@@ -102,5 +103,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-27T02:24:17.037478+00:00"
+  "updated_at": "2026-08-27T02:24:27.290124+00:00"
 }
