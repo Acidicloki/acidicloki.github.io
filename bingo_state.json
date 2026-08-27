@@ -11,7 +11,13 @@
     "M16 A2 Rifle",
     "Simple Virus",
     "Morphine",
-    "Full Body Armor"
+    "Full Body Armor",
+    "Fiveseven",
+    "Outer Tactical Vest",
+    "Pen Knife",
+    "Sawed-Off Shotgun",
+    "Microwave",
+    "Trainers"
   ],
   "word_pool": [
     "Hammer",
@@ -95,5 +101,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-27T02:23:15.311717+00:00"
+  "updated_at": "2026-08-27T02:23:37.530458+00:00"
 }
