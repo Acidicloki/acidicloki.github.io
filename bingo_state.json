@@ -1,38 +1,5 @@
 {
-  "drawn_words": [
-    "Plastic Watch",
-    "Stealth Virus",
-    "Edomondo NSX",
-    "CD Player",
-    "Gold Necklace",
-    "MP5 Navy",
-    "Gold Ring",
-    "Diamond Ring",
-    "AK-47",
-    "Blank DVDs : 100",
-    "Big Box of Chocolate Bars",
-    "Leather Vest",
-    "Benelli M4 Super",
-    "Knuckle Dusters",
-    "Fiveseven",
-    "Tunneling Virus",
-    "Armored Virus",
-    "Dagger",
-    "MP3 Player",
-    "Chainsaw",
-    "Kitchen Knife",
-    "Glock 17",
-    "Hard Drive",
-    "Bulletproof Vest",
-    "Box of Extra Strong Mints",
-    "Raven MP25",
-    "Santa Hat '04",
-    "Stainless Steel Watch",
-    "Steyr AUG",
-    "Pack of Music CDs",
-    "Ruger 57",
-    "First Aid Kit"
-  ],
+  "drawn_words": [],
   "word_pool": [
     "Hammer",
     "Baseball Bat",
@@ -115,5 +82,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-27T02:20:50.351272+00:00"
+  "updated_at": "2026-08-27T02:22:37.995305+00:00"
 }
