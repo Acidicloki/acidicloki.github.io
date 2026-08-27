@@ -1,5 +1,12 @@
 {
-  "drawn_words": [],
+  "drawn_words": [
+    "Edomondo NSX",
+    "P90",
+    "Hammer",
+    "M4A1 Colt Carbine",
+    "Pack of Cuban Cigars",
+    "Benelli M1 Tactical"
+  ],
   "word_pool": [
     "Hammer",
     "Baseball Bat",
@@ -82,5 +89,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-27T02:22:37.995305+00:00"
+  "updated_at": "2026-08-27T02:23:00.046717+00:00"
 }
