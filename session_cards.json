@@ -534,5 +534,139 @@
       }
     ],
     "lockedAt": "2026-08-27T04:50:23.051571+00:00"
+  },
+  "245032280462983171": {
+    "seed": "ImagePlays [4112107] (TWI)-245032",
+    "userName": "ImagePlays [4112107] (TWI)",
+    "userId": "245032280462983171",
+    "raffleNumber": 5,
+    "cells": [
+      {
+        "text": "Magnum",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Glock 17",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "DVD Player",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "CD Player",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "M16 A2 Rifle",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "AK-47",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Full Body Armor",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Stainless Steel Watch",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Pack of Music CDs",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Tabata RM2",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "USP",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Bag of Bon Bons",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Raven MP25",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Police Vest",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Hammer",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Gold Watch",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Bulletproof Vest",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "First Aid Kit",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Benelli M1 Tactical",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Simple Virus",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Crowbar",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Jacket",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Knuckle Dusters",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Trainers",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-27T05:12:41.126773+00:00"
   }
 }
