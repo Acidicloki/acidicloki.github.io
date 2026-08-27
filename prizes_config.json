@@ -1,0 +1,20 @@
+{
+  "raffle_day1": "Drug Pack",
+  "raffle_day2": "Feathery Hotel Coupon",
+  "raffle_day3": "Six Pack of Energy",
+  "race_bronze_1st": "3m",
+  "race_bronze_2nd": "2m",
+  "race_bronze_3rd": "1m",
+  "race_bronze_last": "col",
+  "race_silver_1st": "3m",
+  "race_silver_2nd": "2m",
+  "race_silver_3rd": "1m",
+  "race_silver_last": "col",
+  "race_gold_1st": "3m",
+  "race_gold_2nd": "2m",
+  "race_gold_3rd": "1m",
+  "race_gold_last": "col",
+  "bingo_prize": "Drug pack",
+  "bingo_blackout": "test",
+  "jumble_fast": "test2"
+}

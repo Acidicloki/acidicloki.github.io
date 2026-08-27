@@ -1,0 +1,25 @@
+[
+  {
+    "id": "RACE-1787792002",
+    "title": "Weekend at Loki's 3-Day Series",
+    "stage1": {
+      "track": "Hammerhead",
+      "laps": 25,
+      "class": "Stock E",
+      "time": "8/27/2026"
+    },
+    "stage2": {
+      "track": "Vector",
+      "laps": 25,
+      "class": "Stock E",
+      "time": "Day 2 18:00 TCT"
+    },
+    "stage3": {
+      "track": "Docks",
+      "laps": 25,
+      "class": "Stock E",
+      "time": "Day 3 18:00 TCT"
+    },
+    "scheduledAt": "2026-08-27T00:53:22.113482+00:00"
+  }
+]

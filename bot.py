@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """
-Weekend at Loki's - Torn City Event Discord Bot (v5.9 Auto-Repo Sync Edition)
+Weekend at Loki's - Torn City Event Discord Bot (v7.0 Directory-Anchored Storage Edition)
 Hosted by Loki [2356475]
 Features:
- - Automatic GitHub Repository commit/sync on /bingo-card registration
- - Locked session cards registry (Strictly 1 card per player)
- - Sequential Raffle Ticket numbering on each Bingo card in order of sign-up
+ - Absolute Directory Anchoring (BASE_DIR): All JSON files are strictly stored in the same directory as bot.py
+ - In-Memory State Purge: /bingo-new-game and webhooks wipe internal Python dictionaries and files
+ - /bingo-reload-disk: Forces bot to reload in-memory cache directly from disk (or clear if file was deleted)
+ - /bingo-card: Generates 5x5 card, locks 1 card per player, assigns sequential Raffle Ticket #, and auto-syncs to GitHub
+ - /bingo-push-repo: Explicitly tests and pushes session_cards.json to GitHub with live diagnostics
+ - /bingo-sync-export / /bingo-card-export: Exports session cards JSON attachment for 1-click site paste
  - /raffle-roll: Draws winners directly from the roster of claimed cards
- - /bingo-new-game: Starts a fresh match, resetting cards and raffle numbers back to #1
  - Secret Jumbles: Answers hidden from Discord
  - Scheduled 3-Day Races logging
  - #announcements reaction RSVP listener (🎉)
@@ -51,22 +53,71 @@ logger = logging.getLogger("WeekendAtLokis")
 TOKEN = os.getenv("DISCORD_TOKEN", "").strip()
 TORN_API_KEY = os.getenv("TORN_API_KEY", "").strip()
 
-# GitHub Repo Auto-Sync (Optional - enables automatic commit to GitHub Pages repo)
+# GitHub Repo Auto-Sync Settings
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", "").strip()
 GITHUB_REPO = os.getenv("GITHUB_REPO", "").strip() # Format: "username/repository-name"
 GITHUB_BRANCH = os.getenv("GITHUB_BRANCH", "main").strip()
+
+# Discord Channel IDs (Direct Native Bot Routing - No Webhooks Required)
+def parse_channel_id(env_var_name: str) -> int:
+    val = os.getenv(env_var_name, "").strip()
+    return int(val) if val.isdigit() else 0
+
+ANNOUNCEMENTS_CHANNEL_ID = parse_channel_id("ANNOUNCEMENTS_CHANNEL_ID")
+BINGO_CHANNEL_ID = parse_channel_id("BINGO_CHANNEL_ID")
+RACE_CHANNEL_ID = parse_channel_id("RACE_CHANNEL_ID")
+RAFFLE_CHANNEL_ID = parse_channel_id("RAFFLE_CHANNEL_ID")
+
 
 DISCORD_ANNOUNCEMENTS_WEBHOOK_URL = os.getenv("DISCORD_ANNOUNCEMENTS_WEBHOOK_URL", "").strip()
 DISCORD_BINGO_WEBHOOK_URL = os.getenv("DISCORD_BINGO_WEBHOOK_URL", "").strip()
 DISCORD_RACE_WEBHOOK_URL = os.getenv("DISCORD_RACE_WEBHOOK_URL", "").strip()
 DISCORD_RAFFLE_WEBHOOK_URL = os.getenv("DISCORD_RAFFLE_WEBHOOK_URL", "").strip()
 
-STATE_FILE = "bingo_state.json"
-SESSION_CARDS_FILE = "session_cards.json"
-ROSTER_FILE = "reaction_roster.json"
-DRAWS_LOG_FILE = "draws_log.json"
-WINNERS_LOG_FILE = "winners_log.json"
-SCHEDULED_RACES_FILE = "scheduled_races_log.json"
+# ABSOLUTE BASE DIRECTORY ANCHORING (Stored in exact folder where bot.py lives)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATE_FILE = os.path.join(BASE_DIR, "bingo_state.json")
+SESSION_CARDS_FILE = os.path.join(BASE_DIR, "session_cards.json")
+ROSTER_FILE = os.path.join(BASE_DIR, "reaction_roster.json")
+DRAWS_LOG_FILE = os.path.join(BASE_DIR, "draws_log.json")
+WINNERS_LOG_FILE = os.path.join(BASE_DIR, "winners_log.json")
+SCHEDULED_RACES_FILE = os.path.join(BASE_DIR, "scheduled_races_log.json")
+BUG_REPORTS_FILE = os.path.join(BASE_DIR, "bug_reports.json")
+PRIZES_CONFIG_FILE = os.path.join(BASE_DIR, "prizes_config.json")
+RACE_PASSWORD = os.getenv("RACE_PASSWORD", "LOKI2026").strip()
+
+logger.info(f"Storage path anchored to: {BASE_DIR}")
+
+
+DEFAULT_PRIZES = {
+    "raffle_day1": "50x Xanax",
+    "raffle_day2": "5x Box of Medical Supplies",
+    "raffle_day3": "1x Donator Pack + 50x Xanax",
+    "race_bronze_1st": "10x Xanax",
+    "race_bronze_2nd": "5x Xanax",
+    "race_bronze_3rd": "2x Xanax",
+    "race_bronze_last": "1x Xanax (Consolation)",
+    "race_silver_1st": "25x Xanax",
+    "race_silver_2nd": "15x Xanax",
+    "race_silver_3rd": "5x Xanax",
+    "race_silver_last": "2x Xanax (Consolation)",
+    "race_gold_1st": "50x Xanax + Box of Meds",
+    "race_gold_2nd": "25x Xanax",
+    "race_gold_3rd": "10x Xanax",
+    "race_gold_last": "5x Xanax (Consolation)",
+    "bingo_prize": "25x Xanax",
+    "bingo_line": "25x Xanax",
+    "bingo_blackout": "100x Xanax + 2x Donator Pack",
+    "jumble_fast": "5x Xanax per Drop"
+}
+
+def get_configured_prizes() -> dict:
+    loaded = safe_load_json(PRIZES_CONFIG_FILE, {})
+    if isinstance(loaded, dict) and loaded:
+        prizes = dict(DEFAULT_PRIZES)
+        prizes.update(loaded)
+        return prizes
+    return dict(DEFAULT_PRIZES)
 
 TORN_TRACKS = [
     "Mudpit", "Hammerhead", "Two Islands", "Docks", "Industrial",
@@ -105,17 +156,22 @@ def safe_save_json(file_path: str, data):
         logger.error(f"Error saving to {file_path}: {e}")
 
 def sync_file_to_github_repo(relative_path: str, content_data: dict, commit_message: str):
-    """Commits and uploads updated JSON file directly to GitHub repo via REST API."""
-    if not GITHUB_TOKEN or not GITHUB_REPO:
-        return
+    """Commits and uploads updated JSON file directly to GitHub repo via REST API. Returns (success: bool, status_msg: str)."""
+    if not GITHUB_TOKEN:
+        return False, "GITHUB_TOKEN is not configured in .env"
+    if not GITHUB_REPO:
+        return False, "GITHUB_REPO is not configured in .env (Format: username/repo-name)"
+
+    repo_clean = GITHUB_REPO.replace("https://github.com/", "").strip("/")
+
     try:
-        url = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{relative_path}"
+        url = f"https://api.github.com/repos/{repo_clean}/contents/{relative_path}"
         headers = {
             "Authorization": f"Bearer {GITHUB_TOKEN}",
             "Accept": "application/vnd.github+json",
             "User-Agent": "WeekendAtLokisBot"
         }
-        # Check if file exists to get sha
+
         sha = None
         req = urllib.request.Request(url, headers=headers, method="GET")
         try:
@@ -124,8 +180,14 @@ def sync_file_to_github_repo(relative_path: str, content_data: dict, commit_mess
                     info = json.loads(resp.read().decode("utf-8"))
                     sha = info.get("sha")
         except urllib.error.HTTPError as e:
-            if e.code != 404:
-                logger.warning(f"GitHub SHA check error: {e}")
+            if e.code == 401:
+                return False, "GitHub Authentication Failed (HTTP 401: Invalid Token)"
+            elif e.code == 403:
+                return False, "GitHub Permission Denied (HTTP 403: Token requires 'Contents: Read and write' permission)"
+            elif e.code == 404:
+                sha = None
+            else:
+                return False, f"GitHub Error {e.code}: {e.reason}"
 
         content_bytes = json.dumps(content_data, indent=2).encode("utf-8")
         b64_content = base64.b64encode(content_bytes).decode("utf-8")
@@ -141,9 +203,24 @@ def sync_file_to_github_repo(relative_path: str, content_data: dict, commit_mess
         put_req = urllib.request.Request(url, data=put_data, headers=headers, method="PUT")
         with urllib.request.urlopen(put_req) as put_resp:
             if put_resp.status in (200, 201):
-                logger.info(f"Successfully committed and uploaded '{relative_path}' to GitHub repo '{GITHUB_REPO}' on branch '{GITHUB_BRANCH}'.")
+                msg = f"Successfully committed '{relative_path}' to '{repo_clean}' on branch '{GITHUB_BRANCH}'!"
+                logger.info(msg)
+                return True, msg
+            return False, f"Unexpected response from GitHub: HTTP {put_resp.status}"
+
+    except urllib.error.HTTPError as he:
+        if he.code == 403:
+            err = "GitHub Error 403 Forbidden. Your token needs 'Contents: Read and write' permissions."
+        elif he.code == 404:
+            err = f"GitHub Error 404 Not Found. Please check repository name '{repo_clean}'."
+        else:
+            err = f"GitHub API Error {he.code}: {he.reason}"
+        logger.warning(err)
+        return False, err
     except Exception as ex:
-        logger.warning(f"GitHub Auto-Sync notice: {ex}")
+        err = f"GitHub sync error: {ex}"
+        logger.warning(err)
+        return False, err
 
 def scramble_word(word: str) -> str:
     tokens = word.split()
@@ -198,6 +275,47 @@ class LogManager:
         return record
 
     @staticmethod
+    def append_bug_report(reporter_name: str, reporter_id: str, description: str, severity: str = "Medium", feature: str = "General"):
+        records = safe_load_json(BUG_REPORTS_FILE, [])
+        if not isinstance(records, list):
+            records = []
+        bug_id = f"BUG-{len(records) + 1001}"
+        record = {
+            "id": bug_id,
+            "reporterName": reporter_name,
+            "reporterId": str(reporter_id),
+            "description": description,
+            "severity": severity,
+            "feature": feature,
+            "status": "OPEN",
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+        records.append(record)
+        safe_save_json(BUG_REPORTS_FILE, records)
+        logger.info(f"[BUG REPORT] Logged {bug_id} ({feature} - {severity}) from {reporter_name}: {description[:60]}")
+        # Automatically sync to GitHub repo if token is configured
+        sync_file_to_github_repo("bug_reports.json", records, f"Log bug report {bug_id} from {reporter_name}")
+        return record
+
+    @staticmethod
+    def update_bug_status(bug_id: str, new_status: str = "RESOLVED"):
+        records = safe_load_json(BUG_REPORTS_FILE, [])
+        if not isinstance(records, list):
+            return False, "No bug reports found"
+        found = False
+        for r in records:
+            if r.get("id", "").upper() == bug_id.upper():
+                r["status"] = new_status
+                r["resolvedAt"] = datetime.now(timezone.utc).isoformat()
+                found = True
+                break
+        if found:
+            safe_save_json(BUG_REPORTS_FILE, records)
+            sync_file_to_github_repo("bug_reports.json", records, f"Update bug report {bug_id} status to {new_status}")
+            return True, f"Bug {bug_id} marked as {new_status}"
+        return False, f"Bug ID {bug_id} not found"
+
+    @staticmethod
     def append_race_schedule(title: str, t1: str, time1: str, t2: str, time2: str, t3: str, time3: str):
         records = safe_load_json(SCHEDULED_RACES_FILE, [])
         if not isinstance(records, list):
@@ -233,6 +351,8 @@ class BingoSessionManager:
         cards_data = safe_load_json(SESSION_CARDS_FILE, {})
         if isinstance(cards_data, dict):
             self.user_cards = cards_data
+        else:
+            self.user_cards = {}
 
         roster_data = safe_load_json(ROSTER_FILE, [])
         if isinstance(roster_data, list):
@@ -256,19 +376,17 @@ class BingoSessionManager:
         safe_save_json(STATE_FILE, {"drawn_words": self.drawn_words, "word_pool": self.word_pool})
 
     def start_new_game(self):
-        """Starts a fresh session: clears cards & raffle tickets back to #1, preserves settings."""
+        """Starts a fresh session: clears cards & raffle tickets back to #1, purges memory & disk, and syncs."""
         self.drawn_words = []
         self.user_cards = {}
         self.save_state()
         self.save_cards()
-        logger.info("Fresh session started! Session cards reset to #1 and synced.")
+        logger.info("🤖 WALL-E Cleaned Session: Cards reset to {} and synced.")
 
     def get_or_create_card(self, user_id: str, user_name: str):
-        # 1-Card-Per-Player Session Lock
         if str(user_id) in self.user_cards:
             return self.user_cards[str(user_id)], False
 
-        # Sequential Raffle Ticket assignment in order of sign-up
         raffle_num = len(self.user_cards) + 1
         seed = f"{user_name}-{str(user_id)[:6]}"
         h = int(hashlib.sha256(seed.encode("utf-8")).hexdigest(), 16)
@@ -327,31 +445,49 @@ def get_cross_platform_font(font_size: int, is_bold: bool = False):
         return ImageFont.load_default()
 
 
-def render_bingo_card_image(title: str, player_name: str, seed: str, raffle_number: int, cells: list) -> io.BytesIO:
-    width, height = 800, 900
+def get_current_race_password() -> str:
+    prizes = safe_load_json(PRIZES_CONFIG_FILE, {})
+    if isinstance(prizes, dict) and prizes.get("race_password"):
+        return str(prizes["race_password"]).strip()
+    return os.getenv("RACE_PASSWORD", "LOKI2026").strip()
+
+
+def render_bingo_card_image(title: str, player_name: str, seed: str, raffle_number: int, cells: list, race_password: str = None) -> io.BytesIO:
+    width, height = 860, 1020
     img = Image.new("RGB", (width, height), color="#141414")
     draw = ImageDraw.Draw(img)
 
-    draw.rectangle([40, 40, 760, 140], fill="#202020", outline="#383838", width=2)
-    title_font = get_cross_platform_font(28, is_bold=True)
-    meta_font = get_cross_platform_font(13, is_bold=True)
-    letter_font = get_cross_platform_font(22, is_bold=True)
-    cell_font = get_cross_platform_font(12, is_bold=False)
-    cell_font_bold = get_cross_platform_font(12, is_bold=True)
+    if not race_password:
+        race_password = get_current_race_password()
 
-    draw.text((400, 65), title, fill="#ffffff", font=title_font, anchor="mm")
-    draw.text((400, 105), f"Player: {player_name}  |  🎟️ Raffle Ticket #{raffle_number} (Card Locked)", fill="#eab308", font=meta_font, anchor="mm")
+    # Top Header Box (Enlarged +50% Font Styling)
+    draw.rectangle([35, 30, 825, 175], fill="#1e1e1e", outline="#383838", width=2)
+    
+    # 50% Increased Font Sizes
+    title_font = get_cross_platform_font(42, is_bold=True)     # 28 -> 42 (+50%)
+    meta_font = get_cross_platform_font(20, is_bold=True)      # 13 -> 20 (+50%)
+    pass_font = get_cross_platform_font(18, is_bold=True)      # +50% Password font
+    letter_font = get_cross_platform_font(33, is_bold=True)    # 22 -> 33 (+50%)
+    cell_font = get_cross_platform_font(18, is_bold=False)     # 12 -> 18 (+50%)
+    cell_font_bold = get_cross_platform_font(18, is_bold=True)# 12 -> 18 (+50%)
+
+    # Header Text
+    draw.text((430, 62), title, fill="#ffffff", font=title_font, anchor="mm")
+    draw.text((430, 110), f"Player: {player_name}  |  🎟️ Raffle Ticket #{raffle_number}", fill="#eab308", font=meta_font, anchor="mm")
+    draw.text((430, 148), f"🔑 Official Race Password: {race_password}", fill="#22c55e", font=pass_font, anchor="mm")
 
     letters = ["B", "I", "N", "G", "O"]
-    cell_w, cell_h = 138, 132
-    start_x, start_y = 55, 160
+    cell_w, cell_h = 150, 150
+    start_x, start_y = 45, 195
 
+    # Column B-I-N-G-O Headers
     for col in range(5):
         x = start_x + col * cell_w
-        draw.rectangle([x, start_y, x + cell_w - 6, start_y + 40], fill="#d32f2f")
-        draw.text((x + (cell_w - 6) / 2, start_y + 20), letters[col], fill="#ffffff", font=letter_font, anchor="mm")
+        draw.rectangle([x, start_y, x + cell_w - 6, start_y + 48], fill="#d32f2f")
+        draw.text((x + (cell_w - 6) / 2, start_y + 24), letters[col], fill="#ffffff", font=letter_font, anchor="mm")
 
-    grid_y = start_y + 50
+    # 5x5 Cells
+    grid_y = start_y + 56
     for idx, cell in enumerate(cells):
         row = idx // 5
         col = idx % 5
@@ -361,22 +497,26 @@ def render_bingo_card_image(title: str, player_name: str, seed: str, raffle_numb
 
         bg_color = "#2a1f11" if cell["is_free"] else "#1e1e1e"
         border_color = "#eab308" if cell["is_free"] else "#383838"
-        text_color = "#eab308" if cell["is_free"] else "#e5e5e5"
+        text_color = "#eab308" if cell["is_free"] else "#ffffff"
 
         draw.rectangle([x, y, x + w, y + h], fill=bg_color, outline=border_color, width=2 if cell["is_free"] else 1)
 
+        # Multi-line word wrapping with 18px font (+50%)
         words = cell["text"].split()
         lines, current_line = [], ""
         for word in words:
             test_line = f"{current_line} {word}".strip()
-            if len(test_line) <= 14: current_line = test_line
+            if len(test_line) <= 11:
+                current_line = test_line
             else:
-                if current_line: lines.append(current_line)
+                if current_line:
+                    lines.append(current_line)
                 current_line = word
-        if current_line: lines.append(current_line)
+        if current_line:
+            lines.append(current_line)
 
-        line_h = 16
-        text_start_y = y + (h - len(lines) * line_h) / 2 + 8
+        line_h = 22
+        text_start_y = y + (h - len(lines) * line_h) / 2 + 10
         f = cell_font_bold if cell["is_free"] else cell_font
         for i_line, line in enumerate(lines):
             draw.text((x + w / 2, text_start_y + i_line * line_h), line, fill=text_color, font=f, anchor="mm")
@@ -398,17 +538,60 @@ class TornSuiteClient(commands.Bot):
         super().__init__(command_prefix="!", intents=intents)
         self.session = BingoSessionManager()
 
+    async def send_to_channel(self, channel_id: int, content: str = None, embed: discord.Embed = None, file: discord.File = None) -> bool:
+        """Auto-deploys messages natively to the configured channel ID without webhooks."""
+        if not channel_id:
+            return False
+        try:
+            channel = self.get_channel(channel_id)
+            if not channel:
+                channel = await self.fetch_channel(channel_id)
+            if channel:
+                await channel.send(content=content, embed=embed, file=file)
+                return True
+        except Exception as e:
+            logger.warning(f"[AUTO-DEPLOY] Could not send to channel {channel_id}: {e}")
+        return False
+
     async def setup_hook(self):
         try:
             await self.tree.sync()
-            logger.info("Weekend at Loki's slash commands synced (v5.9 Auto-Repo Sync Active).")
+            logger.info("Weekend at Loki's slash commands synced (v7.0 Storage Anchored).")
         except Exception as e:
             logger.warning(f"Sync note: {e}")
 
     async def on_ready(self):
         activity = discord.Activity(type=discord.ActivityType.watching, name="Weekend at Loki's | /bingo-card")
         await self.change_presence(activity=activity)
-        logger.info(f"Connected to Discord as {self.user}. Ready!")
+        logger.info(f"🤖 WALL-E connected as {self.user} for Weekend at Loki's!")
+
+    async def on_message(self, message: discord.Message):
+        """Listens for 'Start New Game' push notification webhooks from the website to auto-clear session_cards.json."""
+        if message.author.id == self.user.id:
+            return
+
+        is_new_session_alert = False
+        content_lower = (message.content or "").lower()
+        if "a new weekend at loki's bingo session has started" in content_lower or "fresh bingo session started" in content_lower:
+            is_new_session_alert = True
+
+        for embed in message.embeds:
+            title_lower = (embed.title or "").lower()
+            desc_lower = (embed.description or "").lower()
+            if "fresh bingo session started" in title_lower or "new weekend at loki's bingo" in title_lower or "all previous cards have been cleared" in desc_lower:
+                is_new_session_alert = True
+                break
+
+        if is_new_session_alert:
+            logger.info("🤖 WALL-E intercepted New Session webhook from website! Wiping session_cards.json & auto-syncing to GitHub...")
+            self.session.start_new_game()
+            try:
+                await message.add_reaction("🤖")
+                await message.add_reaction("🧹")
+            except Exception:
+                pass
+
+        await self.process_commands(message)
 
     async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):
         try:
@@ -451,32 +634,87 @@ async def cmd_bingo_card(interaction: discord.Interaction):
     await interaction.followup.send(embed=embed, file=file)
 
 
-# 2. BINGO SYNC EXPORT (Bridges Discord to Web Dashboard)
-@bot.tree.command(name="bingo-sync-export", description="Export all claimed Discord Bingo cards to JSON for 1-click site sync")
-async def cmd_bingo_sync_export(interaction: discord.Interaction):
+# 2. FORCE RELOAD STATE FROM DISK (v7.0)
+@bot.tree.command(name="bingo-reload-disk", description="Forces bot to reload or clear in-memory state directly from disk")
+async def cmd_bingo_reload_disk(interaction: discord.Interaction):
+    bot.session.load_all()
+    count = len(bot.session.user_cards)
+    embed = discord.Embed(
+        title="🔄 Bot Storage Reloaded from Disk",
+        description=f"**File Location:** `{SESSION_CARDS_FILE}`\n**Active In-Memory Cards:** `{count}`\n**Drawn Words Count:** `{len(bot.session.drawn_words)}`\n\n*(If you deleted `session_cards.json`, memory is now 0 cards)*",
+        color=0x3b82f6,
+        timestamp=datetime.now(timezone.utc)
+    )
+    embed.set_footer(text="Weekend at Loki's • Storage Manager")
+    await interaction.response.send_message(embed=embed)
+
+
+# 3. BINGO SYNC EXPORT & ALIAS /bingo-card-export
+async def handle_sync_export(interaction: discord.Interaction):
     cards = bot.session.user_cards
     count = len(cards)
     json_str = json.dumps({"sessionCards": cards}, indent=2)
     buf = io.BytesIO(json_str.encode("utf-8"))
     file = discord.File(buf, filename="session_cards.json")
 
+    gh_status = "Not configured in .env (Use file upload on website)"
+    if GITHUB_TOKEN and GITHUB_REPO:
+        gh_status = f"Configured for `{GITHUB_REPO}` on branch `{GITHUB_BRANCH}`"
+
     embed = discord.Embed(
-        title="🗂️ Weekend at Loki's — Session Cards Sync Export",
-        description=f"Exported **{count} claimed Bingo cards** with sequential Raffle Tickets!\n\n**To Sync to Web Dashboard:**\n1. In the Web GUI, go to **Claimed Cards** tab.\n2. Click **Load Discord `session_cards.json`** and select this file (or click **Paste Sync**).",
+        title="🗂️ Weekend at Loki's — Session Cards Export",
+        description=f"Exported **{count} claimed Bingo cards** with sequential Raffle Tickets from memory & `session_cards.json`.\n\n**File on Disk:** `{SESSION_CARDS_FILE}`\n\n**To Sync to Web Dashboard:**\n1. In the Web GUI, go to **Claimed Cards** tab.\n2. Click **Load Discord `session_cards.json`** and select this file, or click **Paste Sync**.\n\n**GitHub Auto-Sync Status:**\n`{gh_status}`",
         color=0xa855f7,
         timestamp=datetime.now(timezone.utc)
     )
-    embed.set_footer(text="Weekend at Loki's • Sync Bridge")
+    embed.set_footer(text="Weekend at Loki's • Session Cards Bridge")
     await interaction.response.send_message(embed=embed, file=file, ephemeral=False)
 
+@bot.tree.command(name="bingo-sync-export", description="Export all claimed Discord Bingo cards to JSON for 1-click site sync")
+async def cmd_bingo_sync_export(interaction: discord.Interaction):
+    await handle_sync_export(interaction)
 
-# 3. START NEW GAME (RESET TICKETS)
+@bot.tree.command(name="bingo-card-export", description="Export all claimed Discord Bingo cards to JSON (alias)")
+async def cmd_bingo_card_export(interaction: discord.Interaction):
+    await handle_sync_export(interaction)
+
+
+# 4. PUSH CARDS TO GITHUB REPO WITH LIVE DIAGNOSTICS
+@bot.tree.command(name="bingo-push-repo", description="Push session_cards.json directly to GitHub repository with status report")
+async def cmd_bingo_push_repo(interaction: discord.Interaction):
+    await interaction.response.defer()
+    cards = bot.session.user_cards
+    count = len(cards)
+
+    success, message = await asyncio.to_thread(
+        sync_file_to_github_repo,
+        "session_cards.json",
+        cards,
+        f"Manual sync session_cards.json ({count} cards) via /bingo-push-repo"
+    )
+
+    embed = discord.Embed(
+        title="🌐 GitHub Repository Auto-Sync Report",
+        description=f"**Status:** {'✅ **SUCCESS**' if success else '❌ **FAILED**'}\n\n**Details:**\n`{message}`\n\n**Target Repository:** `{GITHUB_REPO or 'None'}`\n**Branch:** `{GITHUB_BRANCH}`\n**Total Locked Cards:** `{count}`",
+        color=0x22c55e if success else 0xef4444,
+        timestamp=datetime.now(timezone.utc)
+    )
+    if not success:
+        embed.add_field(
+            name="💡 Troubleshooting",
+            value="1. Verify `GITHUB_TOKEN` and `GITHUB_REPO=username/repo-name` in `.env`.\n2. Ensure your token has **Contents: Read and write** permissions.\n3. Alternatively, use `/bingo-sync-export` to download and import manually.",
+            inline=False
+        )
+    await interaction.followup.send(embed=embed)
+
+
+# 5. START NEW GAME (RESET TICKETS & PURGE MEMORY)
 @bot.tree.command(name="bingo-new-game", description="Start a fresh match (resets cards and raffle numbers back to #1)")
 async def cmd_bingo_new_game(interaction: discord.Interaction):
     bot.session.start_new_game()
     embed = discord.Embed(
         title="🚀 FRESH WEEKEND AT LOKI'S BINGO SESSION STARTED!",
-        description="All previous cards and drawn words have been reset!\n\n👉 Type `/bingo-card` to generate your **1 fresh Bingo card & sequential Raffle Ticket** (starting at Ticket #1)!",
+        description="All previous cards and drawn words have been purged from bot memory and disk!\n\n👉 Type `/bingo-card` to generate your **1 fresh Bingo card & sequential Raffle Ticket** (starting at Ticket #1)!",
         color=0x22c55e,
         timestamp=datetime.now(timezone.utc)
     )
@@ -485,7 +723,7 @@ async def cmd_bingo_new_game(interaction: discord.Interaction):
     await interaction.response.send_message(content="@everyone 🎉 **NEW BINGO SESSION IS LIVE!**", embed=embed)
 
 
-# 4. RAFFLE ROLLER (DRAWS FROM CLAIMED CARDS ROSTER)
+# 6. RAFFLE ROLLER (DRAWS FROM CLAIMED CARDS ROSTER)
 @bot.tree.command(name="raffle-roll", description="Draw a random winner from players who have claimed Bingo cards")
 @app_commands.describe(prize="Prize description (e.g. 50x Xanax + $25,000,000)")
 async def cmd_raffle_roll(interaction: discord.Interaction, prize: str = "50x Xanax"):
@@ -503,7 +741,7 @@ async def cmd_raffle_roll(interaction: discord.Interaction, prize: str = "50x Xa
 
     embed = discord.Embed(
         title="🎟️ WEEKEND AT LOKI'S RAFFLE WINNER DRAWN!",
-        description=f"Congratulations to our winning ticket from the claimed Bingo cards roster!\n\n👑 **Winning Ticket:** `#{ticket_num} - ${winner_name}`\n🎁 **Prize:** **{prize}**",
+        description=f"Congratulations to our winning ticket from the claimed Bingo cards roster!\n\n👑 **Winning Ticket:** `#{ticket_num} - {winner_name}`\n🎁 **Prize:** **${prize}**",
         color=0xa855f7,
         timestamp=datetime.now(timezone.utc)
     )
@@ -511,7 +749,7 @@ async def cmd_raffle_roll(interaction: discord.Interaction, prize: str = "50x Xa
     await interaction.response.send_message(content="@everyone 🏆 **RAFFLE WINNER DRAWN!**", embed=embed)
 
 
-# 5. WEEKEND AT LOKI'S ANNOUNCEMENT
+# 7. WEEKEND AT LOKI'S ANNOUNCEMENT
 @bot.tree.command(name="announce", description="Post an official Weekend at Loki's announcement")
 @app_commands.describe(
     date_time="Scheduled date & time (e.g. Saturday at 18:00 TCT)",
@@ -535,7 +773,7 @@ async def cmd_announce(interaction: discord.Interaction, date_time: str = "Satur
         pass
 
 
-# 6. 3-DAY RACE SCHEDULER & LOGGER
+# 8. 3-DAY RACE SCHEDULER & LOGGER
 @bot.tree.command(name="race-schedule-3day", description="Generate and log Loki's 3-Day Race Schedule (25 Laps • Stock Class E)")
 @app_commands.describe(start_date="Start date (e.g. Tomorrow 18:00 TCT)")
 async def cmd_race_3day(interaction: discord.Interaction, start_date: str = "Tomorrow 18:00 TCT"):
@@ -555,32 +793,52 @@ async def cmd_race_3day(interaction: discord.Interaction, start_date: str = "Tom
     await interaction.response.send_message(content="@everyone 🏎️ **LOKI'S 3-DAY RACING SCHEDULE!**", embed=embed)
 
 
-# 7. 5-WORD DROP WITH SECRET JUMBLE
+# 9. 5-WORD DROP WITH SECRET JUMBLE
 @bot.tree.command(name="bingo-drop", description="Release Loki's 5-Word Drop with an anagram Jumble challenge")
 @app_commands.describe(count="Number of words to drop (default 5)")
 async def cmd_bingo_drop(interaction: discord.Interaction, count: int = 5):
     remaining = [w for w in bot.session.word_pool if w not in bot.session.drawn_words]
     if not remaining:
-        await interaction.response.send_message("❌ All words drawn! Use `/bingo-new-game` to start a fresh match.", ephemeral=True)
+        await interaction.response.send_message("❌ All words have been drawn! Use `/bingo-new-game` to start a fresh session.", ephemeral=True)
         return
 
-    scramble_target = remaining[0]
-    scrambled = scramble_word(scramble_target)
-    drawn = bot.session.draw_words(count, "5-Word Drop", scrambled, scramble_target)
+    bingo_words, jumble_word, scrambled = bot.session.draw_drop_with_6th_jumble(count)
+    if not bingo_words:
+        await interaction.response.send_message("❌ No remaining words left in the pool.", ephemeral=True)
+        return
+
+    total_drawn = len(bot.session.drawn_words)
+    total_pool = len(bot.session.word_pool)
 
     embed = discord.Embed(
-        title=f"📦 Weekend at Loki's — 5-Word Drop Released!",
-        description="Check your 5x5 cards for all 5 called items:",
+        title="📦 Weekend at Loki's — 5-Word Drop & 6th-Word Mystery Jumble!",
+        description=f"Released **{len(bingo_words)} Bingo Items** + **1 Exclusive 6th-Word Anagram Jumble**! All items are marked off the pool and will not repeat.",
         color=0xd32f2f,
         timestamp=datetime.now(timezone.utc)
     )
-    embed.add_field(name="🔀 Loki's Mystery Jumble Challenge", value=f"**`{scrambled.upper()}`**\n*(Unscramble to find one of the 5 called items!)*", inline=False)
-    embed.add_field(name="📋 All 5 Released Items", value="\n".join([f"**#{len(bot.session.drawn_words) - len(drawn) + i + 1}:** {w}" for i, w in enumerate(drawn)]), inline=False)
-    embed.set_footer(text=f"Total Called: {len(bot.session.drawn_words)} / {len(bot.session.word_pool)} | Weekend at Loki's")
-    await interaction.response.send_message(content="💥 **LOKI'S 5-WORD BINGO DROP & JUMBLE!**", embed=embed)
+
+    # 1. 6th Word Mystery Jumble Section (distinct from the 5 called items)
+    if scrambled:
+        embed.add_field(
+            name="🧩 6TH-WORD MYSTERY ANAGRAM CHALLENGE",
+            value=f"## `{scrambled.upper()}`\n*(This is a **distinct 6th item** drawn from the word bank! Unscramble to find and mark this bonus item on your card.)*",
+            inline=False
+        )
+
+    # 2. The 5 Regular Bingo Items
+    start_call_num = total_drawn - len(bingo_words) - (1 if jumble_word else 0) + 1
+    items_formatted = "\n".join([f"**#{start_call_num + i}:** {w}" for i, w in enumerate(bingo_words)])
+    embed.add_field(
+        name="📋 5 RELEASED BINGO ITEMS",
+        value=items_formatted,
+        inline=False
+    )
+
+    embed.set_footer(text=f"Total Consumed: {total_drawn} / {total_pool} | Weekend at Loki's")
+    await interaction.response.send_message(content="💥 **LOKI'S 5-WORD BINGO DROP + 6TH-WORD JUMBLE!**", embed=embed)
 
 
-# 8. STANDALONE SECRET JUMBLE PUSH
+# 10. STANDALONE SECRET JUMBLE PUSH
 @bot.tree.command(name="bingo-jumble", description="Push a standalone scrambled Word Jumble challenge (secret answer)")
 async def cmd_bingo_jumble(interaction: discord.Interaction):
     remaining = [w for w in bot.session.word_pool if w not in bot.session.drawn_words]
@@ -588,22 +846,23 @@ async def cmd_bingo_jumble(interaction: discord.Interaction):
         await interaction.response.send_message("❌ All words drawn! Use `/bingo-new-game` to start a fresh match.", ephemeral=True)
         return
 
-    actual_target = remaining[0]
+    actual_target = random.choice(remaining)
     scrambled = scramble_word(actual_target)
     drawn = bot.session.draw_words(1, "Standalone Jumble", scrambled, actual_target)
     call_num = len(bot.session.drawn_words)
+    logger.info(f"[STANDALONE JUMBLE] Scrambled: '{scrambled}' -> Secret Answer: '{actual_target}' (Consumed #{call_num})")
 
     embed = discord.Embed(
-        title="🧩 WEEKEND AT LOKI'S — MYSTERY WORD JUMBLE!",
-        description=f"Unscramble to mark this item on your card (Call #{call_num}):\n\n## `{scrambled.upper()}`",
+        title="🧩 WEEKEND AT LOKI'S — STANDALONE MYSTERY WORD JUMBLE!",
+        description=f"Unscramble to identify this drawn item (Call #{call_num}):\n\n## `{scrambled.upper()}`\n\n*(This item is officially consumed and will not be re-drawn.)*",
         color=0xa855f7,
         timestamp=datetime.now(timezone.utc)
     )
-    embed.set_footer(text=f"Call #{call_num} | Hosted by Loki")
-    await interaction.response.send_message(content="🔀 **LOKI'S STANDALONE JUMBLE!**", embed=embed)
+    embed.set_footer(text=f"Call #{call_num} / {len(bot.session.word_pool)} | Weekend at Loki's")
+    await interaction.response.send_message(content="🔀 **LOKI'S STANDALONE WORD JUMBLE!**", embed=embed)
 
 
-# 9. WINNERS & VAULT PAYOUTS
+# 11. WINNERS & VAULT PAYOUTS
 @bot.tree.command(name="race-winner", description="Log and announce a Weekend at Loki's winner")
 @app_commands.describe(event_name="Event name", winner="Winner name & ID", prize="Prize")
 async def cmd_winner(interaction: discord.Interaction, event_name: str, winner: str, prize: str):
@@ -631,7 +890,388 @@ async def cmd_payout(interaction: discord.Interaction, winner: str, prize: str, 
     await interaction.response.send_message(embed=embed)
 
 
+# 12. BUG REPORTING & TRACKING SYSTEM (v7.0)
+@bot.tree.command(name="bug-report", description="Report a bug or issue with Weekend at Loki's (logged to bug_reports.json)")
+@app_commands.describe(
+    description="Detailed description of what went wrong or the unexpected behavior",
+    severity="Severity level of the bug",
+    feature="Which feature or tab had the issue"
+)
+@app_commands.choices(severity=[
+    app_commands.Choice(name="🟢 Low (Visual / Minor typo)", value="Low"),
+    app_commands.Choice(name="🟡 Medium (Feature glitch / Workaround available)", value="Medium"),
+    app_commands.Choice(name="🔴 High (Feature broken / Impaired)", value="High"),
+    app_commands.Choice(name="🔥 Critical (Bot crash / Session blocker)", value="Critical"),
+])
+@app_commands.choices(feature=[
+    app_commands.Choice(name="🎯 Bingo Cards & Generator", value="Bingo Cards"),
+    app_commands.Choice(name="💥 Word Drops & Jumbles", value="Word Drops & Jumbles"),
+    app_commands.Choice(name="🏎️ 3-Day Race Scheduler", value="Race Scheduler"),
+    app_commands.Choice(name="🎟️ Raffles & Tickets", value="Raffles"),
+    app_commands.Choice(name="🏆 Winner Payouts & Vault", value="Winner Payouts"),
+    app_commands.Choice(name="📣 Announcements & RSVP", value="Announcements"),
+    app_commands.Choice(name="🌐 Web GUI & Sync", value="Web GUI & Sync"),
+    app_commands.Choice(name="⚙️ Other / General", value="General"),
+])
+async def cmd_bug_report(
+    interaction: discord.Interaction,
+    description: str,
+    severity: app_commands.Choice[str] = None,
+    feature: app_commands.Choice[str] = None
+):
+    sev_val = severity.value if severity else "Medium"
+    feat_val = feature.value if feature else "General"
+    reporter_name = interaction.user.display_name
+    reporter_id = str(interaction.user.id)
+
+    record = LogManager.append_bug_report(
+        reporter_name=reporter_name,
+        reporter_id=reporter_id,
+        description=description,
+        severity=sev_val,
+        feature=feat_val
+    )
+
+    sev_colors = {
+        "Low": 0x22c55e,
+        "Medium": 0xeab308,
+        "High": 0xf97316,
+        "Critical": 0xd32f2f
+    }
+    color = sev_colors.get(sev_val, 0xeab308)
+
+    embed = discord.Embed(
+        title=f"🐞 Bug Report Logged: `{record['id']}`",
+        description="Thank you for reporting! The issue has been recorded to **`bug_reports.json`**.",
+        color=color,
+        timestamp=datetime.now(timezone.utc)
+    )
+    embed.add_field(name="📋 Description", value=description[:1000], inline=False)
+    embed.add_field(name="🏷️ Feature", value=f"`{feat_val}`", inline=True)
+    embed.add_field(name="⚡ Severity", value=f"`{sev_val}`", inline=True)
+    embed.add_field(name="👤 Reporter", value=f"{reporter_name} (`{reporter_id}`)", inline=True)
+    embed.add_field(name="📌 Status", value="`OPEN`", inline=True)
+    embed.set_footer(text="Weekend at Loki's • Bug Tracking System")
+
+    await interaction.response.send_message(embed=embed)
+
+
+@bot.tree.command(name="bug-list", description="View logged bug reports from bug_reports.json")
+@app_commands.describe(status="Filter by status (All, Open, Resolved)")
+@app_commands.choices(status=[
+    app_commands.Choice(name="All Statuses", value="ALL"),
+    app_commands.Choice(name="Open Only", value="OPEN"),
+    app_commands.Choice(name="Resolved Only", value="RESOLVED"),
+])
+async def cmd_bug_list(interaction: discord.Interaction, status: app_commands.Choice[str] = None):
+    filter_status = status.value if status else "OPEN"
+    records = safe_load_json(BUG_REPORTS_FILE, [])
+    if not isinstance(records, list) or not records:
+        await interaction.response.send_message("✅ No bug reports logged in `bug_reports.json`.", ephemeral=True)
+        return
+
+    filtered = [r for r in records if filter_status == "ALL" or r.get("status") == filter_status]
+    if not filtered:
+        await interaction.response.send_message(f"✅ No bugs matching status `{filter_status}`.", ephemeral=True)
+        return
+
+    embed = discord.Embed(
+        title=f"🐞 Bug Reports Log ({len(filtered)} items - Filter: {filter_status})",
+        description="Recent entries from **`bug_reports.json`**:",
+        color=0xd32f2f,
+        timestamp=datetime.now(timezone.utc)
+    )
+    for b in filtered[-6:]:
+        status_icon = "🟢" if b.get("status") == "RESOLVED" else "🔴"
+        b_id = b.get('id', 'BUG')
+        b_feat = b.get('feature', 'General')
+        b_sev = b.get('severity', 'Med')
+        b_rep = b.get('reporterName', 'User')
+        b_stat = b.get('status', 'OPEN')
+        b_desc = b.get('description', '')[:120]
+        embed.add_field(
+            name=f"{status_icon} [{b_id}] {b_feat} ({b_sev})",
+            value=f"**Reporter:** {b_rep} | **Status:** `{b_stat}`\n**Issue:** {b_desc}",
+            inline=False
+        )
+    embed.set_footer(text="Weekend at Loki's • bug_reports.json")
+    await interaction.response.send_message(embed=embed, ephemeral=True)
+
+
+@bot.tree.command(name="bug-resolve", description="Mark a logged bug report as RESOLVED")
+@app_commands.describe(bug_id="The ID of the bug to resolve (e.g. BUG-1001)")
+async def cmd_bug_resolve(interaction: discord.Interaction, bug_id: str):
+    success, msg = LogManager.update_bug_status(bug_id, "RESOLVED")
+    if success:
+        embed = discord.Embed(
+            title=f"✅ Bug Resolved: `{bug_id.upper()}`",
+            description=f"The bug status has been updated to **RESOLVED** in `bug_reports.json`.",
+            color=0x22c55e,
+            timestamp=datetime.now(timezone.utc)
+        )
+        embed.set_footer(text=f"Resolved by {interaction.user.display_name}")
+        await interaction.response.send_message(embed=embed)
+    else:
+        await interaction.response.send_message(f"❌ {msg}", ephemeral=True)
+
+
+@bot.tree.command(name="bug-export", description="Export all logged bug reports as a downloadable JSON file")
+async def cmd_bug_export(interaction: discord.Interaction):
+    records = safe_load_json(BUG_REPORTS_FILE, [])
+    if not isinstance(records, list):
+        records = []
+    buf = io.BytesIO(json.dumps(records, indent=2).encode("utf-8"))
+    file = discord.File(buf, filename="bug_reports.json")
+    await interaction.response.send_message(
+        content=f"🐞 Attached **`bug_reports.json`** containing **{len(records)}** logged bug reports.",
+        file=file,
+        ephemeral=True
+    )
+
+
+
+# 13. PRIZE AWARDING & EPHEMERAL QUERIES (v7.0)
+@bot.tree.command(name="award-prize", description="Award a prize to a winner using the prize configuration from the companion")
+@app_commands.describe(
+    event_category="The prize category (configured via companion / GUI)",
+    winner="The winner (user mention, player name or Torn ID)",
+    custom_prize="Optional: Custom prize override if not using configured default",
+    notes="Optional: Extra notes or tournament stage"
+)
+@app_commands.choices(event_category=[
+    app_commands.Choice(name="🎟️ Raffle — Day 1 Prize", value="raffle_day1"),
+    app_commands.Choice(name="🎟️ Raffle — Day 2 Prize", value="raffle_day2"),
+    app_commands.Choice(name="🎟️ Raffle — Day 3 Grand Prize", value="raffle_day3"),
+    app_commands.Choice(name="🥉 Race Bronze — 1st Place", value="race_bronze_1st"),
+    app_commands.Choice(name="🥉 Race Bronze — 2nd Place", value="race_bronze_2nd"),
+    app_commands.Choice(name="🥉 Race Bronze — 3rd Place", value="race_bronze_3rd"),
+    app_commands.Choice(name="🥉 Race Bronze — Last Place", value="race_bronze_last"),
+    app_commands.Choice(name="🥈 Race Silver — 1st Place", value="race_silver_1st"),
+    app_commands.Choice(name="🥈 Race Silver — 2nd Place", value="race_silver_2nd"),
+    app_commands.Choice(name="🥈 Race Silver — 3rd Place", value="race_silver_3rd"),
+    app_commands.Choice(name="🥈 Race Silver — Last Place", value="race_silver_last"),
+    app_commands.Choice(name="🥇 Race Gold — 1st Place", value="race_gold_1st"),
+    app_commands.Choice(name="🥇 Race Gold — 2nd Place", value="race_gold_2nd"),
+    app_commands.Choice(name="🥇 Race Gold — 3rd Place", value="race_gold_3rd"),
+    app_commands.Choice(name="🥇 Race Gold — Last Place", value="race_gold_last"),
+    app_commands.Choice(name="🎯 Bingo — Bingo Prize", value="bingo_prize"),
+    app_commands.Choice(name="🎯 Bingo — Full Card (Blackout)", value="bingo_blackout"),
+    app_commands.Choice(name="🧩 Jumble — Fastest Solver", value="jumble_fast"),
+    app_commands.Choice(name="✨ Custom Prize Reward", value="custom")
+])
+async def cmd_award_prize(
+    interaction: discord.Interaction,
+    event_category: app_commands.Choice[str],
+    winner: str,
+    custom_prize: str = None,
+    notes: str = ""
+):
+    prizes = get_configured_prizes()
+    cat_key = event_category.value
+    cat_label = event_category.name
+
+    # Determine prize text
+    if custom_prize and custom_prize.strip():
+        prize_text = custom_prize.strip()
+    elif cat_key in prizes:
+        prize_text = prizes[cat_key]
+    else:
+        prize_text = "50x Xanax"
+
+    # Category classification for logs
+    if "raffle" in cat_key:
+        log_cat = "raffles"
+    elif "race" in cat_key:
+        log_cat = "racing"
+    elif "bingo" in cat_key or "jumble" in cat_key:
+        log_cat = "bingo"
+    else:
+        log_cat = "general"
+
+    # Log to winners_log.json and sync to GitHub
+    record = LogManager.append_winner_log(
+        event_name=cat_label,
+        winner=winner,
+        rank=cat_label.split("—")[-1].strip() if "—" in cat_label else "Winner",
+        prize=prize_text,
+        category=log_cat,
+        notes=notes,
+        is_paid=False
+    )
+
+    embed = discord.Embed(
+        title=f"🏆 Weekend at Loki's — Prize Awarded!",
+        description=f"Congratulations to **{winner}** for winning in **{cat_label}**!\n\n🎁 **Awarded Prize:** **`{prize_text}`**",
+        color=0xeab308,
+        timestamp=datetime.now(timezone.utc)
+    )
+    if notes:
+        embed.add_field(name="📝 Notes", value=notes, inline=False)
+    embed.add_field(name="🆔 Prize Reference", value=f"`{record['id']}`", inline=True)
+    embed.add_field(name="👑 Awarded By", value=interaction.user.display_name, inline=True)
+    embed.add_field(name="💳 Payout Status", value="`PENDING DISPATCH`", inline=True)
+    embed.set_footer(text="Weekend at Loki's • Prize Vault")
+    content = "🎉 **PRIZE AWARD ANNOUNCEMENT!**"
+
+    # Auto-deploy to appropriate channel based on category
+    target_cid = None
+    if log_cat == "raffles" and RAFFLE_CHANNEL_ID:
+        target_cid = RAFFLE_CHANNEL_ID
+    elif log_cat == "racing" and RACE_CHANNEL_ID:
+        target_cid = RACE_CHANNEL_ID
+    elif log_cat == "bingo" and BINGO_CHANNEL_ID:
+        target_cid = BINGO_CHANNEL_ID
+
+    if target_cid and interaction.channel_id != target_cid:
+        try:
+            target_ch = bot.get_channel(target_cid) or await bot.fetch_channel(target_cid)
+            if target_ch:
+                await target_ch.send(content=content, embed=embed)
+                await interaction.response.send_message(f"✅ Prize award auto-deployed to <#{target_cid}>!", ephemeral=True)
+                return
+        except Exception as e:
+            logger.warning(f"Could not auto-deploy to channel {target_cid}: {e}")
+
+    await interaction.response.send_message(content=content, embed=embed)
+
+
+@bot.tree.command(name="race-schedule", description="View the current 3-Day Race Series Schedule (Visible only to you)")
+async def cmd_race_schedule(interaction: discord.Interaction):
+    schedules = safe_load_json(SCHEDULED_RACES_FILE, [])
+    
+    embed = discord.Embed(
+        title="🏎️ Weekend at Loki's — 3-Day Race Series Schedule",
+        description="**Tournament Format:** 25 Laps Endurance per stage | **Requirement:** Stock Class E Only",
+        color=0x10b981,
+        timestamp=datetime.now(timezone.utc)
+    )
+
+    if isinstance(schedules, list) and schedules:
+        latest = schedules[-1]
+        title = latest.get("title", "3-Day Stock Class E Tournament")
+        s1 = latest.get("stage1", {})
+        s2 = latest.get("stage2", {})
+        s3 = latest.get("stage3", {})
+
+        embed.add_field(name="🏆 Tournament", value=f"**{title}**", inline=False)
+        embed.add_field(
+            name="📅 Stage 1 (Day 1)",
+            value=f"**Track:** {s1.get('track', 'Mudpit')} | **Laps:** {s1.get('laps', 25)} | **Class:** {s1.get('car_class', 'Stock E')}\n**Start Time:** `{s1.get('time', 'TBD')}`",
+            inline=False
+        )
+        embed.add_field(
+            name="📅 Stage 2 (Day 2)",
+            value=f"**Track:** {s2.get('track', 'Hammerhead')} | **Laps:** {s2.get('laps', 25)} | **Class:** {s2.get('car_class', 'Stock E')}\n**Start Time:** `{s2.get('time', 'TBD')}`",
+            inline=False
+        )
+        embed.add_field(
+            name="📅 Stage 3 (Day 3 Finals)",
+            value=f"**Track:** {s3.get('track', 'Two Islands')} | **Laps:** {s3.get('laps', 25)} | **Class:** {s3.get('car_class', 'Stock E')}\n**Start Time:** `{s3.get('time', 'TBD')}`",
+            inline=False
+        )
+    else:
+        embed.add_field(
+            name="📅 Standard Tournament Format",
+            value="Stage 1: **Mudpit** (25 Laps • Stock Class E)\nStage 2: **Hammerhead** (25 Laps • Stock Class E)\nStage 3: **Two Islands** (25 Laps • Stock Class E)",
+            inline=False
+        )
+        embed.add_field(name="ℹ️ Status", value="No custom schedule logged yet. Organizers can run `/race-schedule-3day` or schedule in the Web GUI / Configurator.", inline=False)
+
+    embed.set_footer(text="Private View • Weekend at Loki's Racing")
+    await interaction.response.send_message(embed=embed, ephemeral=True)
+
+
+@bot.tree.command(name="prize-pool", description="View the current prize pool for Raffles, Races, Bingo & Jumbles (Visible only to you)")
+async def cmd_prize_pool(interaction: discord.Interaction):
+    prizes = get_configured_prizes()
+
+    embed = discord.Embed(
+        title="🎁 Weekend at Loki's — Current Prize Pool Matrix",
+        description="Here is the full breakdown of prizes configured for this weekend's events:",
+        color=0xeab308,
+        timestamp=datetime.now(timezone.utc)
+    )
+
+    # 1. 3-Day Raffles
+    raffle_text = (
+        f"• **Day 1 Raffle:** {prizes.get('raffle_day1', '50x Xanax')}\n"
+        f"• **Day 2 Raffle:** {prizes.get('raffle_day2', '5x Box of Medical Supplies')}\n"
+        f"• **Day 3 Grand Raffle:** {prizes.get('raffle_day3', '1x Donator Pack + 50x Xanax')}"
+    )
+    embed.add_field(name="🎟️ 3-Day Faction Raffles", value=raffle_text, inline=False)
+
+    # 2. Race Series
+    race_text = (
+        f"🥉 **Bronze Series:** 1st: `{prizes.get('race_bronze_1st', '10x Xanax')}` | 2nd: `{prizes.get('race_bronze_2nd', '5x')}` | 3rd: `{prizes.get('race_bronze_3rd', '2x')}` | Last: `{prizes.get('race_bronze_last', '1x')}`\n"
+        f"🥈 **Silver Series:** 1st: `{prizes.get('race_silver_1st', '25x Xanax')}` | 2nd: `{prizes.get('race_silver_2nd', '15x')}` | 3rd: `{prizes.get('race_silver_3rd', '5x')}` | Last: `{prizes.get('race_silver_last', '2x')}`\n"
+        f"🥇 **Gold Series:** 1st: `{prizes.get('race_gold_1st', '50x Xanax')}` | 2nd: `{prizes.get('race_gold_2nd', '25x')}` | 3rd: `{prizes.get('race_gold_3rd', '10x')}` | Last: `{prizes.get('race_gold_last', '5x')}`"
+    )
+    embed.add_field(name="🏎️ 3-Day Race Series (Tiered)", value=race_text, inline=False)
+
+    # 3. Bingo & Jumbles
+    bingo_text = (
+        f"• **Bingo Prize:** {prizes.get('bingo_prize', prizes.get('bingo_line', '25x Xanax'))}\n"
+        f"• **Full Card Blackout:** {prizes.get('bingo_blackout', '100x Xanax + 2x Donator Pack')}\n"
+        f"• **Fastest Jumble Solver:** {prizes.get('jumble_fast', '5x Xanax per Drop')}"
+    )
+    embed.add_field(name="🎯 Bingo & Mystery Jumbles", value=bingo_text, inline=False)
+
+    embed.set_footer(text="Private View • Weekend at Loki's Prize Vault")
+    await interaction.response.send_message(embed=embed, ephemeral=True)
+
+
+@bot.tree.command(name="called-words", description="View all called Bingo items so far with Jumbles remaining scrambled (Visible only to you)")
+async def cmd_called_words(interaction: discord.Interaction):
+    draw_logs = safe_load_json(DRAWS_LOG_FILE, [])
+    drawn_list = bot.session.drawn_words
+    total_pool = len(bot.session.word_pool)
+
+    if not drawn_list and not draw_logs:
+        await interaction.response.send_message(
+            "ℹ️ No Bingo words have been called yet in this session! Use `/bingo-card` to claim your card.",
+            ephemeral=True
+        )
+        return
+
+    embed = discord.Embed(
+        title="🎯 Weekend at Loki's — Official Called Words Tracker",
+        description=f"**Total Consumed:** {len(drawn_list)} / {total_pool} items in pool.\n*(All Jumble challenges remain strictly scrambled to keep the game fair!)*",
+        color=0x3b82f6,
+        timestamp=datetime.now(timezone.utc)
+    )
+
+    # Map each word to its scrambled version if it was drawn as a jumble
+    scramble_map = {}
+    if isinstance(draw_logs, list):
+        for log in draw_logs:
+            w = log.get("word") or log.get("jumbleAnswer")
+            scramble = log.get("jumbleScramble") or log.get("scramble")
+            if w and scramble:
+                scramble_map[w] = scramble.upper()
+
+    # Build display lines
+    lines = []
+    for idx, word in enumerate(drawn_list):
+        call_num = idx + 1
+        if word in scramble_map:
+            lines.append(f"**#{call_num}:** 🧩 *Jumble Challenge:* **`{scramble_map[word]}`**")
+        else:
+            lines.append(f"**#{call_num}:** {word}")
+
+    # Chunk lines if long (Discord embed field value max is 1024 chars)
+    chunk_size = 18
+    chunks = [lines[i:i + chunk_size] for i in range(0, len(lines), chunk_size)]
+
+    for c_idx, chunk in enumerate(chunks):
+        field_name = f"📋 Called Items ({c_idx * chunk_size + 1} - {min(len(lines), (c_idx + 1) * chunk_size)})"
+        embed.add_field(name=field_name, value="\n".join(chunk), inline=False)
+
+    embed.set_footer(text="Private View • Jumble Answers Remain Secret • Weekend at Loki's")
+    await interaction.response.send_message(embed=embed, ephemeral=True)
+
+
 if __name__ == "__main__":
+
     if not TOKEN:
         print("\n[SETUP REQUIRED] Set DISCORD_TOKEN in .env\n")
     else:

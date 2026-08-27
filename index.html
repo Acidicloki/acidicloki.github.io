@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Weekend at Loki's - Torn City Event Hub (v5.8)</title>
+  <title>Weekend at Loki's - Torn City Event Hub (v7.0)</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -107,7 +107,7 @@
           <div>
             <div class="font-impact text-base sm:text-xl text-white tracking-wider flex items-center gap-1.5">
               WEEKEND AT LOKI'S
-              <span class="text-[10px] bg-torn-red/30 text-red-300 border border-torn-red/50 px-1.5 py-0.2 rounded font-mono font-normal">v5.8</span>
+              <span class="text-[10px] bg-torn-red/30 text-red-300 border border-torn-red/50 px-1.5 py-0.2 rounded font-mono font-normal">v7.0</span>
             </div>
             <div class="text-[10px] sm:text-xs text-torn-steel hidden xs:block">Torn City Event Hub • Hosted by Loki [2356475]</div>
           </div>
@@ -144,6 +144,10 @@
               <i data-lucide="award" class="w-3.5 h-3.5 text-amber-400"></i>
               <span>Vault</span>
             </button>
+            <button onclick="switchTab('tab-bugs')" id="btn-tab-bugs" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
+              <i data-lucide="bug" class="w-3.5 h-3.5 text-rose-400"></i>
+              <span>Bugs (<span id="nav-bugs-count">0</span>)</span>
+            </button>
             <button onclick="switchTab('tab-settings')" id="btn-tab-settings" class="nav-btn flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition whitespace-nowrap">
               <i data-lucide="sliders" class="w-3.5 h-3.5 text-slate-300"></i>
               <span>Settings</span>
@@ -176,6 +180,16 @@
 
     <!-- ================= TAB 0: BIG BUBBLE ICONS HOME DASHBOARD ================= -->
     <section id="tab-home" class="tab-content space-y-6">
+
+      <!-- WALL-E W@L Bot Banner Card (v7.0) -->
+      <div class="relative rounded-2xl overflow-hidden border border-torn-border shadow-2xl group">
+        <img src="assets/wall_e_banner.png" alt="Weekend at Loki's WALL-E Banner" class="w-full h-auto object-cover max-h-[260px] sm:max-h-[320px] filter brightness-95 group-hover:brightness-100 transition duration-300" onerror="this.style.display='none'">
+        <div class="absolute bottom-2 right-2 bg-neutral-900/80 backdrop-blur-sm border border-torn-border px-2.5 py-1 rounded-lg text-[10px] text-torn-gold font-mono flex items-center gap-1.5 shadow">
+          <i data-lucide="image" class="w-3 h-3 text-torn-gold"></i>
+          <a href="assets/wall_e_banner.png" download="Weekend_at_Lokis_WAL_Banner.png" class="hover:underline font-bold">Download High-Res Banner</a>
+        </div>
+      </div>
+
       <div class="text-center space-y-1.5 max-w-2xl mx-auto">
         <h1 class="font-impact text-2xl sm:text-4xl text-white tracking-wide">
           WEEKEND AT LOKI'S COMMAND CENTER
@@ -607,7 +621,7 @@
         </div>
       </div>
 
-      <!-- SCHEDULED RACES LOG TABLE (v5.8) -->
+      <!-- SCHEDULED RACES LOG TABLE (v7.0) -->
       <div class="bg-torn-panel p-4 sm:p-5 rounded-xl border border-torn-border space-y-3">
         <div class="flex justify-between items-center border-b border-torn-border pb-2">
           <span class="font-impact text-xs sm:text-sm text-torn-gold flex items-center gap-1.5">
@@ -772,13 +786,164 @@
       </div>
     </section>
 
+    <!-- ================= TAB: BUG REPORTS HUB (v7.0) ================= -->
+    <section id="tab-bugs" class="tab-content hidden space-y-6">
+      <div class="border-b border-torn-border pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+        <div>
+          <h1 class="font-impact text-2xl sm:text-3xl text-white tracking-wide flex items-center gap-2">
+            <i data-lucide="bug" class="w-7 h-7 text-rose-500"></i>
+            LOKI'S BUG REPORTS & ISSUE TRACKER
+          </h1>
+          <p class="text-xs sm:text-sm text-torn-steel">
+            All reports are saved to <code class="text-rose-400 font-mono">bug_reports.json</code>, accessible via Discord <code class="text-torn-gold font-mono">/bug-report</code> & synced with GitHub.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <button onclick="exportBugsJSON()" class="bg-torn-well hover:bg-neutral-700 text-slate-300 px-3 py-2 rounded-xl text-xs font-bold border border-torn-border flex items-center gap-1.5 shadow">
+            <i data-lucide="download" class="w-4 h-4 text-torn-gold"></i>
+            <span>Export JSON</span>
+          </button>
+          <button onclick="exportBugsCSV()" class="bg-torn-well hover:bg-neutral-700 text-slate-300 px-3 py-2 rounded-xl text-xs font-bold border border-torn-border flex items-center gap-1.5 shadow">
+            <i data-lucide="file-spreadsheet" class="w-4 h-4 text-emerald-400"></i>
+            <span>Export CSV</span>
+          </button>
+          <button onclick="fetchRepoBugReports()" class="bg-rose-950 hover:bg-rose-900 text-rose-200 px-3 py-2 rounded-xl text-xs font-bold border border-rose-700 flex items-center gap-1.5 shadow">
+            <i data-lucide="refresh-cw" class="w-4 h-4 text-rose-400"></i>
+            <span>Fetch Repo JSON</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Bug Tracker Stat Counters -->
+      <div class="grid grid-cols-3 gap-3 sm:gap-4">
+        <div class="bg-torn-panel p-4 rounded-xl border border-torn-border text-center">
+          <span class="text-[11px] uppercase tracking-wider text-torn-steel font-semibold block">Total Bugs Logged</span>
+          <span id="stat-total-bugs" class="font-impact text-2xl sm:text-3xl text-white">0</span>
+        </div>
+        <div class="bg-torn-panel p-4 rounded-xl border border-rose-500/30 text-center">
+          <span class="text-[11px] uppercase tracking-wider text-rose-400 font-semibold block">Open Issues</span>
+          <span id="stat-open-bugs" class="font-impact text-2xl sm:text-3xl text-rose-500">0</span>
+        </div>
+        <div class="bg-torn-panel p-4 rounded-xl border border-emerald-500/30 text-center">
+          <span class="text-[11px] uppercase tracking-wider text-emerald-400 font-semibold block">Resolved Issues</span>
+          <span id="stat-resolved-bugs" class="font-impact text-2xl sm:text-3xl text-emerald-400">0</span>
+        </div>
+      </div>
+
+      <!-- File New Bug Form & Live Bug List -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Left Column: File a Bug Report -->
+        <div class="lg:col-span-4 space-y-4">
+          <div class="bg-torn-panel p-5 sm:p-6 rounded-2xl border border-torn-border space-y-4 shadow-xl">
+            <div class="flex items-center gap-2 border-b border-torn-border pb-3">
+              <i data-lucide="plus-circle" class="w-5 h-5 text-rose-400"></i>
+              <h3 class="font-impact text-lg text-white tracking-wide">FILE A BUG REPORT</h3>
+            </div>
+
+            <div class="space-y-3 text-xs">
+              <div>
+                <label class="block text-slate-300 font-semibold mb-1">Reporter Name / Torn ID</label>
+                <input type="text" id="bug-reporter-input" placeholder="e.g. Loki [2356475]" class="w-full bg-torn-well border border-torn-border rounded-xl px-3 py-2 text-white font-mono focus:border-rose-500">
+              </div>
+
+              <div class="grid grid-cols-2 gap-2.5">
+                <div>
+                  <label class="block text-slate-300 font-semibold mb-1">Feature / Section</label>
+                  <select id="bug-feature-select" class="w-full bg-torn-well border border-torn-border rounded-xl px-2.5 py-2 text-white font-semibold focus:border-rose-500">
+                    <option value="Bingo Cards">🎯 Bingo Cards</option>
+                    <option value="Word Drops & Jumbles">💥 Word Drops</option>
+                    <option value="3-Day Race Series">🏎️ 3-Day Races</option>
+                    <option value="Raffles & Tickets">🎟️ Raffles</option>
+                    <option value="Winner Payouts">🏆 Winner Payouts</option>
+                    <option value="Announcements">📣 Announcements</option>
+                    <option value="Web GUI & Sync">🌐 Web GUI & Sync</option>
+                    <option value="General">⚙️ Other / General</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-slate-300 font-semibold mb-1">Severity Level</label>
+                  <select id="bug-severity-select" class="w-full bg-torn-well border border-torn-border rounded-xl px-2.5 py-2 text-white font-semibold focus:border-rose-500">
+                    <option value="Low">🟢 Low (Minor)</option>
+                    <option value="Medium" selected>🟡 Medium (Glitch)</option>
+                    <option value="High">🔴 High (Broken)</option>
+                    <option value="Critical">🔥 Critical (Blocker)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-slate-300 font-semibold mb-1">Detailed Description</label>
+                <textarea id="bug-description-input" rows="4" placeholder="Describe what happened, error message, or unexpected behavior..." class="w-full bg-torn-well border border-torn-border rounded-xl p-3 text-white text-xs focus:border-rose-500"></textarea>
+              </div>
+
+              <div class="flex items-center gap-2 pt-1">
+                <input type="checkbox" id="bug-notify-discord" class="rounded bg-torn-well border-torn-border text-rose-600 focus:ring-0">
+                <label for="bug-notify-discord" class="text-[11px] text-slate-300">Broadcast bug alert to Discord (#announcements)</label>
+              </div>
+
+              <button onclick="fileBugReportFromGUI()" class="w-full bg-gradient-to-r from-rose-700 via-rose-600 to-red-800 hover:from-rose-600 hover:to-red-700 text-white font-impact tracking-wide py-3 rounded-xl shadow-lg flex items-center justify-center gap-2 transition">
+                <i data-lucide="send" class="w-4 h-4 text-rose-200"></i>
+                <span>SUBMIT BUG REPORT</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Live Bug Reports Table -->
+        <div class="lg:col-span-8 space-y-4">
+          <div class="bg-torn-panel p-5 sm:p-6 rounded-2xl border border-torn-border space-y-4 shadow-xl">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-torn-border pb-3">
+              <div class="flex items-center gap-2">
+                <i data-lucide="list-checks" class="w-5 h-5 text-rose-400"></i>
+                <h3 class="font-impact text-lg text-white tracking-wide">LOGGED BUG REPORTS</h3>
+              </div>
+              <div class="flex items-center gap-2">
+                <select id="bug-filter-status" onchange="renderBugReportsTable()" class="bg-torn-well border border-torn-border rounded-lg px-2.5 py-1 text-xs text-slate-300">
+                  <option value="ALL">All Statuses</option>
+                  <option value="OPEN" selected>Open Only</option>
+                  <option value="RESOLVED">Resolved Only</option>
+                </select>
+                <input type="file" id="import-bugs-input" accept=".json" class="hidden" onchange="importBugReportsJSON(event)">
+                <button onclick="document.getElementById('import-bugs-input').click()" class="bg-torn-well hover:bg-neutral-700 text-slate-300 px-2.5 py-1 rounded-lg text-xs border border-torn-border flex items-center gap-1">
+                  <i data-lucide="upload" class="w-3 h-3 text-torn-gold"></i>
+                  <span>Import JSON</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Table Container -->
+            <div class="overflow-x-auto max-h-[500px] overflow-y-auto rounded-xl border border-torn-border bg-torn-well">
+              <table class="w-full text-left text-xs text-slate-300">
+                <thead class="bg-neutral-900 text-slate-400 font-semibold border-b border-torn-border sticky top-0">
+                  <tr>
+                    <th class="p-3">ID & Date</th>
+                    <th class="p-3">Feature</th>
+                    <th class="p-3">Severity</th>
+                    <th class="p-3">Reporter & Description</th>
+                    <th class="p-3">Status</th>
+                    <th class="p-3 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="bugs-table-body" class="divide-y divide-torn-border font-sans">
+                  <!-- Injected via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <!-- ================= TAB 8: SETTINGS & BOT CUSTOMIZER ================= -->
     <section id="tab-settings" class="tab-content hidden space-y-6">
       <div class="border-b border-torn-border pb-3 flex justify-between items-center flex-wrap gap-2">
         <div>
           <h1 class="font-impact text-xl sm:text-2xl text-white flex items-center gap-2">
             <i data-lucide="bot" class="w-5 h-5 text-torn-red"></i>
-            Weekend at Loki's Bot Settings & Sync (v5.8)
+            Weekend at Loki's Bot Settings & Sync (v7.0)
           </h1>
           <p class="text-xs text-torn-steel mt-0.5">Customize bot usernames, avatar profiles, webhooks, and Torn API synchronization.</p>
         </div>
@@ -930,6 +1095,7 @@
     let registeredMembers = JSON.parse(localStorage.getItem(MEMBERS_STORAGE_KEY) || '["Loki [2356475]"]');
     let sessionCardRegistry = JSON.parse(localStorage.getItem(SESSION_CARDS_KEY) || '{}');
     let scheduledRacesLog = JSON.parse(localStorage.getItem(SCHEDULED_RACES_KEY) || '[]');
+    let bugReportsLog = JSON.parse(localStorage.getItem(BUGS_STORAGE_KEY) || '[]');
     let activeBingoCard = [];
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -942,6 +1108,8 @@
       renderCallerHistory();
       renderClaimedCardsTable();
       renderScheduledRacesTable();
+      renderBugReportsTable();
+      fetchRepoBugReportsSilent();
       updateFormattedPrize();
       generateOrRetrieveCard(false);
       setDefaultAnnouncementDate();
@@ -981,7 +1149,7 @@
     }
     function hideToast() { document.getElementById('toast-bar').classList.add('hidden'); }
 
-    // --- SITE CACHE REFRESH BUTTON (v5.8) ---
+    // --- SITE CACHE REFRESH BUTTON (v7.0) ---
     async function clearCacheAndReload() {
       if ('caches' in window) {
         try {
@@ -1420,7 +1588,7 @@
       showToast('Roster reset.', 'info');
     }
 
-    // --- 3-DAY RACE SCHEDULER & LOGGING (v5.8) ---
+    // --- 3-DAY RACE SCHEDULER & LOGGING (v7.0) ---
     function generateRandom3DaySchedule(notify = true) {
       const shuffled = [...tornTracks].sort(() => 0.5 - Math.random());
       document.getElementById('race-day1-track').value = shuffled[0];
@@ -1469,6 +1637,8 @@
       scheduledRacesLog.unshift(logRecord);
       localStorage.setItem(SCHEDULED_RACES_KEY, JSON.stringify(scheduledRacesLog));
       renderScheduledRacesTable();
+      renderBugReportsTable();
+      fetchRepoBugReportsSilent();
 
       const ok = await postCategoryWebhook('racing', {
         content: ping ? `${ping} 🏎️ **LOKI'S 3-DAY RACING TOURNAMENT SCHEDULE!**` : `🏎️ **LOKI'S 3-DAY RACING TOURNAMENT SCHEDULE!**`,
@@ -1487,6 +1657,202 @@
       });
 
       if (ok) showToast('3-Day Race Schedule posted to #racing & logged to ledger!', 'success');
+    }
+
+        // ================= BUG REPORTING LOGIC (v7.0) =================
+    function renderBugReportsTable() {
+      const tbody = document.getElementById('bugs-table-body');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      const filter = document.getElementById('bug-filter-status') ? document.getElementById('bug-filter-status').value : 'OPEN';
+      const filtered = bugReportsLog.filter(b => filter === 'ALL' || (b.status || 'OPEN') === filter);
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-500 font-mono">No bug reports matching status '${filter}'.</td></tr>`;
+        updateNavigationCounts();
+        return;
+      }
+
+      [...filtered].reverse().forEach(b => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-neutral-800/60 transition';
+        
+        const isResolved = b.status === 'RESOLVED';
+        const sevColors = {
+          'Low': 'bg-emerald-950 text-emerald-300 border-emerald-800',
+          'Medium': 'bg-amber-950 text-amber-300 border-amber-800',
+          'High': 'bg-orange-950 text-orange-300 border-orange-800',
+          'Critical': 'bg-rose-950 text-rose-300 border-rose-800 font-bold'
+        };
+        const sevBadge = sevColors[b.severity] || 'bg-slate-800 text-slate-300 border-slate-700';
+
+        tr.innerHTML = `
+          <td class="p-3 font-mono">
+            <span class="text-rose-400 font-bold block">${b.id || 'BUG'}</span>
+            <span class="text-[10px] text-slate-500">${b.timestamp ? new Date(b.timestamp).toLocaleDateString() : ''}</span>
+          </td>
+          <td class="p-3 font-semibold text-slate-200">
+            <span class="px-2 py-0.5 rounded bg-torn-well border border-torn-border text-[11px]">${b.feature || 'General'}</span>
+          </td>
+          <td class="p-3">
+            <span class="px-2 py-0.5 rounded text-[10px] border ${sevBadge}">${b.severity || 'Medium'}</span>
+          </td>
+          <td class="p-3">
+            <div class="font-bold text-white text-xs">${b.reporterName || 'Anonymous'}</div>
+            <div class="text-slate-300 text-[11px] mt-0.5 break-words max-w-xs sm:max-w-md">${b.description || ''}</div>
+          </td>
+          <td class="p-3">
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold ${isResolved ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-rose-950 text-rose-400 border border-rose-800'}">
+              ${b.status || 'OPEN'}
+            </span>
+          </td>
+          <td class="p-3 text-right">
+            <div class="flex items-center justify-end gap-1.5">
+              <button onclick="toggleBugStatus('${b.id}')" title="Toggle Status" class="px-2 py-1 rounded bg-torn-well hover:bg-neutral-700 text-slate-200 border border-torn-border text-[10px] font-bold">
+                ${isResolved ? 'Reopen' : 'Resolve'}
+              </button>
+              <button onclick="deleteBugReport('${b.id}')" title="Delete" class="p-1 rounded bg-rose-950 hover:bg-rose-900 text-rose-400 border border-rose-800 text-[10px]">
+                <i data-lucide="trash-2" class="w-3 h-3"></i>
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      updateNavigationCounts();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    async function fileBugReportFromGUI() {
+      const rep = document.getElementById('bug-reporter-input').value.trim() || 'GUI User';
+      const feat = document.getElementById('bug-feature-select').value;
+      const sev = document.getElementById('bug-severity-select').value;
+      const desc = document.getElementById('bug-description-input').value.trim();
+      const notify = document.getElementById('bug-notify-discord').checked;
+
+      if (!desc) {
+        showToast('Please provide a description of the bug.', 'error');
+        return;
+      }
+
+      const bugId = `BUG-${bugReportsLog.length + 1001}`;
+      const record = {
+        id: bugId,
+        reporterName: rep,
+        reporterId: 'web_gui',
+        feature: feat,
+        severity: sev,
+        description: desc,
+        status: 'OPEN',
+        timestamp: new Date().toISOString()
+      };
+
+      bugReportsLog.push(record);
+      localStorage.setItem(BUGS_STORAGE_KEY, JSON.stringify(bugReportsLog));
+      renderBugReportsTable();
+
+      document.getElementById('bug-description-input').value = '';
+      showToast(`Bug ${bugId} logged to bug_reports.json!`, 'success');
+
+      if (notify) {
+        await postCategoryWebhook('announcements', {
+          embeds: [{
+            title: `🐞 Bug Report Filed: ${bugId}`,
+            description: `**Feature:** \`${feat}\` | **Severity:** \`${sev}\`\n**Reporter:** ${rep}\n\n**Description:**\n${desc}`,
+            color: sev === 'Critical' ? 0xd32f2f : 0xeab308,
+            timestamp: new Date().toISOString()
+          }]
+        });
+      }
+    }
+
+    function toggleBugStatus(id) {
+      const b = bugReportsLog.find(x => x.id === id);
+      if (b) {
+        b.status = b.status === 'RESOLVED' ? 'OPEN' : 'RESOLVED';
+        b.resolvedAt = b.status === 'RESOLVED' ? new Date().toISOString() : null;
+        localStorage.setItem(BUGS_STORAGE_KEY, JSON.stringify(bugReportsLog));
+        renderBugReportsTable();
+        showToast(`Bug ${id} marked as ${b.status}!`, 'info');
+      }
+    }
+
+    function deleteBugReport(id) {
+      if (!confirm(`Delete bug report ${id}?`)) return;
+      bugReportsLog = bugReportsLog.filter(x => x.id !== id);
+      localStorage.setItem(BUGS_STORAGE_KEY, JSON.stringify(bugReportsLog));
+      renderBugReportsTable();
+      showToast(`Deleted ${id}.`, 'info');
+    }
+
+    function exportBugsJSON() {
+      const json = JSON.stringify(bugReportsLog, null, 2);
+      downloadFile(json, 'bug_reports.json', 'application/json');
+      showToast(`Exported ${bugReportsLog.length} bug reports to bug_reports.json!`, 'success');
+    }
+
+    function exportBugsCSV() {
+      let csv = 'ID,Reporter,Feature,Severity,Status,Description,Timestamp\n';
+      bugReportsLog.forEach(b => {
+        const cleanDesc = (b.description || '').replace(/"/g, '""');
+        csv += `"${b.id}","${b.reporterName}","${b.feature}","${b.severity}","${b.status}","${cleanDesc}","${b.timestamp}"\n`;
+      });
+      downloadFile(csv, 'bug_reports.csv', 'text/csv');
+      showToast('Exported bug reports CSV!', 'success');
+    }
+
+    async function fetchRepoBugReports() {
+      try {
+        const res = await fetch('./bug_reports.json?t=' + Date.now());
+        if (!res.ok) throw new Error('File not found');
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          bugReportsLog = data;
+          localStorage.setItem(BUGS_STORAGE_KEY, JSON.stringify(bugReportsLog));
+          renderBugReportsTable();
+          showToast(`Synced ${data.length} bug reports from repo!`, 'success');
+        }
+      } catch (err) {
+        showToast('Could not load bug_reports.json from repo. Run /bug-export in Discord or upload file.', 'error');
+      }
+    }
+
+    async function fetchRepoBugReportsSilent() {
+      try {
+        const res = await fetch('./bug_reports.json?t=' + Date.now());
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            bugReportsLog = data;
+            localStorage.setItem(BUGS_STORAGE_KEY, JSON.stringify(bugReportsLog));
+            renderBugReportsTable();
+          }
+        }
+      } catch (_) {}
+    }
+
+    function importBugReportsJSON(event) {
+      const f = event.target.files[0];
+      if (!f) return;
+      const r = new FileReader();
+      r.onload = ev => {
+        try {
+          const imp = JSON.parse(ev.target.result);
+          if (Array.isArray(imp)) {
+            bugReportsLog = imp;
+            localStorage.setItem(BUGS_STORAGE_KEY, JSON.stringify(bugReportsLog));
+            renderBugReportsTable();
+            showToast(`Imported ${imp.length} bug reports!`, 'success');
+          } else {
+            showToast('JSON must be an array of bug reports.', 'error');
+          }
+        } catch {
+          showToast('Invalid JSON file.', 'error');
+        }
+      };
+      r.readAsText(f);
     }
 
     function renderScheduledRacesTable() {
@@ -1617,39 +1983,90 @@
       drawToCanvas();
     }
 
+    function getRacePassword() {
+      if (currentSettings.racePassword) return currentSettings.racePassword.trim();
+      const el = document.getElementById('setting-race-password');
+      return el ? el.value.trim() : 'LOKI2026';
+    }
+
     function drawToCanvas() {
       const cvs = document.getElementById('export-canvas');
       const ctx = cvs.getContext('2d');
       const player = document.getElementById('bingo-player-seed').value.trim() || 'Loki [2356475]';
       const raffleNum = sessionCardRegistry[player] ? sessionCardRegistry[player].raffleNumber : 1;
+      const racePw = getRacePassword();
 
-      ctx.fillStyle = '#141414'; ctx.fillRect(0, 0, 800, 900);
-      ctx.fillStyle = '#202020'; ctx.fillRect(40, 40, 720, 90);
-      ctx.strokeStyle = '#383838'; ctx.strokeRect(40, 40, 720, 90);
+      // Canvas dimensions
+      cvs.width = 860;
+      cvs.height = 1020;
 
-      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 28px Impact, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText("WEEKEND AT LOKI'S BINGO", 400, 78);
-      ctx.fillStyle = '#eab308'; ctx.font = 'bold 14px "JetBrains Mono"';
-      ctx.fillText(`Player: ${player}  |  🎟️ Raffle Ticket #${raffleNum}`, 400, 110);
+      // Dark background
+      ctx.fillStyle = '#141414'; ctx.fillRect(0, 0, 860, 1020);
 
+      // Header Banner (+50% Larger Font Typography)
+      ctx.fillStyle = '#1e1e1e'; ctx.fillRect(35, 30, 790, 145);
+      ctx.strokeStyle = '#383838'; ctx.lineWidth = 2; ctx.strokeRect(35, 30, 790, 145);
+
+      // Title (+50%: 28px -> 42px)
+      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 42px Impact, sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText("WEEKEND AT LOKI'S BINGO", 430, 78);
+
+      // Player & Raffle Ticket (+50%: 14px -> 21px)
+      ctx.fillStyle = '#eab308'; ctx.font = 'bold 21px "JetBrains Mono", monospace';
+      ctx.fillText(`Player: ${player}  |  🎟️ Raffle Ticket #${raffleNum}`, 430, 120);
+
+      // Current Race Password (+50% Large text)
+      ctx.fillStyle = '#22c55e'; ctx.font = 'bold 18px "JetBrains Mono", monospace';
+      ctx.fillText(`🔑 Official Race Password: ${racePw}`, 430, 155);
+
+      // B-I-N-G-O Headers (+50%: 22px -> 33px)
       const letters = ['B','I','N','G','O'];
+      const startX = 45, startY = 195, cellW = 150, cellH = 150;
+
       for (let c = 0; c < 5; c++) {
-        const x = 50 + c * 140;
-        ctx.fillStyle = '#d32f2f'; ctx.fillRect(x, 150, 132, 40);
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 22px Impact, sans-serif';
-        ctx.fillText(letters[c], x + 66, 178);
+        const x = startX + c * cellW;
+        ctx.fillStyle = '#d32f2f'; ctx.fillRect(x, startY, cellW - 6, 48);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 33px Impact, sans-serif';
+        ctx.fillText(letters[c], x + (cellW - 6) / 2, startY + 36);
       }
 
+      // 5x5 Cells (+50% Font: 12px -> 18px with word wrapping)
+      const gridY = startY + 56;
       activeBingoCard.forEach((cell, idx) => {
-        const x = 50 + (idx % 5) * 140;
-        const y = 200 + Math.floor(idx / 5) * 130;
+        const col = idx % 5;
+        const row = Math.floor(idx / 5);
+        const x = startX + col * cellW;
+        const y = gridY + row * cellH;
+        const w = cellW - 6, h = cellH - 6;
+
         ctx.fillStyle = cell.isFree ? '#2a1f11' : '#1e1e1e';
-        ctx.fillRect(x, y, 132, 122);
+        ctx.fillRect(x, y, w, h);
         ctx.strokeStyle = cell.isFree ? '#eab308' : '#383838';
-        ctx.strokeRect(x, y, 132, 122);
-        ctx.fillStyle = cell.isFree ? '#eab308' : '#e5e5e5';
-        ctx.font = cell.isFree ? 'bold 12px Inter' : '11px Inter';
-        ctx.fillText(cell.text, x + 66, y + 65);
+        ctx.lineWidth = cell.isFree ? 2 : 1;
+        ctx.strokeRect(x, y, w, h);
+
+        ctx.fillStyle = cell.isFree ? '#eab308' : '#ffffff';
+        ctx.font = cell.isFree ? 'bold 19px Inter, sans-serif' : 'bold 17px Inter, sans-serif';
+
+        // Multi-line wrap
+        const words = cell.text.split(' ');
+        const lines = [];
+        let curLine = '';
+        words.forEach(word => {
+          const test = (curLine + ' ' + word).trim();
+          if (test.length <= 11) curLine = test;
+          else {
+            if (curLine) lines.push(curLine);
+            curLine = word;
+          }
+        });
+        if (curLine) lines.push(curLine);
+
+        const lineH = 22;
+        const textStartY = y + (h - lines.length * lineH) / 2 + 15;
+        lines.forEach((l, lIdx) => {
+          ctx.fillText(l, x + w / 2, textStartY + lIdx * lineH);
+        });
       });
     }
 
@@ -1722,7 +2139,7 @@
       if (ok) showToast(`Winning ticket (#${winnerTicket} - ${winnerPlayer}) announced in #raffles!`, 'success');
     }
 
-    // --- WORD DROPS & SECRET JUMBLES (v5.8 NO ANSWER IN DISCORD) ---
+    // --- WORD DROPS & SECRET JUMBLES (v7.0 NO ANSWER IN DISCORD) ---
     function jumbleWord(word) {
       return word.split(' ').map(token => {
         if (token.length <= 2) return token;
@@ -1740,35 +2157,53 @@
 
     async function executeWordDrop(count = 5, includeJumble = true) {
       const pool = getWordPool();
-      const remaining = pool.filter(w => !drawnWords.includes(w));
+      let remaining = pool.filter(w => !drawnWords.includes(w));
       if (!remaining.length) { showToast('All words drawn in this session! Click "Start New Game" to reset.', 'error'); return; }
 
+      // 1. Draw up to 5 regular Bingo words
       const num = Math.min(count, remaining.length);
-      const dropped = [...remaining].sort(() => 0.5 - Math.random()).slice(0, num);
-      const jumbledTarget = dropped[0];
-      const scrambled = jumbleWord(jumbledTarget);
-
-      dropped.forEach((w, i) => {
+      const shuffled = [...remaining].sort(() => 0.5 - Math.random());
+      const droppedBingoWords = shuffled.slice(0, num);
+      
+      droppedBingoWords.forEach(w => {
         drawnWords.push(w);
-        const isJumbleItem = (i === 0);
         wordDrawsLog.unshift({
           word: w,
-          type: isJumbleItem ? '5-Word Drop (Jumble Target)' : '5-Word Drop',
-          scramble: isJumbleItem ? scrambled : null,
-          answer: isJumbleItem ? jumbledTarget : null,
+          type: '5-Word Drop',
+          scramble: null,
+          answer: w,
           time: new Date().toLocaleTimeString(),
           number: drawnWords.length
         });
       });
 
+      // 2. Draw a DISTINCT 6th word specifically for the Jumble (never reused!)
+      let jumbleTarget = null;
+      let scrambled = null;
+      const remainingForJumble = pool.filter(w => !drawnWords.includes(w));
+
+      if (includeJumble && remainingForJumble.length > 0) {
+        jumbleTarget = remainingForJumble[Math.floor(Math.random() * remainingForJumble.length)];
+        scrambled = jumbleWord(jumbleTarget);
+        drawnWords.push(jumbleTarget);
+        wordDrawsLog.unshift({
+          word: jumbleTarget,
+          type: '6th-Word Mystery Jumble',
+          scramble: scrambled,
+          answer: jumbleTarget,
+          time: new Date().toLocaleTimeString(),
+          number: drawnWords.length
+        });
+      }
+
       localStorage.setItem(GAME_STORAGE_KEY, JSON.stringify(drawnWords));
       localStorage.setItem(WORD_LOG_KEY, JSON.stringify(wordDrawsLog));
 
-      // Display in Host private caller view
+      // Display in Host private caller view (revealing the 6th word answer to host)
       document.getElementById('caller-current-word').innerHTML = `
-        <div class="text-xs text-amber-400 font-normal mb-1">📦 Loki's 5-Word Drop (Jumble: ${scrambled})</div>
-        <div class="text-sm text-slate-300">${dropped.join(' • ')}</div>
-        <div class="text-[11px] text-emerald-400 font-mono mt-1">✓ Secret Answer Logged: <b>${jumbledTarget}</b></div>
+        <div class="text-xs text-amber-400 font-normal mb-1">📦 Loki's 5-Word Drop & 6th-Word Jumble</div>
+        <div class="text-xs text-slate-300 font-semibold mb-1">5 Called Items: ${droppedBingoWords.join(' • ')}</div>
+        ${scrambled ? `<div class="p-2 rounded bg-purple-950/50 border border-purple-800 text-xs text-purple-200 mt-2 font-mono">🧩 6th Word Jumble: <b>${scrambled.toUpperCase()}</b> <br><span class="text-emerald-400 font-bold">✓ Secret Answer: ${jumbleTarget}</span> (Consumed as 6th item)</div>` : ''}
       `;
       updatePoolCount();
       renderCallerHistory();
@@ -1994,7 +2429,7 @@
       showToast('Payout confirmed & opened transfer link!');
     }
 
-    // --- FULL JSON SYNC (v5.8) ---
+    // --- FULL JSON SYNC (v7.0) ---
     function exportFullJSONSync() {
       saveSettings(true);
       const syncData = {
@@ -2009,9 +2444,9 @@
       };
       const a = document.createElement('a');
       a.href = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(syncData, null, 2));
-      a.download = `weekend_at_lokis_sync_v5.8_${new Date().toISOString().slice(0,10)}.json`;
+      a.download = `weekend_at_lokis_sync_v7.0_${new Date().toISOString().slice(0,10)}.json`;
       a.click();
-      showToast('Weekend at Loki\'s settings, cards & races exported (v5.8)!', 'success');
+      showToast('Weekend at Loki\'s settings, cards & races exported (v7.0)!', 'success');
     }
 
     function importFullJSONSync(e) {
@@ -2030,13 +2465,15 @@
           if (imp.wordBank) { document.getElementById('bingo-word-pool').value = imp.wordBank.join('\n'); updatePoolCount(); }
           if (imp.registeredMembers) { registeredMembers = imp.registeredMembers; localStorage.setItem(MEMBERS_STORAGE_KEY, JSON.stringify(registeredMembers)); populateMemberDropdown(); }
           if (imp.sessionCards) { sessionCardRegistry = imp.sessionCards; localStorage.setItem(SESSION_CARDS_KEY, JSON.stringify(sessionCardRegistry)); }
-          if (imp.scheduledRacesLog) { scheduledRacesLog = imp.scheduledRacesLog; localStorage.setItem(SCHEDULED_RACES_KEY, JSON.stringify(scheduledRacesLog)); renderScheduledRacesTable(); }
+          if (imp.scheduledRacesLog) { scheduledRacesLog = imp.scheduledRacesLog; localStorage.setItem(SCHEDULED_RACES_KEY, JSON.stringify(scheduledRacesLog)); renderScheduledRacesTable();
+      renderBugReportsTable();
+      fetchRepoBugReportsSilent(); }
           if (imp.winnersLog) { winnersLog = imp.winnersLog; localStorage.setItem(WINNERS_STORAGE_KEY, JSON.stringify(winnersLog)); renderWinnerTable(); }
           if (imp.wordDrawsLog) { wordDrawsLog = imp.wordDrawsLog; localStorage.setItem(WORD_LOG_KEY, JSON.stringify(wordDrawsLog)); renderCallerHistory(); }
           renderClaimedCardsTable();
           refreshClaimedRosterForRaffle();
           generateOrRetrieveCard(false);
-          showToast('v5.8 JSON Sync Loaded!', 'success');
+          showToast('v7.0 JSON Sync Loaded!', 'success');
         } catch { showToast('Invalid JSON file.', 'error'); }
       };
       r.readAsText(f);
