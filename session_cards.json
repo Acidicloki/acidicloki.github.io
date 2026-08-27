@@ -936,5 +936,139 @@
       }
     ],
     "lockedAt": "2026-08-27T05:58:15.107511+00:00"
+  },
+  "261403783395803147": {
+    "seed": "Walaveenie [4347993] (\\/)-261403",
+    "userName": "Walaveenie [4347993] (\\/)",
+    "userId": "261403783395803147",
+    "raffleNumber": 8,
+    "cells": [
+      {
+        "text": "Hammer",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Pearl Necklace",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Echo Quadrato",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Tunneling Virus",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Plain Silver Ring",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "DVD Player",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Gold Watch",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "CD Player",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "M249 SAW",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Bulletproof Vest",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Raven MP25",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Microwave",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Simple Virus",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Armored Virus",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Police Vest",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Leather Vest",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Magnum",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Baseball Bat",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Steyr AUG",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Jacket",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "AK-47",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Bavaria M5",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Dagger",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Edomondo NSX",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-27T06:37:51.673404+00:00"
   }
 }
