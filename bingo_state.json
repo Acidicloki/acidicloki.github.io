@@ -1,4 +1,12 @@
 {
+  "drawn_words": [
+    "P90",
+    "Axe",
+    "Diamond Ring",
+    "Bag of Bon Bons",
+    "Bavaria M5",
+    "Blank DVDs : 100"
+  ],
   "word_pool": [
     "Hammer",
     "Baseball Bat",
@@ -81,10 +89,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "drawn_words": [
-    "Xanax",
-    "Box of Medical Supplies",
-    "Speed"
-  ],
-  "updated_at": "2026-08-27T01:26:40.951578+00:00"
+  "updated_at": "2026-08-27T02:11:37.674305+00:00"
 }
