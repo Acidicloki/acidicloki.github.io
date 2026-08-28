@@ -1874,5 +1874,139 @@
       }
     ],
     "lockedAt": "2026-08-28T10:18:08.565198+00:00"
+  },
+  "359585932044926987": {
+    "seed": "Dr_Boopsie [4243186] ()-359585",
+    "userName": "Dr_Boopsie [4243186] ()",
+    "userId": "359585932044926987",
+    "raffleNumber": 15,
+    "cells": [
+      {
+        "text": "Full Body Armor",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Beretta 92FS",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Crowbar",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Axe",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "M249 SAW",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Minigun",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Knuckle Dusters",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Chainsaw",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "MP3 Player",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Stealth Virus",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Santa Hat '04",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Gold Ring",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "First Aid Kit",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Hard Drive",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Christmas Cracker '04",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Armored Virus",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Personal Computer",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Beretta M9",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Microwave",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Samurai Sword",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "CD Player",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Sapphire Ring",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Gold Watch",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "MP5 Navy",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-28T17:36:05.437499+00:00"
   }
 }
