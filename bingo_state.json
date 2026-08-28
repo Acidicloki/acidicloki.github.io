@@ -1,5 +1,12 @@
 {
-  "drawn_words": [],
+  "drawn_words": [
+    "Morphine",
+    "Ruger 57",
+    "Bavaria M5",
+    "Leather Vest",
+    "Christmas Cracker '04",
+    "P90"
+  ],
   "word_pool": [
     "Hammer",
     "Baseball Bat",
@@ -82,5 +89,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-27T03:31:16.205425+00:00"
+  "updated_at": "2026-08-28T12:13:01.667009+00:00"
 }
