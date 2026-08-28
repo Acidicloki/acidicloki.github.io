@@ -1740,5 +1740,139 @@
       }
     ],
     "lockedAt": "2026-08-28T05:21:23.318377+00:00"
+  },
+  "876867632651984897": {
+    "seed": "AntP [3609760] (ECVG)-876867",
+    "userName": "AntP [3609760] (ECVG)",
+    "userId": "876867632651984897",
+    "raffleNumber": 14,
+    "cells": [
+      {
+        "text": "Hammer",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Police Vest",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Sawed-Off Shotgun",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Crowbar",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Full Body Armor",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Box of Extra Strong Mints",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Gold Necklace",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "CD Player",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Christmas Cracker '04",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Trainers",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Kitchen Knife",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "AK-47",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Tunneling Virus",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Pearl Necklace",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Bag of Bon Bons",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Small First Aid Kit",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Box of Bon Bons",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Tank Top",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Raven MP25",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Hard Drive",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Silver Necklace",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Snow Cannon",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Chainsaw",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Samurai Sword",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-28T10:18:08.565198+00:00"
   }
 }
