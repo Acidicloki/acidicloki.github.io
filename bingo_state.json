@@ -11,7 +11,13 @@
     "AK-47",
     "Dagger",
     "Pack of Cuban Cigars",
-    "Chainsaw"
+    "Chainsaw",
+    "Plastic Watch",
+    "MP3 Player",
+    "Beretta M9",
+    "Raven MP25",
+    "Trainers",
+    "Diamond Ring"
   ],
   "word_pool": [
     "Hammer",
@@ -95,5 +101,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-28T19:07:35.152687+00:00"
+  "updated_at": "2026-08-28T19:11:38.933696+00:00"
 }
