@@ -2142,5 +2142,139 @@
       }
     ],
     "lockedAt": "2026-08-28T17:53:08.303283+00:00"
+  },
+  "725519870124359754": {
+    "seed": "tornhole [2844285]-725519",
+    "userName": "tornhole [2844285]",
+    "userId": "725519870124359754",
+    "raffleNumber": 17,
+    "cells": [
+      {
+        "text": "Box of Bon Bons",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "MP5 Navy",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Jacket",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Plastic Watch",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Blank DVDs : 100",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Glock 17",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Snow Cannon",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Christmas Cracker '04",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Box of Extra Strong Mints",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Big Box of Chocolate Bars",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Dual 92G Berettas",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Personal Computer",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Benelli M1 Tactical",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Baseball Bat",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Minigun",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Stainless Steel Watch",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Crowbar",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Ruger 57",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Leather Vest",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Beretta M9",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Fiveseven",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Outer Tactical Vest",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Gold Necklace",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "CD Player",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-28T19:08:32.349831+00:00"
   }
 }
