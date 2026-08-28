@@ -5,7 +5,13 @@
     "Bavaria M5",
     "Leather Vest",
     "Christmas Cracker '04",
-    "P90"
+    "P90",
+    "Big Box of Chocolate Bars",
+    "Box of Chocolate Bars",
+    "AK-47",
+    "Dagger",
+    "Pack of Cuban Cigars",
+    "Chainsaw"
   ],
   "word_pool": [
     "Hammer",
@@ -89,5 +95,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-28T12:13:01.667009+00:00"
+  "updated_at": "2026-08-28T19:07:35.152687+00:00"
 }
