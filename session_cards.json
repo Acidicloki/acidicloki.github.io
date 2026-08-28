@@ -2276,5 +2276,139 @@
       }
     ],
     "lockedAt": "2026-08-28T19:08:32.349831+00:00"
+  },
+  "232366009393086466": {
+    "seed": "DuncanTheDrunk [914570] (\\/)-232366",
+    "userName": "DuncanTheDrunk [914570] (\\/)",
+    "userId": "232366009393086466",
+    "raffleNumber": 18,
+    "cells": [
+      {
+        "text": "Leather Vest",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "MP3 Player",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Tabata RM2",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Dual 92G Berettas",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Sapphire Ring",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Stainless Steel Watch",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Snow Cannon",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Steyr AUG",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Echo Quadrato",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "M16 A2 Rifle",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Glock 17",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Desert Eagle",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Silver Necklace",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Fiveseven",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "P90",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Raven MP25",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "USP",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Personal Computer",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Jacket",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Kitchen Knife",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "M249 SAW",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Benelli M1 Tactical",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Simple Virus",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Pack of Music CDs",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-28T21:06:18.177550+00:00"
   }
 }
