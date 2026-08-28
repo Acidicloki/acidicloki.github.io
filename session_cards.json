@@ -1606,5 +1606,139 @@
       }
     ],
     "lockedAt": "2026-08-28T01:54:25.114137+00:00"
+  },
+  "362269375564218378": {
+    "seed": "Arthur20 [3984708] (\\/)-362269",
+    "userName": "Arthur20 [3984708] (\\/)",
+    "userId": "362269375564218378",
+    "raffleNumber": 13,
+    "cells": [
+      {
+        "text": "Armored Virus",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Personal Computer",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Snow Cannon",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Sawed-Off Shotgun",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Raven MP25",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Full Body Armor",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Benelli M4 Super",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Simple Virus",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Bag of Bon Bons",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Desert Eagle",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Trainers",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Kitchen Knife",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Big Box of Chocolate Bars",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Box of Bon Bons",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Pack of Music CDs",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Pack of Cuban Cigars",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Benelli M1 Tactical",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "M16 A2 Rifle",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Samurai Sword",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Police Vest",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Outer Tactical Vest",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Chainsaw",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "M4A1 Colt Carbine",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Microwave",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-28T05:21:23.318377+00:00"
   }
 }
