@@ -1472,5 +1472,139 @@
       }
     ],
     "lockedAt": "2026-08-27T11:32:07.443031+00:00"
+  },
+  "1161765018417778758": {
+    "seed": "Wife-of-Loki [4447702] (\\/)-116176",
+    "userName": "Wife-of-Loki [4447702] (\\/)",
+    "userId": "1161765018417778758",
+    "raffleNumber": 12,
+    "cells": [
+      {
+        "text": "Simple Virus",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "MP5 Navy",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Chainsaw",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Glock 17",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Minigun",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Pack of Music CDs",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Tabata RM2",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Armored Virus",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Gold Necklace",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Trainers",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Television",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Steyr AUG",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Echo Quadrato",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Stainless Steel Watch",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Gold Watch",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Pen Knife",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Fiveseven",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Scimitar",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Sapphire Ring",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Crowbar",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Stealth Virus",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Snow Cannon",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "P90",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Bulletproof Vest",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-28T01:54:25.114137+00:00"
   }
 }
