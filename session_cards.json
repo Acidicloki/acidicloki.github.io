@@ -2410,5 +2410,139 @@
       }
     ],
     "lockedAt": "2026-08-28T21:06:18.177550+00:00"
+  },
+  "320831484933963776": {
+    "seed": "Reyoh [3751863] (\\/)-320831",
+    "userName": "Reyoh [3751863] (\\/)",
+    "userId": "320831484933963776",
+    "raffleNumber": 19,
+    "cells": [
+      {
+        "text": "Pack of Cuban Cigars",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Santa Hat '04",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "CD Player",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Gold Ring",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Gold Watch",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Stainless Steel Watch",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Diamond Ring",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Pack of Music CDs",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Christmas Cracker '04",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Box of Chocolate Bars",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "AK-47",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Chainsaw",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Trainers",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Polymorphic Virus",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Leather Vest",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Desert Eagle",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Bulletproof Vest",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Sapphire Ring",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Glock 17",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Baseball Bat",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Knuckle Dusters",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Dual 92G Berettas",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Benelli M4 Super",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Scimitar",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-08-29T12:29:08.491882+00:00"
   }
 }
