@@ -28,5 +28,15 @@
     "feature": "General",
     "status": "OPEN",
     "timestamp": "2026-08-29T12:24:29.269246+00:00"
+  },
+  {
+    "id": "BUG-1004",
+    "reporterName": "Loki The Love Walrus",
+    "reporterId": "549775479721426974",
+    "description": "add racing password to race schedule",
+    "severity": "Medium",
+    "feature": "General",
+    "status": "OPEN",
+    "timestamp": "2026-08-29T12:57:21.233920+00:00"
   }
 ]
