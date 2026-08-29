@@ -38,5 +38,15 @@
     "feature": "General",
     "status": "OPEN",
     "timestamp": "2026-08-29T12:57:21.233920+00:00"
+  },
+  {
+    "id": "BUG-1005",
+    "reporterName": "Lottie89 [4265999] (CM)",
+    "reporterId": "777054865825857576",
+    "description": "creating separate channel for requesting bingo card",
+    "severity": "Medium",
+    "feature": "Bingo Cards",
+    "status": "OPEN",
+    "timestamp": "2026-08-29T13:07:32.874841+00:00"
   }
 ]
