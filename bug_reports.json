@@ -8,5 +8,15 @@
     "feature": "General",
     "status": "OPEN",
     "timestamp": "2026-08-27T02:44:40.829864+00:00"
+  },
+  {
+    "id": "BUG-1002",
+    "reporterName": "Loki The Love Walrus",
+    "reporterId": "549775479721426974",
+    "description": "raffle pulling from wrong prize list",
+    "severity": "Medium",
+    "feature": "General",
+    "status": "OPEN",
+    "timestamp": "2026-08-29T01:01:16.034402+00:00"
   }
 ]
