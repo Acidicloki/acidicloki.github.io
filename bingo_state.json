@@ -17,7 +17,13 @@
     "Beretta M9",
     "Raven MP25",
     "Trainers",
-    "Diamond Ring"
+    "Diamond Ring",
+    "DVD Player",
+    "USP",
+    "Scimitar",
+    "Crowbar",
+    "Jacket",
+    "Armored Virus"
   ],
   "word_pool": [
     "Hammer",
@@ -101,5 +107,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-28T19:11:38.933696+00:00"
+  "updated_at": "2026-08-29T21:25:19.480183+00:00"
 }
