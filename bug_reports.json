@@ -18,5 +18,15 @@
     "feature": "General",
     "status": "OPEN",
     "timestamp": "2026-08-29T01:01:16.034402+00:00"
+  },
+  {
+    "id": "BUG-1003",
+    "reporterName": "Loki The Love Walrus",
+    "reporterId": "549775479721426974",
+    "description": "make bingo card command only usable in game talk.",
+    "severity": "Medium",
+    "feature": "General",
+    "status": "OPEN",
+    "timestamp": "2026-08-29T12:24:29.269246+00:00"
   }
 ]
