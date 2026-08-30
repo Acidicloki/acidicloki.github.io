@@ -47,7 +47,13 @@
     "Pearl Necklace",
     "Gold Ring",
     "Outer Tactical Vest",
-    "Police Vest"
+    "Police Vest",
+    "Polymorphic Virus",
+    "Stainless Steel Watch",
+    "M249 SAW",
+    "Dual 92G Berettas",
+    "Edomondo NSX",
+    "Magnum"
   ],
   "word_pool": [
     "Hammer",
@@ -131,5 +137,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-30T16:07:00.001918+00:00"
+  "updated_at": "2026-08-30T23:39:48.807169+00:00"
 }
