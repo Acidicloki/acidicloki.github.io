@@ -29,7 +29,13 @@
     "Television",
     "Microwave",
     "Simple Virus",
-    "Desert Eagle"
+    "Desert Eagle",
+    "Benelli M4 Super",
+    "Plain Silver Ring",
+    "Bulletproof Vest",
+    "Box of Bon Bons",
+    "Hard Drive",
+    "M16 A2 Rifle"
   ],
   "word_pool": [
     "Hammer",
@@ -113,5 +119,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-30T11:56:47.353019+00:00"
+  "updated_at": "2026-08-30T11:57:45.766506+00:00"
 }
