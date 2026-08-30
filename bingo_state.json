@@ -35,7 +35,13 @@
     "Bulletproof Vest",
     "Box of Bon Bons",
     "Hard Drive",
-    "M16 A2 Rifle"
+    "M16 A2 Rifle",
+    "Fiveseven",
+    "Tabata RM2",
+    "Bag of Bon Bons",
+    "MP5 Navy",
+    "Sapphire Ring",
+    "Snow Cannon"
   ],
   "word_pool": [
     "Hammer",
@@ -119,5 +125,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-30T11:57:45.766506+00:00"
+  "updated_at": "2026-08-30T12:57:04.051508+00:00"
 }
