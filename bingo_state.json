@@ -23,7 +23,13 @@
     "Scimitar",
     "Crowbar",
     "Jacket",
-    "Armored Virus"
+    "Armored Virus",
+    "Beretta 92FS",
+    "CD Player",
+    "Television",
+    "Microwave",
+    "Simple Virus",
+    "Desert Eagle"
   ],
   "word_pool": [
     "Hammer",
@@ -107,5 +113,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-29T21:25:19.480183+00:00"
+  "updated_at": "2026-08-30T11:56:47.353019+00:00"
 }
