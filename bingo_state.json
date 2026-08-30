@@ -41,7 +41,13 @@
     "Bag of Bon Bons",
     "MP5 Navy",
     "Sapphire Ring",
-    "Snow Cannon"
+    "Snow Cannon",
+    "Sawed-Off Shotgun",
+    "Echo Quadrato",
+    "Pearl Necklace",
+    "Gold Ring",
+    "Outer Tactical Vest",
+    "Police Vest"
   ],
   "word_pool": [
     "Hammer",
@@ -125,5 +131,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-30T12:57:04.051508+00:00"
+  "updated_at": "2026-08-30T16:07:00.001918+00:00"
 }
