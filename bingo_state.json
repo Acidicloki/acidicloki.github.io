@@ -53,7 +53,13 @@
     "M249 SAW",
     "Dual 92G Berettas",
     "Edomondo NSX",
-    "Magnum"
+    "Magnum",
+    "Gold Necklace",
+    "Knuckle Dusters",
+    "Hammer",
+    "First Aid Kit",
+    "Minigun",
+    "M4A1 Colt Carbine"
   ],
   "word_pool": [
     "Hammer",
@@ -137,5 +143,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-08-30T23:39:48.807169+00:00"
+  "updated_at": "2026-08-31T01:24:03.185497+00:00"
 }
