@@ -1606,5 +1606,139 @@
       }
     ],
     "lockedAt": "2026-09-03T09:42:43.164400+00:00"
+  },
+  "835942447946137630": {
+    "seed": "Batorchit [3790102] (Hell)-835942",
+    "userName": "Batorchit [3790102] (Hell)",
+    "userId": "835942447946137630",
+    "raffleNumber": 13,
+    "cells": [
+      {
+        "text": "Daffodil",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Kitten Plushie",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Free space",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Armalite M-15A4",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Mika",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Disposal",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Erotic DVD",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Ketamine",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Rigged",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Golden AK",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Hustling",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "PCP",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Panda Plushie",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Tyrosine",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Edelweiss",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "MP5K",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Will Ferrell",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Shrooms",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Chedburn",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Red Cow",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Wicked Witch",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Beetlejuice",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Teddy Bear Plushie",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-03T10:34:57.562261+00:00"
   }
 }
