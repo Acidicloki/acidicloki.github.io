@@ -1740,5 +1740,139 @@
       }
     ],
     "lockedAt": "2026-09-03T10:34:57.562261+00:00"
+  },
+  "652817604720721951": {
+    "seed": "TheBingoBitch [2411793]-652817",
+    "userName": "TheBingoBitch [2411793]",
+    "userId": "652817604720721951",
+    "raffleNumber": 14,
+    "cells": [
+      {
+        "text": "Hat",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Red Cow",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Bogie",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Armalite M-15A4",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Candleshop",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Daffodil",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Melatonin",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Graffiti",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Reviving",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Tyrosine",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "PCP",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Pickpocketing",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Erotic DVD",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Teddy Bear Plushie",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Duke",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Warlord",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Champagne",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Shrooms",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Hair salon",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Smoke Grenade",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Kitten Plushie",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Mika",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "D3vl",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Opium",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-03T11:58:19.000316+00:00"
   }
 }
