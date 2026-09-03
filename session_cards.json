@@ -1204,5 +1204,139 @@
       }
     ],
     "lockedAt": "2026-09-03T06:13:25.369699+00:00"
+  },
+  "777054865825857576": {
+    "seed": "Lottie89 [4265999] (CM)-777054",
+    "userName": "Lottie89 [4265999] (CM)",
+    "userId": "777054865825857576",
+    "raffleNumber": 10,
+    "cells": [
+      {
+        "text": "Disposal",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Taurine Elite",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Chamois Plushie",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Vicodin",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Beetlejuice",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Lat",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Ketamine",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Panda Plushie",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Ceibo Flowers",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Shoplifting",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Smoke Grenade",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Flight Delay",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Graffiti",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Free space",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Xanax",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Erotic DVD",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Dirty Bomb",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "X-Mass",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Serotonin",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Will Ferrell",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Burglary",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Rigged",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Red Fox Plushie",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-03T07:45:08.752901+00:00"
   }
 }
