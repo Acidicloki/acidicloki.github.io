@@ -400,5 +400,139 @@
       }
     ],
     "lockedAt": "2026-09-03T03:24:07.361387+00:00"
+  },
+  "549775479721426974": {
+    "seed": "Loki The Love Walrus-549775",
+    "userName": "Loki The Love Walrus",
+    "userId": "549775479721426974",
+    "raffleNumber": 4,
+    "cells": [
+      {
+        "text": "African Violet",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Bogie",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Peony",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Will Ferrell",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Champagne",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Cracking",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Buymug",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Melatonin",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Munster",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Camel Plushie",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Ketamine",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Jaguar Plushie",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "White Lilly",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Vicodin",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Speed",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Golden AK",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Tribulus Omanense",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Smoke Grenade",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Ceibo Flowers",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "MP5K",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Minty Mayhem",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Jackhammer",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Search for Cash",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Kitten Plushie",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-03T03:29:39.599701+00:00"
   }
 }
