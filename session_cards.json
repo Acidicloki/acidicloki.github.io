@@ -1338,5 +1338,139 @@
       }
     ],
     "lockedAt": "2026-09-03T07:45:08.752901+00:00"
+  },
+  "261403783395803147": {
+    "seed": "Walaveenie [4347993] (\\/)-261403",
+    "userName": "Walaveenie [4347993] (\\/)",
+    "userId": "261403783395803147",
+    "raffleNumber": 11,
+    "cells": [
+      {
+        "text": "Minty Mayhem",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Kandy Kane",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Beetlejuice",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Melatonin",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Tribulus Omanense",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Ketamine",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Red Cow",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Camel Plushie",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Will Ferrell",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Vicodin",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Racing",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "D3vl",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Lat",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Tear Gas",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Cannabis",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Buymug",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Lion Plushie",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Free space",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Robin Williams",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Chamois Plushie",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "MP5K",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Hustling",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Ceibo Flowers",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "African Violet",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-03T09:01:21.479086+00:00"
   }
 }
