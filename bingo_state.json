@@ -1,5 +1,12 @@
 {
-  "drawn_words": [],
+  "drawn_words": [
+    "Bag of Bon Bons",
+    "Bulletproof Vest",
+    "Trainers",
+    "AK-47",
+    "Benelli M4 Super",
+    "Outer Tactical Vest"
+  ],
   "word_pool": [
     "Hammer",
     "Baseball Bat",
@@ -82,5 +89,5 @@
     "Echo Quadrato",
     "Bavaria M5"
   ],
-  "updated_at": "2026-09-03T02:48:36.471568+00:00"
+  "updated_at": "2026-09-03T02:48:56.435246+00:00"
 }
