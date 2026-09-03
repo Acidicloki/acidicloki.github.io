@@ -802,5 +802,139 @@
       }
     ],
     "lockedAt": "2026-09-03T03:51:16.440203+00:00"
+  },
+  "242191849803087873": {
+    "seed": "waverr [3865008] (\\/)-242191",
+    "userName": "waverr [3865008] (\\/)",
+    "userId": "242191849803087873",
+    "raffleNumber": 7,
+    "cells": [
+      {
+        "text": "Graffiti",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Lion Plushie",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Wolverine Plushie",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Panda Plushie",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Racing",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Tribulus Omanense",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Edelweiss",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Armalite M-15A4",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Tornhole",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Champagne",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Mistletoe Madness",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Peony",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Warlord",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "George",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Speed",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Beetlejuice",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Will Ferrell",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Opium",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Red Cow",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Smoke Grenade",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Camel Plushie",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "White Lilly",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Search for Cash",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Red Fox Plushie",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-03T03:56:18.872250+00:00"
   }
 }
