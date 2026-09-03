@@ -2008,5 +2008,139 @@
       }
     ],
     "lockedAt": "2026-09-03T15:44:15.468533+00:00"
+  },
+  "1213864640723943485": {
+    "seed": "ChesterAW [4278802] (\\/)-121386",
+    "userName": "ChesterAW [4278802] (\\/)",
+    "userId": "1213864640723943485",
+    "raffleNumber": 16,
+    "cells": [
+      {
+        "text": "Wolverine Plushie",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Minty Mayhem",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Ketamine",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Lion Plushie",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Card Skimming",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Shoplifting",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "MP5K",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Jaguar Plushie",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Ceibo Flowers",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Disposal",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Cannabis",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Graffiti",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Burglary",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Panda Plushie",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Tyrosine",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Taurine Elite",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Jim Carrey",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Cracking",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Lat",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Dirty Bomb",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Red Fox Plushie",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "D3vl",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-03T23:35:59.580749+00:00"
   }
 }
