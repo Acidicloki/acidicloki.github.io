@@ -534,5 +534,139 @@
       }
     ],
     "lockedAt": "2026-09-03T03:29:39.599701+00:00"
+  },
+  "918720667300540466": {
+    "seed": "Aede [2766289] (CLOT)-918720",
+    "userName": "Aede [2766289] (CLOT)",
+    "userId": "918720667300540466",
+    "raffleNumber": 5,
+    "cells": [
+      {
+        "text": "Mistletoe Madness",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Edelweiss",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Lion Plushie",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Wicked Witch",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Graffiti",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Shoplifting",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Taurine Elite",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Tear Gas",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Red Fox Plushie",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Melatonin",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Ketamine",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Cannabis",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Kitten Plushie",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Hair salon",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Hustling",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Jim Carrey",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "D3vl",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Golden AK",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Pickpocketing",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Rigged",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Buymug",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Robin Williams",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-03T03:48:03.169824+00:00"
   }
 }
