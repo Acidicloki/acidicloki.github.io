@@ -1472,5 +1472,139 @@
       }
     ],
     "lockedAt": "2026-09-03T09:01:21.479086+00:00"
+  },
+  "876867632651984897": {
+    "seed": "AntP [3609760] (ECVG)-876867",
+    "userName": "AntP [3609760] (ECVG)",
+    "userId": "876867632651984897",
+    "raffleNumber": 12,
+    "cells": [
+      {
+        "text": "Minty Mayhem",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Shoplifting",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Opium",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Chedburn",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Racing",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Flight Delay",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Reviving",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Buymug",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Graffiti",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Tribulus Omanense",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Pickpocketing",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Will Ferrell",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Taurine Elite",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Camel Plushie",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Hustling",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Peony",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Rigged",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Lion Plushie",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Erotic DVD",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Beetlejuice",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Champagne",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Munster",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "MP5K",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-03T09:42:43.164400+00:00"
   }
 }
