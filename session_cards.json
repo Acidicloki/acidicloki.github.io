@@ -1070,5 +1070,139 @@
       }
     ],
     "lockedAt": "2026-09-03T04:55:33.511921+00:00"
+  },
+  "1356585411228602380": {
+    "seed": "McBraz [3675056] (IRL)-135658",
+    "userName": "McBraz [3675056] (IRL)",
+    "userId": "1356585411228602380",
+    "raffleNumber": 9,
+    "cells": [
+      {
+        "text": "African Violet",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Panda Plushie",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Erotic DVD",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Minty Mayhem",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Camel Plushie",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Daffodil",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Duke",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Munster",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Edelweiss",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Hair salon",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Kitten Plushie",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Disposal",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Will Ferrell",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Chedburn",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Racing",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Wolverine Plushie",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Candleshop",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Banana Orchid",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Champagne",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Kandy Kane",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Jackhammer",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Teddy Bear Plushie",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Buymug",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-03T06:13:25.369699+00:00"
   }
 }
