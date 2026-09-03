@@ -132,5 +132,139 @@
       }
     ],
     "lockedAt": "2026-09-03T03:22:03.871245+00:00"
+  },
+  "359585932044926987": {
+    "seed": "Dr_Boopsie [4243186] ()-359585",
+    "userName": "Dr_Boopsie [4243186] ()",
+    "userId": "359585932044926987",
+    "raffleNumber": 2,
+    "cells": [
+      {
+        "text": "Hair salon",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Hat",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Chedburn",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Warlord",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Free space",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "D3vl",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Banana Orchid",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Munster",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Hunting",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "George",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Candleshop",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Racing",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Bootlegging",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Graffiti",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Bogie",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Tornhole",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Beetlejuice",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Search for Cash",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Peony",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "MP5K",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Daffodil",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Shrooms",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Camel Plushie",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Forgery",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-03T03:22:24.167651+00:00"
   }
 }
