@@ -1874,5 +1874,139 @@
       }
     ],
     "lockedAt": "2026-09-03T11:58:19.000316+00:00"
+  },
+  "1512832436818546818": {
+    "seed": "sneakdare [2294101] (\\/)-151283",
+    "userName": "sneakdare [2294101] (\\/)",
+    "userId": "1512832436818546818",
+    "raffleNumber": 15,
+    "cells": [
+      {
+        "text": "Champagne",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "George",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Shrooms",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Duke",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "MP5K",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Hunting",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Robin Williams",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Wicked Witch",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Jaguar Plushie",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Munster",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Hat",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "White Lilly",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Buymug",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Daffodil",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Will Ferrell",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "X-Mass",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Taurine Elite",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "African Violet",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Free space",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Tear Gas",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Graffiti",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Camel Plushie",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Red Fox Plushie",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-03T15:44:15.468533+00:00"
   }
 }
