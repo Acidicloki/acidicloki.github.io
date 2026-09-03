@@ -1,67 +1,67 @@
 {
-  "245032280462983171": {
-    "seed": "ImagePlays [4112107] (TWI)-245032",
-    "userName": "ImagePlays [4112107] (TWI)",
-    "userId": "245032280462983171",
+  "349148437805137933": {
+    "seed": "Tora99 [4262207] (\\/)-349148",
+    "userName": "Tora99 [4262207] (\\/)",
+    "userId": "349148437805137933",
     "raffleNumber": 1,
     "cells": [
       {
-        "text": "Cannabis",
+        "text": "MP5 Navy",
         "is_free": false,
         "index": 0
       },
       {
-        "text": "X-Mass",
+        "text": "Tabata RM2",
         "is_free": false,
         "index": 1
       },
       {
-        "text": "Kandy Kane",
+        "text": "Polymorphic Virus",
         "is_free": false,
         "index": 2
       },
       {
-        "text": "Daffodil",
+        "text": "Glock 17",
         "is_free": false,
         "index": 3
       },
       {
-        "text": "Mistletoe Madness",
+        "text": "Edomondo NSX",
         "is_free": false,
         "index": 4
       },
       {
-        "text": "Will Ferrell",
+        "text": "Tunneling Virus",
         "is_free": false,
         "index": 5
       },
       {
-        "text": "Hair salon",
+        "text": "Scimitar",
         "is_free": false,
         "index": 6
       },
       {
-        "text": "Duke",
+        "text": "Plastic Watch",
         "is_free": false,
         "index": 7
       },
       {
-        "text": "Card Skimming",
+        "text": "Bavaria M5",
         "is_free": false,
         "index": 8
       },
       {
-        "text": "Kitten Plushie",
+        "text": "First Aid Kit",
         "is_free": false,
         "index": 9
       },
       {
-        "text": "Disposal",
+        "text": "Full Body Armor",
         "is_free": false,
         "index": 10
       },
       {
-        "text": "Teddy Bear Plushie",
+        "text": "Trainers",
         "is_free": false,
         "index": 11
       },
@@ -71,602 +71,66 @@
         "index": 12
       },
       {
-        "text": "Lion Plushie",
+        "text": "Blank DVDs : 100",
         "is_free": false,
         "index": 13
       },
       {
-        "text": "Shoplifting",
+        "text": "Knuckle Dusters",
         "is_free": false,
         "index": 14
       },
       {
-        "text": "Minty Mayhem",
+        "text": "USP",
         "is_free": false,
         "index": 15
       },
       {
-        "text": "Camel Plushie",
+        "text": "Armored Virus",
         "is_free": false,
         "index": 16
       },
       {
-        "text": "Lat",
+        "text": "Stainless Steel Watch",
         "is_free": false,
         "index": 17
       },
       {
-        "text": "Bootlegging",
+        "text": "Sapphire Ring",
         "is_free": false,
         "index": 18
       },
       {
-        "text": "Panda Plushie",
+        "text": "Kitchen Knife",
         "is_free": false,
         "index": 19
       },
       {
-        "text": "Dirty Bomb",
+        "text": "Sawed-Off Shotgun",
         "is_free": false,
         "index": 20
       },
       {
-        "text": "Chedburn",
+        "text": "Pen Knife",
         "is_free": false,
         "index": 21
       },
       {
-        "text": "Tear Gas",
+        "text": "Microwave",
         "is_free": false,
         "index": 22
       },
       {
-        "text": "Banana Orchid",
+        "text": "Personal Computer",
         "is_free": false,
         "index": 23
       },
       {
-        "text": "Wolverine Plushie",
+        "text": "Benelli M4 Super",
         "is_free": false,
         "index": 24
       }
     ],
-    "lockedAt": "2026-09-03T03:22:03.871245+00:00"
-  },
-  "359585932044926987": {
-    "seed": "Dr_Boopsie [4243186] ()-359585",
-    "userName": "Dr_Boopsie [4243186] ()",
-    "userId": "359585932044926987",
-    "raffleNumber": 2,
-    "cells": [
-      {
-        "text": "Hair salon",
-        "is_free": false,
-        "index": 0
-      },
-      {
-        "text": "Hat",
-        "is_free": false,
-        "index": 1
-      },
-      {
-        "text": "Chedburn",
-        "is_free": false,
-        "index": 2
-      },
-      {
-        "text": "Warlord",
-        "is_free": false,
-        "index": 3
-      },
-      {
-        "text": "Free space",
-        "is_free": false,
-        "index": 4
-      },
-      {
-        "text": "D3vl",
-        "is_free": false,
-        "index": 5
-      },
-      {
-        "text": "Banana Orchid",
-        "is_free": false,
-        "index": 6
-      },
-      {
-        "text": "Munster",
-        "is_free": false,
-        "index": 7
-      },
-      {
-        "text": "Hunting",
-        "is_free": false,
-        "index": 8
-      },
-      {
-        "text": "George",
-        "is_free": false,
-        "index": 9
-      },
-      {
-        "text": "Candleshop",
-        "is_free": false,
-        "index": 10
-      },
-      {
-        "text": "Racing",
-        "is_free": false,
-        "index": 11
-      },
-      {
-        "text": "LOKI'S FREE SPACE",
-        "is_free": true,
-        "index": 12
-      },
-      {
-        "text": "Bootlegging",
-        "is_free": false,
-        "index": 13
-      },
-      {
-        "text": "Graffiti",
-        "is_free": false,
-        "index": 14
-      },
-      {
-        "text": "Bogie",
-        "is_free": false,
-        "index": 15
-      },
-      {
-        "text": "Tornhole",
-        "is_free": false,
-        "index": 16
-      },
-      {
-        "text": "Beetlejuice",
-        "is_free": false,
-        "index": 17
-      },
-      {
-        "text": "Search for Cash",
-        "is_free": false,
-        "index": 18
-      },
-      {
-        "text": "Peony",
-        "is_free": false,
-        "index": 19
-      },
-      {
-        "text": "MP5K",
-        "is_free": false,
-        "index": 20
-      },
-      {
-        "text": "Daffodil",
-        "is_free": false,
-        "index": 21
-      },
-      {
-        "text": "Shrooms",
-        "is_free": false,
-        "index": 22
-      },
-      {
-        "text": "Camel Plushie",
-        "is_free": false,
-        "index": 23
-      },
-      {
-        "text": "Forgery",
-        "is_free": false,
-        "index": 24
-      }
-    ],
-    "lockedAt": "2026-09-03T03:22:24.167651+00:00"
-  },
-  "325859901479976961": {
-    "seed": "KirbyWithAGun [3794061] (LB)-325859",
-    "userName": "KirbyWithAGun [3794061] (LB)",
-    "userId": "325859901479976961",
-    "raffleNumber": 3,
-    "cells": [
-      {
-        "text": "Lat",
-        "is_free": false,
-        "index": 0
-      },
-      {
-        "text": "George",
-        "is_free": false,
-        "index": 1
-      },
-      {
-        "text": "Hunting",
-        "is_free": false,
-        "index": 2
-      },
-      {
-        "text": "Hustling",
-        "is_free": false,
-        "index": 3
-      },
-      {
-        "text": "Tornhole",
-        "is_free": false,
-        "index": 4
-      },
-      {
-        "text": "Melatonin",
-        "is_free": false,
-        "index": 5
-      },
-      {
-        "text": "Banana Orchid",
-        "is_free": false,
-        "index": 6
-      },
-      {
-        "text": "Jackhammer",
-        "is_free": false,
-        "index": 7
-      },
-      {
-        "text": "Munster",
-        "is_free": false,
-        "index": 8
-      },
-      {
-        "text": "Lion Plushie",
-        "is_free": false,
-        "index": 9
-      },
-      {
-        "text": "African Violet",
-        "is_free": false,
-        "index": 10
-      },
-      {
-        "text": "Shoplifting",
-        "is_free": false,
-        "index": 11
-      },
-      {
-        "text": "LOKI'S FREE SPACE",
-        "is_free": true,
-        "index": 12
-      },
-      {
-        "text": "Peony",
-        "is_free": false,
-        "index": 13
-      },
-      {
-        "text": "Forgery",
-        "is_free": false,
-        "index": 14
-      },
-      {
-        "text": "Xanax",
-        "is_free": false,
-        "index": 15
-      },
-      {
-        "text": "Graffiti",
-        "is_free": false,
-        "index": 16
-      },
-      {
-        "text": "Flight Delay",
-        "is_free": false,
-        "index": 17
-      },
-      {
-        "text": "Ketamine",
-        "is_free": false,
-        "index": 18
-      },
-      {
-        "text": "Kandy Kane",
-        "is_free": false,
-        "index": 19
-      },
-      {
-        "text": "X-Mass",
-        "is_free": false,
-        "index": 20
-      },
-      {
-        "text": "Tyrosine",
-        "is_free": false,
-        "index": 21
-      },
-      {
-        "text": "Minty Mayhem",
-        "is_free": false,
-        "index": 22
-      },
-      {
-        "text": "Erotic DVD",
-        "is_free": false,
-        "index": 23
-      },
-      {
-        "text": "Diamond Bladed Knife",
-        "is_free": false,
-        "index": 24
-      }
-    ],
-    "lockedAt": "2026-09-03T03:24:07.361387+00:00"
-  },
-  "549775479721426974": {
-    "seed": "Loki The Love Walrus-549775",
-    "userName": "Loki The Love Walrus",
-    "userId": "549775479721426974",
-    "raffleNumber": 4,
-    "cells": [
-      {
-        "text": "African Violet",
-        "is_free": false,
-        "index": 0
-      },
-      {
-        "text": "Bogie",
-        "is_free": false,
-        "index": 1
-      },
-      {
-        "text": "Peony",
-        "is_free": false,
-        "index": 2
-      },
-      {
-        "text": "Will Ferrell",
-        "is_free": false,
-        "index": 3
-      },
-      {
-        "text": "Champagne",
-        "is_free": false,
-        "index": 4
-      },
-      {
-        "text": "Cracking",
-        "is_free": false,
-        "index": 5
-      },
-      {
-        "text": "Buymug",
-        "is_free": false,
-        "index": 6
-      },
-      {
-        "text": "Melatonin",
-        "is_free": false,
-        "index": 7
-      },
-      {
-        "text": "Munster",
-        "is_free": false,
-        "index": 8
-      },
-      {
-        "text": "Camel Plushie",
-        "is_free": false,
-        "index": 9
-      },
-      {
-        "text": "Ketamine",
-        "is_free": false,
-        "index": 10
-      },
-      {
-        "text": "Jaguar Plushie",
-        "is_free": false,
-        "index": 11
-      },
-      {
-        "text": "LOKI'S FREE SPACE",
-        "is_free": true,
-        "index": 12
-      },
-      {
-        "text": "White Lilly",
-        "is_free": false,
-        "index": 13
-      },
-      {
-        "text": "Vicodin",
-        "is_free": false,
-        "index": 14
-      },
-      {
-        "text": "Speed",
-        "is_free": false,
-        "index": 15
-      },
-      {
-        "text": "Golden AK",
-        "is_free": false,
-        "index": 16
-      },
-      {
-        "text": "Tribulus Omanense",
-        "is_free": false,
-        "index": 17
-      },
-      {
-        "text": "Smoke Grenade",
-        "is_free": false,
-        "index": 18
-      },
-      {
-        "text": "Ceibo Flowers",
-        "is_free": false,
-        "index": 19
-      },
-      {
-        "text": "MP5K",
-        "is_free": false,
-        "index": 20
-      },
-      {
-        "text": "Minty Mayhem",
-        "is_free": false,
-        "index": 21
-      },
-      {
-        "text": "Jackhammer",
-        "is_free": false,
-        "index": 22
-      },
-      {
-        "text": "Search for Cash",
-        "is_free": false,
-        "index": 23
-      },
-      {
-        "text": "Kitten Plushie",
-        "is_free": false,
-        "index": 24
-      }
-    ],
-    "lockedAt": "2026-09-03T03:29:39.599701+00:00"
-  },
-  "918720667300540466": {
-    "seed": "Aede [2766289] (CLOT)-918720",
-    "userName": "Aede [2766289] (CLOT)",
-    "userId": "918720667300540466",
-    "raffleNumber": 5,
-    "cells": [
-      {
-        "text": "Mistletoe Madness",
-        "is_free": false,
-        "index": 0
-      },
-      {
-        "text": "Edelweiss",
-        "is_free": false,
-        "index": 1
-      },
-      {
-        "text": "Lion Plushie",
-        "is_free": false,
-        "index": 2
-      },
-      {
-        "text": "Wicked Witch",
-        "is_free": false,
-        "index": 3
-      },
-      {
-        "text": "Graffiti",
-        "is_free": false,
-        "index": 4
-      },
-      {
-        "text": "Shoplifting",
-        "is_free": false,
-        "index": 5
-      },
-      {
-        "text": "Taurine Elite",
-        "is_free": false,
-        "index": 6
-      },
-      {
-        "text": "Tear Gas",
-        "is_free": false,
-        "index": 7
-      },
-      {
-        "text": "Red Fox Plushie",
-        "is_free": false,
-        "index": 8
-      },
-      {
-        "text": "Melatonin",
-        "is_free": false,
-        "index": 9
-      },
-      {
-        "text": "Ketamine",
-        "is_free": false,
-        "index": 10
-      },
-      {
-        "text": "Cannabis",
-        "is_free": false,
-        "index": 11
-      },
-      {
-        "text": "LOKI'S FREE SPACE",
-        "is_free": true,
-        "index": 12
-      },
-      {
-        "text": "Diamond Bladed Knife",
-        "is_free": false,
-        "index": 13
-      },
-      {
-        "text": "Kitten Plushie",
-        "is_free": false,
-        "index": 14
-      },
-      {
-        "text": "Hair salon",
-        "is_free": false,
-        "index": 15
-      },
-      {
-        "text": "Hustling",
-        "is_free": false,
-        "index": 16
-      },
-      {
-        "text": "Jim Carrey",
-        "is_free": false,
-        "index": 17
-      },
-      {
-        "text": "D3vl",
-        "is_free": false,
-        "index": 18
-      },
-      {
-        "text": "Golden AK",
-        "is_free": false,
-        "index": 19
-      },
-      {
-        "text": "Pickpocketing",
-        "is_free": false,
-        "index": 20
-      },
-      {
-        "text": "Rigged",
-        "is_free": false,
-        "index": 21
-      },
-      {
-        "text": "Buymug",
-        "is_free": false,
-        "index": 22
-      },
-      {
-        "text": "Bounty",
-        "is_free": false,
-        "index": 23
-      },
-      {
-        "text": "Robin Williams",
-        "is_free": false,
-        "index": 24
-      }
-    ],
-    "lockedAt": "2026-09-03T03:48:03.169824+00:00"
+    "lockedAt": "2026-09-03T03:50:00.857785+00:00"
   }
 }
