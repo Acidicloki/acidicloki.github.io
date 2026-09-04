@@ -1,5 +1,12 @@
 {
-  "drawn_words": [],
+  "drawn_words": [
+    "Chamois Plushie",
+    "Shrooms",
+    "Bootlegging",
+    "MP5K",
+    "Lion Plushie",
+    "Xanax"
+  ],
   "word_pool": [
     "Minty Mayhem",
     "Chamois Plushie",
@@ -83,5 +90,5 @@
     "Red Fox Plushie",
     "Ketamine"
   ],
-  "updated_at": "2026-09-03T03:20:40.075757+00:00"
+  "updated_at": "2026-09-04T12:09:01.827197+00:00"
 }
