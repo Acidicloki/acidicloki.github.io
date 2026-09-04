@@ -2142,5 +2142,139 @@
       }
     ],
     "lockedAt": "2026-09-03T23:35:59.580749+00:00"
+  },
+  "1069311948312813658": {
+    "seed": "Jigglycheeks [3810740] (OTC)-106931",
+    "userName": "Jigglycheeks [3810740] (OTC)",
+    "userId": "1069311948312813658",
+    "raffleNumber": 17,
+    "cells": [
+      {
+        "text": "Ceibo Flowers",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Mika",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Cannabis",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Golden AK",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Tornhole",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "D3vl",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Robin Williams",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "African Violet",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Tyrosine",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Hair salon",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Forgery",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Hat",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Jim Carrey",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Tribulus Omanense",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Buymug",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Bogie",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Chamois Plushie",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "White Lilly",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Shoplifting",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "X-Mass",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Peony",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Edelweiss",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Banana Orchid",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-04T12:10:53.406974+00:00"
   }
 }
