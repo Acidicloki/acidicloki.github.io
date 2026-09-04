@@ -2410,5 +2410,139 @@
       }
     ],
     "lockedAt": "2026-09-04T13:45:27.947164+00:00"
+  },
+  "725519870124359754": {
+    "seed": "tornhole [2844285]-725519",
+    "userName": "tornhole [2844285]",
+    "userId": "725519870124359754",
+    "raffleNumber": 19,
+    "cells": [
+      {
+        "text": "Duke",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "X-Mass",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Tear Gas",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Lion Plushie",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Flight Delay",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Reviving",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Rigged",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Buymug",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Panda Plushie",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Chamois Plushie",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Shrooms",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Dirty Bomb",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "D3vl",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Tyrosine",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "PCP",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Racing",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Erotic DVD",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Chedburn",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Armalite M-15A4",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Forgery",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Search for Cash",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "White Lilly",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Kandy Kane",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-04T15:49:08.648777+00:00"
   }
 }
