@@ -2276,5 +2276,139 @@
       }
     ],
     "lockedAt": "2026-09-04T12:10:53.406974+00:00"
+  },
+  "1161765018417778758": {
+    "seed": "Wife-of-Loki [4447702] (\\/)-116176",
+    "userName": "Wife-of-Loki [4447702] (\\/)",
+    "userId": "1161765018417778758",
+    "raffleNumber": 18,
+    "cells": [
+      {
+        "text": "Red Fox Plushie",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Forgery",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Munster",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "X-Mass",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "D3vl",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Card Skimming",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Wicked Witch",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Tornhole",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Serotonin",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Wolverine Plushie",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Mika",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Golden AK",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Red Cow",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Duke",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Camel Plushie",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Jaguar Plushie",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "White Lilly",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Jim Carrey",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Shrooms",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Chedburn",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "George",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Flight Delay",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Smoke Grenade",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Lat",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-04T13:45:27.947164+00:00"
   }
 }
