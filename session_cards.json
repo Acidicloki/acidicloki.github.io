@@ -2544,5 +2544,139 @@
       }
     ],
     "lockedAt": "2026-09-04T15:49:08.648777+00:00"
+  },
+  "302863255108583435": {
+    "seed": "Lejonet [3999085] (\\/)-302863",
+    "userName": "Lejonet [3999085] (\\/)",
+    "userId": "302863255108583435",
+    "raffleNumber": 20,
+    "cells": [
+      {
+        "text": "Forgery",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Ceibo Flowers",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Graffiti",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Candleshop",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Shoplifting",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Melatonin",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Wolverine Plushie",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Daffodil",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Mistletoe Madness",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Mika",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Rigged",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Duke",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Armalite M-15A4",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Shrooms",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Bogie",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Golden AK",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Jim Carrey",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Tribulus Omanense",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Racing",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "White Lilly",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "MP5K",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Flight Delay",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Serotonin",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-04T16:41:35.590663+00:00"
   }
 }
