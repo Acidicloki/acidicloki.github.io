@@ -3,50 +3,10 @@
     "id": "BUG-1001",
     "reporterName": "Loki The Love Walrus",
     "reporterId": "549775479721426974",
-    "description": "test",
+    "description": "General",
     "severity": "Medium",
-    "feature": "General",
+    "feature": "make all letters of the jumble lowercase",
     "status": "OPEN",
-    "timestamp": "2026-08-27T02:44:40.829864+00:00"
-  },
-  {
-    "id": "BUG-1002",
-    "reporterName": "Loki The Love Walrus",
-    "reporterId": "549775479721426974",
-    "description": "raffle pulling from wrong prize list",
-    "severity": "Medium",
-    "feature": "General",
-    "status": "OPEN",
-    "timestamp": "2026-08-29T01:01:16.034402+00:00"
-  },
-  {
-    "id": "BUG-1003",
-    "reporterName": "Loki The Love Walrus",
-    "reporterId": "549775479721426974",
-    "description": "make bingo card command only usable in game talk.",
-    "severity": "Medium",
-    "feature": "General",
-    "status": "OPEN",
-    "timestamp": "2026-08-29T12:24:29.269246+00:00"
-  },
-  {
-    "id": "BUG-1004",
-    "reporterName": "Loki The Love Walrus",
-    "reporterId": "549775479721426974",
-    "description": "add racing password to race schedule",
-    "severity": "Medium",
-    "feature": "General",
-    "status": "OPEN",
-    "timestamp": "2026-08-29T12:57:21.233920+00:00"
-  },
-  {
-    "id": "BUG-1005",
-    "reporterName": "Lottie89 [4265999] (CM)",
-    "reporterId": "777054865825857576",
-    "description": "creating separate channel for requesting bingo card",
-    "severity": "Medium",
-    "feature": "Bingo Cards",
-    "status": "OPEN",
-    "timestamp": "2026-08-29T13:07:32.874841+00:00"
+    "timestamp": "2026-09-05T12:32:51.615917+00:00"
   }
 ]
