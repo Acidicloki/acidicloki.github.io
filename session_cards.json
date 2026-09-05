@@ -2678,5 +2678,139 @@
       }
     ],
     "lockedAt": "2026-09-04T16:41:35.590663+00:00"
+  },
+  "563978227878592523": {
+    "seed": "JJBoy23421 [4269290] (\\/)-563978",
+    "userName": "JJBoy23421 [4269290] (\\/)",
+    "userId": "563978227878592523",
+    "raffleNumber": 21,
+    "cells": [
+      {
+        "text": "Hat",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Mika",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Tear Gas",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Shoplifting",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "PCP",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Jim Carrey",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Golden AK",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Ketamine",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Cracking",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Taurine Elite",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Burglary",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Buymug",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Speed",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Cannabis",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Free space",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Vicodin",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Pickpocketing",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Peony",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Rigged",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Mistletoe Madness",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Teddy Bear Plushie",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Shrooms",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "George",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Jackhammer",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-05T04:04:06.122068+00:00"
   }
 }
