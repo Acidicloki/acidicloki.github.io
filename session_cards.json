@@ -2812,5 +2812,139 @@
       }
     ],
     "lockedAt": "2026-09-05T04:04:06.122068+00:00"
+  },
+  "232366009393086466": {
+    "seed": "DuncanTheDrunk [914570] (\\/)-232366",
+    "userName": "DuncanTheDrunk [914570] (\\/)",
+    "userId": "232366009393086466",
+    "raffleNumber": 22,
+    "cells": [
+      {
+        "text": "Racing",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Daffodil",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Tear Gas",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Ceibo Flowers",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Mistletoe Madness",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Peony",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Shrooms",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Free space",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Red Fox Plushie",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Golden AK",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "X-Mass",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Duke",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "White Lilly",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Flight Delay",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Lion Plushie",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "African Violet",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "MP5K",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Hair salon",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Pickpocketing",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Warlord",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Panda Plushie",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Hustling",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Card Skimming",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-06T17:24:45.067187+00:00"
   }
 }
