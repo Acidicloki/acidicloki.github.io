@@ -2946,5 +2946,139 @@
       }
     ],
     "lockedAt": "2026-09-06T17:24:45.067187+00:00"
+  },
+  "362269375564218378": {
+    "seed": "Arthur20 [3984708] (\\/)-362269",
+    "userName": "Arthur20 [3984708] (\\/)",
+    "userId": "362269375564218378",
+    "raffleNumber": 23,
+    "cells": [
+      {
+        "text": "Tornhole",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "D3vl",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Flight Delay",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Opium",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Lion Plushie",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Xanax",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Taurine Elite",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Dirty Bomb",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Teddy Bear Plushie",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Hair salon",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Pickpocketing",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Reviving",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Tyrosine",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Card Skimming",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Candleshop",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Panda Plushie",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Mistletoe Madness",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "MP5K",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Shoplifting",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Melatonin",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Munster",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Speed",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Banana Orchid",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-08T07:39:58.418027+00:00"
   }
 }
