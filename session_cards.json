@@ -1902,5 +1902,141 @@
       }
     ],
     "lockedAt": "2026-09-10T22:51:56.581212+00:00"
+  },
+  "1265829672705458196": {
+    "seed": "SoyburgeR [2171959] ([X])-126582-S2-20260910033146",
+    "userName": "SoyburgeR [2171959] ([X])",
+    "userId": "1265829672705458196",
+    "raffleNumber": 15,
+    "sessionId": 2,
+    "sessionNonce": "20260910033146",
+    "cells": [
+      {
+        "text": "Armalite M-15A4",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Empty Blood Bag",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Can of Munster",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Morphine",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Dual Bushmasters",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Box of Medical Supplies",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Xanax",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Can of Red Cow",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Lottery Voucher",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Opium",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Feathery Hotel Coupon",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Blood Bag : AB+",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Blood Bag : O-",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Liquid Body Armor",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Armored Vest",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Can of Rockstar",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Ecstasy",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Point",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Box of Grenades",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Donator Pack",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Six-Pack of Alcohol",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Blood Bag : A+",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Lawyer Business Card",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-10T23:08:33.561139+00:00"
   }
 }
