@@ -2174,5 +2174,141 @@
       }
     ],
     "lockedAt": "2026-09-11T00:53:22.960499+00:00"
+  },
+  "563978227878592523": {
+    "seed": "JJBoy23421 [4269290] (\\/)-563978-S2-20260910033146",
+    "userName": "JJBoy23421 [4269290] (\\/)",
+    "userId": "563978227878592523",
+    "raffleNumber": 17,
+    "sessionId": 2,
+    "sessionNonce": "20260910033146",
+    "cells": [
+      {
+        "text": "Xanax",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "RPG Launcher",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Lawyer Business Card",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Can of Rockstar",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Ecstasy",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Speed",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Bottle of Beer",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Opium",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Liquid Body Armor",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Box of Grenades",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Point",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Box of Medical Supplies",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Blood Bag : A+",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Can of Red Cow",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Combat Helmet",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Can of Munster",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Dual Bushmasters",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Empty Blood Bag",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "First Aid Kit",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Donator Pack",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Blood Bag : O-",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Feathery Hotel Coupon",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Six-Pack of Alcohol",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-11T10:16:02.931289+00:00"
   }
 }
