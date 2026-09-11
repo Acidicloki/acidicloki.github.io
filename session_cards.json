@@ -2038,5 +2038,141 @@
       }
     ],
     "lockedAt": "2026-09-10T23:08:33.561139+00:00"
+  },
+  "245032280462983171": {
+    "seed": "ImagePlays [4112107] (TWI)-245032-S2-20260910033146",
+    "userName": "ImagePlays [4112107] (TWI)",
+    "userId": "245032280462983171",
+    "raffleNumber": 16,
+    "sessionId": 2,
+    "sessionNonce": "20260910033146",
+    "cells": [
+      {
+        "text": "Opium",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Morphine",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Armored Vest",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Xanax",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Donator Pack",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Can of Rockstar",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Box of Grenades",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Can of Munster",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Six-Pack of Alcohol",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Bottle of Beer",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Ecstasy",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Feathery Hotel Coupon",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Blood Bag : AB+",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Vicodin",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Combat Helmet",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Empty Blood Bag",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "RPG Launcher",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Can of Red Cow",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Lottery Voucher",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Point",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Blood Bag : O-",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Blood Bag : A+",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "First Aid Kit",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-11T00:53:22.960499+00:00"
   }
 }
