@@ -1,7 +1,14 @@
 {
   "session_id": 2,
   "session_nonce": "20260910033146",
-  "drawn_words": [],
+  "drawn_words": [
+    "Lawyer Business Card",
+    "Six-Pack of Alcohol",
+    "Diamond Bladed Knife",
+    "Dual Bushmasters",
+    "Empty Blood Bag",
+    "Can of Red Cow"
+  ],
   "word_pool": [
     "Xanax",
     "Vicodin",
@@ -34,5 +41,5 @@
     "Bottle of Beer",
     "Box of Grenades"
   ],
-  "updated_at": "2026-09-10T03:31:46.617851+00:00"
+  "updated_at": "2026-09-11T11:59:47.718782+00:00"
 }
