@@ -2582,5 +2582,141 @@
       }
     ],
     "lockedAt": "2026-09-11T18:48:54.329962+00:00"
+  },
+  "232366009393086466": {
+    "seed": "DuncanTheDrunk [914570] (\\/)-232366-S2-20260910033146",
+    "userName": "DuncanTheDrunk [914570] (\\/)",
+    "userId": "232366009393086466",
+    "raffleNumber": 20,
+    "sessionId": 2,
+    "sessionNonce": "20260910033146",
+    "cells": [
+      {
+        "text": "Kandy Kane",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Ecstasy",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Golden AK",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Six-Pack of Alcohol",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Lottery Voucher",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Chedburn",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Liquid Body Armor",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Bogie",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Panda Plushie",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Smoke Grenade",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "MP5K",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "RPG Launcher",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Candleshop",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Vicodin",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Kitten Plushie",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Graffiti",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Lawyer Business Card",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Armalite M-15A4",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Can of Rockstar",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Melatonin",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Xanax",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Beetlejuice",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-12T16:06:38.751502+00:00"
   }
 }
