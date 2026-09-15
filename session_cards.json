@@ -542,5 +542,141 @@
       }
     ],
     "lockedAt": "2026-09-15T03:54:57.054571+00:00"
+  },
+  "1161765018417778758": {
+    "seed": "Sigyn [4447702]-116176-S3-20260915032532",
+    "userName": "Sigyn [4447702]",
+    "userId": "1161765018417778758",
+    "raffleNumber": 5,
+    "sessionId": 3,
+    "sessionNonce": "20260915032532",
+    "cells": [
+      {
+        "text": "Tyrosine",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Taurine Elite",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Tornhole",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "X-Mass",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Lion Plushie",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "African Violet",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Kandy Kane",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Candleshop",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Panda Plushie",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Ketamine",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "George",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Banana Orchid",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Bogie",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Bootlegging",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Chedburn",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Jackhammer",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Graffiti",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "White Lilly",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Erotic DVD",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Forgery",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Card Skimming",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Racing",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Will Ferrell",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-15T04:21:39.341103+00:00"
   }
 }
