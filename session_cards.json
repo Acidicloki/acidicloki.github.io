@@ -678,5 +678,141 @@
       }
     ],
     "lockedAt": "2026-09-15T04:21:39.341103+00:00"
+  },
+  "1298042264312086592": {
+    "seed": "Lucirial [3981754]-129804-S3-20260915032532",
+    "userName": "Lucirial [3981754]",
+    "userId": "1298042264312086592",
+    "raffleNumber": 6,
+    "sessionId": 3,
+    "sessionNonce": "20260915032532",
+    "cells": [
+      {
+        "text": "Flight Delay",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Bootlegging",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Daffodil",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Tornhole",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "PCP",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Buymug",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Edelweiss",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Champagne",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Shrooms",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Wolverine Plushie",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Disposal",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Jaguar Plushie",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "White Lilly",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Burglary",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Cracking",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Will Ferrell",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Jackhammer",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Tear Gas",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Tyrosine",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Smoke Grenade",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Red Fox Plushie",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Hunting",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Racing",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-15T04:34:49.325390+00:00"
   }
 }
