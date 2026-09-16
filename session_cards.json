@@ -1222,5 +1222,141 @@
       }
     ],
     "lockedAt": "2026-09-15T21:25:36.402750+00:00"
+  },
+  "1181279910392766475": {
+    "seed": "Xean0s [3077711]-118127-S1-20260915000000",
+    "userName": "Xean0s [3077711]",
+    "userId": "1181279910392766475",
+    "raffleNumber": 10,
+    "sessionId": 1,
+    "sessionNonce": "20260915000000",
+    "cells": [
+      {
+        "text": "Armored Vest",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Can of Red Cow",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Empty Blood Bag",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Feathery Hotel Coupon",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Blood Bag : AB+",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Morphine",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Combat Helmet",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Lawyer Business Card",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Liquid Body Armor",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Xanax",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Bottle of Beer",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Six-Pack of Alcohol",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "CYCLONE FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Opium",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Dual Bushmasters",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Box of Grenades",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Blood Bag : A+",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Point",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "RPG Launcher",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Donator Pack",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Vicodin",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Speed",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Box of Medical Supplies",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Lottery Voucher",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-16T17:23:45.230111+00:00"
   }
 }
