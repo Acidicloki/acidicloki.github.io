@@ -1494,5 +1494,141 @@
       }
     ],
     "lockedAt": "2026-09-18T17:10:50.180471+00:00"
+  },
+  "1512832436818546818": {
+    "seed": "sneakdare [2294101]-151283-S1-20260915000000",
+    "userName": "sneakdare [2294101]",
+    "userId": "1512832436818546818",
+    "raffleNumber": 12,
+    "sessionId": 1,
+    "sessionNonce": "20260915000000",
+    "cells": [
+      {
+        "text": "Can of Munster",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Liquid Body Armor",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "RPG Launcher",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Combat Helmet",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Blood Bag : AB+",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Can of Rockstar",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Ecstasy",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Lottery Voucher",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Feathery Hotel Coupon",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Blood Bag : O-",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Box of Medical Supplies",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "CYCLONE FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Can of Red Cow",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Vicodin",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Armalite M-15A4",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Six-Pack of Alcohol",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Empty Blood Bag",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Dual Bushmasters",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Armored Vest",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Box of Grenades",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "First Aid Kit",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Blood Bag : A+",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Donator Pack",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Point",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-19T17:39:01.159677+00:00"
   }
 }
