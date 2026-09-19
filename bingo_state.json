@@ -13,7 +13,13 @@
     "Diamond Bladed Knife",
     "Blood Bag : O-",
     "Armored Vest",
-    "Combat Helmet"
+    "Combat Helmet",
+    "Can of Red Cow",
+    "Bottle of Beer",
+    "Morphine",
+    "Vicodin",
+    "Six-Pack of Alcohol",
+    "Can of Munster"
   ],
   "word_pool": [
     "Xanax",
@@ -47,5 +53,5 @@
     "Bottle of Beer",
     "Box of Grenades"
   ],
-  "updated_at": "2026-09-19T04:12:53.296035+00:00"
+  "updated_at": "2026-09-19T13:01:56.859005+00:00"
 }
