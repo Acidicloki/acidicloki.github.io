@@ -270,5 +270,141 @@
       }
     ],
     "lockedAt": "2026-09-24T13:13:40.283678+00:00"
+  },
+  "232366009393086466": {
+    "seed": "DuncanTheDrunk [914570] (\\/)-232366-S3-20260924131228",
+    "userName": "DuncanTheDrunk [914570] (\\/)",
+    "userId": "232366009393086466",
+    "raffleNumber": 3,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "Flight Delay",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Melatonin",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Hair salon",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Rigged",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Disposal",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Tornhole",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Jaguar Plushie",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Mistletoe Madness",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Serotonin",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Erotic DVD",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Golden AK",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Panda Plushie",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Bogie",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "George",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Hustling",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Chedburn",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Ceibo Flowers",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Search for Cash",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Tribulus Omanense",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Beetlejuice",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Jim Carrey",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Smoke Grenade",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Bootlegging",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-24T13:15:24.958900+00:00"
   }
 }
