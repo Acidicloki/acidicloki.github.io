@@ -2990,5 +2990,141 @@
       }
     ],
     "lockedAt": "2026-09-24T19:32:04.167620+00:00"
+  },
+  "1512832436818546818": {
+    "seed": "sneakdare [2294101] (\\/)-151283-S3-20260924131228",
+    "userName": "sneakdare [2294101] (\\/)",
+    "userId": "1512832436818546818",
+    "raffleNumber": 23,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "White Lilly",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Racing",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Candleshop",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Edelweiss",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Erotic DVD",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Bogie",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Munster",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Dirty Bomb",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Champagne",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Red Cow",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Burglary",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Cracking",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Shoplifting",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Vicodin",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Golden AK",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Ceibo Flowers",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "X-Mass",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Disposal",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Reviving",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Red Fox Plushie",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Pickpocketing",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "George",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Melatonin",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Cannabis",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-24T20:06:41.861955+00:00"
   }
 }
