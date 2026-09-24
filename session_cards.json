@@ -2310,5 +2310,141 @@
       }
     ],
     "lockedAt": "2026-09-24T15:45:26.098433+00:00"
+  },
+  "225452963802513409": {
+    "seed": "MrNoBodies [3084603] (BM)-225452-S3-20260924131228",
+    "userName": "MrNoBodies [3084603] (BM)",
+    "userId": "225452963802513409",
+    "raffleNumber": 18,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "Ceibo Flowers",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Racing",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Disposal",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Card Skimming",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Mika",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Hustling",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Munster",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Serotonin",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Champagne",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Will Ferrell",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Cannabis",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Peony",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Jackhammer",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Kandy Kane",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "X-Mass",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Forgery",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Camel Plushie",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Banana Orchid",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Buymug",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Panda Plushie",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Hair salon",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Bogie",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Jaguar Plushie",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-24T17:23:29.192915+00:00"
   }
 }
