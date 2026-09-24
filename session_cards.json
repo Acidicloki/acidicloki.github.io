@@ -1902,5 +1902,141 @@
       }
     ],
     "lockedAt": "2026-09-24T15:02:42.823821+00:00"
+  },
+  "1356585411228602380": {
+    "seed": "McBraz [3675056] (IRL)-135658-S3-20260924131228",
+    "userName": "McBraz [3675056] (IRL)",
+    "userId": "1356585411228602380",
+    "raffleNumber": 15,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "Camel Plushie",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Mistletoe Madness",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Search for Cash",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Wolverine Plushie",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Mika",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Smoke Grenade",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Kitten Plushie",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Warlord",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Melatonin",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Will Ferrell",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Tyrosine",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "MP5K",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Rigged",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Tornhole",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Shoplifting",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Robin Williams",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Burglary",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "White Lilly",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "D3vl",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Wicked Witch",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Red Cow",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Jackhammer",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Candleshop",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-24T15:32:01.761441+00:00"
   }
 }
