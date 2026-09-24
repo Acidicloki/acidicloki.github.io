@@ -814,5 +814,141 @@
       }
     ],
     "lockedAt": "2026-09-24T13:52:24.870192+00:00"
+  },
+  "652817604720721951": {
+    "seed": "TheBingoBitch [2411793]-652817-S3-20260924131228",
+    "userName": "TheBingoBitch [2411793]",
+    "userId": "652817604720721951",
+    "raffleNumber": 7,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "Camel Plushie",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Munster",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Kandy Kane",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Jackhammer",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Tornhole",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "MP5K",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Mistletoe Madness",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Banana Orchid",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Teddy Bear Plushie",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Shrooms",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Jaguar Plushie",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Hair salon",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Beetlejuice",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Lion Plushie",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Daffodil",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Speed",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Bogie",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Golden AK",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Red Fox Plushie",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Free space",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Ketamine",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "African Violet",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Hat",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Vicodin",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-24T13:55:21.242365+00:00"
   }
 }
