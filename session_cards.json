@@ -1630,5 +1630,141 @@
       }
     ],
     "lockedAt": "2026-09-24T14:40:43.248225+00:00"
+  },
+  "739903749753143326": {
+    "seed": "Cell [2588026] (NEON)-739903-S3-20260924131228",
+    "userName": "Cell [2588026] (NEON)",
+    "userId": "739903749753143326",
+    "raffleNumber": 13,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "Champagne",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Red Cow",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Tornhole",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Buymug",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Bogie",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Tribulus Omanense",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Shoplifting",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Taurine Elite",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "White Lilly",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Tyrosine",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Hair salon",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Burglary",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Panda Plushie",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Cracking",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Smoke Grenade",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Shrooms",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Banana Orchid",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Erotic DVD",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Kandy Kane",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Hustling",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Kitten Plushie",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Robin Williams",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Golden AK",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-24T14:42:23.763941+00:00"
   }
 }
