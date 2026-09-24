@@ -2854,5 +2854,141 @@
       }
     ],
     "lockedAt": "2026-09-24T18:45:26.498370+00:00"
+  },
+  "261403783395803147": {
+    "seed": "Walaveenie [4347993] (\\/)-261403-S3-20260924131228",
+    "userName": "Walaveenie [4347993] (\\/)",
+    "userId": "261403783395803147",
+    "raffleNumber": 22,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "Teddy Bear Plushie",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Ketamine",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Robin Williams",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Will Ferrell",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Smoke Grenade",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "African Violet",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Jaguar Plushie",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "D3vl",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Lion Plushie",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Red Fox Plushie",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Golden AK",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Candleshop",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Buymug",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Mistletoe Madness",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Armalite M-15A4",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Cannabis",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Tornhole",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Kitten Plushie",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Mika",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Wolverine Plushie",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Tear Gas",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Opium",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Reviving",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Cracking",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-24T19:32:04.167620+00:00"
   }
 }
