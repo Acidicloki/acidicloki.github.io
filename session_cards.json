@@ -950,5 +950,141 @@
       }
     ],
     "lockedAt": "2026-09-24T13:55:21.242365+00:00"
+  },
+  "1367432980485902378": {
+    "seed": "Shweet [3716624] (FUN)-136743-S3-20260924131228",
+    "userName": "Shweet [3716624] (FUN)",
+    "userId": "1367432980485902378",
+    "raffleNumber": 8,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "Armalite M-15A4",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Warlord",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Ceibo Flowers",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "George",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Buymug",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Reviving",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Chedburn",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Kandy Kane",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Edelweiss",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Wolverine Plushie",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Flight Delay",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Free space",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Champagne",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Serotonin",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Duke",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Munster",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Jim Carrey",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "X-Mass",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Cannabis",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Tornhole",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Jackhammer",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Tyrosine",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Tribulus Omanense",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-24T14:08:14.043284+00:00"
   }
 }
