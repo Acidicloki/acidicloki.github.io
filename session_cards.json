@@ -1494,5 +1494,141 @@
       }
     ],
     "lockedAt": "2026-09-24T14:25:59.405895+00:00"
+  },
+  "1399094688098816101": {
+    "seed": "Frieza [4025189] (NEON)-139909-S3-20260924131228",
+    "userName": "Frieza [4025189] (NEON)",
+    "userId": "1399094688098816101",
+    "raffleNumber": 12,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "Red Fox Plushie",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Taurine Elite",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Tear Gas",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Beetlejuice",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Burglary",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Red Cow",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Tornhole",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Opium",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Card Skimming",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Armalite M-15A4",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Vicodin",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Kandy Kane",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Jim Carrey",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Pickpocketing",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Reviving",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "George",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Jaguar Plushie",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Serotonin",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Chedburn",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Xanax",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Ketamine",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Lat",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Cracking",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Ceibo Flowers",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-24T14:40:43.248225+00:00"
   }
 }
