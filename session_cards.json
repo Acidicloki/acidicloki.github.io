@@ -406,5 +406,141 @@
       }
     ],
     "lockedAt": "2026-09-24T13:15:24.958900+00:00"
+  },
+  "1161765018417778758": {
+    "seed": "Sigyn [4447702] (\\/)-116176-S3-20260924131228",
+    "userName": "Sigyn [4447702] (\\/)",
+    "userId": "1161765018417778758",
+    "raffleNumber": 4,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "Shoplifting",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Wicked Witch",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Kandy Kane",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Camel Plushie",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Champagne",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Ketamine",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Taurine Elite",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Duke",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Free space",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Mika",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Wolverine Plushie",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Robin Williams",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Bogie",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Red Fox Plushie",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "George",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Opium",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Edelweiss",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Search for Cash",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Card Skimming",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Cannabis",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Reviving",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Munster",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Will Ferrell",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Bootlegging",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-24T13:18:37.103559+00:00"
   }
 }
