@@ -678,5 +678,141 @@
       }
     ],
     "lockedAt": "2026-09-24T13:32:01.029420+00:00"
+  },
+  "418613318895534092": {
+    "seed": "SPANJO22 [2348322] ()-418613-S3-20260924131228",
+    "userName": "SPANJO22 [2348322] ()",
+    "userId": "418613318895534092",
+    "raffleNumber": 6,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "Taurine Elite",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Erotic DVD",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Jackhammer",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Chamois Plushie",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Armalite M-15A4",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Reviving",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "X-Mass",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Will Ferrell",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "PCP",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Bogie",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Beetlejuice",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Shoplifting",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Wicked Witch",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Search for Cash",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Cracking",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Forgery",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Disposal",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Red Cow",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Free space",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Ketamine",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Dirty Bomb",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Robin Williams",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Graffiti",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "White Lilly",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-24T13:52:24.870192+00:00"
   }
 }
