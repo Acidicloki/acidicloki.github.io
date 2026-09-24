@@ -542,5 +542,141 @@
       }
     ],
     "lockedAt": "2026-09-24T13:18:37.103559+00:00"
+  },
+  "245032280462983171": {
+    "seed": "ImagePlays [4112107] (TWI)-245032-S3-20260924131228",
+    "userName": "ImagePlays [4112107] (TWI)",
+    "userId": "245032280462983171",
+    "raffleNumber": 5,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "Burglary",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Reviving",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Champagne",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Red Cow",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Jim Carrey",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Cracking",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Smoke Grenade",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Tear Gas",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Graffiti",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Tornhole",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Tyrosine",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Armalite M-15A4",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "PCP",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Hunting",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Vicodin",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Ceibo Flowers",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "White Lilly",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Wicked Witch",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Dirty Bomb",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Card Skimming",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Daffodil",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Beetlejuice",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Jaguar Plushie",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-24T13:32:01.029420+00:00"
   }
 }
