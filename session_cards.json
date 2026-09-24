@@ -2446,5 +2446,141 @@
       }
     ],
     "lockedAt": "2026-09-24T17:23:29.192915+00:00"
+  },
+  "1265829672705458196": {
+    "seed": "SoyburgeR [2171959] ([X])-126582-S3-20260924131228",
+    "userName": "SoyburgeR [2171959] ([X])",
+    "userId": "1265829672705458196",
+    "raffleNumber": 19,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "Wicked Witch",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Lat",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Graffiti",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Opium",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Jaguar Plushie",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Bootlegging",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Vicodin",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Melatonin",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Cannabis",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Red Fox Plushie",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Wolverine Plushie",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Hustling",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Champagne",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Kandy Kane",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Bogie",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Daffodil",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Dirty Bomb",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Buymug",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Munster",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Armalite M-15A4",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Card Skimming",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Ketamine",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Warlord",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Cracking",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-24T17:53:56.801655+00:00"
   }
 }
