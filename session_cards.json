@@ -3534,5 +3534,141 @@
       }
     ],
     "lockedAt": "2026-09-25T10:00:49.154544+00:00"
+  },
+  "743398079654527017": {
+    "seed": "Nytestar [2758409] (DoQ)-743398-S3-20260924131228",
+    "userName": "Nytestar [2758409] (DoQ)",
+    "userId": "743398079654527017",
+    "raffleNumber": 27,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "Chedburn",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Burglary",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Wicked Witch",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Jim Carrey",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Forgery",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Lat",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Munster",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Cracking",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Golden AK",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Graffiti",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Search for Cash",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Hustling",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Mika",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Reviving",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Serotonin",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Peony",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Lion Plushie",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Wolverine Plushie",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Red Fox Plushie",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "MP5K",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Hat",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Daffodil",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Beetlejuice",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Tear Gas",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-25T11:28:03.590377+00:00"
   }
 }
