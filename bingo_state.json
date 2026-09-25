@@ -1,7 +1,14 @@
 {
   "session_id": 3,
   "session_nonce": "20260924131228",
-  "drawn_words": [],
+  "drawn_words": [
+    "Card Skimming",
+    "Golden AK",
+    "Shoplifting",
+    "Tyrosine",
+    "Shrooms",
+    "Xanax"
+  ],
   "word_pool": [
     "Chamois Plushie",
     "Chedburn",
@@ -84,5 +91,5 @@
     "Red Fox Plushie",
     "Ketamine"
   ],
-  "updated_at": "2026-09-24T13:12:28.207332+00:00"
+  "updated_at": "2026-09-25T12:52:10.789503+00:00"
 }
