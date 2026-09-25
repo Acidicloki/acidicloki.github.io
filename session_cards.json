@@ -3262,5 +3262,141 @@
       }
     ],
     "lockedAt": "2026-09-25T01:52:22.026244+00:00"
+  },
+  "1071602395181752381": {
+    "seed": "Mando [2873995] (IRL)-107160-S3-20260924131228",
+    "userName": "Mando [2873995] (IRL)",
+    "userId": "1071602395181752381",
+    "raffleNumber": 25,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "Disposal",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Opium",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "D3vl",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "PCP",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Forgery",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Champagne",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Taurine Elite",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Peony",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Kitten Plushie",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Burglary",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Pickpocketing",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Graffiti",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Buymug",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "George",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Search for Cash",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Beetlejuice",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Jackhammer",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Kandy Kane",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Will Ferrell",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Chamois Plushie",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Shrooms",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Serotonin",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-25T04:55:25.941052+00:00"
   }
 }
