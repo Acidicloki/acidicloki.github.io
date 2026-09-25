@@ -5,18 +5,8 @@
     "reporterId": "549775479721426974",
     "description": "General",
     "severity": "Medium",
-    "feature": "make all letters of the jumble lowercase",
+    "feature": "make jumble all lower case",
     "status": "OPEN",
-    "timestamp": "2026-09-05T12:32:51.615917+00:00"
-  },
-  {
-    "id": "BUG-1002",
-    "reporterName": "Loki The Love Walrus",
-    "reporterId": "549775479721426974",
-    "description": "General",
-    "severity": "Low",
-    "feature": "make all letters of jumble lowercase",
-    "status": "OPEN",
-    "timestamp": "2026-09-05T12:33:44.059302+00:00"
+    "timestamp": "2026-09-25T12:53:09.842001+00:00"
   }
 ]
