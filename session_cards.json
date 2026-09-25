@@ -3806,5 +3806,141 @@
       }
     ],
     "lockedAt": "2026-09-25T18:09:37.535129+00:00"
+  },
+  "549775479721426974": {
+    "seed": "Loki The Love Walrus-549775-S3-20260924131228",
+    "userName": "Loki The Love Walrus",
+    "userId": "549775479721426974",
+    "raffleNumber": 29,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "Tyrosine",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Ceibo Flowers",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "African Violet",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Edelweiss",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Chedburn",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Tear Gas",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Reviving",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Golden AK",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Buymug",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Hat",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Red Fox Plushie",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Lion Plushie",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "George",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Smoke Grenade",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Card Skimming",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Racing",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Mika",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Serotonin",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Kandy Kane",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Wicked Witch",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Warlord",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "D3vl",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-25T21:24:18.104484+00:00"
   }
 }
