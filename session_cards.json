@@ -3398,5 +3398,141 @@
       }
     ],
     "lockedAt": "2026-09-25T04:55:25.941052+00:00"
+  },
+  "726581549440434178": {
+    "seed": "BL4CKSP1D3R [3727213] (PP)-726581-S3-20260924131228",
+    "userName": "BL4CKSP1D3R [3727213] (PP)",
+    "userId": "726581549440434178",
+    "raffleNumber": 26,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Duke",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Kitten Plushie",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "White Lilly",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Shoplifting",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Dirty Bomb",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "MP5K",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Chedburn",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Xanax",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Munster",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Free space",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Warlord",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Card Skimming",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Jackhammer",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Hair salon",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Reviving",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Daffodil",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Mistletoe Madness",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Bogie",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Tornhole",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Cannabis",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Teddy Bear Plushie",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Red Cow",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Smoke Grenade",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-25T10:00:49.154544+00:00"
   }
 }
