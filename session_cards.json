@@ -3670,5 +3670,141 @@
       }
     ],
     "lockedAt": "2026-09-25T11:28:03.590377+00:00"
+  },
+  "426496331528273939": {
+    "seed": "_Andrew_ [3858959] (TWI)-426496-S3-20260924131228",
+    "userName": "_Andrew_ [3858959] (TWI)",
+    "userId": "426496331528273939",
+    "raffleNumber": 28,
+    "sessionId": 3,
+    "sessionNonce": "20260924131228",
+    "cells": [
+      {
+        "text": "Ceibo Flowers",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Bounty",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "George",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Chamois Plushie",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Jaguar Plushie",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Tyrosine",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Tribulus Omanense",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Serotonin",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Beetlejuice",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Forgery",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Taurine Elite",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Ketamine",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Cannabis",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "White Lilly",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Opium",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Kandy Kane",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Edelweiss",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Speed",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Erotic DVD",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Red Fox Plushie",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Smoke Grenade",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Card Skimming",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Jim Carrey",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Robin Williams",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-09-25T18:09:37.535129+00:00"
   }
 }
