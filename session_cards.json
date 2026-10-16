@@ -814,5 +814,141 @@
       }
     ],
     "lockedAt": "2026-10-16T12:41:22.950269+00:00"
+  },
+  "1213864640723943485": {
+    "seed": "ChesterAW [4278802] (\\/)-121386-S3-20261016033626",
+    "userName": "ChesterAW [4278802] (\\/)",
+    "userId": "1213864640723943485",
+    "raffleNumber": 7,
+    "sessionId": 3,
+    "sessionNonce": "20261016033626",
+    "cells": [
+      {
+        "text": "Box of Grenades",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Can of Red Cow",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Armalite M-15A4",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Can of Munster",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Six-Pack of Alcohol",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Opium",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Lawyer Business Card",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Feathery Hotel Coupon",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Armored Vest",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Morphine",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Combat Helmet",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Liquid Body Armor",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "First Aid Kit",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Blood Bag : AB+",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Box of Medical Supplies",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Ecstasy",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Vicodin",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Bottle of Beer",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Lottery Voucher",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Speed",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "RPG Launcher",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Can of Rockstar",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Blood Bag : A+",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-10-16T13:03:53.336149+00:00"
   }
 }
