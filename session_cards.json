@@ -1494,5 +1494,141 @@
       }
     ],
     "lockedAt": "2026-10-16T15:00:15.815437+00:00"
+  },
+  "563978227878592523": {
+    "seed": "JJBoy23421 [4269290] (\\/)-563978-S3-20261016033626",
+    "userName": "JJBoy23421 [4269290] (\\/)",
+    "userId": "563978227878592523",
+    "raffleNumber": 12,
+    "sessionId": 3,
+    "sessionNonce": "20261016033626",
+    "cells": [
+      {
+        "text": "Can of Munster",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Xanax",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Feathery Hotel Coupon",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Lottery Voucher",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Can of Rockstar",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Liquid Body Armor",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Box of Medical Supplies",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Morphine",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Ecstasy",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Blood Bag : AB+",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Empty Blood Bag",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Donator Pack",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Blood Bag : A+",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Six-Pack of Alcohol",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Can of Red Cow",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Blood Bag : O-",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Combat Helmet",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Point",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Opium",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Lawyer Business Card",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Speed",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "RPG Launcher",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Dual Bushmasters",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-10-16T15:01:17.880352+00:00"
   }
 }
