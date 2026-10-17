@@ -2446,5 +2446,141 @@
       }
     ],
     "lockedAt": "2026-10-16T19:38:53.889795+00:00"
+  },
+  "1512832436818546818": {
+    "seed": "sneakdare [2294101] (\\/)-151283-S3-20261016033626",
+    "userName": "sneakdare [2294101] (\\/)",
+    "userId": "1512832436818546818",
+    "raffleNumber": 19,
+    "sessionId": 3,
+    "sessionNonce": "20261016033626",
+    "cells": [
+      {
+        "text": "Blood Bag : A+",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Can of Munster",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "AK-47",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Knuckle Dusters",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "P90",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "CD Player",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Hammer",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Sawed-Off Shotgun",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Box of Chocolate Bars",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "M249 SAW",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Magnum",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "LOKI'S FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Beretta M9",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Armalite M-15A4",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Vicodin",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Axe",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Xanax",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Bulletproof Vest",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Dagger",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Lawyer Business Card",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Big Box of Chocolate Bars",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Box of Grenades",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Benelli M1 Tactical",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Trainers",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-10-17T09:21:26.267782+00:00"
   }
 }
