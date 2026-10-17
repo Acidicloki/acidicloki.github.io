@@ -19,7 +19,13 @@
     "MP3 Player",
     "Outer Tactical Vest",
     "Blood Bag : AB+",
-    "Bottle of Beer"
+    "Bottle of Beer",
+    "Glock 17",
+    "Speed",
+    "Beretta 92FS",
+    "Big Box of Chocolate Bars",
+    "Six-Pack of Alcohol",
+    "Jacket"
   ],
   "word_pool": [
     "Hammer",
@@ -103,5 +109,5 @@
     "Bottle of Beer",
     "Box of Grenades"
   ],
-  "updated_at": "2026-10-17T09:47:05.156218+00:00"
+  "updated_at": "2026-10-17T23:17:37.015803+00:00"
 }
