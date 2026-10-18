@@ -31,7 +31,8 @@
     "Pack of Music CDs",
     "Box of Bon Bons",
     "M16 A2 Rifle",
-    "Trainers"
+    "Trainers",
+    "Liquid Body Armor"
   ],
   "word_pool": [
     "Hammer",
@@ -115,5 +116,5 @@
     "Bottle of Beer",
     "Box of Grenades"
   ],
-  "updated_at": "2026-10-18T11:55:21.630733+00:00"
+  "updated_at": "2026-10-18T22:02:28.000731+00:00"
 }
