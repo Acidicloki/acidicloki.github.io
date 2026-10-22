@@ -270,5 +270,141 @@
       }
     ],
     "lockedAt": "2026-10-22T12:32:03.228065+00:00"
+  },
+  "1298042264312086592": {
+    "seed": "Lucirial [3981754]-129804-S2-20261022123131",
+    "userName": "Lucirial [3981754]",
+    "userId": "1298042264312086592",
+    "raffleNumber": 3,
+    "sessionId": 2,
+    "sessionNonce": "20261022123131",
+    "cells": [
+      {
+        "text": "Can of Munster",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Blood Bag : O-",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Liquid Body Armor",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "First Aid Kit",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Armored Vest",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Box of Grenades",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Lawyer Business Card",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "Feathery Hotel Coupon",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Speed",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Xanax",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Donator Pack",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Morphine",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "CYCLONE FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Box of Medical Supplies",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Blood Bag : A+",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Empty Blood Bag",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Six-Pack of Alcohol",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "Ecstasy",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Lottery Voucher",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Vicodin",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Can of Red Cow",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "RPG Launcher",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Dual Bushmasters",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Blood Bag : AB+",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Point",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-10-22T12:39:19.329100+00:00"
   }
 }
