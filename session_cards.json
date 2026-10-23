@@ -1086,5 +1086,141 @@
       }
     ],
     "lockedAt": "2026-10-23T03:56:50.993468+00:00"
+  },
+  "242191849803087873": {
+    "seed": "waverr [3865008]-242191-S2-20261022123131",
+    "userName": "waverr [3865008]",
+    "userId": "242191849803087873",
+    "raffleNumber": 9,
+    "sessionId": 2,
+    "sessionNonce": "20261022123131",
+    "cells": [
+      {
+        "text": "Ecstasy",
+        "is_free": false,
+        "index": 0
+      },
+      {
+        "text": "Box of Medical Supplies",
+        "is_free": false,
+        "index": 1
+      },
+      {
+        "text": "Armored Vest",
+        "is_free": false,
+        "index": 2
+      },
+      {
+        "text": "Speed",
+        "is_free": false,
+        "index": 3
+      },
+      {
+        "text": "Blood Bag : O-",
+        "is_free": false,
+        "index": 4
+      },
+      {
+        "text": "Box of Grenades",
+        "is_free": false,
+        "index": 5
+      },
+      {
+        "text": "Vicodin",
+        "is_free": false,
+        "index": 6
+      },
+      {
+        "text": "First Aid Kit",
+        "is_free": false,
+        "index": 7
+      },
+      {
+        "text": "Armalite M-15A4",
+        "is_free": false,
+        "index": 8
+      },
+      {
+        "text": "Blood Bag : A+",
+        "is_free": false,
+        "index": 9
+      },
+      {
+        "text": "Diamond Bladed Knife",
+        "is_free": false,
+        "index": 10
+      },
+      {
+        "text": "Xanax",
+        "is_free": false,
+        "index": 11
+      },
+      {
+        "text": "CYCLONE FREE SPACE",
+        "is_free": true,
+        "index": 12
+      },
+      {
+        "text": "Blood Bag : AB+",
+        "is_free": false,
+        "index": 13
+      },
+      {
+        "text": "Dual Bushmasters",
+        "is_free": false,
+        "index": 14
+      },
+      {
+        "text": "Combat Helmet",
+        "is_free": false,
+        "index": 15
+      },
+      {
+        "text": "Lawyer Business Card",
+        "is_free": false,
+        "index": 16
+      },
+      {
+        "text": "RPG Launcher",
+        "is_free": false,
+        "index": 17
+      },
+      {
+        "text": "Lottery Voucher",
+        "is_free": false,
+        "index": 18
+      },
+      {
+        "text": "Can of Rockstar",
+        "is_free": false,
+        "index": 19
+      },
+      {
+        "text": "Feathery Hotel Coupon",
+        "is_free": false,
+        "index": 20
+      },
+      {
+        "text": "Opium",
+        "is_free": false,
+        "index": 21
+      },
+      {
+        "text": "Can of Munster",
+        "is_free": false,
+        "index": 22
+      },
+      {
+        "text": "Morphine",
+        "is_free": false,
+        "index": 23
+      },
+      {
+        "text": "Empty Blood Bag",
+        "is_free": false,
+        "index": 24
+      }
+    ],
+    "lockedAt": "2026-10-23T03:59:00.682243+00:00"
   }
 }
