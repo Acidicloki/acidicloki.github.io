@@ -7,7 +7,13 @@
     "Liquid Body Armor",
     "Blood Bag : AB+",
     "Donator Pack",
-    "Opium"
+    "Opium",
+    "First Aid Kit",
+    "Can of Red Cow",
+    "Can of Rockstar",
+    "Box of Medical Supplies",
+    "Lawyer Business Card",
+    "Box of Grenades"
   ],
   "word_pool": [
     "Xanax",
@@ -41,5 +47,5 @@
     "Bottle of Beer",
     "Box of Grenades"
   ],
-  "updated_at": "2026-10-23T12:12:46.035994+00:00"
+  "updated_at": "2026-10-24T05:53:05.557534+00:00"
 }
