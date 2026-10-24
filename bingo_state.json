@@ -13,7 +13,13 @@
     "Can of Rockstar",
     "Box of Medical Supplies",
     "Lawyer Business Card",
-    "Box of Grenades"
+    "Box of Grenades",
+    "Six-Pack of Alcohol",
+    "RPG Launcher",
+    "Empty Blood Bag",
+    "Point",
+    "Ecstasy",
+    "Combat Helmet"
   ],
   "word_pool": [
     "Xanax",
@@ -47,5 +53,5 @@
     "Bottle of Beer",
     "Box of Grenades"
   ],
-  "updated_at": "2026-10-24T05:53:05.557534+00:00"
+  "updated_at": "2026-10-24T12:35:48.618047+00:00"
 }
